@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title th:text="${mensaje}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+	<div th:replace="fragments/header :: header">
+			
+		</div>
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1 th:text="${mensaje}"></h1>
+		</div>
+	</div>
+ <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
