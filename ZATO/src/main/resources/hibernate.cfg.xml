@@ -44,6 +44,8 @@ Contributor(s):
     <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+    <property name="hibernate.default_schema">SBTEL</property>
     <property name="hibernate.connection.username">sbtel</property>
     <property name="hibernate.connection.password">sbtel</property>
     <property name="hibernate.current_session_context_class">thread</property>
