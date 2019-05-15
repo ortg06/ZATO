@@ -50,6 +50,7 @@ Contributor(s):
     <property name="hibernate.connection.password">sbtel</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.id.new_generator_mappings">false</property>
+    <property name="hibernate.c3p0.testConnectionOnCheckout" value="true" />
     <mapping class="com.zato.app.entidades.Escrito"/>
     <mapping class="com.zato.app.entidades.RolSubmenu"/>
     <mapping class="com.zato.app.entidades.CursoCapacitacion"/>
@@ -98,5 +99,6 @@ Contributor(s):
     <mapping class="com.zato.app.entidades.LicenciaOferta"/>
     <mapping class="com.zato.app.entidades.Resultado"/>
     <mapping class="com.zato.app.entidades.Empresa"/>
+    
   </session-factory>
 </hibernate-configuration>

@@ -48,8 +48,7 @@ public class Pais  implements java.io.Serializable {
     
 
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   
+   @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="PK_PAIS", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkPais() {
         return this.pkPais;
