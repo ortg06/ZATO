@@ -33,7 +33,7 @@ public class PaisController {
         return "listar";
     }
     
-    @RequestMapping(value="/form")
+    @RequestMapping(value="/form",method=RequestMethod.GET)
     public String crear(Map<String,Object> model)
     {
         Pais pais = new Pais();
@@ -42,7 +42,7 @@ public class PaisController {
         return "form";
     }
     
-    @RequestMapping(value="/form",method=RequestMethod.POST)
+    @RequestMapping(value="/form1",method=RequestMethod.POST)
     public String guardar(Pais pais)
     {
         paisDao.save(pais);

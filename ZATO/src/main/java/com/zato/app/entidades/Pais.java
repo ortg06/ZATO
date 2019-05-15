@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,6 +24,7 @@ import javax.persistence.Table;
 public class Pais  implements java.io.Serializable {
 
 
+     
      private BigDecimal pkPais;
      private String nombrePais;
      private Set<Departamento> departamentos = new HashSet<Departamento>(0);
@@ -42,9 +45,11 @@ public class Pais  implements java.io.Serializable {
        this.eventos = eventos;
     }
    
-     @Id 
-
     
+
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   
     @Column(name="PK_PAIS", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkPais() {
         return this.pkPais;

@@ -49,6 +49,7 @@ Contributor(s):
     <property name="hibernate.connection.username">sbtel</property>
     <property name="hibernate.connection.password">sbtel</property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.id.new_generator_mappings">false</property>
     <mapping class="com.zato.app.entidades.Escrito"/>
     <mapping class="com.zato.app.entidades.RolSubmenu"/>
     <mapping class="com.zato.app.entidades.CursoCapacitacion"/>

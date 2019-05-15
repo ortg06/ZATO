@@ -13,8 +13,11 @@ and open the template in the editor.
     <body>
         <h1 th:text="${titulo}"></h1>
 
-        <form th:action="@{/form}" th:object="${pais}" method="post">
+        <form th:action="@{/form1}" th:object="${pais}" method="post">
             <table>
+                
+                
+               
                 <tr>
                     <td>Nombre</td>
                     <td><input type="text" th:field="*{nombrePais}"/></td>
@@ -25,7 +28,9 @@ and open the template in the editor.
                     <td><input type="submit" value="Crear Pais"/></td>
                 </tr>
             </table>
-            <input type="hidden" th:field="*{pkPais}"/>
+              
+                    <input type="hidden" th:field="*{pkPais}"/>
+                
         </form>
     </body>
 </html>
