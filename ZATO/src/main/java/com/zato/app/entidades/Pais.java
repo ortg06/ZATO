@@ -49,7 +49,7 @@ public class Pais  implements java.io.Serializable {
 
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="PK_PAIS", unique=true, nullable=false, precision=22, scale=0)
+    @Column(name="PK_PAIS", unique=true, nullable=false)
     public BigDecimal getPkPais() {
         return this.pkPais;
     }
@@ -85,10 +85,6 @@ public class Pais  implements java.io.Serializable {
     public void setEventos(Set<Evento> eventos) {
         this.eventos = eventos;
     }
-
-
-
-
 }
 
 
