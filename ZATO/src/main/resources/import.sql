@@ -8,5 +8,5 @@
  * Created: 12/05/2019
  */
 
-insert into PAIS (PK_PAIS,NOMBRE_PAIS) VALUES ('3','Honduras');
+
 
