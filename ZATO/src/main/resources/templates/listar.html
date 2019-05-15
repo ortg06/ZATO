@@ -22,12 +22,15 @@ and open the template in the editor.
         
         <table class="table table-striped">
             <thead>
-                <tr>
+                 <tr>
+                    <th>Acciones</th>
                     <th>Nombre</th>
-                </tr>
+                 </tr>
             </thead>
             <tbody>
                 <tr th:each="pais: ${paises}">
+                     <td><a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
                     <td th:text="${pais.nombrePais}"></td>
                 </tr>
             </tbody>
