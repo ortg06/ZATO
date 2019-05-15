@@ -9,11 +9,18 @@ and open the template in the editor.
         <title th:text="${titulo}">TODO supply a title</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
     </head>
     <body>
+        <div th:replace="fragments/header :: header"/>
         <h1 th:text="${titulo}"></h1>
-        <a th:href="@{/form}">Crear Pais</a>
-        <table>
+        
+        <div class="container">
+
+        <a th:href="@{/form}" class="btn btn-success btn-xs">Crear Pais</a>
+        
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -25,5 +32,8 @@ and open the template in the editor.
                 </tr>
             </tbody>
         </table>
-    </body>
+        </div>
+         <div th:replace="fragments/footer :: footer"></div>
+         
+      </body>
 </html>
