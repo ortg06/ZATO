@@ -5,9 +5,13 @@ package com.zato.app.entidades;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -42,8 +46,8 @@ public class Pais  implements java.io.Serializable {
     }
    
      @Id 
-
-    
+    //LA ANOTACION ES NECESARIA PARA MANEJAR LAS SECUENCIAS DE LOS IDS
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)    
     @Column(name="PK_PAIS", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkPais() {
         return this.pkPais;

@@ -32,7 +32,8 @@ public class PaisDaoImpl implements IPaisDao{
     @Override
     @Transactional
     public void save(Pais pais) {
-        if(pais.getPkPais() != null && (pais.getPkPais().compareTo(BigDecimal.ZERO))<0)
+        //AQUI SE COMPARA SI EL ID VIENE VACIO O SI NO SE REALIZA LAS COMPARACIONES CON ID TIPO BIGDECIMAL
+        if(pais.getPkPais() != null && (pais.getPkPais().compareTo(BigDecimal.ZERO))>0)
         {
             em.merge(pais);
         }
