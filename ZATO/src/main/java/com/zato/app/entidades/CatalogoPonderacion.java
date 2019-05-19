@@ -1,13 +1,14 @@
 package com.zato.app.entidades;
 // Generated 18/05/2019 06:12:05 PM by Hibernate Tools 4.3.1
 
-
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,6 +22,7 @@ import javax.persistence.Table;
 public class CatalogoPonderacion  implements java.io.Serializable {
 
 
+     private static final long serialVersionUID = 1L;
      private BigDecimal pkCatalogoPonderacion;
      private String etiquetaPonderacion;
      private String descripcionEtiqueta;
@@ -46,7 +48,8 @@ public class CatalogoPonderacion  implements java.io.Serializable {
    
      @Id 
 
-    
+ //LA ANOTACION ES NECESARIA PARA MANEJAR LAS SECUENCIAS DE LOS IDS
+ @GeneratedValue(strategy = GenerationType.SEQUENCE)      
     @Column(name="PK_CATALOGO_PONDERACION", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCatalogoPonderacion() {
         return this.pkCatalogoPonderacion;

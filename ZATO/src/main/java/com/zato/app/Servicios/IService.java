@@ -14,7 +14,7 @@ import com.zato.app.entidades.Pais;
  *
  * @author Alex
  */
-public interface IPaisService {
+public interface IService {
     
     public List<Pais> findAll();
     public void save(Pais pais);

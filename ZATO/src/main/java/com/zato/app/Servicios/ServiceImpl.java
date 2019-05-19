@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Alex
  */
 @Service
-public class PaisServiceImpl implements IPaisService {
+public class ServiceImpl implements IService {
 
     @Autowired
     private IPaisDao paisDao;

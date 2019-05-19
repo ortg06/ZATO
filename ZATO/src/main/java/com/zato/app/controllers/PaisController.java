@@ -5,7 +5,7 @@
  */
 package com.zato.app.controllers;
 
-import com.zato.app.Servicios.IPaisService;
+import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Pais;
 
 import java.lang.ProcessBuilder.Redirect;
@@ -30,14 +30,14 @@ import org.springframework.web.bind.support.SessionStatus;
 public class PaisController {
     
     @Autowired
-     private IPaisService paisService;
+     private IService paisService;
     
     @RequestMapping(value="/listar",method=RequestMethod.GET)
     public String listar(Model model)
     {
         model.addAttribute("titulo", "Listado de Paises");
         model.addAttribute("paises",paisService.findAll());
-        return "listar";
+        return "pais/listar";
     }
     
     @RequestMapping(value="/form",method=RequestMethod.GET)
@@ -46,7 +46,7 @@ public class PaisController {
         Pais pais = new Pais();
         model.put("pais", pais);
         model.put("titulo", "Datos del Pais");
-        return "form";
+        return "pais/form";
     }
     
      @RequestMapping(value="/form/{id}")
@@ -59,19 +59,19 @@ public class PaisController {
         {
             pais = paisService.findOne(id);
         } else {
-            return "redirect:/listar";
+            return "redirect:/pais/listar";
         }
         model.put("pais", pais);
         model.put("titulo", "Editar Cliente");
-        return "form";
+        return "pais/form";
     }
     
-    @RequestMapping(value="/form1",method=RequestMethod.POST)
+    @RequestMapping(value="/pais/form1",method=RequestMethod.POST)
     public String guardar(Pais pais, SessionStatus status)
     {
         paisService.save(pais);
         status.setComplete();
-        return "redirect:listar";
+        return "redirect:pais/listar";
     }
 
     @RequestMapping(value = "/eliminarPais/{id}")
@@ -82,6 +82,6 @@ public class PaisController {
         {
             paisService.delete(id);
         }
-        return "redirect:/listar";
+        return "redirect:pais/listar";
     }
 }
