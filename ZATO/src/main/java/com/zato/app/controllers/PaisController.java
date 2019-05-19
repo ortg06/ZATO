@@ -5,7 +5,7 @@
  */
 package com.zato.app.controllers;
 
-import com.zato.app.dao.IPaisDao;
+import com.zato.app.Servicios.IPaisService;
 import com.zato.app.entidades.Pais;
 
 import java.lang.ProcessBuilder.Redirect;
@@ -30,13 +30,13 @@ import org.springframework.web.bind.support.SessionStatus;
 public class PaisController {
     
     @Autowired
-    IPaisDao paisDao;
+     private IPaisService paisService;
     
     @RequestMapping(value="/listar",method=RequestMethod.GET)
     public String listar(Model model)
     {
         model.addAttribute("titulo", "Listado de Paises");
-        model.addAttribute("paises",paisDao.findAll());
+        model.addAttribute("paises",paisService.findAll());
         return "listar";
     }
     
@@ -57,7 +57,7 @@ public class PaisController {
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            pais = paisDao.findOne(id);
+            pais = paisService.findOne(id);
         } else {
             return "redirect:/listar";
         }
@@ -69,7 +69,7 @@ public class PaisController {
     @RequestMapping(value="/form1",method=RequestMethod.POST)
     public String guardar(Pais pais, SessionStatus status)
     {
-        paisDao.save(pais);
+        paisService.save(pais);
         status.setComplete();
         return "redirect:listar";
     }
@@ -80,7 +80,7 @@ public class PaisController {
          //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            paisDao.delete(id);
+            paisService.delete(id);
         }
         return "redirect:/listar";
     }
