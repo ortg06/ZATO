@@ -18,7 +18,7 @@ and open the template in the editor.
         
         <div class="container">
 
-        <a th:href="@{/form}" class="btn btn-success btn-xs">Crear Pais</a>
+        <a th:href="@{/formPais}" class="btn btn-success btn-xs">Crear Pais</a>
         
         <table class="table table-striped">
             <thead>
@@ -29,7 +29,7 @@ and open the template in the editor.
             </thead>
             <tbody>
                 <tr th:each="pais: ${paises}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${pais.pkPais}" th:text="'Editar'"></a>
+                     <td><a class="btn btn-primary btn-xs" th:href="@{/formPais/} + ${pais.pkPais}" th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-xs" th:href="@{/eliminarPais/} + ${pais.pkPais}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${pais.nombrePais}"></td>
                 </tr>

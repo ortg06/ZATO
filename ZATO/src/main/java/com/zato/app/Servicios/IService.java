@@ -18,6 +18,7 @@ import com.zato.app.entidades.Pais;
  */
 public interface IService {
     
+    //Pais
     public List<Pais> findAll();
     public void save(Pais pais);
     public Pais findOne (BigDecimal id);

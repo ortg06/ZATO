@@ -32,7 +32,7 @@ public class PaisController {
     @Autowired
      private IService paisService;
     
-    @RequestMapping(value="/listar",method=RequestMethod.GET)
+    @RequestMapping(value="/listarPais",method=RequestMethod.GET)
     public String listar(Model model)
     {
         model.addAttribute("titulo", "Listado de Paises");
@@ -40,7 +40,7 @@ public class PaisController {
         return "pais/listar";
     }
     
-    @RequestMapping(value="/form",method=RequestMethod.GET)
+    @RequestMapping(value="/formPais",method=RequestMethod.GET)
     public String crear(Map<String,Object> model)
     {
         Pais pais = new Pais();
@@ -49,7 +49,7 @@ public class PaisController {
         return "pais/form";
     }
     
-     @RequestMapping(value="/form/{id}")
+     @RequestMapping(value="/formPais/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
         Pais pais = null;
@@ -59,19 +59,19 @@ public class PaisController {
         {
             pais = paisService.findOne(id);
         } else {
-            return "redirect:/pais/listar";
+            return "redirect:/listarPais";
         }
         model.put("pais", pais);
         model.put("titulo", "Editar Cliente");
         return "pais/form";
     }
     
-    @RequestMapping(value="/pais/form1",method=RequestMethod.POST)
+    @RequestMapping(value="/form1",method=RequestMethod.POST)
     public String guardar(Pais pais, SessionStatus status)
     {
         paisService.save(pais);
         status.setComplete();
-        return "redirect:pais/listar";
+        return "redirect:/listarPais";
     }
 
     @RequestMapping(value = "/eliminarPais/{id}")
@@ -82,6 +82,6 @@ public class PaisController {
         {
             paisService.delete(id);
         }
-        return "redirect:pais/listar";
+        return "redirect:/listarPais";
     }
 }
