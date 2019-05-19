@@ -5,10 +5,14 @@
  */
 package com.zato.app.Servicios;
 
+import com.zato.app.dao.IDepartamentoDao;
+import com.zato.app.dao.IMunicipioDao;
 import java.math.BigDecimal;
 import java.util.List;
 
 import com.zato.app.dao.IPaisDao;
+import com.zato.app.entidades.Departamento;
+import com.zato.app.entidades.Municipio;
 import com.zato.app.entidades.Pais;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,11 @@ public class ServiceImpl implements IService {
 
     @Autowired
     private IPaisDao paisDao;
+    @Autowired
+    private IDepartamentoDao departamentoDao;
+    @Autowired
+    private IMunicipioDao municipioDao;
+   
 
     @Override
     @Transactional(readOnly=true) //esto sirve para acceder en modo de solo lectura ya que estamos construyendo una consulta
@@ -48,5 +57,36 @@ public class ServiceImpl implements IService {
     public void delete(BigDecimal id) {
         paisDao.delete(id);
     }
+    
+    
+    //Departamentos
+    @Override
+    @Transactional(readOnly=true)
+    public List<Departamento> findAlldep() {
+        return (List<Departamento>) departamentoDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void save(Departamento departamento) {
+      departamentoDao.save(departamento);
+    }
+    
+    
+    //Municipios
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<Municipio> findAllmun() {
+       return (List<Municipio>) municipioDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void save(Municipio municipio) {
+        municipioDao.save(municipio);
+    }
+    
+    
     
 }
