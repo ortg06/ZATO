@@ -6,15 +6,15 @@
 package com.zato.app.dao;
 
 import com.zato.app.entidades.Municipio;
-import java.util.List;
+import java.math.BigDecimal;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Alex
  */
-public interface IMunicipioDao {
+public interface IMunicipioDao extends CrudRepository<Municipio, BigDecimal> {
     
-    public List<Municipio> findAll();
-    public void save(Municipio municipio);
+    
     
 }

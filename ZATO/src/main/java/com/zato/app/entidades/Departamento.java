@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -45,7 +47,7 @@ public class Departamento  implements java.io.Serializable {
    
      @Id 
 
-    
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)  
     @Column(name="PK_DEPARTAMENTO", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkDepartamento() {
         return this.pkDepartamento;
