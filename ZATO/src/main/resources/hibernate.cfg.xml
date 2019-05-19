@@ -49,56 +49,5 @@ Contributor(s):
     <property name="hibernate.connection.username">sbtel</property>
     <property name="hibernate.connection.password">sbtel</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.id.new_generator_mappings">false</property>
-    <property name="hibernate.c3p0.testConnectionOnCheckout" value="true" />
-    <mapping class="com.zato.app.entidades.Escrito"/>
-    <mapping class="com.zato.app.entidades.RolSubmenu"/>
-    <mapping class="com.zato.app.entidades.CursoCapacitacion"/>
-    <mapping class="com.zato.app.entidades.CatalogoSectorEmpresa"/>
-    <mapping class="com.zato.app.entidades.Rol"/>
-    <mapping class="com.zato.app.entidades.ExperienciaLaboral"/>
-    <mapping class="com.zato.app.entidades.CatalogoGradoAcademico"/>
-    <mapping class="com.zato.app.entidades.Referencia"/>
-    <mapping class="com.zato.app.entidades.CatalogoCategoriaHabilidad"/>
-    <mapping class="com.zato.app.entidades.CatalogoTipoEmpresa"/>
-    <mapping class="com.zato.app.entidades.Candidato"/>
-    <mapping class="com.zato.app.entidades.HabilidadesCv"/>
-    <mapping class="com.zato.app.entidades.Perfil"/>
-    <mapping class="com.zato.app.entidades.Logro"/>
-    <mapping class="com.zato.app.entidades.Prueba"/>
-    <mapping class="com.zato.app.entidades.Submenu"/>
-    <mapping class="com.zato.app.entidades.CatalogoLicencia"/>
-    <mapping class="com.zato.app.entidades.CatalogoCategoria"/>
-    <mapping class="com.zato.app.entidades.AptitudOferta"/>
-    <mapping class="com.zato.app.entidades.CatalogoPonderacion"/>
-    <mapping class="com.zato.app.entidades.FormacionAcademica"/>
-    <mapping class="com.zato.app.entidades.Menu"/>
-    <mapping class="com.zato.app.entidades.HabilidadOferta"/>
-    <mapping class="com.zato.app.entidades.CatalogoHabilidad"/>
-    <mapping class="com.zato.app.entidades.Opciones"/>
-    <mapping class="com.zato.app.entidades.Oferta"/>
-    <mapping class="com.zato.app.entidades.CatalogoTipoReferencia"/>
-    <mapping class="com.zato.app.entidades.CatalogoEscrito"/>
-    <mapping class="com.zato.app.entidades.CatalogoAptitud"/>
-    <mapping class="com.zato.app.entidades.HabilidadLinguisticaCv"/>
-    <mapping class="com.zato.app.entidades.Municipio"/>
-    <mapping class="com.zato.app.entidades.Pais"/>
-    <mapping class="com.zato.app.entidades.CatalogoGenero"/>
-    <mapping class="com.zato.app.entidades.CatalogoIdioma"/>
-    <mapping class="com.zato.app.entidades.Evento"/>
-    <mapping class="com.zato.app.entidades.CatalogoPuesto"/>
-    <mapping class="com.zato.app.entidades.CatalogoTipoPrueba"/>
-    <mapping class="com.zato.app.entidades.Postulacion"/>
-    <mapping class="com.zato.app.entidades.AptitudCv"/>
-    <mapping class="com.zato.app.entidades.HabilidadLinguisicaOferta"/>
-    <mapping class="com.zato.app.entidades.Departamento"/>
-    <mapping class="com.zato.app.entidades.LicenciaCandidato"/>
-    <mapping class="com.zato.app.entidades.Cv"/>
-    <mapping class="com.zato.app.entidades.ConocimientoAcademicos"/>
-    <mapping class="com.zato.app.entidades.ItemPrueba"/>
-    <mapping class="com.zato.app.entidades.LicenciaOferta"/>
-    <mapping class="com.zato.app.entidades.Resultado"/>
-    <mapping class="com.zato.app.entidades.Empresa"/>
-    
   </session-factory>
 </hibernate-configuration>

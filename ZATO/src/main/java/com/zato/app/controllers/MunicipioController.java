@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class MunicipioController {
-    @Autowired
-            
+    
+    @Autowired    
     IMunicipioDao MunicipioDao;
     
     @RequestMapping(value="/municipios",method=RequestMethod.GET)

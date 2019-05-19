@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ZatoApplication<ZATO>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.zato.app.ZatoApplication",
+            "projectName": "ZATO",
+            "args": ""
+        }
+    ]
+}

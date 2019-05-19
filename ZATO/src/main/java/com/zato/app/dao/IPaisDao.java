@@ -6,6 +6,7 @@
 package com.zato.app.dao;
 
 import com.zato.app.entidades.Pais;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,5 +17,5 @@ public interface IPaisDao {
     
     public List<Pais> findAll();
     public void save(Pais pais);
-    
+    public Pais findOne (BigDecimal id);
 }

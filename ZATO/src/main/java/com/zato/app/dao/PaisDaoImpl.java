@@ -6,6 +6,7 @@
 package com.zato.app.dao;
 
 import com.zato.app.entidades.Pais;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,7 +32,20 @@ public class PaisDaoImpl implements IPaisDao{
     @Override
     @Transactional
     public void save(Pais pais) {
-        em.persist(pais);
+        if(pais.getPkPais() != null && (pais.getPkPais().compareTo(BigDecimal.ZERO))<0)
+        {
+            em.merge(pais);
+        }
+        else
+        {
+            em.persist(pais);
+        }
+    }
+    
+
+    @Override
+    public Pais findOne(BigDecimal id) {
+        return em.find(Pais.class, id);
     }
     
 }
