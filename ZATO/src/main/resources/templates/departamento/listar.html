@@ -24,6 +24,7 @@ and open the template in the editor.
             <thead>
                  <tr>
                     <th>Acciones</th>
+                     <th>Pais</th>
                     <th>Nombre</th>
                  </tr>
             </thead>
@@ -31,6 +32,7 @@ and open the template in the editor.
                 <tr th:each="depto: ${departamentos}">
                      <td><a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-xs" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
+                     <td th:text="${depto.pais.nombrePais}"></td>
                     <td th:text="${depto.nombreDepartamento}"></td>
                 </tr>
             </tbody>

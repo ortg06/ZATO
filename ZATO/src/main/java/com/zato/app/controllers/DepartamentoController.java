@@ -24,11 +24,13 @@ public class DepartamentoController {
     @Autowired
     private IService DepartamentoService;
     
+    
     @GetMapping("/listar")
     public String listar(Model model)
     {
         model.addAttribute("titulo", "Listado de Departamentos");
         model.addAttribute("departamentos",DepartamentoService.findAlldep());
+       
         return "departamento/listar";
     }
     
