@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.hibernate.type.TrueFalseType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,8 +47,17 @@ public class PaisDaoImpl implements IPaisDao{
     
 
     @Override
+    @Transactional(readOnly = true)
     public Pais findOne(BigDecimal id) {
         return em.find(Pais.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void delete(BigDecimal id) {
+        Pais pais = findOne(id);
+        em.remove(pais);
+
     }
     
 }

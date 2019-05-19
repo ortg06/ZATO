@@ -30,7 +30,7 @@ and open the template in the editor.
             <tbody>
                 <tr th:each="pais: ${paises}">
                      <td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${pais.pkPais}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
+                    <a class="btn btn-danger btn-xs" th:href="@{/eliminarPais/} + ${pais.pkPais}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${pais.nombrePais}"></td>
                 </tr>
             </tbody>

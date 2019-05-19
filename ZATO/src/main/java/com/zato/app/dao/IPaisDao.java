@@ -18,4 +18,5 @@ public interface IPaisDao {
     public List<Pais> findAll();
     public void save(Pais pais);
     public Pais findOne (BigDecimal id);
+    public void delete(BigDecimal id);
 }

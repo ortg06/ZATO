@@ -7,6 +7,8 @@ package com.zato.app.controllers;
 
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.entidades.Pais;
+
+import java.lang.ProcessBuilder.Redirect;
 import java.math.BigDecimal;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,7 @@ public class PaisController {
     {
         Pais pais = null;
        
+        //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
             pais = paisDao.findOne(id);
@@ -69,5 +72,16 @@ public class PaisController {
         paisDao.save(pais);
         status.setComplete();
         return "redirect:listar";
+    }
+
+    @RequestMapping(value = "/eliminarPais/{id}")
+    public String eliminar(@PathVariable(value="id") BigDecimal id)
+    {
+         //se compara si el ID es mayor que cero
+        if(id.compareTo(BigDecimal.ZERO)>0)
+        {
+            paisDao.delete(id);
+        }
+        return "redirect:/listar";
     }
 }
