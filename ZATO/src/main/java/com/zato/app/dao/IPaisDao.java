@@ -6,17 +6,19 @@
 package com.zato.app.dao;
 
 import com.zato.app.entidades.Pais;
+
+import org.springframework.data.repository.CrudRepository;
+
 import java.math.BigDecimal;
-import java.util.List;
+
 
 /**
  *
  * @author Alex
  */
-public interface IPaisDao {
+public interface IPaisDao extends CrudRepository<Pais, BigDecimal>{
     
-    public List<Pais> findAll();
-    public void save(Pais pais);
-    public Pais findOne (BigDecimal id);
-    public void delete(BigDecimal id);
+  
+
+
 }

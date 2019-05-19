@@ -28,7 +28,7 @@ public class PaisServiceImpl implements IPaisService {
     @Override
     @Transactional(readOnly=true) //esto sirve para acceder en modo de solo lectura ya que estamos construyendo una consulta
     public List<Pais> findAll() {
-        return paisDao.findAll();
+        return (List<Pais>) paisDao.findAll();
     }
 
     @Override
