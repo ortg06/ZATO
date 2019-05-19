@@ -5,12 +5,8 @@
  */
 package com.zato.app.controllers;
 
-import com.zato.app.dao.IMunicipioDao;
-import com.zato.app.entidades.Municipio;
-import java.util.Map;
+import com.zato.app.dao.IDepartamentoDao;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,21 +18,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Oscar
  */
 @Controller
-@RequestMapping("municipio")
-public class MunicipioController {
+@RequestMapping("/departamento")
+public class DepartamentoController {
     
-    @Autowired    
-    IMunicipioDao MunicipioDao;
+    @Autowired
+    IDepartamentoDao DepartamentoDao;
     
     @GetMapping("/listar")
     public String listar(Model model)
     {
-        model.addAttribute("titulo", "Listado de Municipios");
-        model.addAttribute("municipios",MunicipioDao.findAll());
-        return "municipio/listar";
+        model.addAttribute("titulo", "Listado de Departamentos");
+        model.addAttribute("departamentos",DepartamentoDao.findAll());
+        return "departamento/listar";
     }
     
-
-    
-   
 }
