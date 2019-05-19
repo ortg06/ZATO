@@ -9,6 +9,7 @@ import com.zato.app.dao.IDepartamentoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,17 +18,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Oscar
  */
 @Controller
+@RequestMapping("/departamento")
 public class DepartamentoController {
     
     @Autowired
     IDepartamentoDao DepartamentoDao;
     
-    @RequestMapping(value="/departamentos",method=RequestMethod.GET)
+    @GetMapping("/listar")
     public String listar(Model model)
     {
         model.addAttribute("titulo", "Listado de Departamentos");
         model.addAttribute("departamentos",DepartamentoDao.findAll());
-        return "departamentos";
+        return "departamento/listar";
     }
     
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,17 +22,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Oscar
  */
 @Controller
+@RequestMapping("municipio")
 public class MunicipioController {
     @Autowired
             
     IMunicipioDao MunicipioDao;
     
-    @RequestMapping(value="/municipios",method=RequestMethod.GET)
+    @GetMapping("/listar")
     public String listar(Model model)
     {
         model.addAttribute("titulo", "Listado de Municipios");
         model.addAttribute("municipios",MunicipioDao.findAll());
-        return "municipios";
+        return "municipio/listar";
     }
     
 
