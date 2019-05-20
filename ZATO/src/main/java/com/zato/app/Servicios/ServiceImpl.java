@@ -120,6 +120,8 @@ public class ServiceImpl implements IService {
         catalogoPonderacionDao.delete(id);
     }
 
+    
+
 
 
     
