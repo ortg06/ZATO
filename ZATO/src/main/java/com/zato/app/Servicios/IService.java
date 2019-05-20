@@ -27,13 +27,14 @@ public interface IService {
     
     //Departamento
     public List<Departamento> findAlldep();
-    public void save(Departamento departamento);
+    public void saveDepto(Departamento departamento);
     
     
     
     //Municipio
     
     public List<Municipio> findAllmun();
+<<<<<<< HEAD
     public void save(Municipio municipio);
 
     //Catalogo Ponderacion
@@ -42,4 +43,7 @@ public interface IService {
     public void save(CatalogoPonderacion catalogoPonderacion);
     public CatalogoPonderacion findOnePonderacion(BigDecimal id);
     public void deletePonderacion(BigDecimal id);
+=======
+    public void saveMun(Municipio municipio);
+>>>>>>> cdbf079672d4f5cc77b053199d6578b26f68ea3c
 }

@@ -73,7 +73,7 @@ public class ServiceImpl implements IService {
 
     @Override
     @Transactional
-    public void save(Departamento departamento) {
+    public void saveDepto(Departamento departamento) {
       departamentoDao.save(departamento);
     }
     
@@ -88,7 +88,7 @@ public class ServiceImpl implements IService {
 
     @Override
     @Transactional
-    public void save(Municipio municipio) {
+    public void saveMun(Municipio municipio) {
         municipioDao.save(municipio);
     }
     
