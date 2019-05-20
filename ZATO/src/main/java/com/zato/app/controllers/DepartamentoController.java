@@ -72,6 +72,7 @@ public class DepartamentoController {
         model.put("departamento", departamento);
         model.put("titulo", "Editar Cliente");
         model.put("paises",paisService.findAll());
+        model.put("p",departamento.getPais().getPkPais());
         return "departamento/formdep";
     }
     

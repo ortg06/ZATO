@@ -37,6 +37,7 @@ public interface IService {
     public void saveMun(Municipio municipio);
     public Municipio findOneMunicipio(BigDecimal id);
     public void deleteMunicipio(BigDecimal id);
+    
     //Catalogo Ponderacion
 
     public List<CatalogoPonderacion> findAllPonderacion();

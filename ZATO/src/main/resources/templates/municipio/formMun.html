@@ -20,7 +20,8 @@ and open the template in the editor.
                 <tr>
                    <td>Pais:</td>
                    <td><select id="pais" name="pais">
-                        <option th:each="pais : ${paises}" th:value="${pais.pkPais}" th:text="${pais.nombrePais}">
+                        <option th:each="pais : ${paises}" th:value="${pais.pkPais}" 
+                           th:selected="${pais.pkPais==p}"     th:text="${pais.nombrePais}">
                         </option>
                         </select>
                     </td>
@@ -28,7 +29,8 @@ and open the template in the editor.
                 <tr>
                     <td>Departamento:</td>
                    <td><select id="departamento" name="departamento">
-                        <option th:each="departamento : ${departamentos}" th:value="${departamento.pkDepartamento}" th:text="${departamento.nombreDepartamento}">
+                        <option th:each="departamento : ${departamentos}" 
+                            th:selected="${departamento.pkDepartamento==d}"    th:value="${departamento.pkDepartamento}" th:text="${departamento.nombreDepartamento}">
                         </option>
                         </select>
                     </td>

@@ -6,7 +6,6 @@
 package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
-import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
 import java.math.BigDecimal;
 import java.util.Map;
@@ -75,10 +74,10 @@ public class MunicipioController {
         model.put("titulo", "Editar Municipio");
         model.put("paises",paisService.findAll());
         model.put("departamentos",departamentoService.findAlldep());
+        model.put("d",municipio.getDepartamento().getPkDepartamento());
+        model.put("p",municipio.getDepartamento().getPais().getPkPais());
         return "municipio/formMun";
     }
-    
-    
     
     
      @RequestMapping(value="/formMun",method=RequestMethod.POST)
