@@ -77,6 +77,17 @@ public class ServiceImpl implements IService {
       departamentoDao.save(departamento);
     }
     
+    @Override
+    @Transactional
+    public Departamento findOneDepartamento(BigDecimal id){
+        return departamentoDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteDepartamento(BigDecimal id){
+        departamentoDao.delete(id);
+    }
     
     //Municipios
     
@@ -91,6 +102,19 @@ public class ServiceImpl implements IService {
     public void saveMun(Municipio municipio) {
         municipioDao.save(municipio);
     }
+    
+    @Override
+    @Transactional
+    public Municipio findOneMunicipio(BigDecimal id){
+        return municipioDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteMunicipio(BigDecimal id){
+        municipioDao.delete(id);
+    }
+    
     
     //CATALOGO PONDERACION
 

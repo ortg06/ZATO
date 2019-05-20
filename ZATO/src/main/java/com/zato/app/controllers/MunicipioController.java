@@ -32,6 +32,10 @@ public class MunicipioController {
     
     @Autowired    
     private IService municipioService; 
+     @Autowired    
+    private IService paisService; 
+      @Autowired    
+    private IService departamentoService; 
     
     @GetMapping("/listar")
     public String listar(Model model)
@@ -48,6 +52,8 @@ public class MunicipioController {
         Municipio municipio = new Municipio();
         model.put("municipio", municipio);
         model.put("titulo", "Datos del Municipio");
+        model.put("paises",paisService.findAll());
+        model.put("departamentos",departamentoService.findAlldep());
         return "municipio/formMun";
     }
     

@@ -28,14 +28,15 @@ public interface IService {
     //Departamento
     public List<Departamento> findAlldep();
     public void saveDepto(Departamento departamento);
-    
-    
+    public Departamento findOneDepartamento(BigDecimal id);
+    public void deleteDepartamento(BigDecimal id);
     
     //Municipio
     
     public List<Municipio> findAllmun();
     public void saveMun(Municipio municipio);
-
+    public Municipio findOneMunicipio(BigDecimal id);
+    public void deleteMunicipio(BigDecimal id);
     //Catalogo Ponderacion
 
     public List<CatalogoPonderacion> findAllPonderacion();
