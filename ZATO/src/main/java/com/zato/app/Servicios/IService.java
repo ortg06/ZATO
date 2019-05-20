@@ -26,12 +26,12 @@ public interface IService {
     
     //Departamento
     public List<Departamento> findAlldep();
-    public void save(Departamento departamento);
+    public void saveDepto(Departamento departamento);
     
     
     
     //Municipio
     
     public List<Municipio> findAllmun();
-    public void save(Municipio municipio);
+    public void saveMun(Municipio municipio);
 }
