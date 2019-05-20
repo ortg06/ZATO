@@ -38,6 +38,7 @@ public class MunicipioController {
     {
         model.addAttribute("titulo", "Listado de Municipios");
         model.addAttribute("municipios",municipioService.findAllmun());
+        
         return "municipio/listar";
     }
     

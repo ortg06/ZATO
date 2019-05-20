@@ -30,7 +30,8 @@ public class DepartamentoController {
     
     @Autowired
     private IService departamentoService;
-    
+    @Autowired
+    private IService paisService;
     
     @GetMapping("/listar")
     public String listar(Model model)
@@ -48,6 +49,7 @@ public class DepartamentoController {
         Departamento departamento = new Departamento();
         model.put("departamento", departamento);
         model.put("titulo", "Datos del Departamento");
+        model.put("paises",paisService.findAll());
         return "departamento/formdep";
     }
     
