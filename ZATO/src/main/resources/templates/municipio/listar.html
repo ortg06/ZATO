@@ -31,8 +31,8 @@ and open the template in the editor.
             </thead>
             <tbody>
                 <tr th:each="municipio: ${municipios}">
-                     <td><a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
+                     <td><a class="btn btn-primary btn-xs" th:href="@{/municipio/editar/} + ${municipio.pkMunicipio}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:href="@{/municipio/eliminar/} + ${municipio.pkMunicipio}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
                     <td th:text="${municipio.departamento.pais.nombrePais}"></td>
                      <td th:text="${municipio.departamento.nombreDepartamento}"></td>
                      <td th:text="${municipio.nombreMunicipio}"></td>
