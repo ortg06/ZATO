@@ -6,12 +6,14 @@
 package com.zato.app.Servicios;
 
 import com.zato.app.dao.ICatalogoPonderacionDao;
+import com.zato.app.dao.ICategoriaDao;
 import com.zato.app.dao.IDepartamentoDao;
 import com.zato.app.dao.IMunicipioDao;
 import java.math.BigDecimal;
 import java.util.List;
 
 import com.zato.app.dao.IPaisDao;
+import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
@@ -36,6 +38,8 @@ public class ServiceImpl implements IService {
     private IMunicipioDao municipioDao;
     @Autowired
     private ICatalogoPonderacionDao catalogoPonderacionDao;
+    @Autowired
+    private ICategoriaDao categoriaDao;
    
 
     //PAISES
@@ -119,6 +123,36 @@ public class ServiceImpl implements IService {
     public void deletePonderacion(BigDecimal id){
         catalogoPonderacionDao.delete(id);
     }
+
+
+
+    //CATEGORIAS
+    @Override
+    @Transactional(readOnly = true)
+    public List<CatalogoCategoria> findAllCategorias(){
+        return (List<CatalogoCategoria>) categoriaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void save(CatalogoCategoria catalogoCategoria)
+    {
+       categoriaDao.save(catalogoCategoria);
+    }
+
+    @Override
+    @Transactional
+    public CatalogoCategoria findOneCategoria(BigDecimal id) {
+        return categoriaDao.findOne(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCategoria(BigDecimal id){
+        categoriaDao.delete(id);
+    }
+
+
 
     
 

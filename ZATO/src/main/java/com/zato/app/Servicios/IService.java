@@ -5,6 +5,7 @@
  */
 package com.zato.app.Servicios;
 
+import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
@@ -43,4 +44,10 @@ public interface IService {
     public CatalogoPonderacion findOnePonderacion(BigDecimal id);
     public void deletePonderacion(BigDecimal id);
  
+    //Catalogo Categoria
+
+    public List<CatalogoCategoria>findAllCategorias();
+    public void save (CatalogoCategoria catalogoCategoria);
+    public CatalogoCategoria findOneCategoria(BigDecimal id);
+    public void deleteCategoria(BigDecimal id);
 }
