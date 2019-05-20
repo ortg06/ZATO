@@ -32,7 +32,7 @@ public class PaisController {
     @Autowired
      private IService paisService;
     
-    @RequestMapping(value="/listarPais",method=RequestMethod.GET)
+    @RequestMapping(value="/Pais/listar",method=RequestMethod.GET)
     public String listar(Model model)
     {
         model.addAttribute("titulo", "Listado de Paises");
@@ -40,7 +40,7 @@ public class PaisController {
         return "pais/listar";
     }
     
-    @RequestMapping(value="/formPais",method=RequestMethod.GET)
+    @RequestMapping(value="/Pais/form",method=RequestMethod.GET)
     public String crear(Map<String,Object> model)
     {
         Pais pais = new Pais();
@@ -49,7 +49,7 @@ public class PaisController {
         return "pais/form";
     }
     
-     @RequestMapping(value="/formPais/{id}")
+     @RequestMapping(value="/Pais/form/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
         Pais pais = null;
@@ -59,22 +59,22 @@ public class PaisController {
         {
             pais = paisService.findOne(id);
         } else {
-            return "redirect:/listarPais";
+            return "redirect:/Pais/listar";
         }
         model.put("pais", pais);
         model.put("titulo", "Editar Cliente");
         return "pais/form";
     }
     
-    @RequestMapping(value="/form1",method=RequestMethod.POST)
+    @RequestMapping(value="/Pais/form1",method=RequestMethod.POST)
     public String guardar(Pais pais, SessionStatus status)
     {
         paisService.save(pais);
         status.setComplete();
-        return "redirect:/listarPais";
+        return "redirect:/Pais/listar";
     }
 
-    @RequestMapping(value = "/eliminarPais/{id}")
+    @RequestMapping(value = "/Pais/eliminar/{id}")
     public String eliminar(@PathVariable(value="id") BigDecimal id)
     {
          //se compara si el ID es mayor que cero
@@ -82,6 +82,6 @@ public class PaisController {
         {
             paisService.delete(id);
         }
-        return "redirect:/listarPais";
+        return "redirect:/Pais/listar";
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.zato.app.Servicios;
 
+import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
 import java.math.BigDecimal;
@@ -34,4 +35,11 @@ public interface IService {
     
     public List<Municipio> findAllmun();
     public void save(Municipio municipio);
+
+    //Catalogo Ponderacion
+
+    public List<CatalogoPonderacion> findAllPonderacion();
+    public void save(CatalogoPonderacion catalogoPonderacion);
+    public CatalogoPonderacion findOnePonderacion(BigDecimal id);
+    public void deletePonderacion(BigDecimal id);
 }

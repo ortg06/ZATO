@@ -18,20 +18,22 @@ and open the template in the editor.
         
         <div class="container">
 
-        <a th:href="@{/Pais/form}" class="btn btn-success btn-xs">Crear Pais</a>
+        <a th:href="@{/CatalogoPonderacion/form}" class="btn btn-success btn-xs">Crear Ponderacion</a>
         
         <table class="table table-striped">
             <thead>
                  <tr>
                     <th>Acciones</th>
-                    <th>Nombre</th>
+                    <th>Etiqueta Ponderacion</th>
+                    <th>Descripcion Etiqueta</th>
                  </tr>
             </thead>
             <tbody>
-                <tr th:each="pais: ${paises}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/Pais/form/} + ${pais.pkPais}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:href="@{/Pais/eliminar/} + ${pais.pkPais}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
-                    <td th:text="${pais.nombrePais}"></td>
+                <tr th:each="ponderacion: ${catalogosPonderacion}">
+                     <td><a class="btn btn-primary btn-xs" th:href="@{/CatalogoPonderacion/form/} + ${ponderacion.pkCatalogoPonderacion}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:href="@{/CatalogoPonderacion/eliminar/} + ${ponderacion.pkCatalogoPonderacion}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <td th:text="${ponderacion.etiquetaPonderacion}"></td>
+                    <td th:text="${ponderacion.descripcionEtiqueta}"></td>
                 </tr>
             </tbody>
         </table>

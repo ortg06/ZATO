@@ -5,12 +5,14 @@
  */
 package com.zato.app.Servicios;
 
+import com.zato.app.dao.ICatalogoPonderacionDao;
 import com.zato.app.dao.IDepartamentoDao;
 import com.zato.app.dao.IMunicipioDao;
 import java.math.BigDecimal;
 import java.util.List;
 
 import com.zato.app.dao.IPaisDao;
+import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
 import com.zato.app.entidades.Pais;
@@ -32,8 +34,11 @@ public class ServiceImpl implements IService {
     private IDepartamentoDao departamentoDao;
     @Autowired
     private IMunicipioDao municipioDao;
+    @Autowired
+    private ICatalogoPonderacionDao catalogoPonderacionDao;
    
 
+    //PAISES
     @Override
     @Transactional(readOnly=true) //esto sirve para acceder en modo de solo lectura ya que estamos construyendo una consulta
     public List<Pais> findAll() {
@@ -87,6 +92,35 @@ public class ServiceImpl implements IService {
         municipioDao.save(municipio);
     }
     
-    
+    //CATALOGO PONDERACION
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CatalogoPonderacion>findAllPonderacion(){
+
+        return (List<CatalogoPonderacion>) catalogoPonderacionDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void save(CatalogoPonderacion catalogoPonderacion)
+    {
+        catalogoPonderacionDao.save(catalogoPonderacion);
+    }
+
+    @Override
+    @Transactional
+    public CatalogoPonderacion findOnePonderacion(BigDecimal id){
+        return catalogoPonderacionDao.findOne(id);
+    }
+
+    @Override
+    @Transactional
+    public void deletePonderacion(BigDecimal id){
+        catalogoPonderacionDao.delete(id);
+    }
+
+
+
     
 }
