@@ -5,6 +5,8 @@
  */
 package com.zato.app.Servicios;
 
+import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
+import com.zato.app.dao.ICatalogoLicencia;
 import com.zato.app.dao.ICatalogoPonderacionDao;
 import com.zato.app.dao.ICatalogoSectorEmpresa;
 import com.zato.app.dao.ICatalogoTipoPruebaDao;
@@ -16,6 +18,8 @@ import java.util.List;
 
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.entidades.CatalogoCategoria;
+import com.zato.app.entidades.CatalogoCategoriaHabilidad;
+import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
@@ -47,8 +51,14 @@ public class ServiceImpl implements IService {
     @Autowired
     private ICatalogoTipoPruebaDao catalogoTipoPruebaDao;
     @Autowired
+<<<<<<< HEAD
     private ICatalogoSectorEmpresa catalogoSectorEmpresaDao;
    
+=======
+    private ICatalogoCategoriaHabilidadDao catalogoHabilidadDao;
+    @Autowired
+    private ICatalogoLicencia catalogoLicenciaDao;
+>>>>>>> 8c6e132760a198224988aa4e78b20a6da43925a6
 
     //PAISES
     @Override
@@ -210,6 +220,7 @@ public class ServiceImpl implements IService {
         catalogoTipoPruebaDao.delete(id);
     }
  
+<<<<<<< HEAD
 
 //Catalogo Sector Empresa
 @Override
@@ -237,4 +248,62 @@ public void deleteSector(BigDecimal id){
     catalogoSectorEmpresaDao.delete(id);
 }
 
+=======
+    
+   //Catalogo Categoria Habilidad
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoCategoriaHabilidad> findAllcategoriaHabilidad() {
+        return (List<CatalogoCategoriaHabilidad>) catalogoHabilidadDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void savecategoriaHabilidad(CatalogoCategoriaHabilidad catalogoHabilidad) {
+      catalogoHabilidadDao.save(catalogoHabilidad);
+    }
+    
+    @Override
+    @Transactional
+    public CatalogoCategoriaHabilidad findOnecategoriaHabilidad(BigDecimal id){
+        return catalogoHabilidadDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deletecategoriaHabilidad(BigDecimal id){
+        catalogoHabilidadDao.delete(id);
+    } 
+    
+    
+     //Catalogo Licencia
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoLicencia> findAllcatalogoLicencia() {
+        return (List<CatalogoLicencia>) catalogoLicenciaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void savecatalogoLicencia(CatalogoLicencia catalogoLicencia) {
+      catalogoLicenciaDao.save(catalogoLicencia);
+    }
+    
+    @Override
+    @Transactional
+    public CatalogoLicencia findOnecatalogoLicencia(BigDecimal id){
+        return catalogoLicenciaDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deletecatalogoLicencia(BigDecimal id){
+        catalogoLicenciaDao.delete(id);
+    } 
+    
+    
+    
+>>>>>>> 8c6e132760a198224988aa4e78b20a6da43925a6
 }

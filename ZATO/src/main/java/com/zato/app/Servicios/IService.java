@@ -6,6 +6,8 @@
 package com.zato.app.Servicios;
 
 import com.zato.app.entidades.CatalogoCategoria;
+import com.zato.app.entidades.CatalogoCategoriaHabilidad;
+import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
@@ -65,8 +67,26 @@ public interface IService {
 
     //Catalogo Sector Empresa
     
+<<<<<<< HEAD
     public List<CatalogoSectorEmpresa> findAllSectores();
     public void saveSector(CatalogoSectorEmpresa catalogoSectorEmpresa);
     public CatalogoSectorEmpresa findOneSector(BigDecimal id);
     public void deleteSector(BigDecimal id);
+=======
+    //Catalogo Categoria Habilidad
+    
+    public List<CatalogoCategoriaHabilidad> findAllcategoriaHabilidad();
+    public void savecategoriaHabilidad(CatalogoCategoriaHabilidad categoriaHabilidad);
+    public CatalogoCategoriaHabilidad findOnecategoriaHabilidad(BigDecimal id);
+    public void deletecategoriaHabilidad(BigDecimal id);
+    
+    
+     //Catalogo Licencia
+    
+    public List<CatalogoLicencia> findAllcatalogoLicencia();
+    public void savecatalogoLicencia(CatalogoLicencia catalogoLicencia);
+    public CatalogoLicencia findOnecatalogoLicencia(BigDecimal id);
+    public void deletecatalogoLicencia(BigDecimal id);
+    
+>>>>>>> 8c6e132760a198224988aa4e78b20a6da43925a6
 }

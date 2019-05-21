@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -43,7 +45,7 @@ public class CatalogoLicencia  implements java.io.Serializable {
    
      @Id 
 
-    
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)  
     @Column(name="PK_CATALOGO_LICENCIA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCatalogoLicencia() {
         return this.pkCatalogoLicencia;
