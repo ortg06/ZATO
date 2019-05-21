@@ -6,6 +6,7 @@
 package com.zato.app.Servicios;
 
 import com.zato.app.dao.ICatalogoPonderacionDao;
+import com.zato.app.dao.ICatalogoTipoPruebaDao;
 import com.zato.app.dao.ICategoriaDao;
 import com.zato.app.dao.IDepartamentoDao;
 import com.zato.app.dao.IMunicipioDao;
@@ -15,6 +16,7 @@ import java.util.List;
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoPonderacion;
+import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
 import com.zato.app.entidades.Pais;
@@ -40,6 +42,8 @@ public class ServiceImpl implements IService {
     private ICatalogoPonderacionDao catalogoPonderacionDao;
     @Autowired
     private ICategoriaDao categoriaDao;
+    @Autowired
+    private ICatalogoTipoPruebaDao catalogoTipoPruebaDao;
    
 
     //PAISES
@@ -177,10 +181,29 @@ public class ServiceImpl implements IService {
     }
 
 
+//Catalogo de Tipo de Prueba 
+    @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoTipoPrueba> findAlltipoprueba() {
+        return (List<CatalogoTipoPrueba>) catalogoTipoPruebaDao.findAll();
+    }
 
+    @Override
+    @Transactional
+    public void savetipoprueba(CatalogoTipoPrueba tipoprueba) {
+      catalogoTipoPruebaDao.save(tipoprueba);
+    }
     
-
-
-
+    @Override
+    @Transactional
+    public CatalogoTipoPrueba findOnetprueba(BigDecimal id){
+        return catalogoTipoPruebaDao.findOne(id);
+    }
     
+     @Override
+    @Transactional
+    public void deletetipoprueba(BigDecimal id){
+        catalogoTipoPruebaDao.delete(id);
+    }
+ 
 }

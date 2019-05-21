@@ -13,28 +13,19 @@ and open the template in the editor.
     <body>
         <h1 th:text="${titulo}"></h1>
 
-        <form th:action="@{/departamento/formdep}" th:object="${departamento}" method="post">
+        <form th:action="@{/catalogoTipoPrueba/form}" th:object="${catalogoTipoPrueba}" method="post">
             <table>
-               
                 
+                
+               
                 <tr>
-                    <td>País:</td>
-                    <td><select id="pais" name="pais">
-                        
-                        <option th:each="pais : ${paises}" th:value="${pais.pkPais}" 
-                                th:selected="${pais.pkPais==p}" th:text="${pais.nombrePais}">
-                        </option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nombre:</td>
-                    <td><input type="text" th:field="*{nombreDepartamento}"/></td>
+                    <td>Nombre</td>
+                    <td><input type="text" th:field="*{nombreTipoPrueba}"/></td>
                 </tr>
 
                 <tr>
                     
-                    <td><input type="submit" value="Guardar" /></td>
+                    <td><input type="submit" value="Guardar"/></td>
                 </tr>
             </table>
               
