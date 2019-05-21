@@ -5,9 +5,12 @@ package com.zato.app.entidades;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +24,8 @@ import javax.persistence.Table;
 public class CatalogoSectorEmpresa  implements java.io.Serializable {
 
 
-     private BigDecimal pkSector;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkSector;
      private String nombreSector;
      private Set<ExperienciaLaboral> experienciaLaborals = new HashSet<ExperienciaLaboral>(0);
      private Set<Empresa> empresas = new HashSet<Empresa>(0);
@@ -43,7 +47,7 @@ public class CatalogoSectorEmpresa  implements java.io.Serializable {
    
      @Id 
 
-    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE) 
     @Column(name="PK_SECTOR", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkSector() {
         return this.pkSector;

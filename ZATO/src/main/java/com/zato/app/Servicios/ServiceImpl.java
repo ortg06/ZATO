@@ -6,6 +6,7 @@
 package com.zato.app.Servicios;
 
 import com.zato.app.dao.ICatalogoPonderacionDao;
+import com.zato.app.dao.ICatalogoSectorEmpresa;
 import com.zato.app.dao.ICatalogoTipoPruebaDao;
 import com.zato.app.dao.ICategoriaDao;
 import com.zato.app.dao.IDepartamentoDao;
@@ -16,6 +17,7 @@ import java.util.List;
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoPonderacion;
+import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
@@ -44,6 +46,8 @@ public class ServiceImpl implements IService {
     private ICategoriaDao categoriaDao;
     @Autowired
     private ICatalogoTipoPruebaDao catalogoTipoPruebaDao;
+    @Autowired
+    private ICatalogoSectorEmpresa catalogoSectorEmpresaDao;
    
 
     //PAISES
@@ -206,4 +210,31 @@ public class ServiceImpl implements IService {
         catalogoTipoPruebaDao.delete(id);
     }
  
+
+//Catalogo Sector Empresa
+@Override
+@Transactional
+public List<CatalogoSectorEmpresa> findAllSectores(){
+    return (List<CatalogoSectorEmpresa>) catalogoSectorEmpresaDao.findAll();
+}
+
+@Override
+@Transactional
+public void saveSector(CatalogoSectorEmpresa catalogoSectorEmpresa){
+    catalogoSectorEmpresaDao.save(catalogoSectorEmpresa);
+}
+
+
+@Override
+@Transactional
+public CatalogoSectorEmpresa findOneSector(BigDecimal id){
+    return catalogoSectorEmpresaDao.findOne(id);
+}
+
+@Override
+@Transactional
+public void deleteSector(BigDecimal id){
+    catalogoSectorEmpresaDao.delete(id);
+}
+
 }
