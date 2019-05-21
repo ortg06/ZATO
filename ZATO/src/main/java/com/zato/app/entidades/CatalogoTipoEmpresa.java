@@ -1,13 +1,14 @@
 package com.zato.app.entidades;
 // Generated 18/05/2019 06:12:05 PM by Hibernate Tools 4.3.1
 
-
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +22,8 @@ import javax.persistence.Table;
 public class CatalogoTipoEmpresa  implements java.io.Serializable {
 
 
-     private BigDecimal pkTipoEmpresa;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkTipoEmpresa;
      private String nombreTipoEmpresa;
      private Set<Empresa> empresas = new HashSet<Empresa>(0);
 
@@ -41,7 +43,7 @@ public class CatalogoTipoEmpresa  implements java.io.Serializable {
    
      @Id 
 
-    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="PK_TIPO_EMPRESA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkTipoEmpresa() {
         return this.pkTipoEmpresa;
@@ -69,9 +71,6 @@ public class CatalogoTipoEmpresa  implements java.io.Serializable {
     public void setEmpresas(Set<Empresa> empresas) {
         this.empresas = empresas;
     }
-
-
-
 
 }
 

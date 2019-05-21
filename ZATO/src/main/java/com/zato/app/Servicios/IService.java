@@ -10,6 +10,7 @@ import com.zato.app.entidades.CatalogoCategoriaHabilidad;
 import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
+import com.zato.app.entidades.CatalogoTipoEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
@@ -85,5 +86,12 @@ public interface IService {
     public void savecatalogoLicencia(CatalogoLicencia catalogoLicencia);
     public CatalogoLicencia findOnecatalogoLicencia(BigDecimal id);
     public void deletecatalogoLicencia(BigDecimal id);
-    
+
+
+    //Catalogo Tipo Empresa
+
+    public List<CatalogoTipoEmpresa> findAllTipoEmpresas();
+    public void saveTipoEmpresa(CatalogoTipoEmpresa catalogoTipoEmpresa);
+    public CatalogoTipoEmpresa findOneTipoEmpresa(BigDecimal id);
+    public void deleteTipoEmpresa(BigDecimal id);
 }

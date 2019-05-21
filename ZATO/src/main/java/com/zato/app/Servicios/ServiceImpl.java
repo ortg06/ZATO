@@ -9,6 +9,7 @@ import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
 import com.zato.app.dao.ICatalogoLicencia;
 import com.zato.app.dao.ICatalogoPonderacionDao;
 import com.zato.app.dao.ICatalogoSectorEmpresa;
+import com.zato.app.dao.ICatalogoTipoEmpresaDao;
 import com.zato.app.dao.ICatalogoTipoPruebaDao;
 import com.zato.app.dao.ICategoriaDao;
 import com.zato.app.dao.IDepartamentoDao;
@@ -22,6 +23,7 @@ import com.zato.app.entidades.CatalogoCategoriaHabilidad;
 import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
+import com.zato.app.entidades.CatalogoTipoEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
@@ -56,6 +58,8 @@ public class ServiceImpl implements IService {
     private ICatalogoCategoriaHabilidadDao catalogoHabilidadDao;
     @Autowired
     private ICatalogoLicencia catalogoLicenciaDao;
+    @Autowired
+    private ICatalogoTipoEmpresaDao catalogoTipoEmpresaDao;
 
     //PAISES
     @Override
@@ -299,5 +303,30 @@ public void deleteSector(BigDecimal id){
     } 
     
     
+    //Catalogo Tipo Empresa
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoTipoEmpresa> findAllTipoEmpresas() {
+        return (List<CatalogoTipoEmpresa>) catalogoTipoEmpresaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveTipoEmpresa(CatalogoTipoEmpresa catalogoTipoEmpresa) {
+      catalogoTipoEmpresaDao.save(catalogoTipoEmpresa);
+    }
+    
+    @Override
+    @Transactional
+    public CatalogoTipoEmpresa findOneTipoEmpresa(BigDecimal id){
+        return catalogoTipoEmpresaDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteTipoEmpresa(BigDecimal id){
+        catalogoTipoEmpresaDao.delete(id);
+    } 
     
 }
