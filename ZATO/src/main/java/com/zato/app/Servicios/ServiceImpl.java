@@ -217,7 +217,6 @@ public class ServiceImpl implements IService {
         catalogoTipoPruebaDao.delete(id);
     }
  
-<<<<<<< HEAD
 
 //Catalogo Sector Empresa
 @Override
@@ -245,7 +244,6 @@ public void deleteSector(BigDecimal id){
     catalogoSectorEmpresaDao.delete(id);
 }
 
-=======
     
    //Catalogo Categoria Habilidad
     
@@ -302,5 +300,4 @@ public void deleteSector(BigDecimal id){
     
     
     
->>>>>>> 8c6e132760a198224988aa4e78b20a6da43925a6
 }
