@@ -67,12 +67,10 @@ public interface IService {
 
     //Catalogo Sector Empresa
     
-<<<<<<< HEAD
     public List<CatalogoSectorEmpresa> findAllSectores();
     public void saveSector(CatalogoSectorEmpresa catalogoSectorEmpresa);
     public CatalogoSectorEmpresa findOneSector(BigDecimal id);
     public void deleteSector(BigDecimal id);
-=======
     //Catalogo Categoria Habilidad
     
     public List<CatalogoCategoriaHabilidad> findAllcategoriaHabilidad();
@@ -88,5 +86,4 @@ public interface IService {
     public CatalogoLicencia findOnecatalogoLicencia(BigDecimal id);
     public void deletecatalogoLicencia(BigDecimal id);
     
->>>>>>> 8c6e132760a198224988aa4e78b20a6da43925a6
 }

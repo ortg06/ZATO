@@ -51,14 +51,11 @@ public class ServiceImpl implements IService {
     @Autowired
     private ICatalogoTipoPruebaDao catalogoTipoPruebaDao;
     @Autowired
-<<<<<<< HEAD
     private ICatalogoSectorEmpresa catalogoSectorEmpresaDao;
    
-=======
     private ICatalogoCategoriaHabilidadDao catalogoHabilidadDao;
     @Autowired
     private ICatalogoLicencia catalogoLicenciaDao;
->>>>>>> 8c6e132760a198224988aa4e78b20a6da43925a6
 
     //PAISES
     @Override
