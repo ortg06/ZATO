@@ -13,15 +13,18 @@ and open the template in the editor.
     <body>
         <h1 th:text="${titulo}"></h1>
 
-        <form th:action="@{/Categoria/form}" th:object="${categoria}" method="post">
+        <form th:action="@{/Categoria/form}" th:object="${catalogoCategoria}" method="post">
             <table>
                 
                 
                
                 <tr>
+                    
                     <td>Nombre Categoria</td>
                     <td><input type="text" th:field="*{nombreCatalogoCategoria}"/></td>
                 </tr>
+
+                
 
                 <tr>
                     

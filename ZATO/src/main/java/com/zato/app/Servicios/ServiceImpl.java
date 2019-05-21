@@ -159,7 +159,7 @@ public class ServiceImpl implements IService {
 
     @Override
     @Transactional
-    public void save(CatalogoCategoria catalogoCategoria)
+    public void saveCategoria(CatalogoCategoria catalogoCategoria)
     {
        categoriaDao.save(catalogoCategoria);
     }

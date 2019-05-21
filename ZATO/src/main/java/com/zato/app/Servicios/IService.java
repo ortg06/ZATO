@@ -49,7 +49,7 @@ public interface IService {
     //Catalogo Categoria
 
     public List<CatalogoCategoria>findAllCategorias();
-    public void save (CatalogoCategoria catalogoCategoria);
+    public void saveCategoria(CatalogoCategoria catalogoCategoria);
     public CatalogoCategoria findOneCategoria(BigDecimal id);
     public void deleteCategoria(BigDecimal id);
 }

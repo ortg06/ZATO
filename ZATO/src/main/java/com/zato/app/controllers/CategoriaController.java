@@ -21,7 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
  */
 
 @Controller
-@SessionAttributes("categoria")
+@SessionAttributes("catalogoCategoria")
  public class CategoriaController{
 
     @Autowired
@@ -39,7 +39,7 @@ import org.springframework.web.bind.support.SessionStatus;
     public String crear(Map<String,Object> model)
     {
         CatalogoCategoria catalogoCategoria = new CatalogoCategoria();
-        model.put("categoria", catalogoCategoria);
+        model.put("catalogoCategoria", catalogoCategoria);
         model.put("titulo", "Datos de la Categoria");
         return "categoria/form";
     }
@@ -52,12 +52,11 @@ import org.springframework.web.bind.support.SessionStatus;
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            
             catalogoCategoria = categoriaService.findOneCategoria(id);
         } else {
             return "redirect:/Categoria/listar";
         }
-        model.put("categoria", catalogoCategoria);
+        model.put("catalogoCategoria", catalogoCategoria);
         model.put("titulo", "Editar Categoria");
         return "categoria/form";
     }
@@ -66,7 +65,7 @@ import org.springframework.web.bind.support.SessionStatus;
     public String guardar(CatalogoCategoria catalogoCategoria , SessionStatus status)
     {
         
-        categoriaService.save(catalogoCategoria);
+        categoriaService.saveCategoria(catalogoCategoria);
         status.setComplete();
         return "redirect:/Categoria/listar";
     }
