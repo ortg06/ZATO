@@ -6,6 +6,7 @@
 package com.zato.app.Servicios;
 
 import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
+import com.zato.app.dao.ICatalogoGenero;
 import com.zato.app.dao.ICatalogoLicencia;
 import com.zato.app.dao.ICatalogoPonderacionDao;
 import com.zato.app.dao.ICatalogoSectorEmpresa;
@@ -20,6 +21,7 @@ import java.util.List;
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
+import com.zato.app.entidades.CatalogoGenero;
 import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
@@ -54,12 +56,14 @@ public class ServiceImpl implements IService {
     private ICatalogoTipoPruebaDao catalogoTipoPruebaDao;
     @Autowired
     private ICatalogoSectorEmpresa catalogoSectorEmpresaDao;
-   
+    @Autowired
     private ICatalogoCategoriaHabilidadDao catalogoHabilidadDao;
     @Autowired
     private ICatalogoLicencia catalogoLicenciaDao;
     @Autowired
     private ICatalogoTipoEmpresaDao catalogoTipoEmpresaDao;
+     @Autowired
+    private ICatalogoGenero catalogoGeneroDao;
 
     //PAISES
     @Override
@@ -300,7 +304,33 @@ public void deleteSector(BigDecimal id){
     @Transactional
     public void deletecatalogoLicencia(BigDecimal id){
         catalogoLicenciaDao.delete(id);
-    } 
+    }
+
+    //Catalogo Genero
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoGenero> findAllcatalogoGenero() {
+         return (List<CatalogoGenero>) catalogoGeneroDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void savecatalogoGenero(CatalogoGenero catalogoGenero) {
+        catalogoGeneroDao.save(catalogoGenero);
+    }
+
+    @Override
+    @Transactional
+    public CatalogoGenero findOnecatalogoGenero(BigDecimal id) {
+        return catalogoGeneroDao.findOne(id);
+    }
+
+    @Override
+    @Transactional
+    public void deletecatalogoGenero(BigDecimal id) {
+        catalogoGeneroDao.delete(id);
+    }
     
     
     //Catalogo Tipo Empresa
