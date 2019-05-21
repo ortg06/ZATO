@@ -7,6 +7,7 @@ package com.zato.app.Servicios;
 
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoPonderacion;
+import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
 import java.math.BigDecimal;
@@ -52,4 +53,12 @@ public interface IService {
     public void save (CatalogoCategoria catalogoCategoria);
     public CatalogoCategoria findOneCategoria(BigDecimal id);
     public void deleteCategoria(BigDecimal id);
+    
+    //Catalogo Tipo de Prueba
+    
+    public List<CatalogoTipoPrueba> findAlltipoprueba();
+    public void savetipoprueba(CatalogoTipoPrueba tipoprueba);
+    public CatalogoTipoPrueba findOnetprueba(BigDecimal id);
+    public void deletetipoprueba(BigDecimal id);
+    
 }
