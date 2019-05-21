@@ -6,6 +6,7 @@
 package com.zato.app.Servicios;
 
 import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
+import com.zato.app.dao.ICatalogoLicencia;
 import com.zato.app.dao.ICatalogoPonderacionDao;
 import com.zato.app.dao.ICatalogoTipoPruebaDao;
 import com.zato.app.dao.ICategoriaDao;
@@ -17,6 +18,7 @@ import java.util.List;
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
+import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
@@ -48,7 +50,8 @@ public class ServiceImpl implements IService {
     private ICatalogoTipoPruebaDao catalogoTipoPruebaDao;
     @Autowired
     private ICatalogoCategoriaHabilidadDao catalogoHabilidadDao;
-   
+    @Autowired
+    private ICatalogoLicencia catalogoLicenciaDao;
 
     //PAISES
     @Override
@@ -235,6 +238,33 @@ public class ServiceImpl implements IService {
     @Transactional
     public void deletecategoriaHabilidad(BigDecimal id){
         catalogoHabilidadDao.delete(id);
+    } 
+    
+    
+     //Catalogo Licencia
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoLicencia> findAllcatalogoLicencia() {
+        return (List<CatalogoLicencia>) catalogoLicenciaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void savecatalogoLicencia(CatalogoLicencia catalogoLicencia) {
+      catalogoLicenciaDao.save(catalogoLicencia);
+    }
+    
+    @Override
+    @Transactional
+    public CatalogoLicencia findOnecatalogoLicencia(BigDecimal id){
+        return catalogoLicenciaDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deletecatalogoLicencia(BigDecimal id){
+        catalogoLicenciaDao.delete(id);
     } 
     
     
