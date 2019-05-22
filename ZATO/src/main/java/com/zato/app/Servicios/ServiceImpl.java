@@ -5,6 +5,9 @@
  */
 package com.zato.app.Servicios;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
 import com.zato.app.dao.ICatalogoGenero;
 import com.zato.app.dao.ICatalogoLicencia;
@@ -15,9 +18,6 @@ import com.zato.app.dao.ICatalogoTipoPruebaDao;
 import com.zato.app.dao.ICategoriaDao;
 import com.zato.app.dao.IDepartamentoDao;
 import com.zato.app.dao.IMunicipioDao;
-import java.math.BigDecimal;
-import java.util.List;
-
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
