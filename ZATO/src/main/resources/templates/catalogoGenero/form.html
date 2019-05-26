@@ -9,28 +9,33 @@ and open the template in the editor.
         <title th:text="${titulo}">TODO supply a title</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
     </head>
     <body>
-        <h1 th:text="${titulo}"></h1>
+        <div th:replace="fragments/header :: header"/>
 
-        <form th:action="@{/catalogoGenero/form}" th:object="${catalogoGenero}" method="post">
-            <table>
-                
-                
-               
-                <tr>
-                    <td>Nombre</td>
-                    <td><input type="text" th:field="*{nombreGenero}"/></td>
-                </tr>
+        <div class="container">
+            <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
 
-                <tr>
-                    
-                    <td><input type="submit" value="Guardar"/></td>
-                </tr>
-            </table>
-              
-               
-                
-        </form>
+
+            <form th:action="@{/catalogoGenero/form}" th:object="${catalogoGenero}" method="post">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nombre:</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="text" th:field="*{nombreGenero}"/> 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
     </body>
 </html>
