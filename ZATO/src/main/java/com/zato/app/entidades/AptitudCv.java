@@ -1,14 +1,16 @@
 package com.zato.app.entidades;
 // Generated 18/05/2019 06:12:05 PM by Hibernate Tools 4.3.1
 
-
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -35,7 +37,8 @@ public class AptitudCv  implements java.io.Serializable {
    
      @Id 
 
-    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_APTITUDCV", allocationSize = 1, name = "SEQUENCE_INCREMENT")
     @Column(name="PK_APTITUD_CV", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkAptitudCv() {
         return this.pkAptitudCv;
