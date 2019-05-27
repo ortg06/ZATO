@@ -17,8 +17,11 @@ import com.zato.app.dao.ICatalogoTipoEmpresaDao;
 import com.zato.app.dao.ICatalogoTipoPruebaDao;
 import com.zato.app.dao.ICategoriaDao;
 import com.zato.app.dao.IDepartamentoDao;
+import com.zato.app.dao.IMenuDao;
 import com.zato.app.dao.IMunicipioDao;
 import com.zato.app.dao.IPaisDao;
+import com.zato.app.dao.IRolDao;
+import com.zato.app.dao.ISubmenuDao;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
 import com.zato.app.entidades.CatalogoGenero;
@@ -30,6 +33,9 @@ import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
 import com.zato.app.entidades.Pais;
+import com.zato.app.entidades.Rol;
+import com.zato.app.entidades.Menu;
+import com.zato.app.entidades.Submenu;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,6 +70,12 @@ public class ServiceImpl implements IService {
     private ICatalogoTipoEmpresaDao catalogoTipoEmpresaDao;
      @Autowired
     private ICatalogoGenero catalogoGeneroDao;
+    @Autowired
+    private IRolDao rolDao;
+    @Autowired
+    private IMenuDao menuDao;
+    @Autowired
+    private ISubmenuDao submenuDao;
 
     //PAISES
     @Override
@@ -359,4 +371,81 @@ public void deleteSector(BigDecimal id){
         catalogoTipoEmpresaDao.delete(id);
     } 
     
+    //ROL
+     @Override
+    @Transactional(readOnly=true)
+    public List<Rol> findAllRol() {
+      return (List<Rol>) rolDao.findAll();
+      
+    }
+
+    @Override
+    @Transactional
+    public void saveRol(Rol rol) {
+      rolDao.save(rol);
+    }
+    
+    @Override
+    @Transactional
+    public Rol findOneRol(BigDecimal id){
+        return rolDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteRol(BigDecimal id){
+        rolDao.delete(id);
+    }
+    
+    //Menu
+     @Override
+    @Transactional(readOnly=true)
+    public List<Menu> findAllMenu() {
+      return (List<Menu>) menuDao.findAll();
+      
+    }
+
+    @Override
+    @Transactional
+    public void saveMenu(Menu menu) {
+      menuDao.save(menu);
+    }
+    
+    @Override
+    @Transactional
+    public Menu findOneMenu(BigDecimal id){
+        return menuDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteMenu(BigDecimal id){
+        menuDao.delete(id);
+    }
+    
+    //Submenu
+     @Override
+    @Transactional(readOnly=true)
+    public List<Submenu> findAllSubmenu() {
+      return (List<Submenu>) submenuDao.findAll();
+      
+    }
+
+    @Override
+    @Transactional
+    public void saveSubmenu(Submenu submenu) {
+      submenuDao.save(submenu);
+    }
+    
+    @Override
+    @Transactional
+    public Submenu findOneSubmenu(BigDecimal id){
+        return submenuDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteSubmenu(BigDecimal id){
+        submenuDao.delete(id);
+    }
 }

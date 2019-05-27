@@ -8,8 +8,11 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -20,7 +23,7 @@ import javax.persistence.Table;
 )
 public class Rol  implements java.io.Serializable {
 
-
+     private static final long serialVersionUID = 1L;
      private BigDecimal pkRol;
      private String nombreRol;
      private Set<Perfil> perfils = new HashSet<Perfil>(0);
@@ -42,7 +45,9 @@ public class Rol  implements java.io.Serializable {
     }
    
      @Id 
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator= "TIB_ROL") 
+    @SequenceGenerator(sequenceName = "SEQUENCE_ROL", allocationSize = 1, name = "TIB_ROL")
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     
     @Column(name="PK_ROL", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkRol() {

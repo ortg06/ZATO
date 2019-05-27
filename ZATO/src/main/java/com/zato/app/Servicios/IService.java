@@ -14,11 +14,14 @@ import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.CatalogoTipoEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
+import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Municipio;
 import java.math.BigDecimal;
 import java.util.List;
 
 import com.zato.app.entidades.Pais;
+import com.zato.app.entidades.Rol;
+import com.zato.app.entidades.Submenu;
 
 /**
  *
@@ -103,4 +106,22 @@ public interface IService {
     public void savecatalogoGenero(CatalogoGenero catalogoGenero);
     public CatalogoGenero findOnecatalogoGenero(BigDecimal id);
     public void deletecatalogoGenero(BigDecimal id);
+    
+    // ROL
+    public List<Rol> findAllRol();
+    public void saveRol(Rol rol);
+    public Rol findOneRol (BigDecimal id);
+    public void deleteRol(BigDecimal id);
+    
+    //Menu
+    public List<Menu> findAllMenu();
+    public void saveMenu(Menu menu);
+    public Menu findOneMenu (BigDecimal id);
+    public void deleteMenu(BigDecimal id);
+    
+     //Submenu
+    public List<Submenu> findAllSubmenu();
+    public void saveSubmenu(Submenu Submenu);
+    public Submenu findOneSubmenu (BigDecimal id);
+    public void deleteSubmenu(BigDecimal id);
 }
