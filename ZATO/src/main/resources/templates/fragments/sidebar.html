@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <head>
+        <meta charset="ISO-8859-1" />
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+
+        <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+    </head>
+</head>
+<body>
+    <div class="col-lg-2 col-md-2" th:fragment="sidebar">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="Mis Curriculos">Mis Curriculos</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="Perfil">Perfil</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="Aplicaciones">Aplicaciones</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="Favoritos">Favoritos</a>
+        </div>
+    </div>
+</body>
+</html>
