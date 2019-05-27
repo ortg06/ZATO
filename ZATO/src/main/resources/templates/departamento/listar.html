@@ -14,31 +14,38 @@ and open the template in the editor.
     </head>
     <body>
         <div th:replace="fragments/header :: header"/>
-        <h1 th:text="${titulo}"></h1>
-        
-        <div class="container">
+       
 
-        <a th:href="@{/departamento/nuevo}" class="btn btn-success btn-xs">Crear Departamento</a>
-        
-        <table class="table table-striped">
-            <thead>
-                 <tr>
-                    <th>Acciones</th>
-                     <th>Pais</th>
-                    <th>Nombre</th>
-                 </tr>
-            </thead>
-            <tbody>
-                <tr th:each="depto: ${departamentos}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/departamento/editar/} + ${depto.pkDepartamento}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:href="@{/departamento/eliminar/} + ${depto.pkDepartamento}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
-                     <td th:text="${depto.pais.nombrePais}"></td>
-                    <td th:text="${depto.nombreDepartamento}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="container">
+            <h1 th:text="${titulo}"></h1>
+          <div class="row">  
+               <div th:replace="fragments/sidebar :: sidebar"></div>
+           <div class="col-lg-10 col-md-10">    
+            <a th:href="@{/departamento/nuevo}" class="btn btn-success btn-xs">Crear Departamento</a>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>Pais</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="depto: ${departamentos}">
+                        <td><a class="btn btn-primary btn-xs" th:href="@{/departamento/editar/} + ${depto.pkDepartamento}" th:text="'Editar'"></a>
+                            <a class="btn btn-danger btn-xs" th:href="@{/departamento/eliminar/} + ${depto.pkDepartamento}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
+                        <td th:text="${depto.pais.nombrePais}"></td>
+                        <td th:text="${depto.nombreDepartamento}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+           </div>
+                <div th:replace="fragments/footer :: footer"></div>
+          </div>
         </div>
-         <div th:replace="fragments/footer :: footer"></div>
-         
-      </body>
+      
+
+    </body>
 </html>

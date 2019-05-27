@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head><div class="col-lg-10 col-md-10">
         <meta charset="ISO-8859-1" />
         <title th:text="${mensaje}">Insert title here</title>
         <link rel="stylesheet"
@@ -11,12 +11,13 @@
     <body>
         <div th:replace="fragments/header :: header">  </div>
         <div class="container">
-            <div class="row col-lg-12">
+            <div class="row">
                 <div th:replace="fragments/sidebar :: sidebar"></div>
-                <div class="col-lg-10">
+                <div class="col-lg-10 col-md-10">
                     <div class="jumbotron">
                         <h1 th:text="${mensaje}"></h1>
                     </div>
+                    
                 </div>    
                 <div th:replace="fragments/footer :: footer"></div>
             </div>
