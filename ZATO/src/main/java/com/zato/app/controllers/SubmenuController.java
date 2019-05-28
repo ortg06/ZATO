@@ -31,6 +31,45 @@ public class SubmenuController {
     @Autowired
     private IService menuService; 
     
+    @GetMapping("/listar")
+    public String listar(Model model)
+    {
+        model.addAttribute("titulo", "Listado Submenu");
+        model.addAttribute("submenus",SubmenuService.findAllSubmenu());
+       
+        return "submenu/listar";
+    }
+  
+     @RequestMapping(value="/nuevo",method=RequestMethod.GET)
+    public String crear(Map<String,Object> model)
+    {
+        Submenu submenu = new Submenu();
+        model.put("submenu", submenu);
+        model.put("titulo", "Datos del Submenu");
+        model.put("menus",menuService.findAll());
+        return "submenu/formsubm";
+    }
+    
+     @RequestMapping(value="/editar/{id}")
+    public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
+    {
+        Submenu submenu = null;
+       
+        //se compara si el ID es mayor que cero
+        if(id.compareTo(BigDecimal.ZERO)>0)
+        {
+            submenu = SubmenuService.findOneSubmenu(id);
+          
+        } else {
+            return "redirect:/submenu/listar";
+        }
+        model.put("submenu", submenu);
+        model.put("titulo", "Editar Submenu");
+        model.put("menus",menuService.findAll());
+        model.put("p",submenu.getMenu().getPkMenu());
+        return "submenu/formsubm";
+    } 
+    
     
     
 }
