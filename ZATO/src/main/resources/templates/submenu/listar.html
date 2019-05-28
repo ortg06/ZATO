@@ -4,50 +4,46 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th ="http://www.thymeleaf.org">
+<html>
     <head>
-        <title th:text="${titulo}">TODO supply a title</title>
+         <title th:text="${titulo}">TODO supply a title</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
         <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        
+     <link rel="icon" type="image/png" href="..\src\main\resources\templates\img\favicon.png"/>
+
     </head>
     <body>
-        <div th:replace="fragments/header :: header"/>
-       
-
+         <div th:replace="fragments/header :: header"/>
+        <h1 th:text="${titulo}"></h1>
+        
         <div class="container">
-            <h1 th:text="${titulo}"></h1>
-          <div class="row">  
-               <div th:replace="fragments/sidebar :: sidebar"></div>
-           <div class="col-lg-10 col-md-10">    
-            <a th:href="@{/submenu/nuevo}" class="btn btn-success btn-xs">Crear Submenu</a>
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Acciones</th>
-                        <th>Menu</th>
-                        <th>Submenu</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="subm: ${submenus}">
-                        <td><a class="btn btn-primary btn-xs" th:href="@{/submenu/editar/} + ${subm.pkSubmenu}" th:text="'Editar'"></a>
-                            <a class="btn btn-danger btn-xs" th:href="@{/submenu/eliminar/} + ${subm.pkSubmenu}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
-                        <td th:text="${subm.menu.submenu}"></td>
-                        <td th:text="${subm.submenu}"></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-           </div>
-                <div th:replace="fragments/footer :: footer"></div>
-          </div>
+        <a th:href="@{/submenu/nuevo}" class="btn btn-success btn-xs">Crear Submenu</a>
+        
+        <table class="table table-striped">
+            <thead>
+                 <tr>
+                    <th>Acciones</th>
+                    <th>Menu</th>
+                    <th>Submenu</th>
+                    <th>Orden</th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr th:each="submenu: ${submenus}">
+                     <td><a class="btn btn-primary btn-xs" th:href="@{/submenu/form/} + ${submenu.pkSubmenu}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:href="@{/submenu/eliminar/} + ${submenu.pkSubmenu}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                     <td th:text="${submenu.menu.menu}"> </td>
+                     <td th:text="${submenu.submenu}"></td>
+                     <td th:text="${submenu.orden}"></td>
+                </tr>
+            </tbody>
+        </table>
         </div>
-      
-
+         <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
-
 

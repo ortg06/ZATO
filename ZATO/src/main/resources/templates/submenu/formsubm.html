@@ -29,7 +29,7 @@ and open the template in the editor.
 					<select id="menu" class="col-sm-6 form-control form-control-sm" name="menu">
                         
                                             <option th:each="menu : ${menus}" th:value="${menu.pkMenu}" 
-                                                th:selected="${menu.pkMenu==p}" th:text="${menu.menu}">
+                                                th:selected="${menu.pkMenu==m}" th:text="${menu.menu}">
                                             </option>
                                         </select>
 				</div>
@@ -41,6 +41,15 @@ and open the template in the editor.
 					<input class="form-control form-control-sm" type="text" th:field="*{submenu}"/> <small
 						class="form-text text-danger"
 						th:if="${#fields.hasErrors('submenu')}" th:errors="*{apellido}"></small>
+				</div>
+			</div>
+            
+                        			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Orden</label>
+				<div class="col-sm-6">
+					<input class="form-control form-control-sm" type="text" th:field="*{orden}"/> <small
+						class="form-text text-danger"
+						th:if="${#fields.hasErrors('orden')}" th:errors="*{apellido}"></small>
 				</div>
 			</div>
             

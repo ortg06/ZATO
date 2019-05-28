@@ -46,7 +46,7 @@ public class SubmenuController {
         Submenu submenu = new Submenu();
         model.put("submenu", submenu);
         model.put("titulo", "Datos del Submenu");
-        model.put("menus",menuService.findAll());
+        model.put("menus",menuService.findAllMenu());
         return "submenu/formsubm";
     }
     
@@ -65,11 +65,30 @@ public class SubmenuController {
         }
         model.put("submenu", submenu);
         model.put("titulo", "Editar Submenu");
-        model.put("menus",menuService.findAll());
+        model.put("menus",menuService.findAllMenu());
         model.put("p",submenu.getMenu().getPkMenu());
         return "submenu/formsubm";
     } 
     
+    @RequestMapping(value="/formsubm",method=RequestMethod.POST)
+    public String guardar(Submenu submenu, SessionStatus status)
+    {
+        SubmenuService.saveSubmenu(submenu);
+        status.setComplete();
+        return "redirect:/submenu/listar";
+    }
+    
+    
+     @RequestMapping(value = "/eliminar/{id}")
+    public String eliminar(@PathVariable(value="id") BigDecimal id)
+    {
+         //se compara si el ID es mayor que cero
+        if(id.compareTo(BigDecimal.ZERO)>0)
+        {
+            SubmenuService.deleteSubmenu(id);
+        }
+        return "redirect:/submenu/listar";
+    }
     
     
 }
