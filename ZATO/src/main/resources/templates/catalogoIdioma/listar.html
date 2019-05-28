@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+         <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+         <div th:replace="fragments/header :: header"/>
+        <h1 th:text="${titulo}"></h1>
+        
+        <div class="container">
+
+        <a th:href="@{/CatalogoIdioma/form}" class="btn btn-success btn-xs">Crear Idioma</a>
+        
+        <table class="table table-striped">
+            <thead>
+                 <tr>
+                    <th>Acciones</th>
+                    <th>Idioma</th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr th:each="catalogoidioma: ${idiomas}">
+                     <td><a class="btn btn-primary btn-xs" th:href="@{/CatalogoIdiomaform/} + ${catalogoidioma.pkIdioma}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:href="@{/CatalogoIdioma/eliminar/} + ${catalogoidioma.pkIdioma}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <td th:text="${catalogoidioma.nombreIdioma}"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+         <div th:replace="fragments/footer :: footer"></div>
+    </body>
+</html>

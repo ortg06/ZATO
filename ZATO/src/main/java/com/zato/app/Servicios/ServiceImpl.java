@@ -22,6 +22,9 @@ import com.zato.app.dao.IMunicipioDao;
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.dao.IRolDao;
 import com.zato.app.dao.ISubmenuDao;
+import com.zato.app.dao.ICatalogoIdiomaDao;
+
+
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
 import com.zato.app.entidades.CatalogoGenero;
@@ -36,6 +39,7 @@ import com.zato.app.entidades.Pais;
 import com.zato.app.entidades.Rol;
 import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Submenu;
+import com.zato.app.entidades.CatalogoIdioma;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,7 +80,9 @@ public class ServiceImpl implements IService {
     private IMenuDao menuDao;
     @Autowired
     private ISubmenuDao submenuDao;
-
+     @Autowired
+    private ICatalogoIdiomaDao catIdiomaDao;
+    
     //PAISES
     @Override
     @Transactional(readOnly=true) //esto sirve para acceder en modo de solo lectura ya que estamos construyendo una consulta
@@ -448,5 +454,31 @@ public void deleteSector(BigDecimal id){
     @Transactional
     public void deleteSubmenu(BigDecimal id){
         submenuDao.delete(id);
+    }
+    
+    //Catalogo Idioma
+     @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoIdioma> findAllCatIdioma() {
+      return (List<CatalogoIdioma>) catIdiomaDao.findAll();
+      
+    }
+
+    @Override
+    @Transactional
+    public void saveCatIdioma(CatalogoIdioma catalogoidioma) {
+      catIdiomaDao.save(catalogoidioma);
+    }
+    
+    @Override
+    @Transactional
+    public CatalogoIdioma findOneCatIdioma(BigDecimal id){
+        return catIdiomaDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteCatIdioma(BigDecimal id){
+        catIdiomaDao.delete(id);
     }
 }

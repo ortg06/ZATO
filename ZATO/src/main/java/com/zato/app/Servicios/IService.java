@@ -22,7 +22,7 @@ import java.util.List;
 import com.zato.app.entidades.Pais;
 import com.zato.app.entidades.Rol;
 import com.zato.app.entidades.Submenu;
-
+import com.zato.app.entidades.CatalogoIdioma;
 /**
  *
  * @author Alex
@@ -124,4 +124,10 @@ public interface IService {
     public void saveSubmenu(Submenu Submenu);
     public Submenu findOneSubmenu (BigDecimal id);
     public void deleteSubmenu(BigDecimal id);
+    
+     //Catalogo Idioma
+    public List<CatalogoIdioma> findAllCatIdioma();
+    public void saveCatIdioma(CatalogoIdioma catalogoidioma);
+    public CatalogoIdioma findOneCatIdioma (BigDecimal id);
+    public void deleteCatIdioma(BigDecimal id);
 }
