@@ -81,7 +81,7 @@ public class Oferta  implements java.io.Serializable {
      @Id 
 
      @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_CANDIDATO", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @SequenceGenerator(sequenceName = "SEQUENCE_OFERTA", allocationSize = 1, name = "SEQUENCE_INCREMENT")
     @Column(name="PK_OFERTA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkOferta() {
         return this.pkOferta;

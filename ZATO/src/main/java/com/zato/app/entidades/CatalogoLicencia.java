@@ -48,7 +48,7 @@ public class CatalogoLicencia  implements java.io.Serializable {
      @Id 
 
      @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_CANDIDATO", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @SequenceGenerator(sequenceName = "SEQUENCE_CATALOGOLICENCIA", allocationSize = 1, name = "SEQUENCE_INCREMENT")
     @Column(name="PK_CATALOGO_LICENCIA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCatalogoLicencia() {
         return this.pkCatalogoLicencia;

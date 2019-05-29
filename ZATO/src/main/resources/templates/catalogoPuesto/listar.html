@@ -12,6 +12,9 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
         <link rel="stylesheet" th:href="@{/css/style.css}"/>
         <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+        
+    <link rel="icon" type="image/png"  href="src/main/resources/templates/img/favicon.ico"/>
+
     </head>
     <body>
          <div th:replace="fragments/header :: header"/>
@@ -19,20 +22,22 @@ and open the template in the editor.
         
         <div class="container">
 
-        <a th:href="@{/Rol/form}" class="btn btn-success btn-xs">Crear Rol</a>
+        <a th:href="@{/CatalogoPuesto/formP}" class="btn btn-success btn-xs">Crear Puesto</a>
         
         <table class="table table-striped">
             <thead>
                  <tr>
                     <th>Acciones</th>
-                    <th>Rol</th>
+                    <th>Categoria</th>
+                    <th>Puesto</th>
                  </tr>
             </thead>
             <tbody>
-                <tr th:each="rol: ${roles}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/Rol/form/} + ${rol.pkRol}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:href="@{/Rol/eliminar/} + ${rol.pkRol}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
-                    <td th:text="${rol.nombreRol}"></td>
+                <tr th:each="CatalogoPuesto: ${puestos}">
+                     <td><a class="btn btn-primary btn-xs" th:href="@{/CatalogoPuesto/form/} + ${catalogopuesto.pkCatalogoPuesto}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:href="@{/CatalogoPuesto/eliminar/} + ${catalogopuesto.pkCatalogoPuesto}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                     <td th:text="${catalogopuesto.categoria.nombreCatalogoCategoria}"> </td>
+                     <td th:text="${catalogopuesto.nombreCatalogoPuesto}"></td>
                 </tr>
             </tbody>
         </table>

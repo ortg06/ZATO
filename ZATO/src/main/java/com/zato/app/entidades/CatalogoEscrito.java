@@ -46,7 +46,7 @@ public class CatalogoEscrito  implements java.io.Serializable {
      @Id 
 
      @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_CANDIDATO", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @SequenceGenerator(sequenceName = "SEQUENCE_ESCRITO", allocationSize = 1, name = "SEQUENCE_INCREMENT")
     @Column(name="PK_CATALOGO_ESCRITO", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCatalogoEscrito() {
         return this.pkCatalogoEscrito;

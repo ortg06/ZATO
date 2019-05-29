@@ -24,6 +24,7 @@ import com.zato.app.dao.IRolDao;
 import com.zato.app.dao.ISubmenuDao;
 import com.zato.app.dao.ICatalogoIdiomaDao;
 import com.zato.app.dao.IEmpresaDao;
+import com.zato.app.dao.IPuestosDao;
 
 
 import com.zato.app.entidades.CatalogoCategoria;
@@ -42,6 +43,7 @@ import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Submenu;
 import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.CatalogoPuesto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,6 +88,8 @@ public class ServiceImpl implements IService {
     private ICatalogoIdiomaDao catIdiomaDao;
       @Autowired
     private IEmpresaDao empresaDao;
+       @Autowired
+    private IPuestosDao catPuestosDao;
     
     //PAISES
     @Override
@@ -490,6 +494,13 @@ public void deleteSector(BigDecimal id){
     @Transactional(readOnly=true)
     public List<Empresa> findAllempresa() {
         return (List<Empresa>) empresaDao.findAll();
+    
+     //Catalogo Puestos
+     @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoPuesto> findAllCatPuesto() {
+      return (List<CatalogoPuesto>) catPuestosDao.findAll();
+      
     }
 
     @Override
@@ -509,4 +520,19 @@ public void deleteSector(BigDecimal id){
     public void deleteEmpresa(BigDecimal id) {
         empresaDao.delete(id);
        }
+    public void saveCatPuesto(CatalogoPuesto catalogopuesto) {
+      catPuestosDao.save(catalogopuesto);
+    }
+    
+    @Override
+    @Transactional
+    public CatalogoPuesto findOneCatPuesto(BigDecimal id){
+        return catPuestosDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteCatPuesto(BigDecimal id){
+        catPuestosDao.delete(id);
+    }
 }
