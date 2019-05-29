@@ -139,6 +139,7 @@ public interface IService {
     public void saveEmpresa(Empresa empresa);
     public Empresa findOneEmpresa (BigDecimal id);
     public void deleteEmpresa(BigDecimal id);
+    
     //Catalogo Puesto
     public List<CatalogoPuesto> findAllCatPuesto();
     public void saveCatPuesto(CatalogoPuesto catalogopuesto);
