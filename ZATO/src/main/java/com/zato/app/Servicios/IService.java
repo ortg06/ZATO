@@ -23,6 +23,7 @@ import com.zato.app.entidades.Pais;
 import com.zato.app.entidades.Rol;
 import com.zato.app.entidades.Submenu;
 import com.zato.app.entidades.CatalogoIdioma;
+import com.zato.app.entidades.CatalogoPuesto;
 /**
  *
  * @author Alex
@@ -130,4 +131,10 @@ public interface IService {
     public void saveCatIdioma(CatalogoIdioma catalogoidioma);
     public CatalogoIdioma findOneCatIdioma (BigDecimal id);
     public void deleteCatIdioma(BigDecimal id);
+    
+    //Catalogo Puesto
+    public List<CatalogoPuesto> findAllCatPuesto();
+    public void saveCatPuesto(CatalogoPuesto catalogopuesto);
+    public CatalogoPuesto findOneCatPuesto (BigDecimal id);
+    public void deleteCatPuesto(BigDecimal id);
 }

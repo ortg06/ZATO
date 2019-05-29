@@ -21,24 +21,22 @@ and open the template in the editor.
         
         <div class="container">
 
-        <a th:href="@{/submenu/nuevo}" class="btn btn-success btn-xs">Crear Submenu</a>
+        <a th:href="@{/CatalogoPuesto/formP}" class="btn btn-success btn-xs">Crear Puesto</a>
         
         <table class="table table-striped">
             <thead>
                  <tr>
                     <th>Acciones</th>
-                    <th>Menu</th>
-                    <th>Submenu</th>
-                    <th>Orden</th>
+                    <th>Categoria</th>
+                    <th>Puesto</th>
                  </tr>
             </thead>
             <tbody>
-                <tr th:each="submenu: ${submenus}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/submenu/form/} + ${submenu.pkSubmenu}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:href="@{/submenu/eliminar/} + ${submenu.pkSubmenu}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
-                     <td th:text="${submenu.menu.menu}"> </td>
-                     <td th:text="${submenu.submenu}"></td>
-                     <td th:text="${submenu.orden}"></td>
+                <tr th:each="CatalogoPuesto: ${puestos}">
+                     <td><a class="btn btn-primary btn-xs" th:href="@{/CatalogoPuesto/form/} + ${catalogopuesto.pkCatalogoPuesto}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:href="@{/CatalogoPuesto/eliminar/} + ${catalogopuesto.pkCatalogoPuesto}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                     <td th:text="${catalogopuesto.categoria.nombreCatalogoCategoria}"> </td>
+                     <td th:text="${catalogopuesto.nombreCatalogoPuesto}"></td>
                 </tr>
             </tbody>
         </table>
@@ -46,4 +44,3 @@ and open the template in the editor.
          <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
-

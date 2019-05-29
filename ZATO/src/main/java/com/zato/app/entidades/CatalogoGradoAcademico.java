@@ -48,7 +48,7 @@ public class CatalogoGradoAcademico  implements java.io.Serializable {
      @Id 
 
      @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_CANDIDATO", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @SequenceGenerator(sequenceName = "SEQUENCE_GRADOACADEMICO", allocationSize = 1, name = "SEQUENCE_INCREMENT")
     @Column(name="PK_GRADO_ACADEMICO", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkGradoAcademico() {
         return this.pkGradoAcademico;

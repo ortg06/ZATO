@@ -51,7 +51,8 @@ public class CatalogoPonderacion  implements java.io.Serializable {
 
  //LA ANOTACION ES NECESARIA PARA MANEJAR LAS SECUENCIAS DE LOS IDS
  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
- @SequenceGenerator(sequenceName = "SEQUENCE_INCREMENT", allocationSize = 1, name = "SEQUENCE_INCREMENT")     
+ @SequenceGenerator(sequenceName = "SEQUENCE_CATALOGOPONDERACION", allocationSize = 1, name = "SEQUENCE_INCREMENT")     
+     
     @Column(name="PK_CATALOGO_PONDERACION", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCatalogoPonderacion() {
         return this.pkCatalogoPonderacion;
