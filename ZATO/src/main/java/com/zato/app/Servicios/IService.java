@@ -23,6 +23,7 @@ import com.zato.app.entidades.Pais;
 import com.zato.app.entidades.Rol;
 import com.zato.app.entidades.Submenu;
 import com.zato.app.entidades.CatalogoIdioma;
+import com.zato.app.entidades.Empresa;
 /**
  *
  * @author Alex
@@ -130,4 +131,11 @@ public interface IService {
     public void saveCatIdioma(CatalogoIdioma catalogoidioma);
     public CatalogoIdioma findOneCatIdioma (BigDecimal id);
     public void deleteCatIdioma(BigDecimal id);
+    
+    
+    //Registro de Empresa
+    public List<Empresa> findAllempresa();
+    public void saveEmpresa(Empresa empresa);
+    public Empresa findOneEmpresa (BigDecimal id);
+    public void deleteEmpresa(BigDecimal id);
 }
