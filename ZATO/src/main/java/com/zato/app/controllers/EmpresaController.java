@@ -44,8 +44,10 @@ public class EmpresaController {
         Empresa empresa = new Empresa();
         model.put("empresa", empresa);
         model.put("titulo", "Datos de la Empresa");
-       
-       
+        model.put("sectores",IService.findAllSectores());
+        model.put("tipos",IService.findAllTipoEmpresas());
+        model.put("municipios",IService.findAllmun());
+               
         return "empresa/formEmp";
     }
     
