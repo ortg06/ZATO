@@ -46,7 +46,7 @@ public class CatalogoPuestoController {
         CatalogoPuesto catalogopuesto = new CatalogoPuesto();
         model.put("catalogopuesto", catalogopuesto);
         model.put("titulo", "Datos del Puesto");
-        model.put("categoria",CategoriaService.findAllCategorias());
+        model.put("categorias",CategoriaService.findAllCategorias());
         return "CatalogoPuesto/formP";
     }
     
