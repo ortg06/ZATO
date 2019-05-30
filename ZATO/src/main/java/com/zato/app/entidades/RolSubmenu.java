@@ -43,8 +43,8 @@ public class RolSubmenu  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_CANDIDATO", allocationSize = 1, name = "SEQUENCE_INCREMENT")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TIB_ROLSUBMENU")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_ROLSUBMENU", allocationSize = 1, name = "TIB_ROLSUBMENU")    
     @Column(name="ID_ROL_SUBMENU", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getIdRolSubmenu() {
         return this.idRolSubmenu;

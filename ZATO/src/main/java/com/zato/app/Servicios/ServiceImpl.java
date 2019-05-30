@@ -26,6 +26,7 @@ import com.zato.app.dao.ICatalogoIdiomaDao;
 import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.dao.IPuestosDao;
 import com.zato.app.dao.ICatalogoHabilidadDao;
+import com.zato.app.dao.IRolSubmenuDao;
 
 
 import com.zato.app.entidades.CatalogoCategoria;
@@ -46,6 +47,7 @@ import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
+import com.zato.app.entidades.RolSubmenu;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,13 +90,16 @@ public class ServiceImpl implements IService {
     private ISubmenuDao submenuDao;
     @Autowired
     private ICatalogoIdiomaDao catIdiomaDao;
-      @Autowired
+    @Autowired
     private IEmpresaDao empresaDao;
-       @Autowired
-
+    @Autowired
+   
     private IPuestosDao catPuestosDao;
     @Autowired
     private ICatalogoHabilidadDao catHabilidadDao;
+    @Autowired
+    private IRolSubmenuDao RolSubmenuDao;
+    
     
     //PAISES
     @Override
@@ -569,6 +574,32 @@ public void deleteSector(BigDecimal id){
     @Transactional
     public void deleteCatHabilidad(BigDecimal id){
         catHabilidadDao.delete(id);
+    }
+    
+    //ROL SUBMENU
+    @Override
+    @Transactional(readOnly=true)
+    public List<RolSubmenu> findAllRolS() {
+      return (List<RolSubmenu>) RolSubmenuDao.findAll();
+      
+    }
+
+    @Override
+    @Transactional
+    public void saveRolS(RolSubmenu rolsubmenu) {
+      RolSubmenuDao.save(rolsubmenu);
+    }
+    
+    @Override 
+    @Transactional
+    public RolSubmenu findOneRolS(BigDecimal id){
+        return RolSubmenuDao.findOne(id);
+    }
+    
+    @Override
+    @Transactional
+    public void deleteRolS(BigDecimal id){
+        RolSubmenuDao.delete(id);
     }
     
     

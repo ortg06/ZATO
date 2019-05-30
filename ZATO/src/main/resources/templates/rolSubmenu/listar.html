@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -12,8 +12,6 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
         <link rel="stylesheet" th:href="@{/css/style.css}"/>
         <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-        
-    <link rel="icon" type="image/png"  href="src/main/resources/templates/img/favicon.ico"/>
 
     </head>
     <body>
@@ -22,26 +20,28 @@ and open the template in the editor.
         
         <div class="container">
 
-        <a th:href="@{/CatalogoPuesto/formP}" class="btn btn-success btn-xs">Crear Puesto</a>
+        <a th:href="@{/RolSubmenu/formRS}" class="btn btn-success btn-xs">Crear Submenu por Rol</a>
         
         <table class="table table-striped">
             <thead>
                  <tr>
                     <th>Acciones</th>
-                    <th>Categoria</th>
-                    <th>Puesto</th>
-                 </tr>
+                    <th>Rol</th>
+                    <th>Submenu</th>
+                    </tr>
             </thead>
             <tbody>
-                <tr th:each="CatalogoPuesto: ${puestos}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/CatalogoPuesto/formP/} + ${catalogopuesto.pkCatalogoPuesto}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:href="@{/CatalogoPuesto/eliminar/} + ${catalogopuesto.pkCatalogoPuesto}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
-                     <td th:text="${catalogopuesto.categoria.nombreCatalogoCategoria}"> </td>
-                     <td th:text="${catalogopuesto.nombreCatalogoPuesto}"></td>
-                </tr>
+                <tr th:each="rolsubmenu: ${RolSubmenus}">
+                     <td><a class="btn btn-primary btn-xs" th:href="@{/RolSubmenu/formRS/} + ${rolsubmenu.idRolSubmenu}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:href="@{/RolSubmenu/eliminar/} + ${rolsubmenu.idRolSubmenu}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <td th:text="${rolsubmenu.rol.nombreRol}"> </td>
+                    <td th:text="${rolsubmenu.submenu.submenu}"></td>
+                    </tr>
             </tbody>
         </table>
         </div>
          <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
+
+

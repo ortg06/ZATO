@@ -26,6 +26,7 @@ import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
+import com.zato.app.entidades.RolSubmenu;
 
 /**
  *
@@ -153,4 +154,11 @@ public interface IService {
     public void saveCatHabilidad(CatalogoHabilidad catalogohabilidad);
     public CatalogoHabilidad findOneCatHabilidad (BigDecimal id);
     public void deleteCatHabilidad(BigDecimal id);
+    
+    //ROL SUBMENU
+    public List<RolSubmenu> findAllRolS();
+    public void saveRolS(RolSubmenu rolsubmenu);
+    public RolSubmenu findOneRolS (BigDecimal id);
+    public void deleteRolS(BigDecimal id);
+    
 }
