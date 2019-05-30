@@ -66,8 +66,8 @@ and open the template in the editor.
                     </div>
                     <div class="col-sm-4">
                         <label class="col-form-label">Logo:</label>
-                    
-                        
+
+
                         <input class="col-sm-12 form-control form-control-sm" type="file" th:field="*{logoEmpresa}"/> <small
                             class="form-text text-danger"
                             th:if="${#fields.hasErrors('logoEmpresa')}" th:errors="*{logoEmpresa}"></small>
@@ -75,7 +75,18 @@ and open the template in the editor.
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-7">
+
+                    <div class="col-sm-4">
+                        <label class="col-form-label">Municipio:</label>
+
+                        <select id="municipio" class="col-sm-10 form-control form-control-sm" name="municipio">
+
+                            <option th:each="municipio : ${municipios}" th:value="${municipio.pkMunicipio}" 
+                                    th:selected="${municipio.pkMunicipio==p}" th:text="${municipio.nombreMunicipio}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8">
                         <label class="col-form-label">Dirección:</label>
 
                         <input class="col-sm-12 form-control form-control-sm" type="text" th:field="*{direccionEmpresa}"/> <small
@@ -83,15 +94,7 @@ and open the template in the editor.
                             th:if="${#fields.hasErrors('direccionEmpresa')}" th:errors="*{direccionEmpresa}"></small>
                     </div>
 
-                    <div class="col-sm-5">
 
-                        <label class=" col-form-label">Razón Social:</label>
-                        <div >
-                            <input class="form-control form-control-sm" type="text" th:field="*{razonSocial}"/> <small
-                                class="form-text text-danger"
-                                th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"></small>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="form-group row">
@@ -105,12 +108,19 @@ and open the template in the editor.
 
                     <div class="col-sm-5">
 
+                        <label class=" col-form-label">Razón Social:</label>
+                        <div >
+                            <input class="form-control form-control-sm" type="text" th:field="*{razonSocial}"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"></small>
+                        </div>
                         <label class="col-form-label">Cantidad de Empleados:</label>
                         <div >
                             <input class="form-control form-control-sm" type="number" th:field="*{numeroTrabajadores}"/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('numeroTrabajadores')}" th:errors="*{numeroTrabajadores}"></small>
                         </div>
+
                     </div>
                 </div>
 
