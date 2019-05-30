@@ -24,6 +24,7 @@ import com.zato.app.dao.IRolDao;
 import com.zato.app.dao.ISubmenuDao;
 import com.zato.app.dao.ICatalogoIdiomaDao;
 import com.zato.app.dao.IPuestosDao;
+import com.zato.app.dao.ICatalogoHabilidadDao;
 
 
 import com.zato.app.entidades.CatalogoCategoria;
@@ -42,6 +43,7 @@ import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Submenu;
 import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.CatalogoPuesto;
+import com.zato.app.entidades.CatalogoHabilidad;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,10 +84,12 @@ public class ServiceImpl implements IService {
     private IMenuDao menuDao;
     @Autowired
     private ISubmenuDao submenuDao;
-     @Autowired
+    @Autowired
     private ICatalogoIdiomaDao catIdiomaDao;
-       @Autowired
+    @Autowired
     private IPuestosDao catPuestosDao;
+    @Autowired
+    private ICatalogoHabilidadDao catHabilidadDao;
     
     //PAISES
     @Override
@@ -510,5 +514,31 @@ public void deleteSector(BigDecimal id){
     @Transactional
     public void deleteCatPuesto(BigDecimal id){
         catPuestosDao.delete(id);
+    }
+    
+     //Catalogo Habilidad
+     @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoHabilidad> findAllCatHabilidad() {
+      return (List<CatalogoHabilidad>) catHabilidadDao.findAll();
+      
+    }
+
+    @Override
+    @Transactional
+    public void saveCatHabilidad(CatalogoHabilidad catalogohabilidad) {
+      catHabilidadDao.save(catalogohabilidad);
+    }
+    
+    @Override 
+    @Transactional
+    public CatalogoHabilidad findOneCatHabilidad(BigDecimal id){
+        return catHabilidadDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteCatHabilidad(BigDecimal id){
+        catHabilidadDao.delete(id);
     }
 }
