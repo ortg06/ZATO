@@ -23,6 +23,7 @@ import com.zato.app.dao.IPaisDao;
 import com.zato.app.dao.IRolDao;
 import com.zato.app.dao.ISubmenuDao;
 import com.zato.app.dao.ICatalogoIdiomaDao;
+import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.dao.IPuestosDao;
 import com.zato.app.dao.ICatalogoHabilidadDao;
 
@@ -42,6 +43,7 @@ import com.zato.app.entidades.Rol;
 import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Submenu;
 import com.zato.app.entidades.CatalogoIdioma;
+import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
 
@@ -86,7 +88,10 @@ public class ServiceImpl implements IService {
     private ISubmenuDao submenuDao;
     @Autowired
     private ICatalogoIdiomaDao catIdiomaDao;
-    @Autowired
+      @Autowired
+    private IEmpresaDao empresaDao;
+       @Autowired
+
     private IPuestosDao catPuestosDao;
     @Autowired
     private ICatalogoHabilidadDao catHabilidadDao;
@@ -359,32 +364,7 @@ public void deleteSector(BigDecimal id){
     }
     
     
-    //Catalogo Tipo Empresa
-
-    @Override
-    @Transactional(readOnly=true)
-    public List<CatalogoTipoEmpresa> findAllTipoEmpresas() {
-        return (List<CatalogoTipoEmpresa>) catalogoTipoEmpresaDao.findAll();
-    }
-
-    @Override
-    @Transactional
-    public void saveTipoEmpresa(CatalogoTipoEmpresa catalogoTipoEmpresa) {
-      catalogoTipoEmpresaDao.save(catalogoTipoEmpresa);
-    }
-    
-    @Override
-    @Transactional
-    public CatalogoTipoEmpresa findOneTipoEmpresa(BigDecimal id){
-        return catalogoTipoEmpresaDao.findOne(id);
-    }
-    
-     @Override
-    @Transactional
-    public void deleteTipoEmpresa(BigDecimal id){
-        catalogoTipoEmpresaDao.delete(id);
-    } 
-    
+        
     //ROL
      @Override
     @Transactional(readOnly=true)
@@ -489,7 +469,9 @@ public void deleteSector(BigDecimal id){
     public void deleteCatIdioma(BigDecimal id){
         catIdiomaDao.delete(id);
     }
-    
+
+       
+        
      //Catalogo Puestos
      @Override
     @Transactional(readOnly=true)
@@ -497,9 +479,8 @@ public void deleteSector(BigDecimal id){
       return (List<CatalogoPuesto>) catPuestosDao.findAll();
       
     }
-
-    @Override
-    @Transactional
+    
+     @Override
     public void saveCatPuesto(CatalogoPuesto catalogopuesto) {
       catPuestosDao.save(catalogopuesto);
     }
@@ -515,8 +496,56 @@ public void deleteSector(BigDecimal id){
     public void deleteCatPuesto(BigDecimal id){
         catPuestosDao.delete(id);
     }
+
+
+    //Catalogo Tipo Empresa
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoTipoEmpresa> findAllTipoEmpresas() {
+        return (List<CatalogoTipoEmpresa>) catalogoTipoEmpresaDao.findAll();
+
+    }
+
+    public void saveTipoEmpresa(CatalogoTipoEmpresa catalogoTipoEmpresa) {
+      catalogoTipoEmpresaDao.save(catalogoTipoEmpresa);
+    }
     
-     //Catalogo Habilidad
+    @Override
+    @Transactional
+    public CatalogoTipoEmpresa findOneTipoEmpresa(BigDecimal id){
+        return catalogoTipoEmpresaDao.findOne(id);
+
+    }
+    
+    public void deleteTipoEmpresa(BigDecimal id){
+        catalogoTipoEmpresaDao.delete(id);
+    } 
+    
+    //EMPRESA
+    @Override
+    public List<Empresa> findAllempresa() {
+       return (List<Empresa>) empresaDao.findAll();
+    }
+
+    @Override
+    public void saveEmpresa(Empresa empresa) {
+         empresaDao.save(empresa);
+    }
+
+    @Override
+    public Empresa findOneEmpresa(BigDecimal id) {
+        return empresaDao.findOne(id);
+    }
+
+    @Override
+    public void deleteEmpresa(BigDecimal id) {
+        empresaDao.delete(id); 
+
+    }
+    
+    
+    //Catalogo Habilidad
      @Override
     @Transactional(readOnly=true)
     public List<CatalogoHabilidad> findAllCatHabilidad() {
@@ -541,4 +570,9 @@ public void deleteSector(BigDecimal id){
     public void deleteCatHabilidad(BigDecimal id){
         catHabilidadDao.delete(id);
     }
+    
+    
+    
+    
+
 }
