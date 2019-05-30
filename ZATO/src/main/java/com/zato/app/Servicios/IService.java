@@ -25,6 +25,8 @@ import com.zato.app.entidades.Submenu;
 import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
+import com.zato.app.entidades.CatalogoHabilidad;
+
 /**
  *
  * @author Alex
@@ -145,4 +147,10 @@ public interface IService {
     public void saveCatPuesto(CatalogoPuesto catalogopuesto);
     public CatalogoPuesto findOneCatPuesto (BigDecimal id);
     public void deleteCatPuesto(BigDecimal id);
+    
+    //Catalogo Habilidad
+    public List<CatalogoHabilidad> findAllCatHabilidad();
+    public void saveCatHabilidad(CatalogoHabilidad catalogohabilidad);
+    public CatalogoHabilidad findOneCatHabilidad (BigDecimal id);
+    public void deleteCatHabilidad(BigDecimal id);
 }

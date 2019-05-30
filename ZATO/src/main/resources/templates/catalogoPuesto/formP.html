@@ -27,10 +27,10 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Categoria:</label>
                     <div class="col-sm-6">
-                        <select id="categoria" class="col-sm-6 form-control form-control-sm" name="categoria">
+                        <select id="categorias" class="col-sm-6 form-control form-control-sm" name="categorias">
 
                             <option th:each="categoria : ${categorias}" th:value="${categoria.pkCatalogoCategoria}" 
-                                    th:selected="${categoria.pkCatalogoCategorias==c}" th:text="${categoria.nombreCatalogoCategoria}">
+                                    th:selected="${categoria.pkCatalogoCategoria==c}" th:text="${categoria.nombreCatalogoCategoria}">
                             </option>
                         </select>
                     </div>
