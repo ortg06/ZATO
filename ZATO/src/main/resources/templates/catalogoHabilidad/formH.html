@@ -29,8 +29,8 @@ and open the template in the editor.
 				<div class="col-sm-6">
 					<select id="catalogoCategoriaHabilidad" class="col-sm-6 form-control form-control-sm" name="catalogoCategoriaHabilidad">
                         
-                                            <option th:each="catalogoCategoriaHabilidad : ${categorias}" th:value="${catalogoCategoriaHabilidad.pkCategoriaHabilidad}" 
-                                                th:selected="${catalogoCategoriaHabilidad.pkCategoriaHabilidad==ch}" th:text="${catalogoCategoriaHabilidad.nombreCategoriaHabilidad}">
+                                            <option th:each=" categoria: ${catalogoCategoriaHabilidad }" th:value="${categoria.pkCategoriaHabilidad}" 
+                                                th:selected="${categoria.pkCategoriaHabilidad==ch}" th:text="${categoria.nombreCategoriaHabilidad}">
                                             </option>
                                         </select>
 				</div>
