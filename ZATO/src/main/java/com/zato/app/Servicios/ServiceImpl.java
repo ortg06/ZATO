@@ -8,6 +8,7 @@ package com.zato.app.Servicios;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.zato.app.dao.ICandidatoDao;
 import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
 import com.zato.app.dao.ICatalogoGenero;
 import com.zato.app.dao.ICatalogoLicencia;
@@ -27,8 +28,7 @@ import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.dao.IPuestosDao;
 import com.zato.app.dao.ICatalogoHabilidadDao;
 import com.zato.app.dao.IRolSubmenuDao;
-
-
+import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
 import com.zato.app.entidades.CatalogoGenero;
@@ -80,7 +80,7 @@ public class ServiceImpl implements IService {
     private ICatalogoLicencia catalogoLicenciaDao;
     @Autowired
     private ICatalogoTipoEmpresaDao catalogoTipoEmpresaDao;
-     @Autowired
+    @Autowired
     private ICatalogoGenero catalogoGeneroDao;
     @Autowired
     private IRolDao rolDao;
@@ -93,17 +93,19 @@ public class ServiceImpl implements IService {
     @Autowired
     private IEmpresaDao empresaDao;
     @Autowired
-   
+
     private IPuestosDao catPuestosDao;
     @Autowired
     private ICatalogoHabilidadDao catHabilidadDao;
     @Autowired
     private IRolSubmenuDao RolSubmenuDao;
-    
-    
-    //PAISES
+    @Autowired
+    private ICandidatoDao candidatoDao;
+
+    // PAISES
     @Override
-    @Transactional(readOnly=true) //esto sirve para acceder en modo de solo lectura ya que estamos construyendo una consulta
+    @Transactional(readOnly = true) // esto sirve para acceder en modo de solo lectura ya que estamos construyendo
+                                    // una consulta
     public List<Pais> findAll() {
         return (List<Pais>) paisDao.findAll();
     }
@@ -125,11 +127,10 @@ public class ServiceImpl implements IService {
     public void delete(BigDecimal id) {
         paisDao.delete(id);
     }
-    
-    
-    //Departamentos
+
+    // Departamentos
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Departamento> findAlldep() {
         return (List<Departamento>) departamentoDao.findAll();
     }
@@ -137,27 +138,27 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public void saveDepto(Departamento departamento) {
-      departamentoDao.save(departamento);
+        departamentoDao.save(departamento);
     }
-    
+
     @Override
     @Transactional
-    public Departamento findOneDepartamento(BigDecimal id){
+    public Departamento findOneDepartamento(BigDecimal id) {
         return departamentoDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteDepartamento(BigDecimal id){
+    public void deleteDepartamento(BigDecimal id) {
         departamentoDao.delete(id);
     }
-    
-    //Municipios
-    
+
+    // Municipios
+
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Municipio> findAllmun() {
-       return (List<Municipio>) municipioDao.findAll();
+        return (List<Municipio>) municipioDao.findAll();
     }
 
     @Override
@@ -165,62 +166,57 @@ public class ServiceImpl implements IService {
     public void saveMun(Municipio municipio) {
         municipioDao.save(municipio);
     }
-    
+
     @Override
     @Transactional
-    public Municipio findOneMunicipio(BigDecimal id){
+    public Municipio findOneMunicipio(BigDecimal id) {
         return municipioDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteMunicipio(BigDecimal id){
+    public void deleteMunicipio(BigDecimal id) {
         municipioDao.delete(id);
     }
-    
-    
-    //CATALOGO PONDERACION
+
+    // CATALOGO PONDERACION
 
     @Override
     @Transactional(readOnly = true)
-    public List<CatalogoPonderacion>findAllPonderacion(){
+    public List<CatalogoPonderacion> findAllPonderacion() {
 
         return (List<CatalogoPonderacion>) catalogoPonderacionDao.findAll();
     }
 
     @Override
     @Transactional
-    public void save(CatalogoPonderacion catalogoPonderacion)
-    {
+    public void save(CatalogoPonderacion catalogoPonderacion) {
         catalogoPonderacionDao.save(catalogoPonderacion);
     }
 
     @Override
     @Transactional
-    public CatalogoPonderacion findOnePonderacion(BigDecimal id){
+    public CatalogoPonderacion findOnePonderacion(BigDecimal id) {
         return catalogoPonderacionDao.findOne(id);
     }
 
     @Override
     @Transactional
-    public void deletePonderacion(BigDecimal id){
+    public void deletePonderacion(BigDecimal id) {
         catalogoPonderacionDao.delete(id);
     }
 
-
-
-    //CATEGORIAS
+    // CATEGORIAS
     @Override
     @Transactional(readOnly = true)
-    public List<CatalogoCategoria> findAllCategorias(){
+    public List<CatalogoCategoria> findAllCategorias() {
         return (List<CatalogoCategoria>) categoriaDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveCategoria(CatalogoCategoria catalogoCategoria)
-    {
-       categoriaDao.save(catalogoCategoria);
+    public void saveCategoria(CatalogoCategoria catalogoCategoria) {
+        categoriaDao.save(catalogoCategoria);
     }
 
     @Override
@@ -231,14 +227,13 @@ public class ServiceImpl implements IService {
 
     @Override
     @Transactional
-    public void deleteCategoria(BigDecimal id){
+    public void deleteCategoria(BigDecimal id) {
         categoriaDao.delete(id);
     }
 
-
-//Catalogo de Tipo de Prueba 
+    // Catalogo de Tipo de Prueba
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<CatalogoTipoPrueba> findAlltipoprueba() {
         return (List<CatalogoTipoPrueba>) catalogoTipoPruebaDao.findAll();
     }
@@ -246,53 +241,50 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public void savetipoprueba(CatalogoTipoPrueba tipoprueba) {
-      catalogoTipoPruebaDao.save(tipoprueba);
+        catalogoTipoPruebaDao.save(tipoprueba);
     }
-    
+
     @Override
     @Transactional
-    public CatalogoTipoPrueba findOnetprueba(BigDecimal id){
+    public CatalogoTipoPrueba findOnetprueba(BigDecimal id) {
         return catalogoTipoPruebaDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deletetipoprueba(BigDecimal id){
+    public void deletetipoprueba(BigDecimal id) {
         catalogoTipoPruebaDao.delete(id);
     }
- 
 
-//Catalogo Sector Empresa
-@Override
-@Transactional
-public List<CatalogoSectorEmpresa> findAllSectores(){
-    return (List<CatalogoSectorEmpresa>) catalogoSectorEmpresaDao.findAll();
-}
-
-@Override
-@Transactional
-public void saveSector(CatalogoSectorEmpresa catalogoSectorEmpresa){
-    catalogoSectorEmpresaDao.save(catalogoSectorEmpresa);
-}
-
-
-@Override
-@Transactional
-public CatalogoSectorEmpresa findOneSector(BigDecimal id){
-    return catalogoSectorEmpresaDao.findOne(id);
-}
-
-@Override
-@Transactional
-public void deleteSector(BigDecimal id){
-    catalogoSectorEmpresaDao.delete(id);
-}
-
-    
-   //Catalogo Categoria Habilidad
-    
+    // Catalogo Sector Empresa
     @Override
-    @Transactional(readOnly=true)
+    @Transactional
+    public List<CatalogoSectorEmpresa> findAllSectores() {
+        return (List<CatalogoSectorEmpresa>) catalogoSectorEmpresaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveSector(CatalogoSectorEmpresa catalogoSectorEmpresa) {
+        catalogoSectorEmpresaDao.save(catalogoSectorEmpresa);
+    }
+
+    @Override
+    @Transactional
+    public CatalogoSectorEmpresa findOneSector(BigDecimal id) {
+        return catalogoSectorEmpresaDao.findOne(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteSector(BigDecimal id) {
+        catalogoSectorEmpresaDao.delete(id);
+    }
+
+    // Catalogo Categoria Habilidad
+
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoCategoriaHabilidad> findAllcategoriaHabilidad() {
         return (List<CatalogoCategoriaHabilidad>) catalogoHabilidadDao.findAll();
     }
@@ -300,26 +292,25 @@ public void deleteSector(BigDecimal id){
     @Override
     @Transactional
     public void savecategoriaHabilidad(CatalogoCategoriaHabilidad catalogoHabilidad) {
-      catalogoHabilidadDao.save(catalogoHabilidad);
+        catalogoHabilidadDao.save(catalogoHabilidad);
     }
-    
+
     @Override
     @Transactional
-    public CatalogoCategoriaHabilidad findOnecategoriaHabilidad(BigDecimal id){
+    public CatalogoCategoriaHabilidad findOnecategoriaHabilidad(BigDecimal id) {
         return catalogoHabilidadDao.findOne(id);
     }
-    
-     @Override
-    @Transactional
-    public void deletecategoriaHabilidad(BigDecimal id){
-        catalogoHabilidadDao.delete(id);
-    } 
-    
-    
-     //Catalogo Licencia
-    
+
     @Override
-    @Transactional(readOnly=true)
+    @Transactional
+    public void deletecategoriaHabilidad(BigDecimal id) {
+        catalogoHabilidadDao.delete(id);
+    }
+
+    // Catalogo Licencia
+
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoLicencia> findAllcatalogoLicencia() {
         return (List<CatalogoLicencia>) catalogoLicenciaDao.findAll();
     }
@@ -327,27 +318,27 @@ public void deleteSector(BigDecimal id){
     @Override
     @Transactional
     public void savecatalogoLicencia(CatalogoLicencia catalogoLicencia) {
-      catalogoLicenciaDao.save(catalogoLicencia);
+        catalogoLicenciaDao.save(catalogoLicencia);
     }
-    
+
     @Override
     @Transactional
-    public CatalogoLicencia findOnecatalogoLicencia(BigDecimal id){
+    public CatalogoLicencia findOnecatalogoLicencia(BigDecimal id) {
         return catalogoLicenciaDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deletecatalogoLicencia(BigDecimal id){
+    public void deletecatalogoLicencia(BigDecimal id) {
         catalogoLicenciaDao.delete(id);
     }
 
-    //Catalogo Genero
-    
+    // Catalogo Genero
+
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<CatalogoGenero> findAllcatalogoGenero() {
-         return (List<CatalogoGenero>) catalogoGeneroDao.findAll();
+        return (List<CatalogoGenero>) catalogoGeneroDao.findAll();
     }
 
     @Override
@@ -367,175 +358,169 @@ public void deleteSector(BigDecimal id){
     public void deletecatalogoGenero(BigDecimal id) {
         catalogoGeneroDao.delete(id);
     }
-    
-    
-        
-    //ROL
-     @Override
-    @Transactional(readOnly=true)
+
+    // ROL
+    @Override
+    @Transactional(readOnly = true)
     public List<Rol> findAllRol() {
-      return (List<Rol>) rolDao.findAll();
-      
+        return (List<Rol>) rolDao.findAll();
+
     }
 
     @Override
     @Transactional
     public void saveRol(Rol rol) {
-      rolDao.save(rol);
+        rolDao.save(rol);
     }
-    
+
     @Override
     @Transactional
-    public Rol findOneRol(BigDecimal id){
+    public Rol findOneRol(BigDecimal id) {
         return rolDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteRol(BigDecimal id){
+    public void deleteRol(BigDecimal id) {
         rolDao.delete(id);
     }
-    
-    //Menu
-     @Override
-    @Transactional(readOnly=true)
+
+    // Menu
+    @Override
+    @Transactional(readOnly = true)
     public List<Menu> findAllMenu() {
-      return (List<Menu>) menuDao.findAll();
-      
+        return (List<Menu>) menuDao.findAll();
+
     }
 
     @Override
     @Transactional
     public void saveMenu(Menu menu) {
-      menuDao.save(menu);
+        menuDao.save(menu);
     }
-    
+
     @Override
     @Transactional
-    public Menu findOneMenu(BigDecimal id){
+    public Menu findOneMenu(BigDecimal id) {
         return menuDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteMenu(BigDecimal id){
+    public void deleteMenu(BigDecimal id) {
         menuDao.delete(id);
     }
-    
-    
-    //Submenu
-     @Override
-    @Transactional(readOnly=true)
+
+    // Submenu
+    @Override
+    @Transactional(readOnly = true)
     public List<Submenu> findAllSubmenu() {
-      return (List<Submenu>) submenuDao.findAll();
-      
+        return (List<Submenu>) submenuDao.findAll();
+
     }
 
     @Override
     @Transactional
     public void saveSubmenu(Submenu submenu) {
-      submenuDao.save(submenu);
+        submenuDao.save(submenu);
     }
-    
+
     @Override
     @Transactional
-    public Submenu findOneSubmenu(BigDecimal id){
+    public Submenu findOneSubmenu(BigDecimal id) {
         return submenuDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteSubmenu(BigDecimal id){
+    public void deleteSubmenu(BigDecimal id) {
         submenuDao.delete(id);
     }
-    
-    //Catalogo Idioma
-     @Override
-    @Transactional(readOnly=true)
+
+    // Catalogo Idioma
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoIdioma> findAllCatIdioma() {
-      return (List<CatalogoIdioma>) catIdiomaDao.findAll();
-      
+        return (List<CatalogoIdioma>) catIdiomaDao.findAll();
+
     }
 
     @Override
     @Transactional
     public void saveCatIdioma(CatalogoIdioma catalogoidioma) {
-      catIdiomaDao.save(catalogoidioma);
+        catIdiomaDao.save(catalogoidioma);
     }
-    
+
     @Override
     @Transactional
-    public CatalogoIdioma findOneCatIdioma(BigDecimal id){
+    public CatalogoIdioma findOneCatIdioma(BigDecimal id) {
         return catIdiomaDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteCatIdioma(BigDecimal id){
+    public void deleteCatIdioma(BigDecimal id) {
         catIdiomaDao.delete(id);
     }
 
-       
-        
-     //Catalogo Puestos
-     @Override
-    @Transactional(readOnly=true)
+    // Catalogo Puestos
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoPuesto> findAllCatPuesto() {
-      return (List<CatalogoPuesto>) catPuestosDao.findAll();
-      
+        return (List<CatalogoPuesto>) catPuestosDao.findAll();
+
     }
-    
-     @Override
+
+    @Override
     public void saveCatPuesto(CatalogoPuesto catalogopuesto) {
-      catPuestosDao.save(catalogopuesto);
+        catPuestosDao.save(catalogopuesto);
     }
-    
+
     @Override
     @Transactional
-    public CatalogoPuesto findOneCatPuesto(BigDecimal id){
+    public CatalogoPuesto findOneCatPuesto(BigDecimal id) {
         return catPuestosDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteCatPuesto(BigDecimal id){
+    public void deleteCatPuesto(BigDecimal id) {
         catPuestosDao.delete(id);
     }
 
-
-    //Catalogo Tipo Empresa
+    // Catalogo Tipo Empresa
 
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<CatalogoTipoEmpresa> findAllTipoEmpresas() {
         return (List<CatalogoTipoEmpresa>) catalogoTipoEmpresaDao.findAll();
 
     }
 
     public void saveTipoEmpresa(CatalogoTipoEmpresa catalogoTipoEmpresa) {
-      catalogoTipoEmpresaDao.save(catalogoTipoEmpresa);
+        catalogoTipoEmpresaDao.save(catalogoTipoEmpresa);
     }
-    
+
     @Override
     @Transactional
-    public CatalogoTipoEmpresa findOneTipoEmpresa(BigDecimal id){
+    public CatalogoTipoEmpresa findOneTipoEmpresa(BigDecimal id) {
         return catalogoTipoEmpresaDao.findOne(id);
 
     }
-    
-    public void deleteTipoEmpresa(BigDecimal id){
+
+    public void deleteTipoEmpresa(BigDecimal id) {
         catalogoTipoEmpresaDao.delete(id);
-    } 
-    
-    //EMPRESA
+    }
+
+    // EMPRESA
     @Override
     public List<Empresa> findAllempresa() {
-       return (List<Empresa>) empresaDao.findAll();
+        return (List<Empresa>) empresaDao.findAll();
     }
 
     @Override
     public void saveEmpresa(Empresa empresa) {
-         empresaDao.save(empresa);
+        empresaDao.save(empresa);
     }
 
     @Override
@@ -545,61 +530,83 @@ public void deleteSector(BigDecimal id){
 
     @Override
     public void deleteEmpresa(BigDecimal id) {
-        empresaDao.delete(id); 
+        empresaDao.delete(id);
 
     }
-    
-    
-    //Catalogo Habilidad
-     @Override
-    @Transactional(readOnly=true)
+
+    // Catalogo Habilidad
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoHabilidad> findAllCatHabilidad() {
-      return (List<CatalogoHabilidad>) catHabilidadDao.findAll();
-      
+        return (List<CatalogoHabilidad>) catHabilidadDao.findAll();
+
     }
 
     @Override
     @Transactional
     public void saveCatHabilidad(CatalogoHabilidad catalogohabilidad) {
-      catHabilidadDao.save(catalogohabilidad);
+        catHabilidadDao.save(catalogohabilidad);
     }
-    
-    @Override 
+
+    @Override
     @Transactional
-    public CatalogoHabilidad findOneCatHabilidad(BigDecimal id){
+    public CatalogoHabilidad findOneCatHabilidad(BigDecimal id) {
         return catHabilidadDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteCatHabilidad(BigDecimal id){
+    public void deleteCatHabilidad(BigDecimal id) {
         catHabilidadDao.delete(id);
     }
-    
-    //ROL SUBMENU
+
+    // ROL SUBMENU
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<RolSubmenu> findAllRolS() {
-      return (List<RolSubmenu>) RolSubmenuDao.findAll();
-      
+        return (List<RolSubmenu>) RolSubmenuDao.findAll();
+
     }
 
     @Override
     @Transactional
     public void saveRolS(RolSubmenu rolsubmenu) {
-      RolSubmenuDao.save(rolsubmenu);
+        RolSubmenuDao.save(rolsubmenu);
     }
-    
-    @Override 
-    @Transactional
-    public RolSubmenu findOneRolS(BigDecimal id){
-        return RolSubmenuDao.findOne(id);
-    }
-    
+
     @Override
     @Transactional
-    public void deleteRolS(BigDecimal id){
+    public RolSubmenu findOneRolS(BigDecimal id) {
+        return RolSubmenuDao.findOne(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteRolS(BigDecimal id) {
         RolSubmenuDao.delete(id);
+    }
+
+
+    //CANDIDATO
+    @Override
+    @Transactional(readOnly = true)
+    public List<Candidato> findAllCandidato() {
+        return (List<Candidato>) candidatoDao.findAll();
+    }
+
+    @Override
+    public void saveCandidato(Candidato candidato) {
+        candidatoDao.save(candidato);
+    }
+
+    @Override
+    public Candidato findCandidato(BigDecimal id) {
+        return candidatoDao.findOne(id);
+    }
+
+    @Override
+    public void deleteCandidato(BigDecimal id) {
+        candidatoDao.delete(id);
     }
     
     

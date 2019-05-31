@@ -5,6 +5,7 @@
  */
 package com.zato.app.Servicios;
 
+import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
 import com.zato.app.entidades.CatalogoGenero;
@@ -160,5 +161,11 @@ public interface IService {
     public void saveRolS(RolSubmenu rolsubmenu);
     public RolSubmenu findOneRolS (BigDecimal id);
     public void deleteRolS(BigDecimal id);
+
+    //Candidato
+    public List<Candidato> findAllCandidato();
+    public void saveCandidato(Candidato candidato);
+    public Candidato findCandidato(BigDecimal id);
+    public void deleteCandidato(BigDecimal id);
     
 }
