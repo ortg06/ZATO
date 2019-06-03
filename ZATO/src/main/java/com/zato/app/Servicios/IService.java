@@ -6,9 +6,12 @@
 package com.zato.app.Servicios;
 
 import com.zato.app.entidades.Candidato;
+import com.zato.app.entidades.CatalogoAptitud;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
+import com.zato.app.entidades.CatalogoEscrito;
 import com.zato.app.entidades.CatalogoGenero;
+import com.zato.app.entidades.CatalogoGradoAcademico;
 import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
@@ -27,6 +30,7 @@ import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
+import com.zato.app.entidades.CatalogoTipoReferencia;
 import com.zato.app.entidades.RolSubmenu;
 
 /**
@@ -167,5 +171,29 @@ public interface IService {
     public void saveCandidato(Candidato candidato);
     public Candidato findCandidato(BigDecimal id);
     public void deleteCandidato(BigDecimal id);
+    
+     //Catalogo aptitud
+    public List<CatalogoAptitud> findAllCatalogoAptitud();
+    public void saveCatalogoAptitud(CatalogoAptitud catalogoAptitud);
+    public CatalogoAptitud findOneCatalogoAptitud (BigDecimal id);
+    public void deleteCatalogoAptitud(BigDecimal id);
+    
+     //Catalogo grado academico
+    public List<CatalogoGradoAcademico> findAllCatalogoGradoAcademico();
+    public void saveCatalogoGradoAcademico(CatalogoGradoAcademico catalogoGradoAcademico);
+    public CatalogoGradoAcademico findOneCatalogoGradoAcademico (BigDecimal id);
+    public void deleteCatalogoGradoAcademico(BigDecimal id);
+    
+     //Catalogo escrito
+    public List<CatalogoEscrito> findAllCatalogoEscrito();
+    public void saveCatalogoEscrito(CatalogoEscrito catalogoEscrito);
+    public CatalogoEscrito findOneCatalogoEscrito (BigDecimal id);
+    public void deleteCatalogoEscrito(BigDecimal id);
+    
+     //Catalogo tipo de referencioa
+    public List<CatalogoTipoReferencia> findAllCatalogoTipoReferencia();
+    public void saveCatalogoTipoReferencia(CatalogoTipoReferencia catalogoTipoRefencia);
+    public CatalogoTipoReferencia findOneCatalogoTipoReferencia (BigDecimal id);
+    public void deleteCatalogoTipoReferencia(BigDecimal id);
     
 }

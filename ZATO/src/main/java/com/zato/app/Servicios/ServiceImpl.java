@@ -9,8 +9,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.zato.app.dao.ICandidatoDao;
+import com.zato.app.dao.ICatalogoAptitudDao;
 import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
+import com.zato.app.dao.ICatalogoEscritoDao;
 import com.zato.app.dao.ICatalogoGenero;
+import com.zato.app.dao.ICatalogoGradoAcademicoDao;
 import com.zato.app.dao.ICatalogoLicencia;
 import com.zato.app.dao.ICatalogoPonderacionDao;
 import com.zato.app.dao.ICatalogoSectorEmpresa;
@@ -27,11 +30,15 @@ import com.zato.app.dao.ICatalogoIdiomaDao;
 import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.dao.IPuestosDao;
 import com.zato.app.dao.ICatalogoHabilidadDao;
+import com.zato.app.dao.ICatalogoTipoReferenciaDao;
 import com.zato.app.dao.IRolSubmenuDao;
 import com.zato.app.entidades.Candidato;
+import com.zato.app.entidades.CatalogoAptitud;
 import com.zato.app.entidades.CatalogoCategoria;
 import com.zato.app.entidades.CatalogoCategoriaHabilidad;
+import com.zato.app.entidades.CatalogoEscrito;
 import com.zato.app.entidades.CatalogoGenero;
+import com.zato.app.entidades.CatalogoGradoAcademico;
 import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
@@ -47,6 +54,7 @@ import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
+import com.zato.app.entidades.CatalogoTipoReferencia;
 import com.zato.app.entidades.RolSubmenu;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +109,13 @@ public class ServiceImpl implements IService {
     private IRolSubmenuDao RolSubmenuDao;
     @Autowired
     private ICandidatoDao candidatoDao;
+    private ICatalogoAptitudDao catalogoAptitudDao;
+     @Autowired
+     private ICatalogoGradoAcademicoDao catalogoGradoAcademicoDao;
+     @Autowired
+     private ICatalogoEscritoDao catalogoEscritoDao;
+     @Autowired
+     private ICatalogoTipoReferenciaDao catalogoTipoReferenciaDao;
 
     // PAISES
     @Override
@@ -609,7 +624,105 @@ public class ServiceImpl implements IService {
         candidatoDao.delete(id);
     }
     
+    //Catalogo Aptitudes
+     @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoAptitud> findAllCatalogoAptitud() {
+      return (List<CatalogoAptitud>) catalogoAptitudDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveCatalogoAptitud(CatalogoAptitud catalogoAptitud) {
+      catalogoAptitudDao.save(catalogoAptitud);
+    }
+   
+    @Override
+    @Transactional
+    public CatalogoAptitud findOneCatalogoAptitud(BigDecimal id){
+        return catalogoAptitudDao.findOne(id);
+    }
     
+     @Override
+    @Transactional
+    public void deleteCatalogoAptitud(BigDecimal id){
+        catalogoAptitudDao.delete(id);
+    }
+    
+    //Catalogo grado academico
+     @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoGradoAcademico> findAllCatalogoGradoAcademico() {
+      return (List<CatalogoGradoAcademico>) catalogoGradoAcademicoDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveCatalogoGradoAcademico(CatalogoGradoAcademico catalogoGradoAcademico) {
+       catalogoGradoAcademicoDao.save(catalogoGradoAcademico);
+    }
+   
+    @Override
+    @Transactional
+    public CatalogoGradoAcademico findOneCatalogoGradoAcademico(BigDecimal id){
+        return catalogoGradoAcademicoDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteCatalogoGradoAcademico(BigDecimal id){
+        catalogoGradoAcademicoDao.delete(id);
+    }
+    
+    //Catalogo Escrito
+     @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoEscrito> findAllCatalogoEscrito() {
+      return (List<CatalogoEscrito>) catalogoEscritoDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveCatalogoEscrito(CatalogoEscrito catalogoEscrito) {
+      catalogoEscritoDao.save(catalogoEscrito);
+    }
+   
+    @Override
+    @Transactional
+    public CatalogoEscrito findOneCatalogoEscrito(BigDecimal id){
+        return catalogoEscritoDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteCatalogoEscrito(BigDecimal id){
+        catalogoEscritoDao.delete(id);
+    }
+    
+    //Catalogo Tipo Referencia
+     @Override
+    @Transactional(readOnly=true)
+    public List<CatalogoTipoReferencia> findAllCatalogoTipoReferencia() {
+      return (List<CatalogoTipoReferencia>) catalogoTipoReferenciaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveCatalogoTipoReferencia(CatalogoTipoReferencia catalogoTipoReferencia) {
+      catalogoTipoReferenciaDao.save(catalogoTipoReferencia);
+    }
+   
+    @Override
+    @Transactional
+    public CatalogoTipoReferencia findOneCatalogoTipoReferencia(BigDecimal id){
+        return catalogoTipoReferenciaDao.findOne(id);
+    }
+    
+     @Override
+    @Transactional
+    public void deleteCatalogoTipoReferencia(BigDecimal id){
+        catalogoTipoReferenciaDao.delete(id);
+    }
     
     
 
