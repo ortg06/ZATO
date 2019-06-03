@@ -20,7 +20,7 @@ and open the template in the editor.
         <div class="container">
             <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
 
-            <form th:action="@{/empresa/formEmp}" th:object="${empresa}" method="post">
+            <form th:action="@{/empresa/formEmp}" th:object="${empresa}"  method="post">
 
 
                 <div class="form-group row">
@@ -44,7 +44,18 @@ and open the template in the editor.
                 </div>
 
                 <div class="form-group row">
+                  
                     <div class="col-sm-4">
+                        <label class="col-form-label">Tipo de Empresa:</label>
+
+                        <select id="tipo" class="col-sm-10 form-control form-control-sm" name="tipo">
+
+                            <option th:each="tipo : ${tipos}" th:value="${tipo.pkTipoEmpresa}" 
+                                    th:selected="${tipo.pkTipoEmpresa==p}" th:text="${tipo.nombreTipoEmpresa}">
+                            </option>
+                        </select>
+                    </div>
+                      <div class="col-sm-4">
                         <label class="col-form-label">Sector:</label>
 
                         <select id="sector" class="col-sm-10 form-control form-control-sm" name="sector">
@@ -55,20 +66,10 @@ and open the template in the editor.
                         </select>
                     </div>
                     <div class="col-sm-4">
-                        <label class="col-form-label">Tipo de Empresa:</label>
-
-                        <select id="sector" class="col-sm-10 form-control form-control-sm" name="tipo">
-
-                            <option th:each="tipo : ${tipos}" th:value="${tipo.pkTipoEmpresa}" 
-                                    th:selected="${tipo.pkTipoEmpresa==p}" th:text="${tipo.nombreTipoEmpresa}">
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-sm-4">
                         <label class="col-form-label">Logo:</label>
 
 
-                        <input class="col-sm-12 form-control form-control-sm" type="file" th:field="*{logoEmpresa}"/> <small
+                        <input class="col-sm-12 form-control form-control-sm" type="file" name="file" th:field="*{logoEmpresa}"/> <small
                             class="form-text text-danger"
                             th:if="${#fields.hasErrors('logoEmpresa')}" th:errors="*{logoEmpresa}"></small>
                     </div>
@@ -101,9 +102,9 @@ and open the template in the editor.
                     <div class="col-sm-7">
                         <label class="col-form-label">Descripción:</label>
 
-                        <textarea class="col-sm-12 form-control form-control-sm" row="4" cols="50" type="text" th:field="*{direccionEmpresa}"/> <small
+                        <textarea class="col-sm-12 form-control form-control-sm" row="4" cols="50" type="text" th:field="*{descripcionEmpresa}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('direccionEmpresa')}" th:errors="*{direccionEmpresa}"></small>
+                            th:if="${#fields.hasErrors('descripcionEmpresa')}" th:errors="*{descripcionEmpresa}"></small>
                     </div>
 
                     <div class="col-sm-5">
@@ -138,9 +139,9 @@ and open the template in the editor.
 
                         <label class="col-form-label">Teléfono:</label>
                         <div >
-                            <input class="form-control form-control-sm" type="number" th:field="*{numeroTrabajadores}"/> <small
+                            <input class="form-control form-control-sm" type="number" th:field="*{telefonoContacto}"/> <small
                                 class="form-text text-danger"
-                                th:if="${#fields.hasErrors('numeroTrabajadores')}" th:errors="*{numeroTrabajadores}"></small>
+                                th:if="${#fields.hasErrors('telefonoContacto')}" th:errors="*{telefonoContacto}"></small>
                         </div>
                     </div>
                 </div>    

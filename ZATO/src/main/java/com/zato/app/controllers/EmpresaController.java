@@ -6,16 +6,27 @@
 package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
+import com.zato.app.entidades.CatalogoSectorEmpresa;
+import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Empresa;
+import java.io.File;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.sql.Blob;
 
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -28,6 +39,9 @@ public class EmpresaController {
     
       @Autowired    
     private IService IService; 
+       @Autowired    
+    private IService Sector; 
+      
 
        @GetMapping("/listar")
     public String listar(Model model)
@@ -44,11 +58,20 @@ public class EmpresaController {
         Empresa empresa = new Empresa();
         model.put("empresa", empresa);
         model.put("titulo", "Datos de la Empresa");
-        model.put("sectores",IService.findAllSectores());
+        model.put("sectores",Sector.findAllSectores());
         model.put("tipos",IService.findAllTipoEmpresas());
         model.put("municipios",IService.findAllmun());
                
         return "empresa/formEmp";
     }
     
+    @RequestMapping(value="/formEmp",method=RequestMethod.POST)
+    public String guardar(Empresa empresa,SessionStatus status)
+    {
+        IService.saveEmpresa(empresa);
+       
+      
+        status.setComplete();
+        return "redirect:/empresa/listar";
+    }
 }
