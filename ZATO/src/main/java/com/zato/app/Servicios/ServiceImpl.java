@@ -109,13 +109,14 @@ public class ServiceImpl implements IService {
     private IRolSubmenuDao RolSubmenuDao;
     @Autowired
     private ICandidatoDao candidatoDao;
+    @Autowired
     private ICatalogoAptitudDao catalogoAptitudDao;
-     @Autowired
-     private ICatalogoGradoAcademicoDao catalogoGradoAcademicoDao;
-     @Autowired
-     private ICatalogoEscritoDao catalogoEscritoDao;
-     @Autowired
-     private ICatalogoTipoReferenciaDao catalogoTipoReferenciaDao;
+    @Autowired
+    private ICatalogoGradoAcademicoDao catalogoGradoAcademicoDao;
+    @Autowired
+    private ICatalogoEscritoDao catalogoEscritoDao;
+    @Autowired
+    private ICatalogoTipoReferenciaDao catalogoTipoReferenciaDao;
 
     // PAISES
     @Override
