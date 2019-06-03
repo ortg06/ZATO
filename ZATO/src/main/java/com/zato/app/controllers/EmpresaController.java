@@ -68,9 +68,7 @@ public class EmpresaController {
     @RequestMapping(value="/formEmp",method=RequestMethod.POST)
     public String guardar(Empresa empresa,SessionStatus status)
     {
-        IService.saveEmpresa(empresa);
-       
-      
+        IService.saveEmpresa(empresa);     
         status.setComplete();
         return "redirect:/empresa/listar";
     }
