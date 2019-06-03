@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${titulo}">TODO supply a title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" type="image/x-icon" href="/templates/img/favicon.ico" />
+</head>
+
+<body>
+    <div th:replace="fragments/header :: header" />
+
+    <div class="container">
+        <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0">
+        </h1>
+
+
+        <form th:action="@{/candidato/form}" th:object="${candidato}" method="post" enctype="multipart/form-data">
+            <div class="form-group row">
+                <div class="col-sm-7">
+                    <label class="col-form-label">Nombres:</label>
+                    
+                            <input class="col-sm-12 form-control form-control-sm" type="text" th:field="*{nombreCandidato}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nombreCandidato')}" th:errors="*{nombreCandidato}"></small>
+                    
+                </div>
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Apellidos:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{apellidoCandidato}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('apellidoCandidato')}" th:errors="*{apellidoCandidato}"></small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label class="col-form-label">Imagen de Perfil:</label>
+
+
+                    <input class="col-sm-12 form-control form-control-sm" type="file" name="file" th:field="*{fotoCandidato}"/> <small
+                        class="form-text text-danger"
+                        th:if="${#fields.hasErrors('fotoCandidato')}" th:errors="*{fotoCandidato}"></small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">NIT:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{nit}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nit')}" th:errors="*{nit}"></small>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">NUP:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{nup}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nup')}" th:errors="*{nup}"></small>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Nacionalidad:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{nacionalidad}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nacionalidad')}" th:errors="*{nacionalidad}"></small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Fecha De Nacimiento:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{fechaNacimiento}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></small>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Direccion:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{direccion}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></small>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Telefono Fijo:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{telefono}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Telefono Celular:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{celular}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}"></small>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="form-group row">
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Direccion Facebook:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{facebook}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('facebook')}" th:errors="*{facebook}"></small>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Direccion Twitter:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{twitter}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('twitter')}" th:errors="*{twitter}"></small>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+
+                    <label class=" col-form-label">Pasaporte:</label>
+                    <div >
+                        <input class="form-control form-control-sm" type="text" th:field="*{pasaporte}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('pasaporte')}" th:errors="*{pasaporte}"></small>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+</body>
+
+</html>
