@@ -17,7 +17,7 @@ and open the template in the editor.
         <h1 th:text="${titulo}"></h1>
         
         <div class="container">
-            <form th:action="@{/Perfil/form}" th:object="${perfil}" method="post">
+            <form th:action="@{/Perfil/formE}" th:object="${perfil}" method="post">
             
                 
                 <div class="form-group row">
@@ -47,11 +47,14 @@ and open the template in the editor.
 						th:if="${#fields.hasErrors('correoElectronico')}" th:errors="*{apellido}"></small>
 				</div>
 			</div>
-                               
+                        
+                <input type="hidden" th:field="@{/Perfil/eliminar/} + ${perfil.pkUsuario}"/>
                                 
                 <div class="form-group row">
 				<div class="col-sm-6">
 					<input type="submit" value="Guardar" class="btn btn-primary" />
+                                        
+                                      
 				</div>
                 </div>
                 
@@ -62,3 +65,4 @@ and open the template in the editor.
         </div>
     </body>
 </html>
+
