@@ -32,6 +32,7 @@ import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
 import com.zato.app.entidades.CatalogoTipoReferencia;
 import com.zato.app.entidades.RolSubmenu;
+import com.zato.app.entidades.Perfil;
 
 /**
  *
@@ -195,5 +196,11 @@ public interface IService {
     public void saveCatalogoTipoReferencia(CatalogoTipoReferencia catalogoTipoRefencia);
     public CatalogoTipoReferencia findOneCatalogoTipoReferencia (BigDecimal id);
     public void deleteCatalogoTipoReferencia(BigDecimal id);
+    
+      //PERFIL
+    public List<Perfil> findAllPerfil();
+    public void savePerfil(Perfil perfil);
+    public Perfil findOnePerfil (BigDecimal id);
+    public void deletePerfil(BigDecimal id);
     
 }

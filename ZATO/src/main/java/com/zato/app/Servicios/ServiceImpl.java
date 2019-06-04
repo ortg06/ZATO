@@ -32,6 +32,8 @@ import com.zato.app.dao.IPuestosDao;
 import com.zato.app.dao.ICatalogoHabilidadDao;
 import com.zato.app.dao.ICatalogoTipoReferenciaDao;
 import com.zato.app.dao.IRolSubmenuDao;
+import com.zato.app.dao.IPerfilDao;
+
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
 import com.zato.app.entidades.CatalogoCategoria;
@@ -56,6 +58,7 @@ import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
 import com.zato.app.entidades.CatalogoTipoReferencia;
 import com.zato.app.entidades.RolSubmenu;
+import com.zato.app.entidades.Perfil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -117,6 +120,8 @@ public class ServiceImpl implements IService {
     private ICatalogoEscritoDao catalogoEscritoDao;
     @Autowired
     private ICatalogoTipoReferenciaDao catalogoTipoReferenciaDao;
+    @Autowired
+    private IPerfilDao PerfilDao; 
 
     // PAISES
     @Override
@@ -725,6 +730,31 @@ public class ServiceImpl implements IService {
         catalogoTipoReferenciaDao.delete(id);
     }
     
+    //PERFIL
+    @Override
+    @Transactional(readOnly=true)
+    public List<Perfil> findAllPerfil() {
+      return (List<Perfil>) PerfilDao.findAll();
+      
+    }
+
+    @Override
+    @Transactional
+    public void savePerfil(Perfil perfil) {
+      PerfilDao.save(perfil);
+    }
+    
+    @Override 
+    @Transactional
+    public Perfil findOnePerfil(BigDecimal id){
+        return PerfilDao.findOne(id);
+    }
+    
+    @Override
+    @Transactional
+    public void deletePerfil(BigDecimal id){
+        PerfilDao.delete(id);
+    }
     
 
 }
