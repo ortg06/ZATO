@@ -63,7 +63,7 @@ public class PerfilController {
         return "Perfil/form";
     }
     //editar
-    @RequestMapping(value="/editar/{id}")
+    @RequestMapping(value="/Perfil/form/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
         
@@ -78,7 +78,7 @@ public class PerfilController {
         model.put("perfil", perfil);
         model.put("titulo", "Editar Usuario");
         model.put("Rol", RolService.findAllRol());
-        model.put("R",perfil.getRol().getPkRol());
+        model.put("r",perfil.getRol().getPkRol());
         return "Perfil/formPerfil";
     }
     
