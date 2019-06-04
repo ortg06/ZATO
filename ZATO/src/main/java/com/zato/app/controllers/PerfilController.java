@@ -7,6 +7,7 @@ package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Perfil;
+import com.zato.app.entidades.Rol;
 import java.math.BigDecimal;
 
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -42,7 +44,7 @@ public class PerfilController {
         return "perfil/listar";
     }
     
-    //nuevo
+    //----------------------------nuevo-------------------------------------------
      @RequestMapping(value="/Perfil/formPerfil",method=RequestMethod.GET)
     public String crear(Map<String,Object> model)
     {
@@ -53,17 +55,31 @@ public class PerfilController {
         return "Perfil/formPerfil";
     }
     
-      @RequestMapping(value="/Perfil/form",method=RequestMethod.GET)
-    public String crearform(Map<String,Object> model)
+      @RequestMapping(value="/Perfil/form/{tipo}",method=RequestMethod.GET)
+    public String crearform(@PathVariable(value="tipo") int tipo, Map<String,Object> model)
     {
+        String title="Registro de Candidato";
+        if(tipo==2){
+        title="Registro de Empresas";
+        }
         Perfil perfil = new Perfil();
         model.put("perfil", perfil);
-        model.put("titulo", "Registro de Candidatos");
+        model.put("titulo", title);
         model.put("Rol", RolService.findAllRol());
         return "Perfil/form";
     }
-    //editar
-    @RequestMapping(value="/Perfil/form/{id}")
+    
+      @RequestMapping(value="/Perfil/formE",method=RequestMethod.GET)
+    public String crearformE(Map<String,Object> model)
+    {
+        Perfil perfil = new Perfil();
+        model.put("perfil", perfil);
+        model.put("titulo", "Registro de Empresas");
+        model.put("Rol", RolService.findAllRol());
+        return "Perfil/formE";
+    }
+    //--------------------------editar------------------------------------------
+    @RequestMapping(value="/Perfil/formPerfil/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
         
@@ -81,25 +97,15 @@ public class PerfilController {
         model.put("r",perfil.getRol().getPkRol());
         return "Perfil/formPerfil";
     }
-    
-    //INFORMACION
-    @RequestMapping(value="/Perfil/formPerfil/{contrasena}}", method=RequestMethod.GET)
-    public int  validarContra(@PathVariable (value="contrasena")String contra,Map<String,Object> model) {
- 
-        int resultado=0;
-        
-        
-        return resultado;
-    }
-    
+//-------------------GUARDAR -------------------------------------------------
     //guardar Administrador
      @RequestMapping(value="/Perfil/formPerfil",method=RequestMethod.POST)
-    public String guardarAdmin(Perfil perfil, SessionStatus status)
+    public String guardarAdmin( Perfil perfil, SessionStatus status)
     {
        int tipop=3;
        BigDecimal tipo= new BigDecimal(tipop);
        perfil.setTipoPerfil(tipo);
-       
+      // int contra=validarContra(contrasena);
     
        PerfilService.savePerfil(perfil);
         
@@ -107,36 +113,41 @@ public class PerfilController {
         return "redirect:/Perfil/listar";
     }
     
-     /*  //guardar Candidato
-     @RequestMapping(value="/Perfil/formCand",method=RequestMethod.POST)
-    public String guardarCand(Perfil perfil, SessionStatus status)
+       //guardar Candidato
+     @RequestMapping(value="/Perfil/form",method=RequestMethod.POST)
+    public String guardarCand(@RequestParam BigDecimal id,Perfil perfil, SessionStatus status)
     {
        int tipop=1;
        BigDecimal tipo= new BigDecimal(tipop);
-         //perfil.setRol();
-       
        perfil.setTipoPerfil(tipo);
+       Rol rol = new Rol();
+       rol= RolService.findOneRol(tipo);
+       perfil.setRol(rol);
        PerfilService.savePerfil(perfil);
         
         status.setComplete();
-        return "redirect:/Candidato/form";
-    }*/
+        
+        return "redirect:/candidato/form";
+    }
 
       //guardar Empresa
-     @RequestMapping(value="/Perfil/form",method=RequestMethod.POST)
-    public String guardarEmp(Perfil perfil, SessionStatus status)
+     @RequestMapping(value="/Perfil/formE",method=RequestMethod.POST)
+    public String guardarEmp(@RequestParam BigDecimal id,Perfil perfil, SessionStatus status)
     {
        int tipop=2;
        BigDecimal tipo= new BigDecimal(tipop);
-       
        perfil.setTipoPerfil(tipo);
+       Rol rol = new Rol();
+       rol= RolService.findOneRol(tipo);
+       perfil.setRol(rol);
        PerfilService.savePerfil(perfil);
         
         status.setComplete();
-        return "redirect:/empresa/formEmp";
+    
+        return "redirect:/empresa/nuevo&id="+id;
     }
    
-    //eliminar
+    //---------------------eliminar-----------------------------------------------
     @RequestMapping(value = "/Perfil/eliminar/{id}")
     public String eliminar(@PathVariable(value="id") BigDecimal id)
     {
@@ -147,4 +158,15 @@ public class PerfilController {
         }
         return "redirect:/Perfil/listar";
     }
+    
+        
+    //---------------------VALIDACIONES----------------------------------------
+    public int  validarContra(String contraseña) {
+ 
+        int resultado=0;
+        
+        
+        return resultado;
+    }
+    
 }
