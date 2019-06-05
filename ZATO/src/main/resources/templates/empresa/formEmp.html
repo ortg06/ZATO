@@ -51,7 +51,7 @@ and open the template in the editor.
                         <select id="tipo" class="col-sm-10 form-control form-control-sm" name="catalogoTipoEmpresa">
 
                             <option th:each="tipo : ${tipos}" th:value="${tipo.pkTipoEmpresa}" 
-                                    th:selected="${tipo.pkTipoEmpresa==p}" th:text="${tipo.nombreTipoEmpresa}">
+                                    th:selected="${tipo.pkTipoEmpresa==tp}" th:text="${tipo.nombreTipoEmpresa}">
                             </option>
                         </select>
                     </div>
@@ -61,7 +61,7 @@ and open the template in the editor.
                         <select id="sector" class="col-sm-10 form-control form-control-sm" name="catalogoSectorEmpresa">
 
                             <option th:each="sector : ${sectores}" th:value="${sector.pkSector}" 
-                                    th:selected="${sector.pkSector==p}" th:text="${sector.nombreSector}">
+                                    th:selected="${sector.pkSector==s}" th:text="${sector.nombreSector}">
                             </option>
                         </select>
                     </div>

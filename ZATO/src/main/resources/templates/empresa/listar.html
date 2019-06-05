@@ -14,40 +14,40 @@ and open the template in the editor.
     </head>
     <body>
         <div th:replace="fragments/header :: header"/>
-       
+
 
         <div class="container">
             <h1 th:text="${titulo}"></h1>
-          <div class="row">  
-           
-           <div class="col-lg-10 col-md-10">    
-            <a th:href="@{/empresa/nuevo}" class="btn btn-success btn-xs">Crear Departamento</a>
+            <div class="row">  
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Acciones</th>
-                        <th>Noe</th>
-                        <th>NIT</th>
-                        <th>Sector</th>
-                        <th>Tipo Empresa</th>
-                        <th>Municipio</th>
-                        <th>Nombre</th>
-                        <th>Sector</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr >
-                        
-                    </tr>
-                </tbody>
-            </table>
-            
-           </div>
+                <div class="col-lg-10 col-md-10">    
+                    <a th:href="@{/empresa/nuevo}" class="btn btn-success btn-xs">Crear Departamento</a>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Acciones</th>
+                                <th>Logo</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="empresa: ${empresas}">
+
+                                <td><a class="btn btn-success btn-xs"  th:href="@{/empresa/ver/} + ${empresa.pkEmpresa}" th:text="'Ver'"></a>
+                                    <a class="btn btn-primary btn-xs" th:href="@{/empresa/editar/} + ${empresa.pkEmpresa}" th:text="'Editar'"></a>
+                                    <a class="btn btn-danger btn-xs"  th:href="@{/empresa/eliminar/} + ${empresa.pkEmpresa}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
+                                <td th:text="${empresa.logoEmpresa}"></td>
+                                <td th:text="${empresa.nomEmpresa}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
                 <div th:replace="fragments/footer :: footer"></div>
-          </div>
+            </div>
         </div>
-      
+
 
     </body>
 </html>
