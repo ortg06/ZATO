@@ -1,0 +1,40 @@
+<html xmlns:th ="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"/>
+
+
+        <div class="container py-4">
+
+            <div class="card bg-light">
+                <div class="card-header" th:text="${titulo}"></div>
+                <div class="card-body">
+
+                    <img th:if="${#strings.length(empresa.logoEmpresa) > 0}" class="img-thumbnail rounded float-left"
+                         style="max-width: 25%;" th:src="*{'base64,'+img}"
+                         th:alt="${empresa.logoEmpresa}" />
+
+                    <ul class="list-group">
+                        <li class="list-group-item active" th:text="${empresa.nomEmpresa}"></li>
+                        <li class="list-group-item" th:text="${empresa.nitEmpresa}"></li>
+                      
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div th:replace="fragments/footer :: footer"></div>
+
+    </body>
+</html>

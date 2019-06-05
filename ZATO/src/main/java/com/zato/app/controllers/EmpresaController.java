@@ -9,6 +9,7 @@ import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.Municipio;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -17,16 +18,19 @@ import java.sql.Blob;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -36,40 +40,96 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("empresa")
 @SessionAttributes("empresa")
 public class EmpresaController {
-    
-      @Autowired    
-    private IService IService; 
-       @Autowired    
-    private IService Sector; 
-      
 
-       @GetMapping("/listar")
-    public String listar(Model model)
-    {
+    @Autowired
+    private IService IService;
+    @Autowired
+    private IService Sector;
+
+    @GetMapping("/listar")
+    public String listar(Model model) {
         model.addAttribute("titulo", "Empresas Registradas");
-        model.addAttribute("empresas",IService.findAllempresa());
-        
+        model.addAttribute("empresas", IService.findAllempresa());
+
         return "empresa/listar";
     }
-    
-    @RequestMapping(value="/nuevo",method=RequestMethod.GET)
-    public String crear(Map<String,Object> model)
-    {
+
+    @GetMapping(value = "/ver/{id}")
+    public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model, RedirectAttributes flash) {
+
+        Empresa empresa = IService.findOneEmpresa(id);
+        if (empresa == null) {
+            flash.addFlashAttribute("error", "La empresa no existe en la base de datos");
+            return "redirect:/empresa/listar";
+        }
+        String img = Base64.encodeBase64String(empresa.getLogoEmpresa());
+        model.put("empresa", empresa);
+        model.put("logoEmpresa",img);
+        model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
+        return "empresa/ver";
+    }
+
+    @RequestMapping(value = "/nuevo", method = RequestMethod.GET)
+    public String crear(Map<String, Object> model) {
         Empresa empresa = new Empresa();
         model.put("empresa", empresa);
         model.put("titulo", "Datos de la Empresa");
-        model.put("sectores",Sector.findAllSectores());
-        model.put("tipos",IService.findAllTipoEmpresas());
-        model.put("municipios",IService.findAllmun());
-               
+        model.put("sectores", Sector.findAllSectores());
+        model.put("tipos", IService.findAllTipoEmpresas());
+        model.put("municipios", IService.findAllmun());
+
         return "empresa/formEmp";
     }
-    
-    @RequestMapping(value="/formEmp",method=RequestMethod.POST)
-    public String guardar(Empresa empresa,SessionStatus status)
-    {
-        IService.saveEmpresa(empresa);     
-        status.setComplete();
+
+    @RequestMapping(value = "/editar/{id}")
+    public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
+        Empresa empresa = null;
+
+        //se compara si el ID es mayor que cero
+        if (id.compareTo(BigDecimal.ZERO) > 0) {
+            empresa = IService.findOneEmpresa(id);
+
+        } else {
+            return "redirect:/empresa/listar";
+        }
+        model.put("empresa", empresa);
+        model.put("titulo", "Datos de la Empresa");
+        model.put("sectores", Sector.findAllSectores());
+        model.put("tipos", IService.findAllTipoEmpresas());
+        model.put("municipios", IService.findAllmun());
+        model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
+        model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
+        model.put("p", empresa.getMunicipio().getPkMunicipio());
+        return "empresa/formEmp";
+    }
+
+    @RequestMapping(value = "/formEmp", method = RequestMethod.POST)
+    public String guardar(Empresa empresa, @RequestParam("file") MultipartFile foto, SessionStatus status) {
+        if (!foto.isEmpty()) {
+
+            try {
+
+                byte[] content = foto.getBytes();
+                empresa.setLogoEmpresa(content);
+                IService.saveEmpresa(empresa);
+                status.setComplete();
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+        }
+
         return "redirect:/empresa/listar";
     }
+
+    @RequestMapping(value = "/eliminar/{id}")
+    public String eliminar(@PathVariable(value = "id") BigDecimal id) {
+        //se compara si el ID es mayor que cero
+        if (id.compareTo(BigDecimal.ZERO) > 0) {
+            IService.deleteEmpresa(id);
+        }
+        return "redirect:/empresa/listar";
+    }
+
 }
