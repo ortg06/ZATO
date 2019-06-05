@@ -58,14 +58,17 @@ public class EmpresaController {
     public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model, RedirectAttributes flash) {
 
         Empresa empresa = IService.findOneEmpresa(id);
-        if (empresa == null) {
-            flash.addFlashAttribute("error", "La empresa no existe en la base de datos");
-            return "redirect:/empresa/listar";
-        }
+
         String img = Base64.encodeBase64String(empresa.getLogoEmpresa());
         model.put("empresa", empresa);
-        model.put("logoEmpresa",img);
+        model.put("imagen", img);
         model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
+        model.put("sectores", Sector.findAllSectores());
+        model.put("tipos", IService.findAllTipoEmpresas());
+        model.put("municipios", IService.findAllmun());
+        model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
+        model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
+        model.put("p", empresa.getMunicipio().getPkMunicipio());
         return "empresa/ver";
     }
 
@@ -119,6 +122,8 @@ public class EmpresaController {
             }
 
         }
+        IService.saveEmpresa(empresa);
+        status.setComplete();
 
         return "redirect:/empresa/listar";
     }

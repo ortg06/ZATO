@@ -27,17 +27,16 @@ and open the template in the editor.
                         <thead>
                             <tr>
                                 <th>Acciones</th>
-                                <th>Logo</th>
+                          
                                 <th>Nombre</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="empresa: ${empresas}">
 
-                                <td><a class="btn btn-success btn-xs"  th:href="@{/empresa/ver/} + ${empresa.pkEmpresa}" th:text="'Ver'"></a>
-                                    <a class="btn btn-primary btn-xs" th:href="@{/empresa/editar/} + ${empresa.pkEmpresa}" th:text="'Editar'"></a>
-                                    <a class="btn btn-danger btn-xs"  th:href="@{/empresa/eliminar/} + ${empresa.pkEmpresa}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
-                                <td th:text="${empresa.logoEmpresa}"></td>
+                                <td><a class="btn btn-success btn-xs"  th:href="@{/empresa/ver/} + ${empresa.pkEmpresa}" th:text="'Ver Perfil'"></a>
+                                </td>
+                              
                                 <td th:text="${empresa.nomEmpresa}"></td>
                             </tr>
                         </tbody>
