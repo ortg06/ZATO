@@ -55,16 +55,12 @@ public class PerfilController {
         return "Perfil/formPerfil";
     }
     
-      @RequestMapping(value="/Perfil/form/{tipo}",method=RequestMethod.GET)
-    public String crearform(@PathVariable(value="tipo") int tipo, Map<String,Object> model)
+      @RequestMapping(value="/Perfil/form",method=RequestMethod.GET)
+    public String crearform( Map<String,Object> model)
     {
-        String title="Registro de Candidato";
-        if(tipo==2){
-        title="Registro de Empresas";
-        }
         Perfil perfil = new Perfil();
         model.put("perfil", perfil);
-        model.put("titulo", title);
+        model.put("titulo", "Registro de Candidatos");
         model.put("Rol", RolService.findAllRol());
         return "Perfil/form";
     }
@@ -105,7 +101,7 @@ public class PerfilController {
        int tipop=3;
        BigDecimal tipo= new BigDecimal(tipop);
        perfil.setTipoPerfil(tipo);
-      // int contra=validarContra(contrasena);
+      
     
        PerfilService.savePerfil(perfil);
         
@@ -115,36 +111,38 @@ public class PerfilController {
     
        //guardar Candidato
      @RequestMapping(value="/Perfil/form",method=RequestMethod.POST)
-    public String guardarCand(@RequestParam BigDecimal id,Perfil perfil, SessionStatus status)
+    public String guardarCand(Perfil perfil, SessionStatus status)
     {
-       int tipop=1;
+       int tipop=1; // aqui cambiar rol
+       BigDecimal id;
        BigDecimal tipo= new BigDecimal(tipop);
        perfil.setTipoPerfil(tipo);
        Rol rol = new Rol();
        rol= RolService.findOneRol(tipo);
        perfil.setRol(rol);
        PerfilService.savePerfil(perfil);
-        
+        id= perfil.getPkUsuario();
         status.setComplete();
         
-        return "redirect:/candidato/form";
+        return "redirect:/candidato/form?id"+id;
     }
 
       //guardar Empresa
      @RequestMapping(value="/Perfil/formE",method=RequestMethod.POST)
-    public String guardarEmp(@RequestParam BigDecimal id,Perfil perfil, SessionStatus status)
+    public String guardarEmp(Perfil perfil, SessionStatus status)
     {
-       int tipop=2;
+       int tipop=9;// aqui cambiar rol
        BigDecimal tipo= new BigDecimal(tipop);
+       BigDecimal id;
        perfil.setTipoPerfil(tipo);
        Rol rol = new Rol();
        rol= RolService.findOneRol(tipo);
        perfil.setRol(rol);
        PerfilService.savePerfil(perfil);
-        
+       id= perfil.getPkUsuario();
         status.setComplete();
     
-        return "redirect:/empresa/nuevo&id="+id;
+        return "redirect:/empresa/nuevo?id"+id;
     }
    
     //---------------------eliminar-----------------------------------------------
