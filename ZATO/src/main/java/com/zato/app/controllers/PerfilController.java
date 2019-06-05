@@ -124,7 +124,7 @@ public class PerfilController {
         id= perfil.getPkUsuario();
         status.setComplete();
         
-        return "redirect:/candidato/form?id"+id;
+        return "redirect:/candidato/form/"+id;
     }
 
       //guardar Empresa
@@ -142,7 +142,7 @@ public class PerfilController {
        id= perfil.getPkUsuario();
         status.setComplete();
     
-        return "redirect:/empresa/nuevo?id"+id;
+        return "redirect:/empresa/nuevo/"+id;
     }
    
     //---------------------eliminar-----------------------------------------------
