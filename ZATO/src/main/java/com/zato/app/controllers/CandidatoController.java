@@ -18,6 +18,7 @@ import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Candidato;
 import com.zato.app.hiber.HibernateUtil;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -115,10 +116,18 @@ public class CandidatoController {
     }
 
 
-    public Blob getBlobData(MultipartFile file) throws IOException, SQLException {
-        byte[] bytes = file.getBytes();
-        return new SerialBlob(bytes);
-    }
+  @RequestMapping(value = "/ver/{id}")
+  public String ver (@PathVariable(value = "id") BigDecimal id, Map<String,Object> model)
+  {
+      Candidato candidato = candidatoService.findCandidato(id);
+
+
+      String imagen64 = Base64.encodeBase64String(candidato.getFotoCandidato());
+      model.put("candidato", candidato);
+      model.put("imagen", imagen64);
+      model.put("titulo", "Perfil Usuario : " + candidato.getNombreCandidato() + " " + candidato.getApellidoCandidato());
+      return "Candidato/ver";
+  }
 
 
 }

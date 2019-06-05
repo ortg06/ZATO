@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head >
+    <title th:text="${titulo}">TODO supply a title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+</head>
+<body>
+
+    <div th:replace="fragments/header :: header"/>
+
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+			
+				<img th:if="${#strings.length(candidato.fotoCandidato) > 0}" class="img-thumbnail rounded float-left"
+					style="max-width: 25%;" th:src="*{'data:image/png;base64,'+imagen}"
+					 />
+
+				<ul class="list-group">
+					<li class="list-group-item active" th:text="${candidato.nombreCandidato}"></li>
+					<li class="list-group-item" th:text="${candidato.apellidoCandidato}"></li>
+					<li class="list-group-item" th:text="${candidato.dui}"></li>
+					<li class="list-group-item" th:text="${candidato.direccion}"></li>
+				</ul>
+
+			</div>
+		</div>
+
+	</div>
+
+ <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
