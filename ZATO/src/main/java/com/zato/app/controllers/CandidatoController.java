@@ -80,56 +80,26 @@ public class CandidatoController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String guardar(Candidato candidato, @RequestParam("fotoCandidato") MultipartFile foto, SessionStatus status) {
+    public String guardar(Candidato candidato, @RequestParam("file") MultipartFile foto, SessionStatus status) {
 
-        
-        if (!foto.isEmpty()) {
-            // Session session = HibernateUtil.getSessionFactory().openSession();
-            // session.beginTransaction();
-            // InputStream inputStream =
-            // candidato.getClass().getClassLoader().getResourceAsStream(foto.getOriginalFilename());
-           
-           /*  try {
-                blob = Hibernate.getLobCreator(HibernateUtil.getSessionFactory().getCurrentSession())
-                        .createBlob(foto.getInputStream(), foto.getSize());
-            } catch (IOException e) {
-
-                e.printStackTrace();
-            }
+      
+        if (!foto.isEmpty()) { 
+          
+     
             try {
-                candidato.setFotoCandidato(blob.getBytes(0, (int) blob.length()));
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } */
-
-           /*  try {
-                byte[] content = foto.getBytes();
-                InputStream inputStream = new ByteArrayInputStream(content);
-                candidato.setFotoCandidato(inputStream);
+                
+           byte[] content = foto.getBytes();
+            candidato.setFotoCandidato(content);
+         candidatoService.saveCandidato(candidato);
+        status.setComplete(); 
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+               
                 e.printStackTrace();
-            } */
-            //byte[] content;
-            try {
-                //content = foto.getBytes();
-              /*   InputStream inputStream = foto.getInputStream();
-            Blob blob = Hibernate.getLobCreator(HibernateUtil.getSessionFactory().getCurrentSession())
-            .createBlob(inputStream, foto.getSize()); */
-            candidato.setFotoCandidato(getBlobData(foto));
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            } 
             
         }
 
-        candidatoService.saveCandidato(candidato);
-        status.setComplete();
+     
         return "redirect:/candidato/listar";
     }
 

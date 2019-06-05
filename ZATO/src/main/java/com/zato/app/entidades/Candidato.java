@@ -50,7 +50,7 @@ public class Candidato  implements java.io.Serializable {
      private String facebook;
      private String twitter;
      private String pasaporte;
-     private Blob fotoCandidato;
+     private byte[] fotoCandidato;
      private Set<Perfil> perfils = new HashSet<Perfil>(0);
      private Set<Cv> cvs = new HashSet<Cv>(0);
 
@@ -70,7 +70,7 @@ public class Candidato  implements java.io.Serializable {
         this.direccion = direccion;
     }
     public Candidato(BigDecimal pkCandidato, Municipio municipio, CatalogoGenero catalogoGenero, String nombreCandidato, String apellidoCandidato, String nacionalidad, int dui, long nit, Long nup, Date fechaNacimiento, String direccion, Long telefono, Long celular, String facebook, String twitter, String pasaporte, 
-            Blob fotoCandidato, Set<Perfil> perfils, Set<Cv> cvs) {
+            byte[] fotoCandidato, Set<Perfil> perfils, Set<Cv> cvs) {
        this.pkCandidato = pkCandidato;
        this.municipio = municipio;
        this.catalogoGenero = catalogoGenero;
@@ -258,11 +258,11 @@ public class Candidato  implements java.io.Serializable {
 
  
     @Column(name="FOTO_CANDIDATO")
-    public Blob getFotoCandidato() {
+    public byte[] getFotoCandidato() {
         return this.fotoCandidato;
     }
     
-    public void setFotoCandidato(Blob fotoCandidato) {
+    public void setFotoCandidato(byte[] fotoCandidato) {
         this.fotoCandidato = fotoCandidato;
     }
 
