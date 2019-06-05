@@ -36,40 +36,49 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("empresa")
 @SessionAttributes("empresa")
 public class EmpresaController {
-    
-      @Autowired    
-    private IService IService; 
-       @Autowired    
-    private IService Sector; 
-      
 
-       @GetMapping("/listar")
-    public String listar(Model model)
-    {
+    @Autowired
+    private IService IService;
+    @Autowired
+    private IService Sector;
+
+    @GetMapping("/listar")
+    public String listar(Model model) {
         model.addAttribute("titulo", "Empresas Registradas");
-        model.addAttribute("empresas",IService.findAllempresa());
-        
+        model.addAttribute("empresas", IService.findAllempresa());
+
         return "empresa/listar";
     }
-    
-    @RequestMapping(value="/nuevo",method=RequestMethod.GET)
-    public String crear(Map<String,Object> model)
-    {
+
+    @RequestMapping(value = "/nuevo", method = RequestMethod.GET)
+    public String crear(Map<String, Object> model) {
         Empresa empresa = new Empresa();
         model.put("empresa", empresa);
         model.put("titulo", "Datos de la Empresa");
-        model.put("sectores",Sector.findAllSectores());
-        model.put("tipos",IService.findAllTipoEmpresas());
-        model.put("municipios",IService.findAllmun());
-               
+        model.put("sectores", Sector.findAllSectores());
+        model.put("tipos", IService.findAllTipoEmpresas());
+        model.put("municipios", IService.findAllmun());
+
         return "empresa/formEmp";
     }
-    
-    @RequestMapping(value="/formEmp",method=RequestMethod.POST)
-    public String guardar(Empresa empresa,SessionStatus status)
-    {
-        IService.saveEmpresa(empresa);     
-        status.setComplete();
+
+    @RequestMapping(value = "/formEmp", method = RequestMethod.POST)
+    public String guardar(Empresa empresa, @RequestParam("file") MultipartFile foto, SessionStatus status) {
+        if (!foto.isEmpty()) {
+
+            try {
+
+                byte[] content = foto.getBytes();
+                empresa.setLogoEmpresa(content);
+                IService.saveEmpresa(empresa);
+                status.setComplete();
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+        }
+
         return "redirect:/empresa/listar";
     }
 }
