@@ -6,6 +6,7 @@
 package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
+import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Empresa;
@@ -41,10 +42,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @SessionAttributes("empresa")
 public class EmpresaController {
 
+    BigDecimal num= null;
     @Autowired
     private IService IService;
     @Autowired
     private IService Sector;
+     @Autowired
+    IEmpresaDao repo;
 
     @GetMapping("/listar")
     public String listar(Model model) {
@@ -116,12 +120,14 @@ public class EmpresaController {
                 empresa.setLogoEmpresa(content);
                 IService.saveEmpresa(empresa);
                 status.setComplete();
+                 repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
             } catch (IOException e) {
 
                 e.printStackTrace();
             }
 
         }
+         repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
         IService.saveEmpresa(empresa);
         status.setComplete();
 
@@ -136,5 +142,19 @@ public class EmpresaController {
         }
         return "redirect:/empresa/listar";
     }
+    
+     @RequestMapping(value = "/nuevo/{id}", method = RequestMethod.GET)
+    public String crear(@PathVariable(value = "id") BigDecimal id , Map<String, Object> model) {
+        Empresa empresa = new Empresa();
+        num=id;
+        model.put("empresa", empresa);
+        model.put("titulo", "Datos de la Empresa");
+        model.put("sectores", Sector.findAllSectores());
+        model.put("tipos", IService.findAllTipoEmpresas());
+        model.put("municipios", IService.findAllmun());
 
+        return "empresa/formEmp";
+    }
+    
+    
 }
