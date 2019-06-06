@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.ICandidatoDao;
 import com.zato.app.entidades.Candidato;
-import com.zato.app.entidades.Perfil;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class CandidatoController {
 
     BigDecimal num = null;
+
+    // se crea el elemento DAO para llamada al procedimiento
     @Autowired
     ICandidatoDao repo;
 
@@ -77,8 +75,6 @@ public class CandidatoController {
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(Candidato candidato, @RequestParam("file") MultipartFile foto, SessionStatus status) {
 
-        
-        
         if (!foto.isEmpty()) {
 
             try {
@@ -87,20 +83,23 @@ public class CandidatoController {
                 candidato.setFotoCandidato(content);
                 candidatoService.saveCandidato(candidato);
 
-                //LLAMADA AL PROCEDIMIENTO (LLAVE CANDIDATO, LLAVE PERFIL)
-                repo.updatePerfilCandidato(candidato.getPkCandidato(),num);
+                // LLAMADA AL PROCEDIMIENTO: actualizarperfilcandidato
+                // parametros: (LLAVE CANDIDATO, LLAVE PERFIL)
+                repo.updatePerfilCandidato(candidato.getPkCandidato(), num);
 
                 status.setComplete();
             } catch (IOException e) {
 
                 e.printStackTrace();
             }
-           
+
         }
 
         candidatoService.saveCandidato(candidato);
+        // LLAMADA AL PROCEDIMIENTO: actualizarperfilcandidato
+        // parametros: (LLAVE CANDIDATO, LLAVE PERFIL)
+        repo.updatePerfilCandidato(candidato.getPkCandidato(), num);
 
-        
         status.setComplete();
 
         return "redirect:/candidato/listar";
@@ -127,49 +126,17 @@ public class CandidatoController {
         return "Candidato/ver";
     }
 
-
     @RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
-    public String crearCandidato(@PathVariable(value="id") BigDecimal id,Map<String, Object> model) {
+    public String crearCandidato(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Candidato candidato = new Candidato();
-        //Perfil perfil = candidatoService.findOnePerfil(id);
         num = id;
         model.put("candidato", candidato);
         model.put("titulo", "Datos de Candidato");
         model.put("generos", candidatoService.findAllcatalogoGenero());
         model.put("municipios", candidatoService.findAllmun());
-        //model.put("perfil",perfil);
 
         return "candidato/form";
 
     }
-
-    
-
-  /*   @RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
-    public String guardarCandidato(Candidato candidato,@PathVariable(value="id") BigDecimal id, @RequestParam("file") MultipartFile foto, SessionStatus status) {
-
-        Perfil perfil = candidatoService.findOnePerfil(id);
-        if (!foto.isEmpty()) {
-
-            try {
-
-                byte[] content = foto.getBytes();
-                candidato.setFotoCandidato(content);
-                candidatoService.saveCandidato(candidato);
-                status.setComplete();
-            } catch (IOException e) {
-
-                e.printStackTrace();
-            }
-           
-        }
-
-        candidatoService.saveCandidato(candidato);
-
-
-        status.setComplete();
-
-        return "redirect:/candidato/listar";
-    } */
 
 }
