@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+
 import com.zato.app.Servicios.IService;
+import com.zato.app.dao.ICandidatoDao;
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.Perfil;
 
@@ -26,6 +29,10 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/candidato")
 @SessionAttributes("candidato")
 public class CandidatoController {
+
+    BigDecimal num = null;
+    @Autowired
+    ICandidatoDao repo;
 
     @Autowired
     private IService candidatoService;
@@ -68,8 +75,10 @@ public class CandidatoController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String guardar(Candidato candidato, @RequestParam("file") MultipartFile foto, @RequestAttribute("profile") Perfil perfil, SessionStatus status) {
+    public String guardar(Candidato candidato, @RequestParam("file") MultipartFile foto, SessionStatus status) {
 
+        
+        
         if (!foto.isEmpty()) {
 
             try {
@@ -78,8 +87,8 @@ public class CandidatoController {
                 candidato.setFotoCandidato(content);
                 candidatoService.saveCandidato(candidato);
 
-                
-              
+                //LLAMADA AL PROCEDIMIENTO (LLAVE CANDIDATO, LLAVE PERFIL)
+                repo.updatePerfilCandidato(candidato.getPkCandidato(),num);
 
                 status.setComplete();
             } catch (IOException e) {
@@ -91,8 +100,7 @@ public class CandidatoController {
 
         candidatoService.saveCandidato(candidato);
 
-        perfil.setCandidato(candidato);
-        candidatoService.savePerfil(perfil);
+        
         status.setComplete();
 
         return "redirect:/candidato/listar";
@@ -123,12 +131,13 @@ public class CandidatoController {
     @RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
     public String crearCandidato(@PathVariable(value="id") BigDecimal id,Map<String, Object> model) {
         Candidato candidato = new Candidato();
-        Perfil perfil = candidatoService.findOnePerfil(id);
+        //Perfil perfil = candidatoService.findOnePerfil(id);
+        num = id;
         model.put("candidato", candidato);
         model.put("titulo", "Datos de Candidato");
         model.put("generos", candidatoService.findAllcatalogoGenero());
         model.put("municipios", candidatoService.findAllmun());
-        model.put("perfil",perfil);
+        //model.put("perfil",perfil);
 
         return "candidato/form";
 
