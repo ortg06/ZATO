@@ -20,6 +20,8 @@ import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Municipio;
+import com.zato.app.entidades.Oferta;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -202,5 +204,11 @@ public interface IService {
     public void savePerfil(Perfil perfil);
     public Perfil findOnePerfil (BigDecimal id);
     public void deletePerfil(BigDecimal id);
+
+    //OFERTA
+    public List<Oferta> findAllOfertas();
+    public void saveOferta(Oferta oferta);
+    public Oferta findOneOferta(BigDecimal id);
+    public void deleteOferta(BigDecimal id);
     
 }

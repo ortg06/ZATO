@@ -23,6 +23,7 @@ import com.zato.app.dao.ICategoriaDao;
 import com.zato.app.dao.IDepartamentoDao;
 import com.zato.app.dao.IMenuDao;
 import com.zato.app.dao.IMunicipioDao;
+import com.zato.app.dao.IOfertaDao;
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.dao.IRolDao;
 import com.zato.app.dao.ISubmenuDao;
@@ -48,6 +49,7 @@ import com.zato.app.entidades.CatalogoTipoEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.Departamento;
 import com.zato.app.entidades.Municipio;
+import com.zato.app.entidades.Oferta;
 import com.zato.app.entidades.Pais;
 import com.zato.app.entidades.Rol;
 import com.zato.app.entidades.Menu;
@@ -122,6 +124,8 @@ public class ServiceImpl implements IService {
     private ICatalogoTipoReferenciaDao catalogoTipoReferenciaDao;
     @Autowired
     private IPerfilDao PerfilDao; 
+    @Autowired
+    private IOfertaDao OfertaDao;
 
     // PAISES
     @Override
@@ -754,6 +758,32 @@ public class ServiceImpl implements IService {
     @Transactional
     public void deletePerfil(BigDecimal id){
         PerfilDao.delete(id);
+    }
+
+
+
+    //OFERTA
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<Oferta>findAllOfertas(){
+        return(List<Oferta>) OfertaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveOferta(Oferta oferta){
+        OfertaDao.save(oferta);
+    }
+
+    @Override
+    @Transactional
+    public Oferta findOneOferta(BigDecimal id){
+        return OfertaDao.findOne(id);
+    }
+
+    public void deleteOferta(BigDecimal id){
+        OfertaDao.delete(id);
     }
     
 
