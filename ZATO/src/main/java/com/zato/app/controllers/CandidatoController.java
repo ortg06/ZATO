@@ -50,7 +50,8 @@ public class CandidatoController {
         model.put("titulo", "Datos de Candidato");
         model.put("generos", candidatoService.findAllcatalogoGenero());
         model.put("municipios", candidatoService.findAllmun());
-
+        model.put("paises",candidatoService.findAll());
+        model.put("departamentos",candidatoService.findAlldep());
         return "candidato/form";
 
     }
@@ -58,7 +59,7 @@ public class CandidatoController {
     @RequestMapping(value = "/editar/{id}")
     public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Candidato candidato = null;
-
+        
         // se compara si el ID es mayor que cero
         if (id.compareTo(BigDecimal.ZERO) > 0) {
             candidato = candidatoService.findCandidato(id);
@@ -67,6 +68,9 @@ public class CandidatoController {
             return "redirect:/candidato/listar";
         }
 
+        model.put("d",candidato.getMunicipio().getDepartamento().getPkDepartamento());
+        
+        model.put("p",candidato.getMunicipio().getDepartamento().getPais().getPkPais());
         model.put("candidato", candidato);
         model.put("titulo", "Editar Candidato");
         return "candidato/form";
