@@ -71,6 +71,9 @@ public class CandidatoController {
         model.put("d",candidato.getMunicipio().getDepartamento().getPkDepartamento());
         
         model.put("p",candidato.getMunicipio().getDepartamento().getPais().getPkPais());
+        model.put("paises",candidatoService.findAll());
+        model.put("departamentos",candidatoService.findAlldep());
+        model.put("municipios", candidatoService.findAllmun());
         model.put("candidato", candidato);
         model.put("titulo", "Editar Candidato");
         return "candidato/form";
