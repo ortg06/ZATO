@@ -1,20 +1,20 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     10/6/2019 16:13:12                           */
+/* Created on:     11/6/2019 14:40:12                           */
 /*==============================================================*/
 
 
 alter table APTITUD_CV
-   drop constraint FK_APTITUD__CV;
+   drop constraint FK_APTITUDCV__CV;
 
 alter table APTITUD_CV
-   drop constraint FK_APTITUDCV__CATALOGOAPT;
+   drop constraint FK_APTCV_APTITUD;
 
 alter table APTITUD_OFERTA
    drop constraint FK_APTITUDOF_OFERTA;
 
 alter table APTITUD_OFERTA
-   drop constraint FK_APTITUDOF_CATALOGOAPT;
+   drop constraint FK_APTITUDOF_APTITUD;
 
 alter table CANDIDATO
    drop constraint FK_CANDIDATO_GENERO;
@@ -23,16 +23,16 @@ alter table CANDIDATO
    drop constraint FK_CANDIDATO_MUNICIPIO;
 
 alter table CATALOGO_HABILIDAD
-   drop constraint FK_CATALOGOHAB_CATEGORIA;
+   drop constraint FK_HABILIDAD_CATHABILIDAD;
 
 alter table CATALOGO_PUESTO
-   drop constraint FK_CATALOGOPUESTO_CATEGORIA;
+   drop constraint FK_PUESTO_CATEGORIA;
 
 alter table CONOCIMIENTO_ACADEMICOS
    drop constraint FK_CONOCIMIENTOAC_OFERTA;
 
 alter table CONOCIMIENTO_ACADEMICOS
-   drop constraint FK_CONOCIMITOAC_GRADOAC;
+   drop constraint FK_CONOCIMIENTOAC_GRADOAC;
 
 alter table CURSO_CAPACITACION
    drop constraint FK_CURSOCAP_CV;
@@ -41,19 +41,19 @@ alter table CV
    drop constraint FK_CV_CANDIDATO;
 
 alter table DEPARTAMENTO
-   drop constraint FK_DEPARTAM_DEPTO_PAI_PAIS;
+   drop constraint FK_DEPARTAMENTO_PAIS;
 
 alter table EMPRESA
-   drop constraint FK_EMPRESA_MUNICIPIO;
+   drop constraint FK_EMPRESA_EMP_MUNIC_MUNICIPI;
 
 alter table EMPRESA
    drop constraint FK_EMPRESA_SECTOR;
 
 alter table EMPRESA
-   drop constraint FK_EMPRESA_TIPOEMPRESA;
+   drop constraint FK_EMPRESA_TIPOEMP;
 
 alter table ESCRITO
-   drop constraint FK_ESCRITO_CATALOGOESCRITO;
+   drop constraint FK_ESCRITO_CATESCRITO;
 
 alter table ESCRITO
    drop constraint FK_ESCRITO_CV;
@@ -80,16 +80,16 @@ alter table HABILIDADES_CV
    drop constraint FK_HABILIDADCV_CV;
 
 alter table HABILIDADES_CV
-   drop constraint FK_HABILIDADCV_CATALOGOHAB;
+   drop constraint FK_HABILIDADCV_HABILIDAD;
 
 alter table HABILIDAD_LINGUISICA_OFERTA
-   drop constraint FK_HABLING_CATALOGOIDIOMA;
+   drop constraint FK_HABLINGOF_IDIOMA;
 
 alter table HABILIDAD_LINGUISICA_OFERTA
-   drop constraint FK_HABLING_CATALOGOPOND;
+   drop constraint FK_HABLING_PONDERACION;
 
 alter table HABILIDAD_LINGUISICA_OFERTA
-   drop constraint FK_HABLING_OFERTA;
+   drop constraint FK_HABLINGOF_OFERTA;
 
 alter table HABILIDAD_LINGUISTICA_CV
    drop constraint FK_HABLINGCV_CV;
@@ -98,13 +98,13 @@ alter table HABILIDAD_LINGUISTICA_CV
    drop constraint FK_HABLINGCV_PONDERACION;
 
 alter table HABILIDAD_LINGUISTICA_CV
-   drop constraint FK_HANLINGCV_IDIOMA;
+   drop constraint FK_HABLINGCV_IDIOMA;
 
 alter table HABILIDAD_OFERTA
    drop constraint FK_HABILIDADOF_OFERTA;
 
 alter table HABILIDAD_OFERTA
-   drop constraint FK_HABILIDADOF_CATALOGOHAB;
+   drop constraint FK_HABOF_HABILIDAD;
 
 alter table ITEM_PRUEBA
    drop constraint FK_ITEMPRU_PRUEBA;
@@ -113,13 +113,13 @@ alter table LICENCIA_CANDIDATO
    drop constraint FK_LICENCIACAND_CV;
 
 alter table LICENCIA_CANDIDATO
-   drop constraint FK_LICENCIACAND_CATALOGOLIC;
+   drop constraint FK_LICENCIACAND_LICENCIA;
 
 alter table LICENCIA_OFERTA
    drop constraint FK_LICENCIAOF_OFERTA;
 
 alter table LICENCIA_OFERTA
-   drop constraint FK_LICENCIAOF_CATALOGOLIC;
+   drop constraint FK_LICENCIAOF_LICENCIA;
 
 alter table LOGRO
    drop constraint FK_LOGRO_CV;
@@ -137,7 +137,7 @@ alter table OFERTA
    drop constraint FK_OFERTA_PUESTO;
 
 alter table OPCIONES
-   drop constraint FK_OPCIONES_ITEMPRUEBA;
+   drop constraint FK_OPCIONES_ITEMPRU;
 
 alter table PERFIL
    drop constraint FK_PERFIL_CANDIDATO;
@@ -146,7 +146,7 @@ alter table PERFIL
    drop constraint FK_PERFIL_EMPRESA;
 
 alter table PERFIL
-   drop constraint FK_PERFIL_PERFIL_RO_ROL;
+   drop constraint FK_PERFIL_ROL;
 
 alter table POSTULACION
    drop constraint FK_POSTULACION_CV;
@@ -155,10 +155,10 @@ alter table POSTULACION
    drop constraint FK_POSTULACION_OFERTA;
 
 alter table PRUEBA
-   drop constraint FK_PRUEBA_PRUEBAOFERTA;
+   drop constraint FK_PRUEBA_OFERTA;
 
 alter table PRUEBA
-   drop constraint FK_PRUEBA_CATALOGOTIPOPRU;
+   drop constraint FK_PRUEBA_TIPOPRUEBA;
 
 alter table REFERENCIA
    drop constraint FK_REFERENCIA_CV;
@@ -167,7 +167,7 @@ alter table REFERENCIA
    drop constraint FK_REFERENCIA_TIPOREF;
 
 alter table RESULTADO
-   drop constraint FK_RESULTAD_POSTULACION;
+   drop constraint FK_RESULTADO_POSTULACION;
 
 alter table RESULTADO
    drop constraint FK_RESULTADO_PRUEBA;
@@ -181,21 +181,21 @@ alter table ROL_SUBMENU
 alter table SUBMENU
    drop constraint FK_SUBMENU_MENU;
 
-drop index APT_CATAPT_CV_FK;
+drop index APTITUDCV_APTITUD_FK;
 
-drop index APTITUD_CV_FK;
+drop index APTITUDCV_CV_FK;
 
 drop table APTITUD_CV cascade constraints;
 
-drop index APT_CATAPT_OF_FK;
+drop index APTOF_APTITUD_FK;
 
-drop index APTOF_OF_FK;
+drop index APTOF_OFERTA_FK;
 
 drop table APTITUD_OFERTA cascade constraints;
 
-drop index CAND_MUNICIPIO_FK;
+drop index CANDIDATO_MUNI_FK;
 
-drop index CAND_GENERO_FK;
+drop index CANDIDATO_GEN_FK;
 
 drop table CANDIDATO cascade constraints;
 
@@ -211,7 +211,7 @@ drop table CATALOGO_GENERO cascade constraints;
 
 drop table CATALOGO_GRADO_ACADEMICO cascade constraints;
 
-drop index CATHAB_CATG_FK;
+drop index HABILIDAD_CATEGO_FK;
 
 drop table CATALOGO_HABILIDAD cascade constraints;
 
@@ -233,13 +233,13 @@ drop table CATALOGO_TIPO_PRUEBA cascade constraints;
 
 drop table CATALOGO_TIPO_REFERENCIA cascade constraints;
 
-drop index CONACAD_CATACAD_OF_FK;
+drop index CONACAD_GRACAD_FK;
 
-drop index CONACADEMICO_EMP_FK;
+drop index CONACAD_OFERTA_FK;
 
 drop table CONOCIMIENTO_ACADEMICOS cascade constraints;
 
-drop index CUR_CAP_CV_FK;
+drop index CURSOCAP_CV_FK;
 
 drop table CURSO_CAPACITACION cascade constraints;
 
@@ -251,79 +251,77 @@ drop index DEPTO_PAIS_FK;
 
 drop table DEPARTAMENTO cascade constraints;
 
-drop index EMP_MUNICIPIO_FK;
+drop index TIPOEMPRESA_EMP_FK;
 
-drop index EMP_TIPOEMP_FK;
-
-drop index EMP_SECTOR_FK;
+drop index SECTOR_EMP_FK;
 
 drop table EMPRESA cascade constraints;
 
-drop index ESCRITO_CATESCR_FK;
+drop index ESCRITO_CATESC_FK;
 
 drop index ESCRITO_CV_FK;
 
 drop table ESCRITO cascade constraints;
 
-drop index EVENTO_PAIS_FK;
+drop index PAIS_EVEN_FK;
 
-drop index EVENTO_CV_FK;
+drop index CV_EVEN_FK;
 
 drop table EVENTO cascade constraints;
 
-drop index EXPLAB_SECTOR_FK;
+drop index EXLAB_SECTOR_FK;
 
-drop index EXPLAB_CV_FK;
+drop index EXLAB_CV_FK;
 
 drop table EXPERIENCIA_LABORAL cascade constraints;
 
-drop index FORMAC_CATGRACAD_CV_FK;
+drop index FORMAC_GRAC_FK;
 
 drop index FORMAC_CV_FK;
 
 drop table FORMACION_ACADEMICA cascade constraints;
 
-drop index HAB_CATHAB_CV_FK;
+drop index HABILIDADCV_HAB_FK;
 
-drop index HABILIDAD_CV_FK;
+drop index HABILIDADCV_CV_FK;
 
 drop table HABILIDADES_CV cascade constraints;
 
-drop index HABLING_CATIDIOMA_OF_FK;
+drop index HABLINGOF_IDIOMA_FK;
 
-drop index HABLING_CATPOND_OF_FK;
+drop index HABLINGOF_POND_FK;
 
-drop index HABLING_OF_FK;
+drop index HABLIGOF_OFERTA_FK;
 
 drop table HABILIDAD_LINGUISICA_OFERTA cascade constraints;
 
-drop index HABLING_POND_CV_FK;
+drop index HABLING_POND_FK;
 
-drop index HANLING_CATIDIOMA_CV_FK;
+drop index HABLING_IDIOMA_FK;
 
 drop index HABLING_CV_FK;
 
 drop table HABILIDAD_LINGUISTICA_CV cascade constraints;
 
-drop index HAB_CATHAB_OF_FK;
+drop index HABOF_HABILIDAD_FK;
 
-drop index HABOF_OF_FK;
+drop index HABOF_OFERTA_FK;
 
 drop table HABILIDAD_OFERTA cascade constraints;
 
-drop index ITEM_PRUEBA_FK;
+drop index ITEMPRU_PRUEBA_FK;
 
 drop table ITEM_PRUEBA cascade constraints;
 
-drop index LIC_CV_FK;
+drop index LICCAND_CV_FK;
 
-drop index LIC_CV_CATLIC_FK;
+drop index LICCAND_LIC_FK;
 
 drop table LICENCIA_CANDIDATO cascade constraints;
 
-drop index LIC_OF_FK;
+drop index LICOF_OFERTA_FK;
 
-drop index LIC_OF_CATLIC_FK;
+drop index LICOF_LICENCIA_FK;
 
 drop table LICENCIA_OFERTA cascade constraints;
 
@@ -333,15 +331,15 @@ drop table LOGRO cascade constraints;
 
 drop table MENU cascade constraints;
 
-drop index MUN_DEPTO_FK;
+drop index MUNICIPIO_DEPTO_FK;
 
 drop table MUNICIPIO cascade constraints;
 
-drop index OF_MUNICIPIO_FK;
+drop index OFERTA_MUNI_FK;
 
-drop index OF_PUESTO_FK;
+drop index OFERTA_PUESTO_FK;
 
-drop index EMPRESA_OF_FK;
+drop index OFERTA_EMP_FK;
 
 drop table OFERTA cascade constraints;
 
@@ -351,23 +349,23 @@ drop table OPCIONES cascade constraints;
 
 drop table PAIS cascade constraints;
 
-drop index PERFIL_ROL_FK;
+drop index ROL_PER_FK;
 
-drop index PERFIL_EMP_FK;
+drop index EMPRESA_PER_FK;
 
-drop index PERFIL_CAND_FK;
+drop index CANDIDATO_PER_FK;
 
 drop table PERFIL cascade constraints;
 
-drop index POSTULACION_OF_FK;
+drop index POS_OFERTA_FK;
 
-drop index POSTULACION_CV_FK;
+drop index POS_CV_FK;
 
 drop table POSTULACION cascade constraints;
 
-drop index PRUEBA_TIPOPRUEBA_FK;
+drop index PRUEBA_TIPOPRU_FK;
 
-drop index PRUEBA_OF_FK;
+drop index PRUEBA_OFERTA_FK;
 
 drop table PRUEBA cascade constraints;
 
@@ -377,17 +375,17 @@ drop index REFERENCIA_TIPOREF_FK;
 
 drop table REFERENCIA cascade constraints;
 
-drop index POSTULACION_RESUL_FK;
+drop index RESUL_POSTULACION_FK;
 
-drop index PRUEBA_RESUL_FK;
+drop index FK_RESULTADO_PRUEBA;
 
 drop table RESULTADO cascade constraints;
 
 drop table ROL cascade constraints;
 
-drop index ROLSUBMENU_MENU_FK;
+drop index SUBMENU_RSUB_FK;
 
-drop index ROLSUBMENU_ROL_FK;
+drop index ROL_RSUB_FK;
 
 drop table ROL_SUBMENU cascade constraints;
 
@@ -404,8 +402,6 @@ drop sequence SEQUENCE_CANDIDATO;
 drop sequence SEQUENCE_CATALOGOAPTITUD;
 
 drop sequence SEQUENCE_CATALOGOESCRITO;
-
-drop sequence SEQUENCE_CATALOGOIDIOMA;
 
 drop sequence SEQUENCE_CATALOGOLICENCIA;
 
@@ -446,6 +442,8 @@ drop sequence SEQUENCE_HABILIDADLINGCV;
 drop sequence SEQUENCE_HABILIDADLINGOF;
 
 drop sequence SEQUENCE_HABILIDADOFERTA;
+
+drop sequence SEQUENCE_IDIOMA;
 
 drop sequence SEQUENCE_ITEMPRUEBA;
 
@@ -508,10 +506,6 @@ increment by 1
 start with 1;
 
 create sequence SEQUENCE_CATALOGOESCRITO
-increment by 1
-start with 1;
-
-create sequence SEQUENCE_CATALOGOIDIOMA
 increment by 1
 start with 1;
 
@@ -592,6 +586,10 @@ increment by 1
 start with 1;
 
 create sequence SEQUENCE_HABILIDADOFERTA
+increment by 1
+start with 1;
+
+create sequence SEQUENCE_IDIOMA
 increment by 1
 start with 1;
 
@@ -688,23 +686,23 @@ start with 1;
 /*==============================================================*/
 create table APTITUD_CV 
 (
-   PK_APTITUD_CV        NUMBER(6)            not null,
+   PK_APTITUD_CV        INTEGER              not null,
    PK_CV                INTEGER              not null,
    PK_CATALOGO_APTITUD  INTEGER              not null,
    constraint PK_APTITUD_CV primary key (PK_APTITUD_CV)
 );
 
 /*==============================================================*/
-/* Index: APTITUD_CV_FK                                         */
+/* Index: APTITUDCV_CV_FK                                       */
 /*==============================================================*/
-create index APTITUD_CV_FK on APTITUD_CV (
+create index APTITUDCV_CV_FK on APTITUD_CV (
    PK_CV ASC
 );
 
 /*==============================================================*/
-/* Index: APT_CATAPT_CV_FK                                      */
+/* Index: APTITUDCV_APTITUD_FK                                  */
 /*==============================================================*/
-create index APT_CATAPT_CV_FK on APTITUD_CV (
+create index APTITUDCV_APTITUD_FK on APTITUD_CV (
    PK_CATALOGO_APTITUD ASC
 );
 
@@ -713,23 +711,23 @@ create index APT_CATAPT_CV_FK on APTITUD_CV (
 /*==============================================================*/
 create table APTITUD_OFERTA 
 (
-   PK_APTITUD_OFERTA    NUMBER(6)            not null,
+   PK_APTITUD_OFERTA    INTEGER              not null,
    PK_OFERTA            INTEGER              not null,
    PK_CATALOGO_APTITUD  INTEGER              not null,
    constraint PK_APTITUD_OFERTA primary key (PK_APTITUD_OFERTA)
 );
 
 /*==============================================================*/
-/* Index: APTOF_OF_FK                                           */
+/* Index: APTOF_OFERTA_FK                                       */
 /*==============================================================*/
-create index APTOF_OF_FK on APTITUD_OFERTA (
+create index APTOF_OFERTA_FK on APTITUD_OFERTA (
    PK_OFERTA ASC
 );
 
 /*==============================================================*/
-/* Index: APT_CATAPT_OF_FK                                      */
+/* Index: APTOF_APTITUD_FK                                      */
 /*==============================================================*/
-create index APT_CATAPT_OF_FK on APTITUD_OFERTA (
+create index APTOF_APTITUD_FK on APTITUD_OFERTA (
    PK_CATALOGO_APTITUD ASC
 );
 
@@ -738,7 +736,7 @@ create index APT_CATAPT_OF_FK on APTITUD_OFERTA (
 /*==============================================================*/
 create table CANDIDATO 
 (
-   PK_CANDIDATO         NUMBER(6)            not null,
+   PK_CANDIDATO         INTEGER              not null,
    PK_GENERO            INTEGER              not null,
    PK_MUNICIPIO         INTEGER,
    NOMBRE_CANDIDATO     VARCHAR2(100)        not null,
@@ -759,16 +757,16 @@ create table CANDIDATO
 );
 
 /*==============================================================*/
-/* Index: CAND_GENERO_FK                                        */
+/* Index: CANDIDATO_GEN_FK                                      */
 /*==============================================================*/
-create index CAND_GENERO_FK on CANDIDATO (
+create index CANDIDATO_GEN_FK on CANDIDATO (
    PK_GENERO ASC
 );
 
 /*==============================================================*/
-/* Index: CAND_MUNICIPIO_FK                                     */
+/* Index: CANDIDATO_MUNI_FK                                     */
 /*==============================================================*/
-create index CAND_MUNICIPIO_FK on CANDIDATO (
+create index CANDIDATO_MUNI_FK on CANDIDATO (
    PK_MUNICIPIO ASC
 );
 
@@ -777,7 +775,7 @@ create index CAND_MUNICIPIO_FK on CANDIDATO (
 /*==============================================================*/
 create table CATALOGO_APTITUD 
 (
-   PK_CATALOGO_APTITUD  NUMBER(6)            not null,
+   PK_CATALOGO_APTITUD  INTEGER              not null,
    NOMBRE_APTITUD       VARCHAR2(50)         not null,
    constraint PK_CATALOGO_APTITUD primary key (PK_CATALOGO_APTITUD)
 );
@@ -787,7 +785,7 @@ create table CATALOGO_APTITUD
 /*==============================================================*/
 create table CATALOGO_CATEGORIA 
 (
-   PK_CATALOGO_CATEGORIA NUMBER(6)            not null,
+   PK_CATALOGO_CATEGORIA INTEGER              not null,
    NOMBRE_CATALOGO_CATEGORIA VARCHAR2(50)         not null,
    constraint PK_CATALOGO_CATEGORIA primary key (PK_CATALOGO_CATEGORIA)
 );
@@ -797,7 +795,7 @@ create table CATALOGO_CATEGORIA
 /*==============================================================*/
 create table CATALOGO_CATEGORIA_HABILIDAD 
 (
-   PK_CATEGORIA_HABILIDAD NUMBER(6)            not null,
+   PK_CATEGORIA_HABILIDAD INTEGER              not null,
    NOMBRE_CATEGORIA_HABILIDAD VARCHAR2(50)         not null,
    constraint PK_CATALOGO_CATEGORIA_HABILIDA primary key (PK_CATEGORIA_HABILIDAD)
 );
@@ -807,7 +805,7 @@ create table CATALOGO_CATEGORIA_HABILIDAD
 /*==============================================================*/
 create table CATALOGO_ESCRITO 
 (
-   PK_CATALOGO_ESCRITO  NUMBER(6)            not null,
+   PK_CATALOGO_ESCRITO  INTEGER              not null,
    NOMBRE_TIPO_ESCRITO  VARCHAR2(100)        not null,
    constraint PK_CATALOGO_ESCRITO primary key (PK_CATALOGO_ESCRITO)
 );
@@ -817,7 +815,7 @@ create table CATALOGO_ESCRITO
 /*==============================================================*/
 create table CATALOGO_GENERO 
 (
-   PK_GENERO            NUMBER(6)            not null,
+   PK_GENERO            INTEGER              not null,
    NOMBRE_GENERO        VARCHAR2(50)         not null,
    constraint PK_CATALOGO_GENERO primary key (PK_GENERO)
 );
@@ -827,7 +825,7 @@ create table CATALOGO_GENERO
 /*==============================================================*/
 create table CATALOGO_GRADO_ACADEMICO 
 (
-   PK_GRADO_ACADEMICO   NUMBER(6)            not null,
+   PK_GRADO_ACADEMICO   INTEGER              not null,
    NOMBRE_GRADO_ACADEMICO VARCHAR2(100)        not null,
    constraint PK_CATALOGO_GRADO_ACADEMICO primary key (PK_GRADO_ACADEMICO)
 );
@@ -837,16 +835,16 @@ create table CATALOGO_GRADO_ACADEMICO
 /*==============================================================*/
 create table CATALOGO_HABILIDAD 
 (
-   PK_HABILIDAD         NUMBER(6)            not null,
+   PK_HABILIDAD         INTEGER              not null,
    PK_CATEGORIA_HABILIDAD INTEGER              not null,
    NOMBRE_HABILIDAD     VARCHAR2(100)        not null,
    constraint PK_CATALOGO_HABILIDAD primary key (PK_HABILIDAD)
 );
 
 /*==============================================================*/
-/* Index: CATHAB_CATG_FK                                        */
+/* Index: HABILIDAD_CATEGO_FK                                   */
 /*==============================================================*/
-create index CATHAB_CATG_FK on CATALOGO_HABILIDAD (
+create index HABILIDAD_CATEGO_FK on CATALOGO_HABILIDAD (
    PK_CATEGORIA_HABILIDAD ASC
 );
 
@@ -855,7 +853,7 @@ create index CATHAB_CATG_FK on CATALOGO_HABILIDAD (
 /*==============================================================*/
 create table CATALOGO_IDIOMA 
 (
-   PK_IDIOMA            NUMBER(6)            not null,
+   PK_IDIOMA            INTEGER              not null,
    NOMBRE_IDIOMA        VARCHAR2(25)         not null,
    constraint PK_CATALOGO_IDIOMA primary key (PK_IDIOMA)
 );
@@ -865,7 +863,7 @@ create table CATALOGO_IDIOMA
 /*==============================================================*/
 create table CATALOGO_LICENCIA 
 (
-   PK_CATALOGO_LICENCIA NUMBER(6)            not null,
+   PK_CATALOGO_LICENCIA INTEGER              not null,
    NOMBRE_TIPO_LICENCIA VARCHAR2(50)         not null,
    constraint PK_CATALOGO_LICENCIA primary key (PK_CATALOGO_LICENCIA)
 );
@@ -875,7 +873,7 @@ create table CATALOGO_LICENCIA
 /*==============================================================*/
 create table CATALOGO_PONDERACION 
 (
-   PK_CATALOGO_PONDERACION NUMBER(6)            not null,
+   PK_CATALOGO_PONDERACION INTEGER              not null,
    ETIQUETA_PONDERACION VARCHAR2(25)         not null,
    DESCRIPCION_ETIQUETA VARCHAR2(100)        not null,
    constraint PK_CATALOGO_PONDERACION primary key (PK_CATALOGO_PONDERACION)
@@ -886,7 +884,7 @@ create table CATALOGO_PONDERACION
 /*==============================================================*/
 create table CATALOGO_PUESTO 
 (
-   PK_CATALOGO_PUESTO   NUMBER(6)            not null,
+   PK_CATALOGO_PUESTO   INTEGER              not null,
    PK_CATALOGO_CATEGORIA INTEGER              not null,
    NOMBRE_CATALOGO_PUESTO VARCHAR2(50)         not null,
    constraint PK_CATALOGO_PUESTO primary key (PK_CATALOGO_PUESTO)
@@ -904,7 +902,7 @@ create index PUESTO_CATEGORIA_FK on CATALOGO_PUESTO (
 /*==============================================================*/
 create table CATALOGO_SECTOR_EMPRESA 
 (
-   PK_SECTOR            NUMBER(6)            not null,
+   PK_SECTOR            INTEGER              not null,
    NOMBRE_SECTOR        VARCHAR2(50)         not null,
    constraint PK_CATALOGO_SECTOR_EMPRESA primary key (PK_SECTOR)
 );
@@ -914,7 +912,7 @@ create table CATALOGO_SECTOR_EMPRESA
 /*==============================================================*/
 create table CATALOGO_TIPO_EMPRESA 
 (
-   PK_TIPO_EMPRESA      NUMBER(6)            not null,
+   PK_TIPO_EMPRESA      INTEGER              not null,
    NOMBRE_TIPO_EMPRESA  VARCHAR2(100)        not null,
    constraint PK_CATALOGO_TIPO_EMPRESA primary key (PK_TIPO_EMPRESA)
 );
@@ -924,7 +922,7 @@ create table CATALOGO_TIPO_EMPRESA
 /*==============================================================*/
 create table CATALOGO_TIPO_PRUEBA 
 (
-   PK_CAT_TIPO_PRUEBA   NUMBER(6)            not null,
+   PK_CAT_TIPO_PRUEBA   INTEGER              not null,
    NOMBRE_TIPO_PRUEBA   VARCHAR2(100)        not null,
    constraint PK_CATALOGO_TIPO_PRUEBA primary key (PK_CAT_TIPO_PRUEBA)
 );
@@ -934,7 +932,7 @@ create table CATALOGO_TIPO_PRUEBA
 /*==============================================================*/
 create table CATALOGO_TIPO_REFERENCIA 
 (
-   PK_TIPO_REFERENCIA   NUMBER(6)            not null,
+   PK_TIPO_REFERENCIA   INTEGER              not null,
    TIPO_REFERENCIA      VARCHAR2(100)        not null,
    constraint PK_CATALOGO_TIPO_REFERENCIA primary key (PK_TIPO_REFERENCIA)
 );
@@ -944,23 +942,23 @@ create table CATALOGO_TIPO_REFERENCIA
 /*==============================================================*/
 create table CONOCIMIENTO_ACADEMICOS 
 (
-   PK_CONOCIMIENTO_ACADEMICO NUMBER(6)            not null,
+   PK_CONOCIMIENTO_ACADEMICO INTEGER              not null,
    PK_OFERTA            INTEGER              not null,
    PK_GRADO_ACADEMICO   INTEGER              not null,
    constraint PK_CONOCIMIENTO_ACADEMICOS primary key (PK_CONOCIMIENTO_ACADEMICO)
 );
 
 /*==============================================================*/
-/* Index: CONACADEMICO_EMP_FK                                   */
+/* Index: CONACAD_OFERTA_FK                                     */
 /*==============================================================*/
-create index CONACADEMICO_EMP_FK on CONOCIMIENTO_ACADEMICOS (
+create index CONACAD_OFERTA_FK on CONOCIMIENTO_ACADEMICOS (
    PK_OFERTA ASC
 );
 
 /*==============================================================*/
-/* Index: CONACAD_CATACAD_OF_FK                                 */
+/* Index: CONACAD_GRACAD_FK                                     */
 /*==============================================================*/
-create index CONACAD_CATACAD_OF_FK on CONOCIMIENTO_ACADEMICOS (
+create index CONACAD_GRACAD_FK on CONOCIMIENTO_ACADEMICOS (
    PK_GRADO_ACADEMICO ASC
 );
 
@@ -969,7 +967,7 @@ create index CONACAD_CATACAD_OF_FK on CONOCIMIENTO_ACADEMICOS (
 /*==============================================================*/
 create table CURSO_CAPACITACION 
 (
-   PK_CURSO_CAPACITACION NUMBER(6)            not null,
+   PK_CURSO_CAPACITACION INTEGER              not null,
    PK_CV                INTEGER              not null,
    NOMBRE_CURSO_CAPACITACION VARCHAR2(200)        not null,
    FECHA_CURSO          DATE                 not null,
@@ -980,9 +978,9 @@ create table CURSO_CAPACITACION
 );
 
 /*==============================================================*/
-/* Index: CUR_CAP_CV_FK                                         */
+/* Index: CURSOCAP_CV_FK                                        */
 /*==============================================================*/
-create index CUR_CAP_CV_FK on CURSO_CAPACITACION (
+create index CURSOCAP_CV_FK on CURSO_CAPACITACION (
    PK_CV ASC
 );
 
@@ -991,7 +989,7 @@ create index CUR_CAP_CV_FK on CURSO_CAPACITACION (
 /*==============================================================*/
 create table CV 
 (
-   PK_CV                NUMBER(6)            not null,
+   PK_CV                INTEGER              not null,
    PK_CANDIDATO         INTEGER              not null,
    NOMBRE_CV            VARCHAR2(100)        not null,
    FECHA_REGISTRO       DATE                 not null,
@@ -1011,7 +1009,7 @@ create index CV_CAND_FK on CV (
 /*==============================================================*/
 create table DEPARTAMENTO 
 (
-   PK_DEPARTAMENTO      NUMBER(6)            not null,
+   PK_DEPARTAMENTO      INTEGER              not null,
    PK_PAIS              INTEGER,
    NOMBRE_DEPARTAMENTO  VARCHAR2(50)         not null,
    constraint PK_DEPARTAMENTO primary key (PK_DEPARTAMENTO)
@@ -1029,7 +1027,7 @@ create index DEPTO_PAIS_FK on DEPARTAMENTO (
 /*==============================================================*/
 create table EMPRESA 
 (
-   PK_EMPRESA           NUMBER(6)            not null,
+   PK_EMPRESA           INTEGER              not null,
    PK_SECTOR            INTEGER              not null,
    PK_TIPO_EMPRESA      INTEGER              not null,
    PK_MUNICIPIO         INTEGER,
@@ -1048,24 +1046,17 @@ create table EMPRESA
 );
 
 /*==============================================================*/
-/* Index: EMP_SECTOR_FK                                         */
+/* Index: SECTOR_EMP_FK                                         */
 /*==============================================================*/
-create index EMP_SECTOR_FK on EMPRESA (
+create index SECTOR_EMP_FK on EMPRESA (
    PK_SECTOR ASC
 );
 
 /*==============================================================*/
-/* Index: EMP_TIPOEMP_FK                                        */
+/* Index: TIPOEMPRESA_EMP_FK                                    */
 /*==============================================================*/
-create index EMP_TIPOEMP_FK on EMPRESA (
+create index TIPOEMPRESA_EMP_FK on EMPRESA (
    PK_TIPO_EMPRESA ASC
-);
-
-/*==============================================================*/
-/* Index: EMP_MUNICIPIO_FK                                      */
-/*==============================================================*/
-create index EMP_MUNICIPIO_FK on EMPRESA (
-   PK_MUNICIPIO ASC
 );
 
 /*==============================================================*/
@@ -1073,7 +1064,7 @@ create index EMP_MUNICIPIO_FK on EMPRESA (
 /*==============================================================*/
 create table ESCRITO 
 (
-   PK_ESCRITO           NUMBER(6)            not null,
+   PK_ESCRITO           INTEGER              not null,
    PK_CV                INTEGER              not null,
    PK_CATALOGO_ESCRITO  INTEGER              not null,
    FECHA_PUBLICACION    DATE                 not null,
@@ -1091,9 +1082,9 @@ create index ESCRITO_CV_FK on ESCRITO (
 );
 
 /*==============================================================*/
-/* Index: ESCRITO_CATESCR_FK                                    */
+/* Index: ESCRITO_CATESC_FK                                     */
 /*==============================================================*/
-create index ESCRITO_CATESCR_FK on ESCRITO (
+create index ESCRITO_CATESC_FK on ESCRITO (
    PK_CATALOGO_ESCRITO ASC
 );
 
@@ -1102,7 +1093,7 @@ create index ESCRITO_CATESCR_FK on ESCRITO (
 /*==============================================================*/
 create table EVENTO 
 (
-   PK_EVENTO            NUMBER(6)            not null,
+   PK_EVENTO            INTEGER              not null,
    PK_CV                INTEGER              not null,
    PK_PAIS              INTEGER              not null,
    NOMBRE_EVENTO        VARCHAR2(250)        not null,
@@ -1114,16 +1105,16 @@ create table EVENTO
 );
 
 /*==============================================================*/
-/* Index: EVENTO_CV_FK                                          */
+/* Index: CV_EVEN_FK                                            */
 /*==============================================================*/
-create index EVENTO_CV_FK on EVENTO (
+create index CV_EVEN_FK on EVENTO (
    PK_CV ASC
 );
 
 /*==============================================================*/
-/* Index: EVENTO_PAIS_FK                                        */
+/* Index: PAIS_EVEN_FK                                          */
 /*==============================================================*/
-create index EVENTO_PAIS_FK on EVENTO (
+create index PAIS_EVEN_FK on EVENTO (
    PK_PAIS ASC
 );
 
@@ -1132,7 +1123,7 @@ create index EVENTO_PAIS_FK on EVENTO (
 /*==============================================================*/
 create table EXPERIENCIA_LABORAL 
 (
-   PK_EXPERIENCIA_LABORAL NUMBER(6)            not null,
+   PK_EXPERIENCIA_LABORAL INTEGER              not null,
    PK_CV                INTEGER              not null,
    PK_SECTOR            INTEGER              not null,
    NOMBRE_EXP_EMPRESA   VARCHAR2(150)        not null,
@@ -1147,16 +1138,16 @@ create table EXPERIENCIA_LABORAL
 );
 
 /*==============================================================*/
-/* Index: EXPLAB_CV_FK                                          */
+/* Index: EXLAB_CV_FK                                           */
 /*==============================================================*/
-create index EXPLAB_CV_FK on EXPERIENCIA_LABORAL (
+create index EXLAB_CV_FK on EXPERIENCIA_LABORAL (
    PK_CV ASC
 );
 
 /*==============================================================*/
-/* Index: EXPLAB_SECTOR_FK                                      */
+/* Index: EXLAB_SECTOR_FK                                       */
 /*==============================================================*/
-create index EXPLAB_SECTOR_FK on EXPERIENCIA_LABORAL (
+create index EXLAB_SECTOR_FK on EXPERIENCIA_LABORAL (
    PK_SECTOR ASC
 );
 
@@ -1165,7 +1156,7 @@ create index EXPLAB_SECTOR_FK on EXPERIENCIA_LABORAL (
 /*==============================================================*/
 create table FORMACION_ACADEMICA 
 (
-   PK_FORMACION_ACADEMICA NUMBER(6)            not null,
+   PK_FORMACION_ACADEMICA INTEGER              not null,
    PK_CV                INTEGER              not null,
    PK_GRADO_ACADEMICO   INTEGER              not null,
    NOMBRE_INSTITUCION   VARCHAR2(100)        not null,
@@ -1184,9 +1175,9 @@ create index FORMAC_CV_FK on FORMACION_ACADEMICA (
 );
 
 /*==============================================================*/
-/* Index: FORMAC_CATGRACAD_CV_FK                                */
+/* Index: FORMAC_GRAC_FK                                        */
 /*==============================================================*/
-create index FORMAC_CATGRACAD_CV_FK on FORMACION_ACADEMICA (
+create index FORMAC_GRAC_FK on FORMACION_ACADEMICA (
    PK_GRADO_ACADEMICO ASC
 );
 
@@ -1195,23 +1186,23 @@ create index FORMAC_CATGRACAD_CV_FK on FORMACION_ACADEMICA (
 /*==============================================================*/
 create table HABILIDADES_CV 
 (
-   PK_HABILIDADES_CV    NUMBER(6)            not null,
+   PK_HABILIDADES_CV    INTEGER              not null,
    PK_CV                INTEGER              not null,
    PK_HABILIDAD         INTEGER              not null,
    constraint PK_HABILIDADES_CV primary key (PK_HABILIDADES_CV)
 );
 
 /*==============================================================*/
-/* Index: HABILIDAD_CV_FK                                       */
+/* Index: HABILIDADCV_CV_FK                                     */
 /*==============================================================*/
-create index HABILIDAD_CV_FK on HABILIDADES_CV (
+create index HABILIDADCV_CV_FK on HABILIDADES_CV (
    PK_CV ASC
 );
 
 /*==============================================================*/
-/* Index: HAB_CATHAB_CV_FK                                      */
+/* Index: HABILIDADCV_HAB_FK                                    */
 /*==============================================================*/
-create index HAB_CATHAB_CV_FK on HABILIDADES_CV (
+create index HABILIDADCV_HAB_FK on HABILIDADES_CV (
    PK_HABILIDAD ASC
 );
 
@@ -1220,7 +1211,7 @@ create index HAB_CATHAB_CV_FK on HABILIDADES_CV (
 /*==============================================================*/
 create table HABILIDAD_LINGUISICA_OFERTA 
 (
-   PK_HABILIDAD_LIN_OF  NUMBER(6)            not null,
+   PK_HABILIDAD_LIN_OF  INTEGER              not null,
    PK_OFERTA            INTEGER              not null,
    PK_CATALOGO_PONDERACION INTEGER              not null,
    PK_IDIOMA            INTEGER              not null,
@@ -1232,23 +1223,23 @@ create table HABILIDAD_LINGUISICA_OFERTA
 );
 
 /*==============================================================*/
-/* Index: HABLING_OF_FK                                         */
+/* Index: HABLIGOF_OFERTA_FK                                    */
 /*==============================================================*/
-create index HABLING_OF_FK on HABILIDAD_LINGUISICA_OFERTA (
+create index HABLIGOF_OFERTA_FK on HABILIDAD_LINGUISICA_OFERTA (
    PK_OFERTA ASC
 );
 
 /*==============================================================*/
-/* Index: HABLING_CATPOND_OF_FK                                 */
+/* Index: HABLINGOF_POND_FK                                     */
 /*==============================================================*/
-create index HABLING_CATPOND_OF_FK on HABILIDAD_LINGUISICA_OFERTA (
+create index HABLINGOF_POND_FK on HABILIDAD_LINGUISICA_OFERTA (
    PK_CATALOGO_PONDERACION ASC
 );
 
 /*==============================================================*/
-/* Index: HABLING_CATIDIOMA_OF_FK                               */
+/* Index: HABLINGOF_IDIOMA_FK                                   */
 /*==============================================================*/
-create index HABLING_CATIDIOMA_OF_FK on HABILIDAD_LINGUISICA_OFERTA (
+create index HABLINGOF_IDIOMA_FK on HABILIDAD_LINGUISICA_OFERTA (
    PK_IDIOMA ASC
 );
 
@@ -1257,7 +1248,7 @@ create index HABLING_CATIDIOMA_OF_FK on HABILIDAD_LINGUISICA_OFERTA (
 /*==============================================================*/
 create table HABILIDAD_LINGUISTICA_CV 
 (
-   PK_HAB_LING_CV       NUMBER(6)            not null,
+   PK_HAB_LING_CV       INTEGER              not null,
    PK_CV                INTEGER              not null,
    PK_IDIOMA            INTEGER              not null,
    PK_CATALOGO_PONDERACION INTEGER              not null,
@@ -1276,16 +1267,16 @@ create index HABLING_CV_FK on HABILIDAD_LINGUISTICA_CV (
 );
 
 /*==============================================================*/
-/* Index: HANLING_CATIDIOMA_CV_FK                               */
+/* Index: HABLING_IDIOMA_FK                                     */
 /*==============================================================*/
-create index HANLING_CATIDIOMA_CV_FK on HABILIDAD_LINGUISTICA_CV (
+create index HABLING_IDIOMA_FK on HABILIDAD_LINGUISTICA_CV (
    PK_IDIOMA ASC
 );
 
 /*==============================================================*/
-/* Index: HABLING_POND_CV_FK                                    */
+/* Index: HABLING_POND_FK                                       */
 /*==============================================================*/
-create index HABLING_POND_CV_FK on HABILIDAD_LINGUISTICA_CV (
+create index HABLING_POND_FK on HABILIDAD_LINGUISTICA_CV (
    PK_CATALOGO_PONDERACION ASC
 );
 
@@ -1294,23 +1285,23 @@ create index HABLING_POND_CV_FK on HABILIDAD_LINGUISTICA_CV (
 /*==============================================================*/
 create table HABILIDAD_OFERTA 
 (
-   PK_HABILIDAD_OFERTA  NUMBER(6)            not null,
+   PK_HABILIDAD_OFERTA  INTEGER              not null,
    PK_OFERTA            INTEGER              not null,
    PK_HABILIDAD         INTEGER              not null,
    constraint PK_HABILIDAD_OFERTA primary key (PK_HABILIDAD_OFERTA)
 );
 
 /*==============================================================*/
-/* Index: HABOF_OF_FK                                           */
+/* Index: HABOF_OFERTA_FK                                       */
 /*==============================================================*/
-create index HABOF_OF_FK on HABILIDAD_OFERTA (
+create index HABOF_OFERTA_FK on HABILIDAD_OFERTA (
    PK_OFERTA ASC
 );
 
 /*==============================================================*/
-/* Index: HAB_CATHAB_OF_FK                                      */
+/* Index: HABOF_HABILIDAD_FK                                    */
 /*==============================================================*/
-create index HAB_CATHAB_OF_FK on HABILIDAD_OFERTA (
+create index HABOF_HABILIDAD_FK on HABILIDAD_OFERTA (
    PK_HABILIDAD ASC
 );
 
@@ -1319,16 +1310,16 @@ create index HAB_CATHAB_OF_FK on HABILIDAD_OFERTA (
 /*==============================================================*/
 create table ITEM_PRUEBA 
 (
-   PK_ITEM              NUMBER(6)            not null,
+   PK_ITEM              INTEGER              not null,
    PK_PRUEBA            INTEGER              not null,
    PREGUNTA             VARCHAR2(450)        not null,
    constraint PK_ITEM_PRUEBA primary key (PK_ITEM)
 );
 
 /*==============================================================*/
-/* Index: ITEM_PRUEBA_FK                                        */
+/* Index: ITEMPRU_PRUEBA_FK                                     */
 /*==============================================================*/
-create index ITEM_PRUEBA_FK on ITEM_PRUEBA (
+create index ITEMPRU_PRUEBA_FK on ITEM_PRUEBA (
    PK_PRUEBA ASC
 );
 
@@ -1337,7 +1328,7 @@ create index ITEM_PRUEBA_FK on ITEM_PRUEBA (
 /*==============================================================*/
 create table LICENCIA_CANDIDATO 
 (
-   PK_LICENCIA_CANDIDATO NUMBER(6)            not null,
+   PK_LICENCIA_CANDIDATO INTEGER              not null,
    PK_CATALOGO_LICENCIA INTEGER              not null,
    PK_CV                INTEGER,
    PK_CANDIDATO         INTEGER              not null,
@@ -1345,16 +1336,16 @@ create table LICENCIA_CANDIDATO
 );
 
 /*==============================================================*/
-/* Index: LIC_CV_CATLIC_FK                                      */
+/* Index: LICCAND_LIC_FK                                        */
 /*==============================================================*/
-create index LIC_CV_CATLIC_FK on LICENCIA_CANDIDATO (
+create index LICCAND_LIC_FK on LICENCIA_CANDIDATO (
    PK_CATALOGO_LICENCIA ASC
 );
 
 /*==============================================================*/
-/* Index: LIC_CV_FK                                             */
+/* Index: LICCAND_CV_FK                                         */
 /*==============================================================*/
-create index LIC_CV_FK on LICENCIA_CANDIDATO (
+create index LICCAND_CV_FK on LICENCIA_CANDIDATO (
    PK_CV ASC
 );
 
@@ -1363,23 +1354,23 @@ create index LIC_CV_FK on LICENCIA_CANDIDATO (
 /*==============================================================*/
 create table LICENCIA_OFERTA 
 (
-   PK_LICENCIA_OFERTA   NUMBER(6)            not null,
+   PK_LICENCIA_OFERTA   INTEGER              not null,
    PK_CATALOGO_LICENCIA INTEGER              not null,
    PK_OFERTA            INTEGER              not null,
    constraint PK_LICENCIA_OFERTA primary key (PK_LICENCIA_OFERTA)
 );
 
 /*==============================================================*/
-/* Index: LIC_OF_CATLIC_FK                                      */
+/* Index: LICOF_LICENCIA_FK                                     */
 /*==============================================================*/
-create index LIC_OF_CATLIC_FK on LICENCIA_OFERTA (
+create index LICOF_LICENCIA_FK on LICENCIA_OFERTA (
    PK_CATALOGO_LICENCIA ASC
 );
 
 /*==============================================================*/
-/* Index: LIC_OF_FK                                             */
+/* Index: LICOF_OFERTA_FK                                       */
 /*==============================================================*/
-create index LIC_OF_FK on LICENCIA_OFERTA (
+create index LICOF_OFERTA_FK on LICENCIA_OFERTA (
    PK_OFERTA ASC
 );
 
@@ -1388,7 +1379,7 @@ create index LIC_OF_FK on LICENCIA_OFERTA (
 /*==============================================================*/
 create table LOGRO 
 (
-   PK_LOGRO             NUMBER(6)            not null,
+   PK_LOGRO             INTEGER              not null,
    PK_CV                INTEGER              not null,
    NOMBRE_LOGRO         VARCHAR2(250)        not null,
    FECHA_LOGRO          DATE                 not null,
@@ -1408,7 +1399,7 @@ create index LOGRO_CV_FK on LOGRO (
 /*==============================================================*/
 create table MENU 
 (
-   PK_MENU              NUMBER(6)            not null,
+   PK_MENU              INTEGER              not null,
    MENU                 VARCHAR2(50)         not null,
    constraint PK_MENU primary key (PK_MENU)
 );
@@ -1418,16 +1409,16 @@ create table MENU
 /*==============================================================*/
 create table MUNICIPIO 
 (
-   PK_MUNICIPIO         NUMBER(6)            not null,
+   PK_MUNICIPIO         INTEGER              not null,
    PK_DEPARTAMENTO      INTEGER,
    NOMBRE_MUNICIPIO     VARCHAR2(50)         not null,
    constraint PK_MUNICIPIO primary key (PK_MUNICIPIO)
 );
 
 /*==============================================================*/
-/* Index: MUN_DEPTO_FK                                          */
+/* Index: MUNICIPIO_DEPTO_FK                                    */
 /*==============================================================*/
-create index MUN_DEPTO_FK on MUNICIPIO (
+create index MUNICIPIO_DEPTO_FK on MUNICIPIO (
    PK_DEPARTAMENTO ASC
 );
 
@@ -1436,13 +1427,13 @@ create index MUN_DEPTO_FK on MUNICIPIO (
 /*==============================================================*/
 create table OFERTA 
 (
-   PK_OFERTA            NUMBER(6)            not null,
+   PK_OFERTA            INTEGER              not null,
    PK_EMPRESA           INTEGER              not null,
    PK_CATALOGO_PUESTO   INTEGER              not null,
    PK_MUNICIPIO         INTEGER,
    DESCRIPCION_OFERTA   VARCHAR2(250)        not null,
-   SALARIO_MIN_OFERTA   NUMBER(6),
-   SALARIO_MAX_OFERTA   NUMBER(6),
+   SALARIO_MIN_OFERTA   FLOAT(6),
+   SALARIO_MAX_OFERTA   FLOAT(6),
    FECHA_INICIO_OFERTA  DATE                 not null,
    FECHA_FIN_OFERTA     DATE                 not null,
    ESTADO               VARCHAR2(50)         not null,
@@ -1450,23 +1441,23 @@ create table OFERTA
 );
 
 /*==============================================================*/
-/* Index: EMPRESA_OF_FK                                         */
+/* Index: OFERTA_EMP_FK                                         */
 /*==============================================================*/
-create index EMPRESA_OF_FK on OFERTA (
+create index OFERTA_EMP_FK on OFERTA (
    PK_EMPRESA ASC
 );
 
 /*==============================================================*/
-/* Index: OF_PUESTO_FK                                          */
+/* Index: OFERTA_PUESTO_FK                                      */
 /*==============================================================*/
-create index OF_PUESTO_FK on OFERTA (
+create index OFERTA_PUESTO_FK on OFERTA (
    PK_CATALOGO_PUESTO ASC
 );
 
 /*==============================================================*/
-/* Index: OF_MUNICIPIO_FK                                       */
+/* Index: OFERTA_MUNI_FK                                        */
 /*==============================================================*/
-create index OF_MUNICIPIO_FK on OFERTA (
+create index OFERTA_MUNI_FK on OFERTA (
    PK_MUNICIPIO ASC
 );
 
@@ -1475,10 +1466,10 @@ create index OF_MUNICIPIO_FK on OFERTA (
 /*==============================================================*/
 create table OPCIONES 
 (
-   PK_OPCIONES          NUMBER(6)            not null,
+   PK_OPCIONES          INTEGER              not null,
    PK_ITEM              INTEGER              not null,
    OPCION               VARCHAR2(250)        not null,
-   PUNTAJE_OPCION       NUMBER(2,2)          not null,
+   PUNTAJE_OPCION       FLOAT(2)             not null,
    IMAGEN_OPCION        BLOB,
    constraint PK_OPCIONES primary key (PK_OPCIONES)
 );
@@ -1495,7 +1486,7 @@ create index OPC_ITEM_FK on OPCIONES (
 /*==============================================================*/
 create table PAIS 
 (
-   PK_PAIS              NUMBER(6)            not null,
+   PK_PAIS              INTEGER              not null,
    NOMBRE_PAIS          VARCHAR2(50)         not null,
    constraint PK_PAIS primary key (PK_PAIS)
 );
@@ -1505,7 +1496,7 @@ create table PAIS
 /*==============================================================*/
 create table PERFIL 
 (
-   PK_USUARIO           NUMBER(6)            not null,
+   PK_USUARIO           INTEGER              not null,
    PK_CANDIDATO         INTEGER,
    PK_EMPRESA           INTEGER,
    PK_ROL               INTEGER              not null,
@@ -1518,23 +1509,23 @@ create table PERFIL
 );
 
 /*==============================================================*/
-/* Index: PERFIL_CAND_FK                                        */
+/* Index: CANDIDATO_PER_FK                                      */
 /*==============================================================*/
-create index PERFIL_CAND_FK on PERFIL (
+create index CANDIDATO_PER_FK on PERFIL (
    PK_CANDIDATO ASC
 );
 
 /*==============================================================*/
-/* Index: PERFIL_EMP_FK                                         */
+/* Index: EMPRESA_PER_FK                                        */
 /*==============================================================*/
-create index PERFIL_EMP_FK on PERFIL (
+create index EMPRESA_PER_FK on PERFIL (
    PK_EMPRESA ASC
 );
 
 /*==============================================================*/
-/* Index: PERFIL_ROL_FK                                         */
+/* Index: ROL_PER_FK                                            */
 /*==============================================================*/
-create index PERFIL_ROL_FK on PERFIL (
+create index ROL_PER_FK on PERFIL (
    PK_ROL ASC
 );
 
@@ -1543,26 +1534,26 @@ create index PERFIL_ROL_FK on PERFIL (
 /*==============================================================*/
 create table POSTULACION 
 (
-   PK_POSTULACION       NUMBER(6)            not null,
+   PK_POSTULACION       INTEGER              not null,
    PK_CV                INTEGER              not null,
    PK_OFERTA            INTEGER              not null,
-   PORCENTAJE_ACOPLAMIENTO NUMBER(2),
+   PORCENTAJE_ACOPLAMIENTO FLOAT(2),
    FECHA_POSTULACION    DATE                 not null,
    ESTADO               VARCHAR2(50)         not null,
    constraint PK_POSTULACION primary key (PK_POSTULACION)
 );
 
 /*==============================================================*/
-/* Index: POSTULACION_CV_FK                                     */
+/* Index: POS_CV_FK                                             */
 /*==============================================================*/
-create index POSTULACION_CV_FK on POSTULACION (
+create index POS_CV_FK on POSTULACION (
    PK_CV ASC
 );
 
 /*==============================================================*/
-/* Index: POSTULACION_OF_FK                                     */
+/* Index: POS_OFERTA_FK                                         */
 /*==============================================================*/
-create index POSTULACION_OF_FK on POSTULACION (
+create index POS_OFERTA_FK on POSTULACION (
    PK_OFERTA ASC
 );
 
@@ -1571,7 +1562,7 @@ create index POSTULACION_OF_FK on POSTULACION (
 /*==============================================================*/
 create table PRUEBA 
 (
-   PK_PRUEBA            NUMBER(6)            not null,
+   PK_PRUEBA            INTEGER              not null,
    PK_OFERTA            INTEGER              not null,
    PK_CAT_TIPO_PRUEBA   INTEGER              not null,
    NOMBRE_PRUEBA        VARCHAR2(100)        not null,
@@ -1579,16 +1570,16 @@ create table PRUEBA
 );
 
 /*==============================================================*/
-/* Index: PRUEBA_OF_FK                                          */
+/* Index: PRUEBA_OFERTA_FK                                      */
 /*==============================================================*/
-create index PRUEBA_OF_FK on PRUEBA (
+create index PRUEBA_OFERTA_FK on PRUEBA (
    PK_OFERTA ASC
 );
 
 /*==============================================================*/
-/* Index: PRUEBA_TIPOPRUEBA_FK                                  */
+/* Index: PRUEBA_TIPOPRU_FK                                     */
 /*==============================================================*/
-create index PRUEBA_TIPOPRUEBA_FK on PRUEBA (
+create index PRUEBA_TIPOPRU_FK on PRUEBA (
    PK_CAT_TIPO_PRUEBA ASC
 );
 
@@ -1597,7 +1588,7 @@ create index PRUEBA_TIPOPRUEBA_FK on PRUEBA (
 /*==============================================================*/
 create table REFERENCIA 
 (
-   PK_REFERENCIA        NUMBER(6)            not null,
+   PK_REFERENCIA        INTEGER              not null,
    PK_TIPO_REFERENCIA   INTEGER              not null,
    PK_CV                INTEGER              not null,
    NOMBRE_REFERENCIA    VARCHAR2(100)        not null,
@@ -1626,24 +1617,24 @@ create index REFERENCIA_CV_FK on REFERENCIA (
 /*==============================================================*/
 create table RESULTADO 
 (
-   PK_RESULTADO         NUMBER(6)            not null,
-   PK_PRUEBA            INTEGER,
+   PK_RESULTADO         INTEGER              not null,
+   PK_PRUEBA            INTEGER              not null,
    PK_POSTULACION       INTEGER,
    RESULTADO            VARCHAR2(25)         not null,
    constraint PK_RESULTADO primary key (PK_RESULTADO)
 );
 
 /*==============================================================*/
-/* Index: PRUEBA_RESUL_FK                                       */
+/* Index: FK_RESULTADO_PRUEBA                                   */
 /*==============================================================*/
-create index PRUEBA_RESUL_FK on RESULTADO (
+create unique index FK_RESULTADO_PRUEBA on RESULTADO (
    PK_PRUEBA ASC
 );
 
 /*==============================================================*/
-/* Index: POSTULACION_RESUL_FK                                  */
+/* Index: RESUL_POSTULACION_FK                                  */
 /*==============================================================*/
-create index POSTULACION_RESUL_FK on RESULTADO (
+create index RESUL_POSTULACION_FK on RESULTADO (
    PK_POSTULACION ASC
 );
 
@@ -1652,7 +1643,7 @@ create index POSTULACION_RESUL_FK on RESULTADO (
 /*==============================================================*/
 create table ROL 
 (
-   PK_ROL               NUMBER(6)            not null,
+   PK_ROL               INTEGER              not null,
    NOMBRE_ROL           VARCHAR2(50)         not null,
    constraint PK_ROL primary key (PK_ROL)
 );
@@ -1662,23 +1653,23 @@ create table ROL
 /*==============================================================*/
 create table ROL_SUBMENU 
 (
-   ID_ROL_SUBMENU       NUMBER(6)            not null,
+   PK_ROL_SUBMENU       INTEGER              not null,
    PK_ROL               INTEGER,
    PK_SUBMENU           INTEGER,
-   constraint PK_ROL_SUBMENU primary key (ID_ROL_SUBMENU)
+   constraint PK_ROL_SUBMENU primary key (PK_ROL_SUBMENU)
 );
 
 /*==============================================================*/
-/* Index: ROLSUBMENU_ROL_FK                                     */
+/* Index: ROL_RSUB_FK                                           */
 /*==============================================================*/
-create index ROLSUBMENU_ROL_FK on ROL_SUBMENU (
+create index ROL_RSUB_FK on ROL_SUBMENU (
    PK_ROL ASC
 );
 
 /*==============================================================*/
-/* Index: ROLSUBMENU_MENU_FK                                    */
+/* Index: SUBMENU_RSUB_FK                                       */
 /*==============================================================*/
-create index ROLSUBMENU_MENU_FK on ROL_SUBMENU (
+create index SUBMENU_RSUB_FK on ROL_SUBMENU (
    PK_SUBMENU ASC
 );
 
@@ -1687,8 +1678,8 @@ create index ROLSUBMENU_MENU_FK on ROL_SUBMENU (
 /*==============================================================*/
 create table SUBMENU 
 (
-   PK_SUBMENU           NUMBER(6)            not null,
-   PK_MENU              INTEGER,
+   PK_SUBMENU           INTEGER              not null,
+   PK_MENU              INTEGER              not null,
    SUBMENU              VARCHAR2(100)        not null,
    ORDEN                VARCHAR2(100)        not null,
    URL                  VARCHAR2(100)        not null,
@@ -1703,11 +1694,11 @@ create index SUBMENU_MENU_FK on SUBMENU (
 );
 
 alter table APTITUD_CV
-   add constraint FK_APTITUD__CV foreign key (PK_CV)
+   add constraint FK_APTITUDCV__CV foreign key (PK_CV)
       references CV (PK_CV);
 
 alter table APTITUD_CV
-   add constraint FK_APTITUDCV__CATALOGOAPT foreign key (PK_CATALOGO_APTITUD)
+   add constraint FK_APTCV_APTITUD foreign key (PK_CATALOGO_APTITUD)
       references CATALOGO_APTITUD (PK_CATALOGO_APTITUD);
 
 alter table APTITUD_OFERTA
@@ -1715,7 +1706,7 @@ alter table APTITUD_OFERTA
       references OFERTA (PK_OFERTA);
 
 alter table APTITUD_OFERTA
-   add constraint FK_APTITUDOF_CATALOGOAPT foreign key (PK_CATALOGO_APTITUD)
+   add constraint FK_APTITUDOF_APTITUD foreign key (PK_CATALOGO_APTITUD)
       references CATALOGO_APTITUD (PK_CATALOGO_APTITUD);
 
 alter table CANDIDATO
@@ -1727,11 +1718,11 @@ alter table CANDIDATO
       references MUNICIPIO (PK_MUNICIPIO);
 
 alter table CATALOGO_HABILIDAD
-   add constraint FK_CATALOGOHAB_CATEGORIA foreign key (PK_CATEGORIA_HABILIDAD)
+   add constraint FK_HABILIDAD_CATHABILIDAD foreign key (PK_CATEGORIA_HABILIDAD)
       references CATALOGO_CATEGORIA_HABILIDAD (PK_CATEGORIA_HABILIDAD);
 
 alter table CATALOGO_PUESTO
-   add constraint FK_CATALOGOPUESTO_CATEGORIA foreign key (PK_CATALOGO_CATEGORIA)
+   add constraint FK_PUESTO_CATEGORIA foreign key (PK_CATALOGO_CATEGORIA)
       references CATALOGO_CATEGORIA (PK_CATALOGO_CATEGORIA);
 
 alter table CONOCIMIENTO_ACADEMICOS
@@ -1739,7 +1730,7 @@ alter table CONOCIMIENTO_ACADEMICOS
       references OFERTA (PK_OFERTA);
 
 alter table CONOCIMIENTO_ACADEMICOS
-   add constraint FK_CONOCIMITOAC_GRADOAC foreign key (PK_GRADO_ACADEMICO)
+   add constraint FK_CONOCIMIENTOAC_GRADOAC foreign key (PK_GRADO_ACADEMICO)
       references CATALOGO_GRADO_ACADEMICO (PK_GRADO_ACADEMICO);
 
 alter table CURSO_CAPACITACION
@@ -1751,11 +1742,11 @@ alter table CV
       references CANDIDATO (PK_CANDIDATO);
 
 alter table DEPARTAMENTO
-   add constraint FK_DEPARTAM_DEPTO_PAI_PAIS foreign key (PK_PAIS)
+   add constraint FK_DEPARTAMENTO_PAIS foreign key (PK_PAIS)
       references PAIS (PK_PAIS);
 
 alter table EMPRESA
-   add constraint FK_EMPRESA_MUNICIPIO foreign key (PK_MUNICIPIO)
+   add constraint FK_EMPRESA_EMP_MUNIC_MUNICIPI foreign key (PK_MUNICIPIO)
       references MUNICIPIO (PK_MUNICIPIO);
 
 alter table EMPRESA
@@ -1763,11 +1754,11 @@ alter table EMPRESA
       references CATALOGO_SECTOR_EMPRESA (PK_SECTOR);
 
 alter table EMPRESA
-   add constraint FK_EMPRESA_TIPOEMPRESA foreign key (PK_TIPO_EMPRESA)
+   add constraint FK_EMPRESA_TIPOEMP foreign key (PK_TIPO_EMPRESA)
       references CATALOGO_TIPO_EMPRESA (PK_TIPO_EMPRESA);
 
 alter table ESCRITO
-   add constraint FK_ESCRITO_CATALOGOESCRITO foreign key (PK_CATALOGO_ESCRITO)
+   add constraint FK_ESCRITO_CATESCRITO foreign key (PK_CATALOGO_ESCRITO)
       references CATALOGO_ESCRITO (PK_CATALOGO_ESCRITO);
 
 alter table ESCRITO
@@ -1803,19 +1794,19 @@ alter table HABILIDADES_CV
       references CV (PK_CV);
 
 alter table HABILIDADES_CV
-   add constraint FK_HABILIDADCV_CATALOGOHAB foreign key (PK_HABILIDAD)
+   add constraint FK_HABILIDADCV_HABILIDAD foreign key (PK_HABILIDAD)
       references CATALOGO_HABILIDAD (PK_HABILIDAD);
 
 alter table HABILIDAD_LINGUISICA_OFERTA
-   add constraint FK_HABLING_CATALOGOIDIOMA foreign key (PK_IDIOMA)
+   add constraint FK_HABLINGOF_IDIOMA foreign key (PK_IDIOMA)
       references CATALOGO_IDIOMA (PK_IDIOMA);
 
 alter table HABILIDAD_LINGUISICA_OFERTA
-   add constraint FK_HABLING_CATALOGOPOND foreign key (PK_CATALOGO_PONDERACION)
+   add constraint FK_HABLING_PONDERACION foreign key (PK_CATALOGO_PONDERACION)
       references CATALOGO_PONDERACION (PK_CATALOGO_PONDERACION);
 
 alter table HABILIDAD_LINGUISICA_OFERTA
-   add constraint FK_HABLING_OFERTA foreign key (PK_OFERTA)
+   add constraint FK_HABLINGOF_OFERTA foreign key (PK_OFERTA)
       references OFERTA (PK_OFERTA);
 
 alter table HABILIDAD_LINGUISTICA_CV
@@ -1827,7 +1818,7 @@ alter table HABILIDAD_LINGUISTICA_CV
       references CATALOGO_PONDERACION (PK_CATALOGO_PONDERACION);
 
 alter table HABILIDAD_LINGUISTICA_CV
-   add constraint FK_HANLINGCV_IDIOMA foreign key (PK_IDIOMA)
+   add constraint FK_HABLINGCV_IDIOMA foreign key (PK_IDIOMA)
       references CATALOGO_IDIOMA (PK_IDIOMA);
 
 alter table HABILIDAD_OFERTA
@@ -1835,7 +1826,7 @@ alter table HABILIDAD_OFERTA
       references OFERTA (PK_OFERTA);
 
 alter table HABILIDAD_OFERTA
-   add constraint FK_HABILIDADOF_CATALOGOHAB foreign key (PK_HABILIDAD)
+   add constraint FK_HABOF_HABILIDAD foreign key (PK_HABILIDAD)
       references CATALOGO_HABILIDAD (PK_HABILIDAD);
 
 alter table ITEM_PRUEBA
@@ -1847,7 +1838,7 @@ alter table LICENCIA_CANDIDATO
       references CV (PK_CV);
 
 alter table LICENCIA_CANDIDATO
-   add constraint FK_LICENCIACAND_CATALOGOLIC foreign key (PK_CATALOGO_LICENCIA)
+   add constraint FK_LICENCIACAND_LICENCIA foreign key (PK_CATALOGO_LICENCIA)
       references CATALOGO_LICENCIA (PK_CATALOGO_LICENCIA);
 
 alter table LICENCIA_OFERTA
@@ -1855,7 +1846,7 @@ alter table LICENCIA_OFERTA
       references OFERTA (PK_OFERTA);
 
 alter table LICENCIA_OFERTA
-   add constraint FK_LICENCIAOF_CATALOGOLIC foreign key (PK_CATALOGO_LICENCIA)
+   add constraint FK_LICENCIAOF_LICENCIA foreign key (PK_CATALOGO_LICENCIA)
       references CATALOGO_LICENCIA (PK_CATALOGO_LICENCIA);
 
 alter table LOGRO
@@ -1879,7 +1870,7 @@ alter table OFERTA
       references CATALOGO_PUESTO (PK_CATALOGO_PUESTO);
 
 alter table OPCIONES
-   add constraint FK_OPCIONES_ITEMPRUEBA foreign key (PK_ITEM)
+   add constraint FK_OPCIONES_ITEMPRU foreign key (PK_ITEM)
       references ITEM_PRUEBA (PK_ITEM);
 
 alter table PERFIL
@@ -1891,7 +1882,7 @@ alter table PERFIL
       references EMPRESA (PK_EMPRESA);
 
 alter table PERFIL
-   add constraint FK_PERFIL_PERFIL_RO_ROL foreign key (PK_ROL)
+   add constraint FK_PERFIL_ROL foreign key (PK_ROL)
       references ROL (PK_ROL);
 
 alter table POSTULACION
@@ -1903,11 +1894,11 @@ alter table POSTULACION
       references OFERTA (PK_OFERTA);
 
 alter table PRUEBA
-   add constraint FK_PRUEBA_PRUEBAOFERTA foreign key (PK_OFERTA)
+   add constraint FK_PRUEBA_OFERTA foreign key (PK_OFERTA)
       references OFERTA (PK_OFERTA);
 
 alter table PRUEBA
-   add constraint FK_PRUEBA_CATALOGOTIPOPRU foreign key (PK_CAT_TIPO_PRUEBA)
+   add constraint FK_PRUEBA_TIPOPRUEBA foreign key (PK_CAT_TIPO_PRUEBA)
       references CATALOGO_TIPO_PRUEBA (PK_CAT_TIPO_PRUEBA);
 
 alter table REFERENCIA
@@ -1919,7 +1910,7 @@ alter table REFERENCIA
       references CATALOGO_TIPO_REFERENCIA (PK_TIPO_REFERENCIA);
 
 alter table RESULTADO
-   add constraint FK_RESULTAD_POSTULACION foreign key (PK_POSTULACION)
+   add constraint FK_RESULTADO_POSTULACION foreign key (PK_POSTULACION)
       references POSTULACION (PK_POSTULACION);
 
 alter table RESULTADO
