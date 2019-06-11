@@ -1,2 +1,4 @@
-insert into Pais (pk_pais,nombre_pais)
-values (1,'El Salvador');
+
+INSERT INTO PAIS (PK_PAIS, NOMBRE_PAIS) VALUES ('1', 'El Salvador');
+INSERT INTO PAIS (PK_PAIS, NOMBRE_PAIS) VALUES ('2', 'Guatemala');
+INSERT INTO PAIS (PK_PAIS, NOMBRE_PAIS) VALUES ('3', 'Honduras');
