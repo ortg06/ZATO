@@ -53,6 +53,7 @@ public interface IService {
     public void saveDepto(Departamento departamento);
     public Departamento findOneDepartamento(BigDecimal id);
     public void deleteDepartamento(BigDecimal id);
+    public List<Municipio> findMunicipiosfromPais(BigDecimal id);
     
     //Municipio
     

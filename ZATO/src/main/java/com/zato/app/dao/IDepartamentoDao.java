@@ -6,7 +6,11 @@
 package com.zato.app.dao;
 
 import com.zato.app.entidades.Departamento;
+import com.zato.app.entidades.Municipio;
+
 import java.math.BigDecimal;
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -15,4 +19,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface IDepartamentoDao extends CrudRepository<Departamento, BigDecimal>{
     
+    List<Municipio> findByDepartamentoPK(BigDecimal id);
 }

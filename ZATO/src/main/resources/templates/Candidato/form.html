@@ -66,7 +66,7 @@ and open the template in the editor.
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Pais:</label>
                 <div class="col-sm-6">
-                    <select id="pais" class="col-sm-6 form-control form-control-sm" name="pais">
+                    <select id="pais" class="col-sm-6 form-control form-control-sm" name="pais" id="paisD">
 
                         <option th:each="pais : ${paises}" th:value="${pais.pkPais}" 
                                 th:selected="${pais.pkPais==p}" th:text="${pais.nombrePais}">
@@ -77,7 +77,7 @@ and open the template in the editor.
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Departamento:</label>
                 <div class="col-sm-6">
-                    <select id="pais" class="col-sm-6 form-control form-control-sm" name="departamento">
+                    <select id="pais" class="col-sm-6 form-control form-control-sm" name="departamento" id="depaD">
 
                         <option th:each="departamento : ${departamentos}" 
                                 th:selected="${departamento.pkDepartamento==d}"    th:value="${departamento.pkDepartamento}" th:text="${departamento.nombreDepartamento}">
@@ -91,7 +91,7 @@ and open the template in the editor.
                 <div class="col-sm-4">
                     <label class="col-form-label">Municipio de Origen:</label>
 
-                    <select id="municipio" class="col-sm-10 form-control form-control-sm" name="municipio">
+                    <select id="municipio" class="col-sm-10 form-control form-control-sm" name="municipio" id="muniD">
 
                         <option th:each="municipio : ${municipios}" th:value="${municipio.pkMunicipio}" 
                                 th:selected="${municipio.pkMunicipio==p}" th:text="${municipio.nombreMunicipio}">
