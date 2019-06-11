@@ -33,8 +33,11 @@ import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
 import com.zato.app.entidades.CatalogoTipoReferencia;
+import com.zato.app.entidades.ItemPrueba;
+import com.zato.app.entidades.Opciones;
 import com.zato.app.entidades.RolSubmenu;
 import com.zato.app.entidades.Perfil;
+import com.zato.app.entidades.Prueba;
 
 /**
  *
@@ -211,5 +214,27 @@ public interface IService {
     public void saveOferta(Oferta oferta);
     public Oferta findOneOferta(BigDecimal id);
     public void deleteOferta(BigDecimal id);
+    
+    
+    
+    
+     //Prueba
+    public List<Prueba> findAllPruebas();
+    public void savePrueba(Prueba prueba);
+    public Prueba findOnePrueba(BigDecimal id);
+    public void deletePrueba(BigDecimal id);
+    
+    
+     //Item Prueba
+    public List<ItemPrueba> findAllItems();
+    public void saveItem(ItemPrueba itemPrueba);
+    public ItemPrueba findOneItem(BigDecimal id);
+    public void deleteItem(BigDecimal id);
+    
+     //Opciones
+    public List<Opciones> findAllOpciones();
+    public void saveOpcion(Opciones opciones);
+    public Opciones findOneOpcion(BigDecimal id);
+    public void deleteOpcion(BigDecimal id);
     
 }

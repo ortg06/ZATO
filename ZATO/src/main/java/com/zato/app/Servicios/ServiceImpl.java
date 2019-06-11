@@ -32,8 +32,11 @@ import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.dao.IPuestosDao;
 import com.zato.app.dao.ICatalogoHabilidadDao;
 import com.zato.app.dao.ICatalogoTipoReferenciaDao;
+import com.zato.app.dao.IItemPruebaDao;
+import com.zato.app.dao.IOpcionesDao;
 import com.zato.app.dao.IRolSubmenuDao;
 import com.zato.app.dao.IPerfilDao;
+import com.zato.app.dao.IPruebaDao;
 
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
@@ -59,8 +62,11 @@ import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
 import com.zato.app.entidades.CatalogoTipoReferencia;
+import com.zato.app.entidades.ItemPrueba;
+import com.zato.app.entidades.Opciones;
 import com.zato.app.entidades.RolSubmenu;
 import com.zato.app.entidades.Perfil;
+import com.zato.app.entidades.Prueba;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -126,6 +132,16 @@ public class ServiceImpl implements IService {
     private IPerfilDao PerfilDao; 
     @Autowired
     private IOfertaDao OfertaDao;
+    
+    @Autowired
+    private IPruebaDao pruebaDao;
+    @Autowired
+    private IItemPruebaDao itemDao;
+    @Autowired
+    private IOpcionesDao opcionesDao;
+    
+    
+    
 
     // PAISES
     @Override
@@ -765,8 +781,6 @@ public class ServiceImpl implements IService {
         PerfilDao.delete(id);
     }
 
-
-
     //OFERTA
 
     @Override
@@ -789,6 +803,87 @@ public class ServiceImpl implements IService {
 
     public void deleteOferta(BigDecimal id){
         OfertaDao.delete(id);
+    }
+    
+    
+     //Prueba
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<Prueba>findAllPruebas(){
+        return(List<Prueba>) pruebaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void savePrueba(Prueba prueba){
+        pruebaDao.save(prueba);
+    }
+
+    @Override
+    @Transactional
+    public Prueba findOnePrueba(BigDecimal id){
+        return pruebaDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deletePrueba(BigDecimal id){
+        pruebaDao.delete(id);
+    }
+    
+   
+    //Item Prueba
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<ItemPrueba>findAllItems(){
+        return(List<ItemPrueba>) itemDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveItem(ItemPrueba itemPrueba){
+        itemDao.save(itemPrueba);
+    }
+
+    @Override
+    @Transactional
+    public ItemPrueba findOneItem(BigDecimal id){
+        return itemDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteItem(BigDecimal id){
+        itemDao.delete(id);
+    }
+
+    
+    //Opciones
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<Opciones>findAllOpciones(){
+        return(List<Opciones>) opcionesDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveOpcion(Opciones opciones){
+        opcionesDao.save(opciones);
+    }
+
+    @Override
+    @Transactional
+    public Opciones findOneOpcion(BigDecimal id){
+        return opcionesDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteOpcion(BigDecimal id){
+        opcionesDao.delete(id);
     }
     
 
