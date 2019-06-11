@@ -5,12 +5,11 @@
  */
 package com.zato.app.controllers;
 
+
 import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Departamento;
-import com.zato.app.entidades.Municipio;
-
 import java.math.BigDecimal;
-import java.util.List;
+
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
-
 
 /**
  *
@@ -101,13 +96,6 @@ public class DepartamentoController {
             departamentoService.deleteDepartamento(id);
         }
         return "redirect:/departamento/listar";
-    }
-
-
-    @GetMapping("/municipios/{id}")
-    public @ResponseBody List<Municipio>obtenerMunicipios(@PathVariable (value = "id") BigDecimal id){
-
-        return departamentoService.findMunicipiosfromPais(id);
     }
     
 }

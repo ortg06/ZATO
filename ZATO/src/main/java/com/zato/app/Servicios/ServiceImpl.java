@@ -194,11 +194,6 @@ public class ServiceImpl implements IService {
         departamentoDao.delete(id);
     }
 
-    @Transactional(readOnly = true)
-    public List<Municipio> findMunicipiosfromPais(BigDecimal id){
-       return departamentoDao.findByDepartamentoPK(id);
-    }
-
     // Municipios
 
     @Override
