@@ -27,16 +27,18 @@ and open the template in the editor.
                         <thead>
                             <tr>
                                 <th>Acciones</th>
-                          
+
                                 <th>Nombre</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="prueba: ${pruebas}">
 
-                                <td><a class="btn btn-success btn-xs"  th:text="'Ver Perfil'"></a>
+                                <td><a class="btn btn-success btn-xs"  th:text="'+'"></a>
+                                    <a class="btn btn-primary btn-xs" th:href="@{/prueba/editar/} + ${prueba.pkPrueba}" th:text="'Editar'"></a>
+                                    <a class="btn btn-danger btn-xs" th:href="@{/prueba/eliminar/} + ${prueba.pkPrueba}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
                                 </td>
-                              
+
                                 <td th:text="${prueba.nombrePrueba}"></td>
                             </tr>
                         </tbody>

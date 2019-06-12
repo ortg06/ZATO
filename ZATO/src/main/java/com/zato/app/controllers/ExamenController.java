@@ -67,15 +67,17 @@ public class ExamenController {
         } else {
             return "redirect:/prueba/listar";
         }
-        model.put("tipoPrueba",IService.findAlltipoprueba());
+        
         model.put("titulo", "Editar Prueba");
-        model.put("tp",prueba.getCatalogoTipoPrueba().getPkCatTipoPrueba());
+         model.put("prueba", prueba);
+        model.put("tipos",IService.findAlltipoprueba());
+        model.put("p",prueba.getCatalogoTipoPrueba().getPkCatTipoPrueba());
         return "prueba/form";
     }
     
     
     
-     @RequestMapping(value="/formdep",method=RequestMethod.POST)
+     @RequestMapping(value="/form",method=RequestMethod.POST)
     public String guardar(Prueba prueba, SessionStatus status)
     {
         IService.savePrueba(prueba);
