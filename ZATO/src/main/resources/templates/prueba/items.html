@@ -21,7 +21,7 @@ and open the template in the editor.
             <div class="row">  
 
                 <div class="col-lg-10 col-md-10">    
-                    <a th:href="@{/prueba/nuevo}" class="btn btn-success btn-xs">Nueva Prueba</a>
+                    <a th:href="@{/prueba/items/nuevo}" class="btn btn-success btn-xs">Nuevo Item</a>
 
                     <table class="table table-striped">
                         <thead>
@@ -32,14 +32,14 @@ and open the template in the editor.
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="prueba: ${pruebas}">
+                            <tr th:each="item: ${items}">
 
-                                <td><a class="btn btn-success btn-xs" th:href="@{/prueba/items/} + ${prueba.pkPrueba}" th:text="'+'"></a>
-                                    <a class="btn btn-primary btn-xs" th:href="@{/prueba/editar/} + ${prueba.pkPrueba}" th:text="'Editar'"></a>
-                                    <a class="btn btn-danger btn-xs" th:href="@{/prueba/eliminar/} + ${prueba.pkPrueba}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
+                                <td><a class="btn btn-success btn-xs"  th:text="'+'"></a>
+                                    <a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
+                                    <a class="btn btn-danger btn-xs"  th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
                                 </td>
 
-                                <td th:text="${prueba.nombrePrueba}"></td>
+                                <td th:text="${item.pregunta}"></td>
                             </tr>
                         </tbody>
                     </table>

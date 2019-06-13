@@ -854,6 +854,12 @@ public class ServiceImpl implements IService {
         itemDao.delete(id);
     }
 
+    @Override
+    @Transactional(readOnly=true)
+    public List<ItemPrueba>findItemPruebabyPrueba(Prueba prueba){
+        return(List<ItemPrueba>) itemDao.findItemPruebabyPrueba(prueba);
+    }
+
     
     //Opciones
 
