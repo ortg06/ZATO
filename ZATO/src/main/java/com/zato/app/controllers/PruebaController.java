@@ -28,7 +28,7 @@ import org.springframework.web.bind.support.SessionStatus;
 @Controller
 @RequestMapping("/prueba")
 @SessionAttributes("prueba")
-public class ExamenController {
+public class PruebaController {
     
     
      @Autowired
@@ -98,7 +98,17 @@ public class ExamenController {
         return "redirect:/prueba/listar";
     }
     
+    //Metodos para items
     
+    
+     @GetMapping("/items/{id}")
+    public String items(@PathVariable(value="id") Prueba id,Model model)
+    {
+        model.addAttribute("titulo", "Listado de preguntas");
+        model.addAttribute("items",IService.findItemPruebabyPrueba(id));
+       
+        return "prueba/items";
+    }
     
     
 }

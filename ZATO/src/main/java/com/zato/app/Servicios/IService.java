@@ -230,6 +230,7 @@ public interface IService {
     public void saveItem(ItemPrueba itemPrueba);
     public ItemPrueba findOneItem(BigDecimal id);
     public void deleteItem(BigDecimal id);
+    public List<ItemPrueba> findItemPruebabyPrueba(Prueba prueba);
     
      //Opciones
     public List<Opciones> findAllOpciones();
