@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     11/6/2019 14:40:12                           */
+/* Created on:     12/6/2019 16:55:35                           */
 /*==============================================================*/
 
 
@@ -155,10 +155,13 @@ alter table POSTULACION
    drop constraint FK_POSTULACION_OFERTA;
 
 alter table PRUEBA
-   drop constraint FK_PRUEBA_OFERTA;
-
-alter table PRUEBA
    drop constraint FK_PRUEBA_TIPOPRUEBA;
+
+alter table PRUEBA_OFERTA
+   drop constraint FK_OFERTAPRU_OFERTA;
+
+alter table PRUEBA_OFERTA
+   drop constraint FK_OFERTAPRU_PRUEBA;
 
 alter table REFERENCIA
    drop constraint FK_REFERENCIA_CV;
@@ -365,9 +368,13 @@ drop table POSTULACION cascade constraints;
 
 drop index PRUEBA_TIPOPRU_FK;
 
-drop index PRUEBA_OFERTA_FK;
-
 drop table PRUEBA cascade constraints;
+
+drop index OFERPRU_OFERTA_FK;
+
+drop index OFERPRU_PRUEBA_FK;
+
+drop table PRUEBA_OFERTA cascade constraints;
 
 drop index REFERENCIA_CV_FK;
 
@@ -458,6 +465,8 @@ drop sequence SEQUENCE_MENU;
 drop sequence SEQUENCE_MUNICIPIO;
 
 drop sequence SEQUENCE_OFERTA;
+
+drop sequence SEQUENCE_OFERTA_PRUEBA;
 
 drop sequence SEQUENCE_OPCIONES;
 
@@ -618,6 +627,10 @@ increment by 1
 start with 1;
 
 create sequence SEQUENCE_OFERTA
+increment by 1
+start with 1;
+
+create sequence SEQUENCE_OFERTA_PRUEBA
 increment by 1
 start with 1;
 
@@ -1129,7 +1142,7 @@ create table EXPERIENCIA_LABORAL
    NOMBRE_EXP_EMPRESA   VARCHAR2(150)        not null,
    CARGO                VARCHAR2(100)        not null,
    PERIODO_INICIO       DATE                 not null,
-   PERIODO_FIN          DATE                 not null,
+   PERIODO_FIN          DATE,
    DESCRIPCION_FUNCIONES VARCHAR2(1000)       not null,
    NOMBRE_CONTACTO_EXP  VARCHAR2(100),
    TELEFONO_CONTACTO_EXP NUMBER(14),
@@ -1563,17 +1576,9 @@ create index POS_OFERTA_FK on POSTULACION (
 create table PRUEBA 
 (
    PK_PRUEBA            INTEGER              not null,
-   PK_OFERTA            INTEGER              not null,
    PK_CAT_TIPO_PRUEBA   INTEGER              not null,
    NOMBRE_PRUEBA        VARCHAR2(100)        not null,
    constraint PK_PRUEBA primary key (PK_PRUEBA)
-);
-
-/*==============================================================*/
-/* Index: PRUEBA_OFERTA_FK                                      */
-/*==============================================================*/
-create index PRUEBA_OFERTA_FK on PRUEBA (
-   PK_OFERTA ASC
 );
 
 /*==============================================================*/
@@ -1581,6 +1586,31 @@ create index PRUEBA_OFERTA_FK on PRUEBA (
 /*==============================================================*/
 create index PRUEBA_TIPOPRU_FK on PRUEBA (
    PK_CAT_TIPO_PRUEBA ASC
+);
+
+/*==============================================================*/
+/* Table: PRUEBA_OFERTA                                         */
+/*==============================================================*/
+create table PRUEBA_OFERTA 
+(
+   PK_PRUEBA_OFERTA     INTEGER              not null,
+   PK_PRUEBA            INTEGER              not null,
+   PK_OFERTA            INTEGER              not null,
+   constraint PK_PRUEBA_OFERTA primary key (PK_PRUEBA_OFERTA)
+);
+
+/*==============================================================*/
+/* Index: OFERPRU_PRUEBA_FK                                     */
+/*==============================================================*/
+create index OFERPRU_PRUEBA_FK on PRUEBA_OFERTA (
+   PK_PRUEBA ASC
+);
+
+/*==============================================================*/
+/* Index: OFERPRU_OFERTA_FK                                     */
+/*==============================================================*/
+create index OFERPRU_OFERTA_FK on PRUEBA_OFERTA (
+   PK_OFERTA ASC
 );
 
 /*==============================================================*/
@@ -1653,10 +1683,10 @@ create table ROL
 /*==============================================================*/
 create table ROL_SUBMENU 
 (
-   PK_ROL_SUBMENU       INTEGER              not null,
+   ID_ROL_SUBMENU       INTEGER              not null,
    PK_ROL               INTEGER,
    PK_SUBMENU           INTEGER,
-   constraint PK_ROL_SUBMENU primary key (PK_ROL_SUBMENU)
+   constraint PK_ROL_SUBMENU primary key (ID_ROL_SUBMENU)
 );
 
 /*==============================================================*/
@@ -1894,12 +1924,16 @@ alter table POSTULACION
       references OFERTA (PK_OFERTA);
 
 alter table PRUEBA
-   add constraint FK_PRUEBA_OFERTA foreign key (PK_OFERTA)
-      references OFERTA (PK_OFERTA);
-
-alter table PRUEBA
    add constraint FK_PRUEBA_TIPOPRUEBA foreign key (PK_CAT_TIPO_PRUEBA)
       references CATALOGO_TIPO_PRUEBA (PK_CAT_TIPO_PRUEBA);
+
+alter table PRUEBA_OFERTA
+   add constraint FK_OFERTAPRU_OFERTA foreign key (PK_OFERTA)
+      references OFERTA (PK_OFERTA);
+
+alter table PRUEBA_OFERTA
+   add constraint FK_OFERTAPRU_PRUEBA foreign key (PK_PRUEBA)
+      references PRUEBA (PK_PRUEBA);
 
 alter table REFERENCIA
    add constraint FK_REFERENCIA_CV foreign key (PK_CV)
