@@ -129,7 +129,7 @@ public class PerfilController {
      @RequestMapping(value="/Perfil/formE",method=RequestMethod.POST)
     public String guardarEmp(Perfil perfil, SessionStatus status)
     {
-       int tipop=9;// aqui cambiar rol
+       int tipop=2;// aqui cambiar rol
        BigDecimal tipo= new BigDecimal(tipop);
        BigDecimal id;
        perfil.setTipoPerfil(tipo);
