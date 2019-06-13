@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th ="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+    </head>
+    <body>
+
+        <div th:replace="fragments/header :: header"/>
+
+
+        <div class="container">
+            <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+
+          
+
+
+               
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </div>
+
+
+
+
+
+                    </div>
+    </body>
+</html>

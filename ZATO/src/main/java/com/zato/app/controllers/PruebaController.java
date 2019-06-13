@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 import com.zato.app.Servicios.IService;
+import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Prueba;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,14 +102,37 @@ public class PruebaController {
     //Metodos para items
     
     
-     @GetMapping("/items/{id}")
+    @GetMapping("/items/{id}")
     public String items(@PathVariable(value="id") Prueba id,Model model)
     {
+        Prueba prueba=null;
         model.addAttribute("titulo", "Listado de preguntas");
+        model.addAttribute("prueba",id);
         model.addAttribute("items",IService.findItemPruebabyPrueba(id));
        
         return "prueba/items";
     }
     
+    
+    @RequestMapping(value="/items/nuevo/{id}",method=RequestMethod.GET)
+    public String crearItems(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
+    {
+        ItemPrueba item = new ItemPrueba();
+        Prueba prueba=null;
+        model.put("prueba", IService.findOnePrueba(id));
+        model.put("item", item);
+        model.put("titulo", "Datos de nueva pregunta");
+       
+        return "prueba/items/form";
+    }
+    
+     @RequestMapping(value="/items/form",method=RequestMethod.POST)
+    public String guardarItem(ItemPrueba itemprueba, SessionStatus status)
+    {
+        IService.saveItem(itemprueba);
+        status.setComplete();
+        return "redirect:/prueba/items/{id}";
+    }
+     
     
 }
