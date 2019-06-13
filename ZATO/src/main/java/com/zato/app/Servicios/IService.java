@@ -38,6 +38,7 @@ import com.zato.app.entidades.Opciones;
 import com.zato.app.entidades.RolSubmenu;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
+import com.zato.app.entidades.Cv;
 
 /**
  *
@@ -236,4 +237,11 @@ public interface IService {
     public Opciones findOneOpcion(BigDecimal id);
     public void deleteOpcion(BigDecimal id);
     
+    
+     //CV
+    public List<Cv> findAllCv();
+    public void saveCv(Cv cv);
+    public Cv findOneCv (BigDecimal id);
+    public void deleteCv(BigDecimal id);
+
 }

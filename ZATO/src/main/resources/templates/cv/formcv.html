@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th ="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+    </head>
+    <body>
+        <h1 th:text="${titulo}"></h1>
+
+        <form th:action="@{/Rol/form}" th:object="${rol}" method="post">
+            <table>
+                
+                
+               
+                <tr>
+                    <td>Nombre</td>
+                    <td><input type="text" th:field="*{nombreRol}"/></td>
+                </tr>
+
+                <tr>
+                    
+                    <td><input type="submit" value="Crear Rol"/></td>
+                </tr>
+            </table>
+              
+               
+                
+        </form>
+    </body>
+</html>
+

@@ -37,6 +37,7 @@ import com.zato.app.dao.IOpcionesDao;
 import com.zato.app.dao.IRolSubmenuDao;
 import com.zato.app.dao.IPerfilDao;
 import com.zato.app.dao.IPruebaDao;
+import com.zato.app.dao.ICvDao;
 
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
@@ -67,6 +68,7 @@ import com.zato.app.entidades.Opciones;
 import com.zato.app.entidades.RolSubmenu;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
+import com.zato.app.entidades.Cv;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -139,7 +141,8 @@ public class ServiceImpl implements IService {
     private IItemPruebaDao itemDao;
     @Autowired
     private IOpcionesDao opcionesDao;
-    
+    @Autowired
+    private ICvDao cvDao;
     
     
 
@@ -879,6 +882,32 @@ public class ServiceImpl implements IService {
     @Transactional
     public void deleteOpcion(BigDecimal id){
         opcionesDao.delete(id);
+    }
+    
+    //CV
+
+    @Override
+    @Transactional(readOnly=true)
+    public List<Cv>findAllCv(){
+        return(List<Cv>) cvDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveCv(Cv cv){
+        cvDao.save(cv);
+    }
+
+    @Override
+    @Transactional
+    public Cv findOneCv(BigDecimal id){
+        return cvDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteCv(BigDecimal id){
+        cvDao.delete(id);
     }
     
 

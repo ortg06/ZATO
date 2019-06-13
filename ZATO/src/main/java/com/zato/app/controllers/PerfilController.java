@@ -97,7 +97,7 @@ public class PerfilController {
        int tipop=3;
        BigDecimal tipo= new BigDecimal(tipop);
        perfil.setTipoPerfil(tipo);
-      
+       perfil.setEstado("Activo");
     
        PerfilService.savePerfil(perfil);
         
@@ -116,6 +116,8 @@ public class PerfilController {
        Rol rol = new Rol();
        rol= RolService.findOneRol(tipo);
        perfil.setRol(rol);
+       perfil.setEstado("Activo");
+       
        PerfilService.savePerfil(perfil);
         id= perfil.getPkUsuario();
         status.setComplete();
@@ -134,6 +136,8 @@ public class PerfilController {
        Rol rol = new Rol();
        rol= RolService.findOneRol(tipo);
        perfil.setRol(rol);
+       perfil.setEstado("Activo");
+       
        PerfilService.savePerfil(perfil);
        id= perfil.getPkUsuario();
         status.setComplete();
