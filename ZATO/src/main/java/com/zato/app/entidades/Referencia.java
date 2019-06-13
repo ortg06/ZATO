@@ -25,7 +25,8 @@ import javax.persistence.Table;
 public class Referencia  implements java.io.Serializable {
 
 
-     private BigDecimal pkReferencia;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkReferencia;
      private CatalogoTipoReferencia catalogoTipoReferencia;
      private Cv cv;
      private String nombreReferencia;

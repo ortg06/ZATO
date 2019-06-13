@@ -24,7 +24,8 @@ import javax.persistence.Table;
 public class RolSubmenu  implements java.io.Serializable {
 
 
-     private BigDecimal idRolSubmenu;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal idRolSubmenu;
      private Rol rol;
      private Submenu submenu;
 

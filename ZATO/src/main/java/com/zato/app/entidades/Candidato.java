@@ -3,7 +3,6 @@ package com.zato.app.entidades;
 
 
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +30,8 @@ import javax.persistence.TemporalType;
 public class Candidato  implements java.io.Serializable {
 
 
-     private BigDecimal pkCandidato;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkCandidato;
      private CatalogoGenero catalogoGenero;
      private Municipio municipio;
      private String nombreCandidato;

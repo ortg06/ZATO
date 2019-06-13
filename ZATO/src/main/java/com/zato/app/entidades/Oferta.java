@@ -30,7 +30,8 @@ import javax.persistence.TemporalType;
 public class Oferta  implements java.io.Serializable {
 
 
-     private BigDecimal pkOferta;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkOferta;
      private CatalogoPuesto catalogoPuesto;
      private Empresa empresa;
      private Municipio municipio;

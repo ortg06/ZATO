@@ -30,7 +30,8 @@ import javax.persistence.TemporalType;
 public class Postulacion  implements java.io.Serializable {
 
 
-     private BigDecimal pkPostulacion;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkPostulacion;
      private Cv cv;
      private Oferta oferta;
      private Double porcentajeAcoplamiento;

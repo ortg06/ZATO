@@ -5,20 +5,14 @@
  */
 package com.zato.app.controllers;
 
-import com.zato.app.Servicios.IService;
-import com.zato.app.dao.IEmpresaDao;
-import com.zato.app.entidades.CatalogoSectorEmpresa;
-import com.zato.app.entidades.Departamento;
-import com.zato.app.entidades.Empresa;
-import com.zato.app.entidades.Municipio;
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.Blob;
-
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import com.zato.app.Servicios.IService;
+import com.zato.app.dao.IEmpresaDao;
+import com.zato.app.entidades.Empresa;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -24,7 +24,8 @@ import javax.persistence.Table;
 public class LicenciaOferta  implements java.io.Serializable {
 
 
-     private BigDecimal pkLicenciaOferta;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkLicenciaOferta;
      private CatalogoLicencia catalogoLicencia;
      private Oferta oferta;
 

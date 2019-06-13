@@ -26,7 +26,8 @@ import javax.persistence.UniqueConstraint;
 public class Resultado  implements java.io.Serializable {
 
 
-     private BigDecimal pkResultado;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkResultado;
      private Postulacion postulacion;
      private Prueba prueba;
      private String resultado;

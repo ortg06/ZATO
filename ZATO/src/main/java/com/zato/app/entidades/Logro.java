@@ -27,7 +27,8 @@ import javax.persistence.TemporalType;
 public class Logro  implements java.io.Serializable {
 
 
-     private BigDecimal pkLogro;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkLogro;
      private Cv cv;
      private String nombreLogro;
      private Date fechaLogro;

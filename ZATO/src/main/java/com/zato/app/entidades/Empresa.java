@@ -3,7 +3,6 @@ package com.zato.app.entidades;
 
 
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +27,8 @@ import javax.persistence.Table;
 public class Empresa  implements java.io.Serializable {
 
 
-     private BigDecimal pkEmpresa;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkEmpresa;
      private CatalogoSectorEmpresa catalogoSectorEmpresa;
      private CatalogoTipoEmpresa catalogoTipoEmpresa;
      private Municipio municipio;

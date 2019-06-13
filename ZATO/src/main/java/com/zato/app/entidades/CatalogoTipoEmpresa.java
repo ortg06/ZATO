@@ -25,7 +25,8 @@ import javax.persistence.Table;
 public class CatalogoTipoEmpresa  implements java.io.Serializable {
 
 
-     private BigDecimal pkTipoEmpresa;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkTipoEmpresa;
      private String nombreTipoEmpresa;
      private Set<Empresa> empresas = new HashSet<Empresa>(0);
 

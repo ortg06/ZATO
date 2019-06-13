@@ -25,7 +25,8 @@ import javax.persistence.Table;
 public class CatalogoGradoAcademico  implements java.io.Serializable {
 
 
-     private BigDecimal pkGradoAcademico;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkGradoAcademico;
      private String nombreGradoAcademico;
      private Set<ConocimientoAcademicos> conocimientoAcademicoses = new HashSet<ConocimientoAcademicos>(0);
      private Set<FormacionAcademica> formacionAcademicas = new HashSet<FormacionAcademica>(0);

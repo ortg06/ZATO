@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +25,8 @@ import javax.persistence.Table;
 public class CatalogoEscrito  implements java.io.Serializable {
 
 
-     private BigDecimal pkCatalogoEscrito;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkCatalogoEscrito;
      private String nombreTipoEscrito;
      private Set<Escrito> escritos = new HashSet<Escrito>(0);
 

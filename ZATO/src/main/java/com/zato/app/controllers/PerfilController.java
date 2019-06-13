@@ -5,23 +5,19 @@
  */
 package com.zato.app.controllers;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Rol;
-import java.math.BigDecimal;
 
-import java.util.Map;
-import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.data.jpa.domain.JpaSort.path;
-import static org.springframework.data.jpa.domain.JpaSort.path;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 

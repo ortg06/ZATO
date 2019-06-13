@@ -25,7 +25,8 @@ import javax.persistence.Table;
 public class Opciones  implements java.io.Serializable {
 
 
-     private BigDecimal pkOpciones;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkOpciones;
      private ItemPrueba itemPrueba;
      private String opcion;
      private double puntajeOpcion;

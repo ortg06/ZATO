@@ -27,7 +27,8 @@ import javax.persistence.TemporalType;
 public class Evento  implements java.io.Serializable {
 
 
-     private BigDecimal pkEvento;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkEvento;
      private Cv cv;
      private Pais pais;
      private String nombreEvento;

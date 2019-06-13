@@ -27,7 +27,8 @@ import javax.persistence.Table;
 public class Prueba  implements java.io.Serializable {
 
 
-     private BigDecimal pkPrueba;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkPrueba;
      private CatalogoTipoPrueba catalogoTipoPrueba;
      private String nombrePrueba;
      private Set<Resultado> resultados = new HashSet<Resultado>(0);

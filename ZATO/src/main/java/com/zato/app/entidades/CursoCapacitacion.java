@@ -27,7 +27,8 @@ import javax.persistence.TemporalType;
 public class CursoCapacitacion  implements java.io.Serializable {
 
 
-     private BigDecimal pkCursoCapacitacion;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkCursoCapacitacion;
      private Cv cv;
      private String nombreCursoCapacitacion;
      private Date fechaCurso;

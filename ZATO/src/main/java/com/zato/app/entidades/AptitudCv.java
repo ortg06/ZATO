@@ -24,7 +24,8 @@ import javax.persistence.Table;
 public class AptitudCv  implements java.io.Serializable {
 
 
-     private BigDecimal pkAptitudCv;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkAptitudCv;
      private CatalogoAptitud catalogoAptitud;
      private Cv cv;
 

@@ -27,7 +27,8 @@ import javax.persistence.Table;
 public class Submenu  implements java.io.Serializable {
 
 
-     private BigDecimal pkSubmenu;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkSubmenu;
      private Menu menu;
      private String submenu;
      private String orden;

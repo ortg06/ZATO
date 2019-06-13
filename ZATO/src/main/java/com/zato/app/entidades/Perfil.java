@@ -24,7 +24,8 @@ import javax.persistence.Table;
 public class Perfil  implements java.io.Serializable {
 
 
-     private BigDecimal pkUsuario;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkUsuario;
      private Candidato candidato;
      private Empresa empresa;
      private Rol rol;

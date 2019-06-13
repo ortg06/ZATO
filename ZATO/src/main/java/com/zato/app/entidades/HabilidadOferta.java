@@ -24,7 +24,8 @@ import javax.persistence.Table;
 public class HabilidadOferta  implements java.io.Serializable {
 
 
-     private BigDecimal pkHabilidadOferta;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkHabilidadOferta;
      private CatalogoHabilidad catalogoHabilidad;
      private Oferta oferta;
 

@@ -27,7 +27,8 @@ import javax.persistence.Table;
 public class Departamento  implements java.io.Serializable {
 
 
-     private BigDecimal pkDepartamento;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkDepartamento;
      private Pais pais;
      private String nombreDepartamento;
      private Set<Municipio> municipios = new HashSet<Municipio>(0);

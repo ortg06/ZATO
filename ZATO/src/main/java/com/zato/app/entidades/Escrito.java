@@ -27,7 +27,8 @@ import javax.persistence.TemporalType;
 public class Escrito  implements java.io.Serializable {
 
 
-     private BigDecimal pkEscrito;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkEscrito;
      private CatalogoEscrito catalogoEscrito;
      private Cv cv;
      private Date fechaPublicacion;

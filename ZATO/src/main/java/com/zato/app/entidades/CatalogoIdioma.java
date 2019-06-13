@@ -25,7 +25,8 @@ import javax.persistence.Table;
 public class CatalogoIdioma  implements java.io.Serializable {
 
 
-     private BigDecimal pkIdioma;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkIdioma;
      private String nombreIdioma;
      private Set<HabilidadLinguisicaOferta> habilidadLinguisicaOfertas = new HashSet<HabilidadLinguisicaOferta>(0);
      private Set<HabilidadLinguisticaCv> habilidadLinguisticaCvs = new HashSet<HabilidadLinguisticaCv>(0);

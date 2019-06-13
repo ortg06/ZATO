@@ -30,7 +30,8 @@ import javax.persistence.TemporalType;
 public class Cv  implements java.io.Serializable {
 
 
-     private BigDecimal pkCv;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkCv;
      private Candidato candidato;
      private String nombreCv;
      private Date fechaRegistro;

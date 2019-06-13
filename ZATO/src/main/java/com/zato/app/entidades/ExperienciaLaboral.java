@@ -27,7 +27,8 @@ import javax.persistence.TemporalType;
 public class ExperienciaLaboral  implements java.io.Serializable {
 
 
-     private BigDecimal pkExperienciaLaboral;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkExperienciaLaboral;
      private CatalogoSectorEmpresa catalogoSectorEmpresa;
      private Cv cv;
      private String nombreExpEmpresa;

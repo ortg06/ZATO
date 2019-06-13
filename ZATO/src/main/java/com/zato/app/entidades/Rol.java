@@ -25,7 +25,8 @@ import javax.persistence.Table;
 public class Rol  implements java.io.Serializable {
 
 
-     private BigDecimal pkRol;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkRol;
      private String nombreRol;
      private Set<Perfil> perfils = new HashSet<Perfil>(0);
      private Set<RolSubmenu> rolSubmenus = new HashSet<RolSubmenu>(0);

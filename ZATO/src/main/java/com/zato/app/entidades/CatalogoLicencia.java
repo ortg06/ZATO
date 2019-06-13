@@ -25,7 +25,8 @@ import javax.persistence.Table;
 public class CatalogoLicencia  implements java.io.Serializable {
 
 
-     private BigDecimal pkCatalogoLicencia;
+     private static final long serialVersionUID = 1L;
+    private BigDecimal pkCatalogoLicencia;
      private String nombreTipoLicencia;
      private Set<LicenciaOferta> licenciaOfertas = new HashSet<LicenciaOferta>(0);
      private Set<LicenciaCandidato> licenciaCandidatos = new HashSet<LicenciaCandidato>(0);
