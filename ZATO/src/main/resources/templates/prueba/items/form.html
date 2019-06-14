@@ -21,11 +21,20 @@ and open the template in the editor.
         <div class="container">
             <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
 
-          
+            <form th:action="@{/items/form}" th:object="${item}" method="post">
 
 
-               
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Pregunta:</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="text" th:field="*{pregunta}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('pregunta')}" th:errors="*{pregunta}"></small>
+                    </div>
+                </div>
 
+
+             
                 <div class="form-group row">
                     <div class="col-sm-6">
                         <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -36,6 +45,8 @@ and open the template in the editor.
 
 
 
-                    </div>
+            </form>
+
+        </div>
     </body>
 </html>

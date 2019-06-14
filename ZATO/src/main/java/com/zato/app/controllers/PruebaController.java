@@ -31,7 +31,7 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes("prueba")
 public class PruebaController {
     
-    
+    BigDecimal num= null;
      @Autowired
     private IService IService;
     
@@ -119,9 +119,11 @@ public class PruebaController {
     {
         ItemPrueba item = new ItemPrueba();
         Prueba prueba=null;
+        num=id;
+       
         model.put("prueba", IService.findOnePrueba(id));
         model.put("item", item);
-        model.put("titulo", "Datos de nueva pregunta");
+        model.put("titulo", "Nueva pregunta");
        
         return "prueba/items/form";
     }
@@ -130,6 +132,7 @@ public class PruebaController {
     public String guardarItem(ItemPrueba itemprueba, SessionStatus status)
     {
         IService.saveItem(itemprueba);
+        
         status.setComplete();
         return "redirect:/prueba/items/{id}";
     }

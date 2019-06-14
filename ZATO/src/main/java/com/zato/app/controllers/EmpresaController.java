@@ -114,14 +114,14 @@ public class EmpresaController {
                 empresa.setLogoEmpresa(content);
                 IService.saveEmpresa(empresa);
                 status.setComplete();
-                 repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
+                repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
             } catch (IOException e) {
 
                 e.printStackTrace();
             }
 
         }
-         repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
+        repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
         IService.saveEmpresa(empresa);
         status.setComplete();
 
