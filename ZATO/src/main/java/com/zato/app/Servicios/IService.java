@@ -22,6 +22,7 @@ import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Municipio;
 import com.zato.app.entidades.Oferta;
 
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -39,6 +40,7 @@ import com.zato.app.entidades.RolSubmenu;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.Cv;
+import com.zato.app.entidades.ExperienciaLaboral;
 
 /**
  *
@@ -244,5 +246,11 @@ public interface IService {
     public void saveCv(Cv cv);
     public Cv findOneCv (BigDecimal id);
     public void deleteCv(BigDecimal id);
+    
+     //EXPERICIA LABORAL
+    public List<ExperienciaLaboral> findAllExp();
+    public void saveExp(ExperienciaLaboral experiencia);
+    public ExperienciaLaboral findOneExp (BigDecimal id);
+    public void deleteExp(BigDecimal id);
 
 }

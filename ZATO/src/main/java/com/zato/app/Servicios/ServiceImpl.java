@@ -69,10 +69,12 @@ import com.zato.app.entidades.RolSubmenu;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.Cv;
+import com.zato.app.entidades.ExperienciaLaboral;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.zato.app.dao.IExperienciaLaboralDao;
 
 /**
  *
@@ -143,7 +145,8 @@ public class ServiceImpl implements IService {
     private IOpcionesDao opcionesDao;
     @Autowired
     private ICvDao cvDao;
-    
+    @Autowired
+    private IExperienciaLaboralDao experienciaDao;
     
 
     // PAISES
@@ -916,5 +919,29 @@ public class ServiceImpl implements IService {
         cvDao.delete(id);
     }
     
+    //EXPERIENCIA LABORAL
+    @Override
+    @Transactional(readOnly=true)
+    public List<ExperienciaLaboral>findAllExp(){
+        return(List<ExperienciaLaboral>) experienciaDao.findAll();
+    }
 
+    @Override
+    @Transactional
+    public void saveExp(ExperienciaLaboral experiencialaboral){
+        experienciaDao.save(experiencialaboral);
+    }
+
+    @Override
+    @Transactional
+    public ExperienciaLaboral findOneExp(BigDecimal id){
+        return experienciaDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteExp(BigDecimal id){
+        experienciaDao.delete(id);
+    }
+    
 }
