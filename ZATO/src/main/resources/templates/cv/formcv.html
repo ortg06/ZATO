@@ -46,7 +46,10 @@ and open the template in the editor.
             <br/>
             
             <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">exxperiencia laboral</div>
+                <div class="card-body">
+                    <h6> Experiencia Laboral </h6>
+                    <div th:replace="experiencialaboral/listar :: Experiencia"/>
+                </div>
             </div>
             <br/>
 

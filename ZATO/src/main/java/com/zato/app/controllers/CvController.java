@@ -85,7 +85,7 @@ public class CvController {
     } 
     
     @RequestMapping(value="Cv/formcv",method=RequestMethod.POST)
-    public void guardar(Cv cv, SessionStatus status)
+    public String guardar(Cv cv, SessionStatus status)
     {
         Candidato candidato= new Candidato();
         candidato=CandidatoService.findCandidato(num);
@@ -98,7 +98,7 @@ public class CvController {
         status.setComplete();
         cv.getPkCv();
         
-        //return "redirect:/candidato/ver/"+num;
+        return "redirect:/Cv/formcv/";
     }
     
     

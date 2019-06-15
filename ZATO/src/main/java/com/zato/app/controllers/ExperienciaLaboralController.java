@@ -6,11 +6,10 @@
 package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
-import com.zato.app.entidades.Candidato;
+import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.ExperienciaLaboral;
 import java.math.BigDecimal;
-import java.util.Date;
 
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,9 +58,11 @@ public class ExperienciaLaboralController {
     {
         ExperienciaLaboral experiencia = new ExperienciaLaboral();
         Cv cv = new Cv();
+        CatalogoSectorEmpresa sector = new CatalogoSectorEmpresa();
         num=id;
         model.put("experiencia", experiencia);
         model.put("cv",cv);
+        model.put("sector",sector);
         model.put("titulo", "Experiencia Laboral");
         return "Experiencia/formexp";
     }
@@ -108,7 +109,7 @@ public class ExperienciaLaboralController {
         {
             CvService.deleteExp(id);
         }
-        return "redirect:/submenu/listar";
+        return "redirect:/Experiencia/listar";
     }
     
 

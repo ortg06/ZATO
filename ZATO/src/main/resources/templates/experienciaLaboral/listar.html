@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+         <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+    </head>
+    <body>
+         <div th:replace="fragments/header :: header"/>
+        <h1 th:text="${titulo}"></h1>
+        
+        <div class="container" th:fragment="Experiencia">
+
+        <a class="btn btn-success btn-xs" th:href="@{/Experiencia/formexp/ }+ ${cv.pkCv}" >Agregar Experiencia Laboral</a>
+        
+        <table class="table table-striped">
+            <thead>
+                 <tr>
+                    <th>Acciones</th>
+                    <th>Empresa</th>
+                    <th>Cargo</th>
+                    <th>Periodo de Inicio</th>
+                    <th>Periodo Fin</th>
+                    <th>Funciones</th>
+                    <th>Nombre de Contacto</th>
+                    <th>Telefono de contacto</th>
+                    <th>Correo de contacto</th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr th:each="experiencia: ${experiencia}">
+                 <td>
+                    <a class="btn btn-danger btn-xs" th:href="@{/experiencia/eliminar/} + ${exeriencia.pkExperienciaLaboral}}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <td th:text="${experiencia.nombreExpEmpresa}"></td>
+                    <td th:text="${experiencia.cargo}"></td>
+                    <td th:text="${experiencia.periodoinicio}"></td>
+                    <td th:text="${experiencia.periodofin}"></td>
+                    <td th:text="${experiencia.descripcionFunciones}"></td>
+                    <td th:text="${experiencia.nombreContactoExp}"></td>
+                    <td th:text="${experiencia.telefonoContactoExp}"></td>
+                    <td th:text="${experiencia.correoContactoExp}"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+         <div th:replace="fragments/footer :: footer"></div>
+    </body>
+</html>
+
