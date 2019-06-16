@@ -49,9 +49,13 @@
                                     style="max-width: 25%;" th:src="*{'data:image/png;base64,'+imagen}"/>
 
 				<ul class="list-group">
-					<li class="list-group-item active" th:text="${candidato.nombreCandidato}"></li>
-					<li class="list-group-item" th:text="${candidato.apellidoCandidato}"></li>
-					<li class="list-group-item" th:text="${candidato.dui}"></li>
+          <h6>Nombre</h6>
+          <li class="list-group-item active" th:text="${candidato.nombreCandidato}"></li>
+          <h6>Apellido</h6>
+          <li class="list-group-item" th:text="${candidato.apellidoCandidato}"></li>
+          <h6>DUI</h6>
+          <li class="list-group-item" th:text="${candidato.dui}"></li>
+          <h6>Direccion</h6>
 					<li class="list-group-item" th:text="${candidato.direccion}"></li>
 				</ul>
 

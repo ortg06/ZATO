@@ -1,0 +1,29 @@
+<div th:replace="fragments/header :: header"/>
+<h1 th:text="${titulo}"></h1>
+
+<div class="container" th:fragment="CV">
+
+<a class="btn btn-success btn-xs" th:href="@{/Cv/formcv/ }+ ${candidato.pkCandidato}" >Agregar Curriculum</a>
+
+<table class="table table-striped">
+    <thead>
+         <tr>
+            <th>Acciones</th>
+            <th>Nombre del curriculum</th>
+            <th>Fecha de Registro</th>
+            <th>Actualizado</th>
+         </tr>
+    </thead>
+    <tbody>
+        <tr th:each="cv: ${cv}">
+         <td>
+            <a class="btn btn-primary btn-xs" th:href="@{/Cv/formcv/} + ${cv.pkCv}" th:text="'Ver'"></a>
+            <a class="btn btn-primary btn-xs" th:href="@{/Cv/formcv/ }+ ${cv.pkCv}}" th:text="'Editar'"></a>
+            <a class="btn btn-danger btn-xs" th:href="@{/Cv/eliminar/} + ${cv.pkCv}}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+            <td th:text="${cv.nombreCv}"></td>
+            <td th:text="${cv.fechaRegistro}"></td>
+            <td th:text="${cv.fechaActualizado}"></td>
+        </tr>
+    </tbody>
+</table>
+</div>
