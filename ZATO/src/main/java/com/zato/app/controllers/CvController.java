@@ -9,6 +9,7 @@ import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.Cv;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 
 @Controller
-@RequestMapping("/Cv")
+//@RequestMapping("/Cv")
 @SessionAttributes("Cv")
 public class CvController {
     
@@ -33,30 +34,43 @@ public class CvController {
     private IService CandidatoService; 
     BigDecimal num=null, numcv=null;
     
-      @GetMapping("/listar")
+      @GetMapping("/candidato /ver")
     public String listar(Model model)
     {
         model.addAttribute("titulo", "Mis Curriculums");
         model.addAttribute("cv",CvService.findAllCv());
        
-        return "Cv/listar";
+        return "candidato /ver";
     }
   
-     @RequestMapping(value="/nuevo/{id}",method=RequestMethod.GET)
-    public String crear( @PathVariable(value = "id") BigDecimal id, Map<String,Object> model)
+     @RequestMapping(value="Cv/formcv",method=RequestMethod.GET)
+    public String crear( Map<String,Object> model)
     {
         Cv cv = new Cv();
-        num=id;
+       
         model.put("cv", cv);
+        
         model.put("titulo", "Curriculum Vitae");
         return "Cv/formcv";
     }
     
-     @RequestMapping(value="/editar")
-    public String editar(Map<String,Object> model)
+     @RequestMapping(value="Cv/formcv/{id}",method=RequestMethod.GET)
+    public String crear( @PathVariable(value = "id") BigDecimal id, Map<String,Object> model)
+    {
+        Cv cv = new Cv();
+        Candidato candidato = new Candidato();
+        num=id;
+        model.put("cv", cv);
+        model.put("candidato",candidato);
+        model.put("titulo", "Curriculum Vitae");
+        return "Cv/formcv";
+    }
+    
+     @RequestMapping(value="Cv/editar/{id}")
+    public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
         Cv cv = null;
-        BigDecimal id= numcv; 
+        id= numcv; 
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
@@ -70,29 +84,34 @@ public class CvController {
         return "Cv/formcv";
     } 
     
-    @RequestMapping(value="/formcv",method=RequestMethod.POST)
+    @RequestMapping(value="Cv/formcv",method=RequestMethod.POST)
     public String guardar(Cv cv, SessionStatus status)
     {
         Candidato candidato= new Candidato();
         candidato=CandidatoService.findCandidato(num);
-        cv.setCandidato(candidato);
+        cv.setCandidato(candidato);//id candidato
+        Date fecha = new Date();
+        fecha.getDay();
+        cv.setFechaRegistro(fecha);
+        cv.setFechaActualizado(fecha);
         CvService.saveCv(cv);
         status.setComplete();
         cv.getPkCv();
-        return "redirect:/Cv/listar";
+        
+        return "redirect:/Cv/formcv/";
     }
     
     
-     @RequestMapping(value = "/eliminar/{id}")
-    public String eliminar()
+     @RequestMapping(value = "Cv/eliminar/{id}")
+    public String eliminar(@PathVariable(value="id") BigDecimal id)
     {
-        BigDecimal id= numcv; 
+        id= numcv; 
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
             CvService.deleteCv(id);
         }
-        return "redirect:/submenu/listar";
+        return "redirect:/Cv/listar";
     }
     
 }

@@ -9,30 +9,108 @@ and open the template in the editor.
         <title th:text="${titulo}">TODO supply a title</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+
     </head>
     <body>
-        <h1 th:text="${titulo}"></h1>
 
-        <form th:action="@{/Rol/form}" th:object="${rol}" method="post">
-            <table>
-                
-                
-               
-                <tr>
-                    <td>Nombre</td>
-                    <td><input type="text" th:field="*{nombreRol}"/></td>
-                </tr>
+        
+        <div class="container" >
+            <h1 th:text="${titulo}"></h1>
+            <div class="card shadow p-2 mb-2">
+                <div class="card-body">
+                    <form th:action="@{/Cv/formcv}" th:object="${cv}" method="post">
 
-                <tr>
-                    
-                    <td><input type="submit" value="Crear Rol"/></td>
-                </tr>
-            </table>
-              
-               
-                
-        </form>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Nombre del Curriculum: </label>
+                            <div class="col-sm-6">
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreCv}"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('nombreCv')}" th:errors="*{apellido}"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input type="submit" value="Siguiente" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <br/>
+            
+            <div id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">
+                    <h6> Experiencia Laboral </h6>
+                    <div th:replace="experiencialaboral/listar :: Experiencia"/>
+                </div>
+            </div>
+            <br/>
+
+            <div  id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">formacion academica</div>
+            </div>
+            <br/>
+            
+            <div id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">Cursos y Capacitaciones</div>
+            </div>
+            <br/>
+
+            <div id="seccion"  class="card shadow p-2 mb-2">
+                <div class="card-body">idiomas</div>
+            </div>
+            <br/>
+
+            <div id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">Conocimientos y Habilidades</div>
+            </div>
+            <br/>
+            
+            <div id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">Aptitudes</div>
+            </div>
+            <br/>
+            
+            <div id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">Conocimientos y Habilidades</div>
+            </div>
+            <br/>
+            
+            <div id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">Logros</div>
+            </div>
+            <br/>
+            
+            <div id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">Eventos</div>
+            </div>
+            <br/>
+            
+            <div id="seccion"  class="card shadow p-2 mb-2">
+                <div class="card-body">Escritos</div>
+            </div>
+            <br/>
+            
+            <div id="seccion" class="card shadow p-2 mb-2">
+                <div class="card-body">Licencias de conducir</div>
+            </div>
+            <br/>
+            
+            <div id="seccion"  class="card shadow p-2 mb-2">
+                <div class="card-body">Referencias</div>
+            </div>
+            <br/>
+
+        </div>
+        
+        
     </body>
 </html>
 
