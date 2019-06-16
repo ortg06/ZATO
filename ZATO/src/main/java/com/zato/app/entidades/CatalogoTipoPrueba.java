@@ -46,8 +46,8 @@ public class CatalogoTipoPrueba  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_TIPOPRUEBA", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT13")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_TIPOPRUEBA", allocationSize = 1, name = "SEQUENCE_INCREMENT13")
     @Column(name="PK_CAT_TIPO_PRUEBA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCatTipoPrueba() {
         return this.pkCatTipoPrueba;

@@ -62,8 +62,8 @@ public class Perfil  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")
-     @SequenceGenerator(sequenceName = "SEQUENCE_PERFIL", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT36")
+     @SequenceGenerator(sequenceName = "SEQUENCE_PERFIL", allocationSize = 1, name = "SEQUENCE_INCREMENT36")
     @Column(name="PK_USUARIO", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkUsuario() {
         return this.pkUsuario;

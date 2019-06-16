@@ -166,13 +166,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional(readOnly = true)
     public Pais findOne(BigDecimal id) {
-        return paisDao.findOne(id);
+        return paisDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void delete(BigDecimal id) {
-        paisDao.delete(id);
+        paisDao.deleteById(id);
     }
 
     // Departamentos
@@ -191,13 +191,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Departamento findOneDepartamento(BigDecimal id) {
-        return departamentoDao.findOne(id);
+        return departamentoDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteDepartamento(BigDecimal id) {
-        departamentoDao.delete(id);
+        departamentoDao.deleteById(id);
     }
 
     // Municipios
@@ -217,13 +217,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Municipio findOneMunicipio(BigDecimal id) {
-        return municipioDao.findOne(id);
+        return municipioDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteMunicipio(BigDecimal id) {
-        municipioDao.delete(id);
+        municipioDao.deleteById(id);
     }
 
     // CATALOGO PONDERACION
@@ -244,13 +244,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoPonderacion findOnePonderacion(BigDecimal id) {
-        return catalogoPonderacionDao.findOne(id);
+        return catalogoPonderacionDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deletePonderacion(BigDecimal id) {
-        catalogoPonderacionDao.delete(id);
+        catalogoPonderacionDao.deleteById(id);
     }
 
     // CATEGORIAS
@@ -269,13 +269,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoCategoria findOneCategoria(BigDecimal id) {
-        return categoriaDao.findOne(id);
+        return categoriaDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteCategoria(BigDecimal id) {
-        categoriaDao.delete(id);
+        categoriaDao.deleteById(id);
     }
 
     // Catalogo de Tipo de Prueba
@@ -294,13 +294,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoTipoPrueba findOnetprueba(BigDecimal id) {
-        return catalogoTipoPruebaDao.findOne(id);
+        return catalogoTipoPruebaDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deletetipoprueba(BigDecimal id) {
-        catalogoTipoPruebaDao.delete(id);
+        catalogoTipoPruebaDao.deleteById(id);
     }
 
     // Catalogo Sector Empresa
@@ -319,13 +319,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoSectorEmpresa findOneSector(BigDecimal id) {
-        return catalogoSectorEmpresaDao.findOne(id);
+        return catalogoSectorEmpresaDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteSector(BigDecimal id) {
-        catalogoSectorEmpresaDao.delete(id);
+        catalogoSectorEmpresaDao.deleteById(id);
     }
 
     // Catalogo Categoria Habilidad
@@ -345,13 +345,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoCategoriaHabilidad findOnecategoriaHabilidad(BigDecimal id) {
-        return catalogoHabilidadDao.findOne(id);
+        return catalogoHabilidadDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deletecategoriaHabilidad(BigDecimal id) {
-        catalogoHabilidadDao.delete(id);
+        catalogoHabilidadDao.deleteById(id);
     }
 
     // Catalogo Licencia
@@ -371,13 +371,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoLicencia findOnecatalogoLicencia(BigDecimal id) {
-        return catalogoLicenciaDao.findOne(id);
+        return catalogoLicenciaDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deletecatalogoLicencia(BigDecimal id) {
-        catalogoLicenciaDao.delete(id);
+        catalogoLicenciaDao.deleteById(id);
     }
 
     // Catalogo Genero
@@ -397,13 +397,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoGenero findOnecatalogoGenero(BigDecimal id) {
-        return catalogoGeneroDao.findOne(id);
+        return catalogoGeneroDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deletecatalogoGenero(BigDecimal id) {
-        catalogoGeneroDao.delete(id);
+        catalogoGeneroDao.deleteById(id);
     }
 
     // ROL
@@ -423,13 +423,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Rol findOneRol(BigDecimal id) {
-        return rolDao.findOne(id);
+        return rolDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteRol(BigDecimal id) {
-        rolDao.delete(id);
+        rolDao.deleteById(id);
     }
 
     // Menu
@@ -449,13 +449,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Menu findOneMenu(BigDecimal id) {
-        return menuDao.findOne(id);
+        return menuDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteMenu(BigDecimal id) {
-        menuDao.delete(id);
+        menuDao.deleteById(id);
     }
 
     // Submenu
@@ -475,13 +475,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Submenu findOneSubmenu(BigDecimal id) {
-        return submenuDao.findOne(id);
+        return submenuDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteSubmenu(BigDecimal id) {
-        submenuDao.delete(id);
+        submenuDao.deleteById(id);
     }
 
     // Catalogo Idioma
@@ -501,13 +501,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoIdioma findOneCatIdioma(BigDecimal id) {
-        return catIdiomaDao.findOne(id);
+        return catIdiomaDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteCatIdioma(BigDecimal id) {
-        catIdiomaDao.delete(id);
+        catIdiomaDao.deleteById(id);
     }
 
     // Catalogo Puestos
@@ -526,13 +526,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoPuesto findOneCatPuesto(BigDecimal id) {
-        return catPuestosDao.findOne(id);
+        return catPuestosDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteCatPuesto(BigDecimal id) {
-        catPuestosDao.delete(id);
+        catPuestosDao.deleteById(id);
     }
 
     // Catalogo Tipo Empresa
@@ -551,12 +551,12 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoTipoEmpresa findOneTipoEmpresa(BigDecimal id) {
-        return catalogoTipoEmpresaDao.findOne(id);
+        return catalogoTipoEmpresaDao.findById(id).orElse(null);
 
     }
 
     public void deleteTipoEmpresa(BigDecimal id) {
-        catalogoTipoEmpresaDao.delete(id);
+        catalogoTipoEmpresaDao.deleteById(id);
     }
 
     // EMPRESA
@@ -572,12 +572,12 @@ public class ServiceImpl implements IService {
 
     @Override
     public Empresa findOneEmpresa(BigDecimal id) {
-        return empresaDao.findOne(id);
+        return empresaDao.findById(id).orElse(null);
     }
 
     @Override
     public void deleteEmpresa(BigDecimal id) {
-        empresaDao.delete(id);
+        empresaDao.deleteById(id);
 
     }
 
@@ -598,13 +598,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoHabilidad findOneCatHabilidad(BigDecimal id) {
-        return catHabilidadDao.findOne(id);
+        return catHabilidadDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteCatHabilidad(BigDecimal id) {
-        catHabilidadDao.delete(id);
+        catHabilidadDao.deleteById(id);
     }
 
     // ROL SUBMENU
@@ -624,13 +624,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public RolSubmenu findOneRolS(BigDecimal id) {
-        return RolSubmenuDao.findOne(id);
+        return RolSubmenuDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public void deleteRolS(BigDecimal id) {
-        RolSubmenuDao.delete(id);
+        RolSubmenuDao.deleteById(id);
     }
 
 
@@ -648,12 +648,12 @@ public class ServiceImpl implements IService {
 
     @Override
     public Candidato findCandidato(BigDecimal id) {
-        return candidatoDao.findOne(id);
+        return candidatoDao.findById(id).orElse(null);
     }
 
     @Override
     public void deleteCandidato(BigDecimal id) {
-        candidatoDao.delete(id);
+        candidatoDao.deleteById(id);
     }
     
     //Catalogo Aptitudes
@@ -672,13 +672,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoAptitud findOneCatalogoAptitud(BigDecimal id){
-        return catalogoAptitudDao.findOne(id);
+        return catalogoAptitudDao.findById(id).orElse(null);
     }
     
      @Override
     @Transactional
     public void deleteCatalogoAptitud(BigDecimal id){
-        catalogoAptitudDao.delete(id);
+        catalogoAptitudDao.deleteById(id);
     }
     
     //Catalogo grado academico
@@ -697,13 +697,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoGradoAcademico findOneCatalogoGradoAcademico(BigDecimal id){
-        return catalogoGradoAcademicoDao.findOne(id);
+        return catalogoGradoAcademicoDao.findById(id).orElse(null);
     }
     
      @Override
     @Transactional
     public void deleteCatalogoGradoAcademico(BigDecimal id){
-        catalogoGradoAcademicoDao.delete(id);
+        catalogoGradoAcademicoDao.deleteById(id);
     }
     
     //Catalogo Escrito
@@ -722,13 +722,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoEscrito findOneCatalogoEscrito(BigDecimal id){
-        return catalogoEscritoDao.findOne(id);
+        return catalogoEscritoDao.findById(id).orElse(null);
     }
     
      @Override
     @Transactional
     public void deleteCatalogoEscrito(BigDecimal id){
-        catalogoEscritoDao.delete(id);
+        catalogoEscritoDao.deleteById(id);
     }
     
     //Catalogo Tipo Referencia
@@ -747,13 +747,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public CatalogoTipoReferencia findOneCatalogoTipoReferencia(BigDecimal id){
-        return catalogoTipoReferenciaDao.findOne(id);
+        return catalogoTipoReferenciaDao.findById(id).orElse(null);
     }
     
      @Override
     @Transactional
     public void deleteCatalogoTipoReferencia(BigDecimal id){
-        catalogoTipoReferenciaDao.delete(id);
+        catalogoTipoReferenciaDao.deleteById(id);
     }
     
     //PERFIL
@@ -773,13 +773,13 @@ public class ServiceImpl implements IService {
     @Override 
     @Transactional
     public Perfil findOnePerfil(BigDecimal id){
-        return PerfilDao.findOne(id);
+        return PerfilDao.findById(id).orElse(null);
     }
     
     @Override
     @Transactional
     public void deletePerfil(BigDecimal id){
-        PerfilDao.delete(id);
+        PerfilDao.deleteById(id);
     }
 
     //OFERTA
@@ -799,11 +799,11 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Oferta findOneOferta(BigDecimal id){
-        return OfertaDao.findOne(id);
+        return OfertaDao.findById(id).orElse(null);
     }
 
     public void deleteOferta(BigDecimal id){
-        OfertaDao.delete(id);
+        OfertaDao.deleteById(id);
     }
     
     
@@ -824,13 +824,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Prueba findOnePrueba(BigDecimal id){
-        return pruebaDao.findOne(id);
+        return pruebaDao.findById(id).orElse(null);
     }
 
       @Override
     @Transactional
     public void deletePrueba(BigDecimal id){
-        pruebaDao.delete(id);
+        pruebaDao.deleteById(id);
     }
     
    
@@ -851,13 +851,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public ItemPrueba findOneItem(BigDecimal id){
-        return itemDao.findOne(id);
+        return itemDao.findById(id).orElse(null);
     }
 
       @Override
     @Transactional
     public void deleteItem(BigDecimal id){
-        itemDao.delete(id);
+        itemDao.deleteById(id);
     }
 
     @Override
@@ -884,13 +884,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Opciones findOneOpcion(BigDecimal id){
-        return opcionesDao.findOne(id);
+        return opcionesDao.findById(id).orElse(null);
     }
 
       @Override
     @Transactional
     public void deleteOpcion(BigDecimal id){
-        opcionesDao.delete(id);
+        opcionesDao.deleteById(id);
     }
     
     //CV
@@ -910,13 +910,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public Cv findOneCv(BigDecimal id){
-        return cvDao.findOne(id);
+        return cvDao.findById(id).orElse(null);
     }
 
       @Override
     @Transactional
     public void deleteCv(BigDecimal id){
-        cvDao.delete(id);
+        cvDao.deleteById(id);
     }
     
     //EXPERIENCIA LABORAL
@@ -935,13 +935,13 @@ public class ServiceImpl implements IService {
     @Override
     @Transactional
     public ExperienciaLaboral findOneExp(BigDecimal id){
-        return experienciaDao.findOne(id);
+        return experienciaDao.findById(id).orElse(null);
     }
 
       @Override
     @Transactional
     public void deleteExp(BigDecimal id){
-        experienciaDao.delete(id);
+        experienciaDao.deleteById(id);
     }
     
 }

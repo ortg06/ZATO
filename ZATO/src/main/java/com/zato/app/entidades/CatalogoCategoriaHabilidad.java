@@ -46,8 +46,8 @@ public class CatalogoCategoriaHabilidad  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_CATEGORIAHABILIDAD", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT6")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_CATEGORIAHABILIDAD", allocationSize = 1, name = "SEQUENCE_INCREMENT6")
     @Column(name="PK_CATEGORIA_HABILIDAD", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCategoriaHabilidad() {
         return this.pkCategoriaHabilidad;

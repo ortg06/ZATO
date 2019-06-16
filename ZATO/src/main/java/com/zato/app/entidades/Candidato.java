@@ -92,8 +92,8 @@ public class Candidato  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_CANDIDATO", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT3")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_CANDIDATO", allocationSize = 1, name = "SEQUENCE_INCREMENT3")
     @Column(name="PK_CANDIDATO", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCandidato() {
         return this.pkCandidato;

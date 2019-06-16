@@ -40,8 +40,8 @@ public class HabilidadesCv  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_HABILIDADESCV", allocationSize = 1, name = "SEQUENCE_INCREMENT") 
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT24")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_HABILIDADESCV", allocationSize = 1, name = "SEQUENCE_INCREMENT24") 
     @Column(name="PK_HABILIDADES_CV", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkHabilidadesCv() {
         return this.pkHabilidadesCv;

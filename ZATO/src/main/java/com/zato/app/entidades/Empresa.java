@@ -85,8 +85,8 @@ public class Empresa  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_EMPRESA", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT19")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_EMPRESA", allocationSize = 1, name = "SEQUENCE_INCREMENT19")
     @Column(name="PK_EMPRESA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkEmpresa() {
         return this.pkEmpresa;

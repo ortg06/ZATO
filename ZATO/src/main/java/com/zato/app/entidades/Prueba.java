@@ -55,8 +55,8 @@ public class Prueba  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_PRUEBA", allocationSize = 1, name = "SEQUENCE_INCREMENT") 
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT38")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_PRUEBA", allocationSize = 1, name = "SEQUENCE_INCREMENT38") 
     @Column(name="PK_PRUEBA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkPrueba() {
         return this.pkPrueba;

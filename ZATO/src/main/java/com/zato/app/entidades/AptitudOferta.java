@@ -40,8 +40,8 @@ public class AptitudOferta  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_APTITUDOFERTA", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT2")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_APTITUDOFERTA", allocationSize = 1, name = "SEQUENCE_INCREMENT2")
     @Column(name="PK_APTITUD_OFERTA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkAptitudOferta() {
         return this.pkAptitudOferta;

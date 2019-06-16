@@ -60,8 +60,8 @@ public class CursoCapacitacion  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_CURSOCAPACITACION", allocationSize = 1, name = "SEQUENCE_INCREMENT")
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT16")    
+     @SequenceGenerator(sequenceName = "SEQUENCE_CURSOCAPACITACION", allocationSize = 1, name = "SEQUENCE_INCREMENT16")
     @Column(name="PK_CURSO_CAPACITACION", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCursoCapacitacion() {
         return this.pkCursoCapacitacion;
