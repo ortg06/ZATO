@@ -141,6 +141,8 @@ public class CandidatoController {
         model.put("titulo", "Datos de Candidato");
         model.put("generos", candidatoService.findAllcatalogoGenero());
         model.put("municipios", candidatoService.findAllmun());
+        model.put("paises",candidatoService.findAll());
+        model.put("departamentos",candidatoService.findAlldep());
 
         return "candidato/form";
 
