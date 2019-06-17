@@ -140,9 +140,12 @@ public class CandidatoController {
         model.put("imagen", imagen64);
         model.put("titulo",
                 "Perfil Usuario : " + candidato.getNombreCandidato() + " " + candidato.getApellidoCandidato());
+        
         model.put("pais",pais);
         model.put("departamento",departamento);
         
+        
+
         //listar cv
         cvcontroller.listar(candidato, (Model) model);
         return "Candidato/ver";
