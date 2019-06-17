@@ -246,6 +246,7 @@ public interface IService {
     public void saveCv(Cv cv);
     public Cv findOneCv (BigDecimal id);
     public void deleteCv(BigDecimal id);
+    public List<Cv> findCandidatobyCv(Candidato candidato);
     
      //EXPERICIA LABORAL
     public List<ExperienciaLaboral> findAllExp();

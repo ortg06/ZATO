@@ -34,6 +34,8 @@ public class CandidatoController {
 
     @Autowired
     private IService candidatoService;
+    
+    CvController cvcontroller =new CvController();
 
     @GetMapping("/listar")
     public String listar(Model model) {
@@ -130,6 +132,9 @@ public class CandidatoController {
         model.put("imagen", imagen64);
         model.put("titulo",
                 "Perfil Usuario : " + candidato.getNombreCandidato() + " " + candidato.getApellidoCandidato());
+        
+        //listar cv
+        cvcontroller.listar(candidato, (Model) model);
         return "Candidato/ver";
     }
 
