@@ -34,13 +34,14 @@ public class CvController {
     private IService CandidatoService; 
     BigDecimal num=null, numcv=null;
     
-      @GetMapping("/candidato /ver")
-    public String listar(Model model)
+    @GetMapping("/candidato/ver/{id}")
+    public String listar(@PathVariable(value="id") Candidato id,Model model)
     {
-        model.addAttribute("titulo", "Mis Curriculums");
-        model.addAttribute("cv",CvService.findAllCv());
+        Candidato candidato=null;
+        model.addAttribute("candidato",id);
+        model.addAttribute("cv",CvService.findCandidatobyCv(id));
        
-        return "candidato /ver";
+        return "candidato/ver";
     }
   
      @RequestMapping(value="Cv/formcv",method=RequestMethod.GET)

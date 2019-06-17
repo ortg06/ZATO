@@ -37,6 +37,8 @@ public class CandidatoController {
 
     @Autowired
     private IService candidatoService;
+    
+    CvController cvcontroller =new CvController();
 
     @GetMapping("/listar")
     public String listar(Model model) {
@@ -140,6 +142,9 @@ public class CandidatoController {
                 "Perfil Usuario : " + candidato.getNombreCandidato() + " " + candidato.getApellidoCandidato());
         model.put("pais",pais);
         model.put("departamento",departamento);
+        
+        //listar cv
+        cvcontroller.listar(candidato, (Model) model);
         return "Candidato/ver";
     }
 

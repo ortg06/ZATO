@@ -919,6 +919,12 @@ public class ServiceImpl implements IService {
         cvDao.delete(id);
     }
     
+     @Override
+    @Transactional(readOnly=true)
+    public List<Cv>findCandidatobyCv(Candidato candidato){
+        return(List<Cv>) cvDao.findCandidatobyCv(candidato);
+    }
+    
     //EXPERIENCIA LABORAL
     @Override
     @Transactional(readOnly=true)
