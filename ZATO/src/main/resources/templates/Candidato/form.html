@@ -12,6 +12,7 @@ and open the template in the editor.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/formCandidato.css}" />
     <link rel="icon" type="image/x-icon" href="/templates/img/favicon.ico" />
 </head>
 
@@ -105,7 +106,7 @@ and open the template in the editor.
                     <select id="catalogoGenero" class="col-sm-10 form-control form-control-sm" name="catalogoGenero">
 
                         <option th:each="genero : ${generos}" th:value="${genero.pkGenero}" 
-                                th:selected="${genero.pkGenero==p}" th:text="${genero.nombreGenero}">
+                                th:selected="${genero.pkGenero==g}" th:text="${genero.nombreGenero}">
                         </option>
                     </select>
                 </div>

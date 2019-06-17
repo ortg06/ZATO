@@ -7,6 +7,9 @@ import java.util.Map;
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.ICandidatoDao;
 import com.zato.app.entidades.Candidato;
+import com.zato.app.entidades.Departamento;
+import com.zato.app.entidades.Municipio;
+import com.zato.app.entidades.Pais;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +77,9 @@ public class CandidatoController {
         model.put("paises",candidatoService.findAll());
         model.put("departamentos",candidatoService.findAlldep());
         model.put("municipios", candidatoService.findAllmun());
+        model.put("generos", candidatoService.findAllcatalogoGenero());
         model.put("candidato", candidato);
+        model.put("g",candidato.getCatalogoGenero().getPkGenero());
         model.put("titulo", "Editar Candidato");
         return "candidato/form";
     }
@@ -105,7 +110,7 @@ public class CandidatoController {
         candidatoService.saveCandidato(candidato);
         // LLAMADA AL PROCEDIMIENTO: actualizarperfilcandidato
         // parametros: (LLAVE CANDIDATO, LLAVE PERFIL)
-        repo.updatePerfilCandidato(candidato.getPkCandidato(), num);
+        //repo.updatePerfilCandidato(candidato.getPkCandidato(), num);
 
         status.setComplete();
 
@@ -124,12 +129,17 @@ public class CandidatoController {
     @RequestMapping(value = "/ver/{id}")
     public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Candidato candidato = candidatoService.findCandidato(id);
+        Municipio municipio = candidatoService.findOneMunicipio(candidato.getMunicipio().getPkMunicipio());
+        Departamento departamento = candidatoService.findOneDepartamento(municipio.getDepartamento().getPkDepartamento());
+        Pais pais = candidatoService.findOne(departamento.getPais().getPkPais());
 
         String imagen64 = Base64.encodeBase64String(candidato.getFotoCandidato());
         model.put("candidato", candidato);
         model.put("imagen", imagen64);
         model.put("titulo",
                 "Perfil Usuario : " + candidato.getNombreCandidato() + " " + candidato.getApellidoCandidato());
+        model.put("pais",pais);
+        model.put("departamento",departamento);
         return "Candidato/ver";
     }
 

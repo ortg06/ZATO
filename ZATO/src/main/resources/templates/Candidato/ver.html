@@ -41,12 +41,12 @@
                     <div class="card bg-light">
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
-			
 				<img th:if="${candidato.fotoCandidato == null}" class="img-thumbnail rounded float-left"
                                     style="max-width: 25%;" th:src="@{/imagenes/nofoto.png}"/>
 						 
 				<img th:unless="${candidato.fotoCandidato == null}" class="img-thumbnail rounded float-left"
                                     style="max-width: 25%;" th:src="*{'data:image/png;base64,'+imagen}"/>
+				
 
 				<ul class="list-group">
           <h6>Nombre</h6>
@@ -66,7 +66,7 @@
                 </div>
                 <div id="menu1" class="container tab-pane fade"><br/>
                     <h3>Datos Personales</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <div th:replace="Candidato/datos :: Datos"/>
                 </div>
                 <div id="menu2" class="container tab-pane fade"><br/>
                     <h3>Mis Curriculums</h3>

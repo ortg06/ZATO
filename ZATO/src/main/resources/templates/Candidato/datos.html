@@ -1,29 +1,135 @@
-<div th:replace="fragments/header :: header"/>
-<h1 th:text="${titulo}"></h1>
+<div class="container" th:fragment="Datos">
 
-<div class="container" th:fragment="CV">
 
-<a class="btn btn-success btn-xs" th:href="@{/Cv/formcv/ }+ ${candidato.pkCandidato}" >Agregar Curriculum</a>
+    <div
+        class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 
-<table class="table table-striped">
-    <thead>
-         <tr>
-            <th>Acciones</th>
-            <th>Nombre del curriculum</th>
-            <th>Fecha de Registro</th>
-            <th>Actualizado</th>
-         </tr>
-    </thead>
-    <tbody>
-        <tr th:each="cv: ${cv}">
-         <td>
-            <a class="btn btn-primary btn-xs" th:href="@{/Cv/formcv/} + ${cv.pkCv}" th:text="'Ver'"></a>
-            <a class="btn btn-primary btn-xs" th:href="@{/Cv/formcv/ }+ ${cv.pkCv}}" th:text="'Editar'"></a>
-            <a class="btn btn-danger btn-xs" th:href="@{/Cv/eliminar/} + ${cv.pkCv}}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
-            <td th:text="${cv.nombreCv}"></td>
-            <td th:text="${cv.fechaRegistro}"></td>
-            <td th:text="${cv.fechaActualizado}"></td>
-        </tr>
-    </tbody>
-</table>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title" th:text="${titulo}"></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 " align="center">
+
+                        <img th:if="${candidato.fotoCandidato == null}" class="img-thumbnail rounded float-left"
+                            style="max-width: 25%;" th:src="@{/imagenes/nofoto.png}" />
+
+                        <img th:unless="${candidato.fotoCandidato == null}" class="img-thumbnail rounded float-left"
+                            style="max-width: 25%;" th:src="*{'data:image/png;base64,'+imagen}" />
+
+                    </div>
+
+                    <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                <dl>
+                  <dt>DEPARTMENT:</dt>
+                  <dd>Administrator</dd>
+                  <dt>HIRE DATE</dt>
+                  <dd>11/12/2013</dd>
+                  <dt>DATE OF BIRTH</dt>
+                     <dd>11/12/2013</dd>
+                  <dt>GENDER</dt>
+                  <dd>Male</dd>
+                </dl>
+              </div>-->
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                                <tr>
+                                    <td>Nombres:</td>
+                                    <td th:text="${candidato.nombreCandidato}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Apellidos</td>
+                                    <td th:text="${candidato.apellidoCandidato}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Genero</td>
+                                    <td th:text="${candidato.catalogoGenero.nombreGenero}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Fecha Nacimiento</td>
+                                    <td th:text="${candidato.fechaNacimiento}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Pais Origen</td>
+                                    <td th:text="${pais.nombrePais}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Nacionalidad</td>
+                                    <td th:text="${candidato.nacionalidad}"></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Departamento Origen</td>
+                                    <td th:text="${departamento.nombreDepartamento}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Municipio Origen</td>
+                                    <td th:text="${candidato.municipio.nombreMunicipio}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Direccion</td>
+                                    <td th:text="${candidato.direccion}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                </tr>
+                                <tr>
+                                    <td>NIT</td>
+                                    <td th:text="${candidato.nit}"></td>
+                                </tr>
+                                <tr>
+                                    <td>NUP</td>
+                                    <td th:text="${candidato.nup}"></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Telefono</td>
+                                    <td th:text="${candidato.telefono}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Celular </td>
+                                    <td th:text="${candidato.celular}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Pasaporte</td>
+                                    <td th:text="${candidato.pasaporte}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Facebook</td>
+                                    <td th:text="${candidato.facebook}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Twitter</td>
+                                    <td th:text="${candidato.twitter}"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                
+                <span class="pull-right">
+                    
+                        <a th:href="@{/candidato/editar/} + ${candidato.pkCandidato}" class="btn btn-warning btn-xs">Editar Candidato</a>
+                </span>
+            </div>
+
+        </div>
+    </div>
 </div>
