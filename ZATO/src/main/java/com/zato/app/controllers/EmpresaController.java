@@ -114,6 +114,8 @@ public class EmpresaController {
                 empresa.setLogoEmpresa(content);
                 IService.saveEmpresa(empresa);
                 status.setComplete();
+                //Procedimiento: ACTUALIZARPERFILEMPRESA
+                //parametros: (pk empresa,pk perfil)
                 repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
             } catch (IOException e) {
 
@@ -121,6 +123,8 @@ public class EmpresaController {
             }
 
         }
+         //Procedimiento: ACTUALIZARPERFILEMPRESA
+        //parametros: (pk empresa,pk perfil)
         repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
         IService.saveEmpresa(empresa);
         status.setComplete();

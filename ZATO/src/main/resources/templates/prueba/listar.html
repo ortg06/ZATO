@@ -21,25 +21,26 @@ and open the template in the editor.
             <div class="row">  
 
                 <div class="col-lg-10 col-md-10">    
-                    <a th:href="@{/prueba/nuevo}" class="btn btn-success btn-xs">Nueva Prueba</a>
+                    <a th:href="@{/prueba/nuevo/}+${oferta.pkOferta}" class="btn btn-success btn-xs">Nueva Prueba</a>
 
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Acciones</th>
-
                                 <th>Nombre</th>
+                                <th>Tipo de Prueba</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="prueba: ${pruebas}">
+                            <tr th:each="po: ${pos}">
 
-                                <td><a class="btn btn-success btn-xs" th:href="@{/prueba/items/} + ${prueba.pkPrueba}" th:text="'+'"></a>
-                                    <a class="btn btn-primary btn-xs" th:href="@{/prueba/editar/} + ${prueba.pkPrueba}" th:text="'Editar'"></a>
-                                    <a class="btn btn-danger btn-xs" th:href="@{/prueba/eliminar/} + ${prueba.pkPrueba}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
+                                <td><a class="btn btn-success btn-xs" th:href="@{/prueba/items/} + ${po.prueba.pkPrueba}" th:text="'+'"></a>
+                                    <a class="btn btn-primary btn-xs" th:href="@{/prueba/editar/} + ${po.prueba.pkPrueba}" th:text="'Editar'"></a>
+                                    <a class="btn btn-danger btn-xs" th:href="@{/prueba/eliminar/} + ${po.prueba.pkPrueba}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
                                 </td>
 
-                                <td th:text="${prueba.nombrePrueba}"></td>
+                                <td th:text="${po.prueba.nombrePrueba}"></td>
+                                <td th:text="${po.prueba.catalogoTipoPrueba.nombreTipoPrueba}"></td>
                             </tr>
                         </tbody>
                     </table>

@@ -75,6 +75,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.zato.app.dao.IExperienciaLaboralDao;
+import com.zato.app.dao.IPruebaOfertaDao;
+import com.zato.app.entidades.PruebaOferta;
 
 /**
  *
@@ -147,6 +149,9 @@ public class ServiceImpl implements IService {
     private ICvDao cvDao;
     @Autowired
     private IExperienciaLaboralDao experienciaDao;
+    @Autowired
+    private IPruebaOfertaDao pruebaofertaDao;
+    
     
 
     // PAISES
@@ -949,5 +954,41 @@ public class ServiceImpl implements IService {
     public void deleteExp(BigDecimal id){
         experienciaDao.delete(id);
     }
+
     
+    //Prueba Oferta
+    @Override
+     @Transactional(readOnly=true)
+    public List<PruebaOferta> findPruebaOfertabyOferta(Oferta oferta) {
+       return(List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyOferta(oferta);
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<PruebaOferta>findAllPruebaOfertas(){
+        return(List<PruebaOferta>) pruebaofertaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void savePruebaOferta(PruebaOferta pruebaoferta){
+        pruebaofertaDao.save(pruebaoferta);
+    }
+
+    @Override
+    @Transactional
+    public PruebaOferta findOnePruebaOferta(BigDecimal id){
+        return pruebaofertaDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deletePruebaOferta(BigDecimal id){
+        pruebaofertaDao.delete(id);
+    }
+
+    @Override
+    public List<PruebaOferta> findPruebaOfertabyPruebaOferta(Oferta oferta, Prueba prueba) {
+         return(List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyPruebaOferta(oferta, prueba);
+    }
 }

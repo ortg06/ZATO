@@ -41,6 +41,7 @@ import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.PruebaOferta;
 
 /**
  *
@@ -218,7 +219,15 @@ public interface IService {
     public void deleteOferta(BigDecimal id);
     
     
+    //PruebaOferta
+    public List<PruebaOferta> findPruebaOfertabyOferta(Oferta oferta);
+    public List<PruebaOferta> findAllPruebaOfertas();
+    public void savePruebaOferta(PruebaOferta pruebaoferta);
+    public PruebaOferta findOnePruebaOferta(BigDecimal id);
+    public void deletePruebaOferta(BigDecimal id);
     
+    //OBTENER PRUEBASOFERTA SEGUN OFERTA Y PRUEBA
+    public List<PruebaOferta> findPruebaOfertabyPruebaOferta(Oferta oferta,Prueba prueba);
     
      //Prueba
     public List<Prueba> findAllPruebas();
