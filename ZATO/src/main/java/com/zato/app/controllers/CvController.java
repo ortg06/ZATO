@@ -72,10 +72,10 @@ public class CvController {
             cv = CvService.findOneCv(id);
           
         } else {
-            return "redirect:/Cv/listar";
+            return "redirect:/candidato/ver";
         }
         model.put("cv", cv);
-        model.put("titulo", "Actualizar Curriculum");
+        model.put("titulo", "Actualizar Curriculum Vitae");
         return "Cv/formcv";
     } 
     
@@ -106,7 +106,7 @@ public class CvController {
         {
             CvService.deleteCv(id);
         }
-        return "redirect:/Cv/listar";
+        return "redirect:/candidato/ver";
     }
     
      @RequestMapping(value = "Cv/verCv/{id}")

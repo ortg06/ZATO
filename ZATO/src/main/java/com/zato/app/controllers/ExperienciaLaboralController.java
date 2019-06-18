@@ -23,54 +23,50 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
-@RequestMapping("/Experiencia")
-@SessionAttributes("Experiencia")
+//@RequestMapping("/Experiencia")
+@SessionAttributes("experienciaLaboral")
 public class ExperienciaLaboralController {
     
-      @Autowired
+    @Autowired
     private IService experienciaService;
     @Autowired
     private IService CvService; 
-    BigDecimal num=null;
+    @Autowired
+    private IService sectorService;
     
-    @GetMapping("/listar")
-    public String listar(Model model)
+    BigDecimal numcv=null;
+    
+    ExperienciaLaboral experiencia = new ExperienciaLaboral();
+    Cv cv = new Cv();
+    CatalogoSectorEmpresa sector = new CatalogoSectorEmpresa();
+    
+    @GetMapping("/Cv/verCv/{id}")
+    public String listar(@PathVariable(value="id") Cv id,Model model)
     {
-        model.addAttribute("titulo", "Experiencia Laboral");
-        model.addAttribute("experiencia",experienciaService.findAllExp());
+        cv=null;
+        model.addAttribute("cv",id);
+        model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(id));
        
-        return "Experiencia/listar";
+        return "Cv/verCv";
     }
   
-     @RequestMapping(value="/formexp",method=RequestMethod.GET)
-    public String crear( Map<String,Object> model)
+     @RequestMapping(value="experienciaLaboral/formexp/{id}",method=RequestMethod.GET)
+    public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
-        ExperienciaLaboral experiencia = new ExperienciaLaboral();
-       
-        model.put("experiencia", experiencia);
         
-        model.put("titulo", "Experiencia Laboral");
-        return "Experiencia/formexp";
-    }
-    
-     @RequestMapping(value="/formexp/{id}",method=RequestMethod.GET)
-    public String crear( @PathVariable(value = "id") BigDecimal id, Map<String,Object> model)
-    {
-        ExperienciaLaboral experiencia = new ExperienciaLaboral();
-        Cv cv = new Cv();
-        CatalogoSectorEmpresa sector = new CatalogoSectorEmpresa();
-        num=id;
         model.put("experiencia", experiencia);
-        model.put("cv",cv);
-        model.put("sector",sector);
+        model.put("sector",sectorService.findAllSectores());
         model.put("titulo", "Experiencia Laboral");
-        return "Experiencia/formexp";
+        
+        return "experienciaLaboral/formexp";
     }
     
-     @RequestMapping(value="/editar/{id}")
+     
+    
+     @RequestMapping(value="experienciaLaboral/editar/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
-        ExperienciaLaboral experiencia = null;
+        experiencia = null;
        
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
@@ -78,38 +74,38 @@ public class ExperienciaLaboralController {
             experiencia = experienciaService.findOneExp(id);
           
         } else {
-            return "redirect:/Experiencia/listar";
+            return "redirect:/Cv/verCv";
         }
         model.put("experiencia", experiencia);
+        model.put("sector",sectorService.findAllSectores());
         model.put("titulo", "Actualizar Experiencia");
-        return "Experiencia/formexp";
+        return "experienciaLaboral/formexp";
     } 
     
-    @RequestMapping(value="/formexp",method=RequestMethod.POST)
-    public void guardar(ExperienciaLaboral experiencia, SessionStatus status)
+    @RequestMapping(value="experienciaLaboral/formexp",method=RequestMethod.POST)
+    public String guardar(ExperienciaLaboral experiencia, SessionStatus status)
     {
-        Cv cv= new Cv();
-        cv=CvService.findOneCv(num);
-        experiencia.setCv(cv);//id candidato
+        cv=CvService.findOneCv(numcv);
+        experiencia.setCv(cv);//id cv
         
-        CvService.saveExp(experiencia);
+        experienciaService.saveExp(experiencia);
         status.setComplete();
-        cv.getPkCv();
         
-        //return "redirect:/candidato/ver/"+num;
+        
+        return "redirect:/Cv/verCv";
     }
     
     
-     @RequestMapping(value = "/eliminar/{id}")
+     @RequestMapping(value = "experienciaLaboral/eliminar/{id}")
     public String eliminar(@PathVariable(value="id") BigDecimal id)
     {
          
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            CvService.deleteExp(id);
+            experienciaService.deleteExp(id);
         }
-        return "redirect:/Experiencia/listar";
+        return "redirect:/Cv/verCv";
     }
     
 

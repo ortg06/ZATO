@@ -954,6 +954,13 @@ public class ServiceImpl implements IService {
     public void deleteExp(BigDecimal id){
         experienciaDao.delete(id);
     }
+    
+      @Override
+    @Transactional(readOnly=true)
+    public List<ExperienciaLaboral>findCvbyExperiencia(Cv cv){
+        return(List<ExperienciaLaboral>) experienciaDao.findCvbyExperiencia(cv);
+    }
+    
 
     
     //Prueba Oferta

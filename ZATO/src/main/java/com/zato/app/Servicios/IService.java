@@ -262,5 +262,6 @@ public interface IService {
     public void saveExp(ExperienciaLaboral experiencia);
     public ExperienciaLaboral findOneExp (BigDecimal id);
     public void deleteExp(BigDecimal id);
+    public List<ExperienciaLaboral> findCvbyExperiencia(Cv cv);
 
 }
