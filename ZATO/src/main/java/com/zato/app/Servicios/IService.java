@@ -41,6 +41,7 @@ import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.Logro;
 import com.zato.app.entidades.PruebaOferta;
 
 /**
@@ -263,5 +264,12 @@ public interface IService {
     public ExperienciaLaboral findOneExp (BigDecimal id);
     public void deleteExp(BigDecimal id);
     public List<ExperienciaLaboral> findCvbyExperiencia(Cv cv);
+    
+     //LOGRO
+    public List<Logro> findAllLogro();
+    public void saveLogro(Logro logro);
+    public Logro findOneLogro (BigDecimal id);
+    public void deleteLogro(BigDecimal id);
+    public List<Logro> findCvbyLogro(Cv cv);
 
 }

@@ -6,9 +6,8 @@
 package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
-import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.Cv;
-import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.Logro;
 import java.math.BigDecimal;
 
 import java.util.Map;
@@ -23,72 +22,68 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
-//@RequestMapping("/Experiencia")
-@SessionAttributes("experienciaLaboral")
-public class ExperienciaLaboralController {
+@SessionAttributes("Logro")
+public class LogroController {
     
-    @Autowired
-    private IService experienciaService;
+     @Autowired
+    private IService logroService;
     @Autowired
     private IService CvService; 
-    @Autowired
-    private IService sectorService;
+    
     
     BigDecimal numcv=null;
     
-    ExperienciaLaboral experiencia = new ExperienciaLaboral();
+    Logro logro = new Logro();
     Cv cv = new Cv();
-    CatalogoSectorEmpresa sector = new CatalogoSectorEmpresa();
     
-   /* @GetMapping("/Cv/verCv/{id}")
+    
+  /*  @GetMapping("/Cv/verCv/{id}")
     public String listar(@PathVariable(value="id") Cv id,Model model)
     {
         cv=null;
         model.addAttribute("cv",id);
-        model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(id));
+        model.addAttribute("logro",logroService.findCvbyLogro(cv));
        
         return "Cv/verCv";
     }*/
   
-     @RequestMapping(value="experienciaLaboral/formexp/{id}",method=RequestMethod.GET)
+     @RequestMapping(value="Logro/formlo/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
         numcv=id;
-        model.put("experiencia", experiencia);
-        model.put("sectores",sectorService.findAllSectores());
-        model.put("titulo", "Experiencia Laboral");
+        model.put("logro", logro);
+        model.put("titulo", "Logros");
         
-        return "experienciaLaboral/formexp";
+        return "Logro/formlo";
     }
     
      
     
-     @RequestMapping(value="experienciaLaboral/editar/{id}")
+     @RequestMapping(value="Logro/editar/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
-        experiencia = null;
+        
        
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            experiencia = experienciaService.findOneExp(id);
+            logro = logroService.findOneLogro(id);
           
         } else {
             return "redirect:/Cv/verCv";
         }
-        model.put("experiencia", experiencia);
-        model.put("sector",sectorService.findAllSectores());
-        model.put("titulo", "Actualizar Experiencia");
-        return "experienciaLaboral/formexp";
+        model.put("logro", logro);
+        model.put("titulo", "Actualizar Logro");
+        return "Logro/formlo";
     } 
     
-    @RequestMapping(value="experienciaLaboral/formexp",method=RequestMethod.POST)
-    public String guardar(ExperienciaLaboral experiencia, SessionStatus status)
+    @RequestMapping(value="Logro/formlo",method=RequestMethod.POST)
+    public String guardar(Logro logro, SessionStatus status)
     {
         cv=CvService.findOneCv(numcv);
-        experiencia.setCv(cv);//id cv
+        logro.setCv(cv);//id cv
         
-        experienciaService.saveExp(experiencia);
+        logroService.saveLogro(logro);
         status.setComplete();
         
         
@@ -96,18 +91,18 @@ public class ExperienciaLaboralController {
     }
     
     
-     @RequestMapping(value = "experienciaLaboral/eliminar/{id}")
+     @RequestMapping(value = "Logro/eliminar/{id}")
     public String eliminar(@PathVariable(value="id") BigDecimal id)
     {
          
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            experienciaService.deleteExp(id);
+            logroService.deleteLogro(id);
         }
         return "redirect:/Cv/verCv";
     }
     
-
+    
     
 }

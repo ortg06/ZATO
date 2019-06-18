@@ -20,7 +20,8 @@ and open the template in the editor.
         <div th:replace="fragments/header :: header"/>
         <div class="container" >
             
-            <h1 th:text="${titulo}"></h1>
+            <h1>Curriculum Vitae</h1>
+            
             <div class="card shadow p-2 mb-2">
                 <div class="card-body">
 
@@ -36,6 +37,7 @@ and open the template in the editor.
 
                 </div>
             </div>
+            <br/>
             
             <div id="seccion" class="card shadow p-2 mb-2">
                 <div class="card-body">
@@ -76,7 +78,9 @@ and open the template in the editor.
             <br/>
             
             <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Logros</div>
+                <div class="card-body">Logros
+                <div th:replace="Logro/listar :: LOGRO"/>
+                </div>
             </div>
             <br/>
             

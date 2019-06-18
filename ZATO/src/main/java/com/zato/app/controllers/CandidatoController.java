@@ -131,9 +131,9 @@ public class CandidatoController {
     @RequestMapping(value = "/ver/{id}")
     public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Candidato candidato = candidatoService.findCandidato(id);
-        Municipio municipio = candidatoService.findOneMunicipio(candidato.getMunicipio().getPkMunicipio());
-        Departamento departamento = candidatoService.findOneDepartamento(municipio.getDepartamento().getPkDepartamento());
-        Pais pais = candidatoService.findOne(departamento.getPais().getPkPais());
+        //Municipio municipio = candidatoService.findOneMunicipio(candidato.getMunicipio().getPkMunicipio());
+       // Departamento departamento = candidatoService.findOneDepartamento(municipio.getDepartamento().getPkDepartamento());
+       // Pais pais = candidatoService.findOne(departamento.getPais().getPkPais());
 
         String imagen64 = Base64.encodeBase64String(candidato.getFotoCandidato());
         model.put("candidato", candidato);
@@ -141,8 +141,8 @@ public class CandidatoController {
         model.put("titulo",
                 "Perfil Usuario : " + candidato.getNombreCandidato() + " " + candidato.getApellidoCandidato());
         
-        model.put("pais",pais);
-        model.put("departamento",departamento);
+       // model.put("nombrePais",candidato.getMunicipio().getDepartamento().getPais().getNombrePais());
+        //model.put("departamento",municipio.getDepartamento().getPkDepartamento());
         
         
 
