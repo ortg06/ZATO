@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th ="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+    </head>
+    <body>
+
+        <div th:replace="fragments/header :: header"/>
+
+
+        <div class="container">
+            <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+
+            <form th:action="@{/experienciaLaboral/formexp}" th:object="${experiencia}" method="post">
+
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Empresa</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="text" th:field="*{nombreExpEmpresa}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nombreExpEmpresa')}" th:errors="*{apellido}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Sector:</label>
+                    <div class="col-sm-6">
+                        <select id="menu" class="col-sm-6 form-control form-control-sm" name="sector">
+
+                            <option th:each="sector : ${sector}" th:value="${sector.pkSector}" 
+                                    th:selected="${sector.pkSector==m}" th:text="${sector.nombreSector}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Cargo</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="text" th:field="*{cargo}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('cargo')}" th:errors="*{apellido}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Periodo de inicio</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="date" th:field="*{periodoInicio}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('periodoInicio')}" th:errors="*{fechaNacimiento}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Periodo Fin</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="date" th:field="*{periodoFin}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('periodoFin')}" th:errors="*{fechaNacimiento}"></small>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1"/>
+                            <label class="custom-control-label" for="customCheck">Actualmente</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Funciones :</label>
+                    <div class="col-sm-6">
+                        <textarea  class="form-control form-control-sm" type="text" th:field="*{descripcionFunciones}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('descripcionFunciones')}" th:errors="*{apellido}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Contacto :</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="text" th:field="*{nombreContactoExp}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nombreContactoExp')}" th:errors="*{apellido}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Telefono Contacto :</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="text" th:field="*{telefonoContactoExp}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('telefonoContactoExp')}" th:errors="*{apellido}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Correo Contacto :</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="text" th:field="*{correoContactoExp}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('correoContactoExp')}" th:errors="*{apellido}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </div>
+
+
+
+
+
+            </form>
+        </div>
+    </body>
+</html>
+

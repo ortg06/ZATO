@@ -17,8 +17,7 @@ and open the template in the editor.
 
     </head>
     <body>
-
-        
+        <div th:replace="fragments/header :: header"/>
         <div class="container" >
             <h1 th:text="${titulo}"></h1>
             <div class="card shadow p-2 mb-2">
@@ -43,74 +42,11 @@ and open the template in the editor.
                     </form>
                 </div>
             </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">
-                    <h6> Experiencia Laboral </h6>
-                    <div th:replace="experiencialaboral/listar :: Experiencia"/>
-                </div>
-            </div>
-            <br/>
-
-            <div  id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">formacion academica</div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Cursos y Capacitaciones</div>
-            </div>
-            <br/>
-
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">idiomas</div>
-            </div>
-            <br/>
-
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Conocimientos y Habilidades</div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Aptitudes</div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Conocimientos y Habilidades</div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Logros</div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Eventos</div>
-            </div>
-            <br/>
-            
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">Escritos</div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Licencias de conducir</div>
-            </div>
-            <br/>
-            
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">Referencias</div>
-            </div>
-            <br/>
 
         </div>
-        
-        
+
+        <div th:replace="fragments/footer :: footer"></div>  
+
     </body>
 </html>
 
