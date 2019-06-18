@@ -38,6 +38,7 @@ import com.zato.app.dao.IRolSubmenuDao;
 import com.zato.app.dao.IPerfilDao;
 import com.zato.app.dao.IPruebaDao;
 import com.zato.app.dao.ICvDao;
+import com.zato.app.dao.ILogroDao;
 
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
@@ -70,6 +71,9 @@ import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.Logro;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -151,9 +155,10 @@ public class ServiceImpl implements IService {
     private IExperienciaLaboralDao experienciaDao;
     @Autowired
     private IPruebaOfertaDao pruebaofertaDao;
+    @Autowired
+    private ILogroDao logroDao;
     
     
-
     // PAISES
     @Override
     @Transactional(readOnly = true) // esto sirve para acceder en modo de solo lectura ya que estamos construyendo
@@ -998,4 +1003,37 @@ public class ServiceImpl implements IService {
     public List<PruebaOferta> findPruebaOfertabyPruebaOferta(Oferta oferta, Prueba prueba) {
          return(List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyPruebaOferta(oferta, prueba);
     }
+    
+    
+    //LOGRO
+    @Override
+    @Transactional(readOnly=true)
+    public List<Logro>findAllLogro(){
+        return(List<Logro>) logroDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveLogro(Logro logro){
+        logroDao.save(logro);
+    }
+
+    @Override
+    @Transactional
+    public Logro findOneLogro(BigDecimal id){
+        return logroDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteLogro(BigDecimal id){
+        logroDao.delete(id);
+    }
+    
+      @Override
+    @Transactional(readOnly=true)
+    public List<Logro>findCvbyLogro(Cv cv){
+        return(List<Logro>) logroDao.findCvbyLogro(cv);
+    }
+    
 }

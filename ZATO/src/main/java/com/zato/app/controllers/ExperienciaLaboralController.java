@@ -40,7 +40,7 @@ public class ExperienciaLaboralController {
     Cv cv = new Cv();
     CatalogoSectorEmpresa sector = new CatalogoSectorEmpresa();
     
-    @GetMapping("/Cv/verCv/{id}")
+   /* @GetMapping("/Cv/verCv/{id}")
     public String listar(@PathVariable(value="id") Cv id,Model model)
     {
         cv=null;
@@ -48,7 +48,7 @@ public class ExperienciaLaboralController {
         model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(id));
        
         return "Cv/verCv";
-    }
+    }*/
   
      @RequestMapping(value="experienciaLaboral/formexp/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)

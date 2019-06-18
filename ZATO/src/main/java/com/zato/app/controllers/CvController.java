@@ -8,6 +8,8 @@ package com.zato.app.controllers;
 import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.Cv;
+import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.Logro;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -29,14 +31,17 @@ import org.springframework.web.bind.support.SessionStatus;
 public class CvController {
     
      @Autowired
-    private IService CvService;
+    private IService CvService, logroService, experienciaService;
     @Autowired
     private IService CandidatoService; 
     BigDecimal num=null, numcv=null;
     Candidato candidato = new Candidato();
+    ExperienciaLaboral experiencia = new ExperienciaLaboral();
+    Logro logro = new Logro();
+    
     ExperienciaLaboralController experienciacontroller = new ExperienciaLaboralController();
     Cv cv = new Cv();
-    
+    LogroController logrocontroller =new LogroController();
     
     
     
@@ -49,7 +54,20 @@ public class CvController {
        
         return "candidato/ver";
     }
-  
+   
+      @GetMapping("/Cv/verCv/{id}")
+    public String listar(@PathVariable(value="id") Cv id,Model model)
+    {
+       cv=id;
+       
+       model.addAttribute("cv",id);
+       model.addAttribute("logro",logroService.findCvbyLogro(cv));
+       model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(cv));
+       
+        return "Cv/verCv";
+    }
+    
+   
          
      @RequestMapping(value="Cv/formcv/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id, Map<String,Object> model)
@@ -114,9 +132,14 @@ public class CvController {
         
         cv= CvService.findOneCv(id);
         model.put("cv", cv);
+        model.put("experiencia", experiencia);
+        model.put("logro", logro);
         model.put("titulo", "Curriculum Vitae");         
         //listar exp
-       // experienciacontroller.listar(cv, (Model) model);
+        listar(cv, (Model) model);
+        //listar logro
+       
+        
         return "Cv/verCv";
     }
     
