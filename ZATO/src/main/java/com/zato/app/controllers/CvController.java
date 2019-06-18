@@ -33,6 +33,12 @@ public class CvController {
     @Autowired
     private IService CandidatoService; 
     BigDecimal num=null, numcv=null;
+    Candidato candidato = new Candidato();
+    ExperienciaLaboralController experienciacontroller = new ExperienciaLaboralController();
+    Cv cv = new Cv();
+    
+    
+    
     
     @GetMapping("/candidato/ver/{id}")
     public String listar(@PathVariable(value="id") Candidato id,Model model)
@@ -44,22 +50,10 @@ public class CvController {
         return "candidato/ver";
     }
   
-     @RequestMapping(value="Cv/formcv",method=RequestMethod.GET)
-    public String crear( Map<String,Object> model)
-    {
-        Cv cv = new Cv();
-       
-        model.put("cv", cv);
-        
-        model.put("titulo", "Curriculum Vitae");
-        return "Cv/formcv";
-    }
-    
+         
      @RequestMapping(value="Cv/formcv/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id, Map<String,Object> model)
     {
-        Cv cv = new Cv();
-        Candidato candidato = new Candidato();
         num=id;
         model.put("cv", cv);
         model.put("candidato",candidato);
@@ -88,7 +82,7 @@ public class CvController {
     @RequestMapping(value="Cv/formcv",method=RequestMethod.POST)
     public String guardar(Cv cv, SessionStatus status)
     {
-        Candidato candidato= new Candidato();
+        BigDecimal idcv;
         candidato=CandidatoService.findCandidato(num);
         cv.setCandidato(candidato);//id candidato
         Date fecha = new Date();
@@ -97,9 +91,9 @@ public class CvController {
         cv.setFechaActualizado(fecha);
         CvService.saveCv(cv);
         status.setComplete();
-        cv.getPkCv();
+        idcv=cv.getPkCv();
         
-        return "redirect:/Cv/formcv/";
+        return "redirect:/Cv/verCv/"+idcv;
     }
     
     
@@ -113,6 +107,17 @@ public class CvController {
             CvService.deleteCv(id);
         }
         return "redirect:/Cv/listar";
+    }
+    
+     @RequestMapping(value = "Cv/verCv/{id}")
+    public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
+        
+        cv= CvService.findOneCv(id);
+        model.put("cv", cv);
+        model.put("titulo", "Curriculum Vitae");         
+        //listar exp
+       // experienciacontroller.listar(cv, (Model) model);
+        return "Cv/verCv";
     }
     
 }

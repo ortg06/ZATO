@@ -17,9 +17,9 @@ and open the template in the editor.
          <div th:replace="fragments/header :: header"/>
         <h1 th:text="${titulo}"></h1>
         
-        <div class="container" th:fragment="Experiencia">
+        <div class="container" th:fragment="EXP">
 
-        <a class="btn btn-success btn-xs" th:href="@{/Experiencia/formexp/ }+ ${cv.pkCv}" >Agregar Experiencia Laboral</a>
+        <a class="btn btn-success btn-xs" th:href="@{/experienciaLaboral/formexp/}+ ${cv.pkCv}" >Agregar Experiencia Laboral</a>
         
         <table class="table table-striped">
             <thead>
@@ -38,7 +38,7 @@ and open the template in the editor.
             <tbody>
                 <tr th:each="experiencia: ${experiencia}">
                  <td>
-                    <a class="btn btn-danger btn-xs" th:href="@{/experiencia/eliminar/} + ${exeriencia.pkExperienciaLaboral}}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <a class="btn btn-danger btn-xs" th:href="@{/experiencia/eliminar/} + ${experiencia.pkExperienciaLaboral}}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${experiencia.nombreExpEmpresa}"></td>
                     <td th:text="${experiencia.cargo}"></td>
                     <td th:text="${experiencia.periodoinicio}"></td>
