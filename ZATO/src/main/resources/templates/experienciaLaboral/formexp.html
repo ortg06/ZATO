@@ -31,7 +31,7 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="text" th:field="*{nombreExpEmpresa}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('nombreExpEmpresa')}" th:errors="*{apellido}"></small>
+                            th:if="${#fields.hasErrors('nombreExpEmpresa')}" th:errors="*{nombreExpEmpresa}"></small>
                     </div>
                 </div>
 
@@ -40,8 +40,8 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <select id="menu" class="col-sm-6 form-control form-control-sm" name="sector">
 
-                            <option th:each="sector : ${sector}" th:value="${sector.pkSector}" 
-                                    th:selected="${sector.pkSector==m}" th:text="${sector.nombreSector}">
+                            <option th:each="sector : ${sectores}" th:value="${sector.pkSector}" 
+                                    th:selected="${sector.pkSector==s}" th:text="${sector.nombreSector}">
                             </option>
                         </select>
                     </div>
@@ -54,7 +54,7 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="text" th:field="*{cargo}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('cargo')}" th:errors="*{apellido}"></small>
+                            th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}"></small>
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="date" th:field="*{periodoInicio}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('periodoInicio')}" th:errors="*{fechaNacimiento}"></small>
+                            th:if="${#fields.hasErrors('periodoInicio')}" th:errors="*{periodoInicio}"></small>
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="date" th:field="*{periodoFin}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('periodoFin')}" th:errors="*{fechaNacimiento}"></small>
+                            th:if="${#fields.hasErrors('periodoFin')}" th:errors="*{periodoFin}"></small>
                         <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" class="custom-control-input" id="customCheck" name="example1"/>
                             <label class="custom-control-label" for="customCheck">Actualmente</label>
@@ -85,7 +85,7 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <textarea  class="form-control form-control-sm" type="text" th:field="*{descripcionFunciones}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('descripcionFunciones')}" th:errors="*{apellido}"></small>
+                            th:if="${#fields.hasErrors('descripcionFunciones')}" th:errors="*{descripcionFunciones}"></small>
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="text" th:field="*{nombreContactoExp}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('nombreContactoExp')}" th:errors="*{apellido}"></small>
+                            th:if="${#fields.hasErrors('nombreContactoExp')}" th:errors="*{nombreContactoExp}"></small>
                     </div>
                 </div>
 
@@ -103,7 +103,7 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="text" th:field="*{telefonoContactoExp}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('telefonoContactoExp')}" th:errors="*{apellido}"></small>
+                            th:if="${#fields.hasErrors('telefonoContactoExp')}" th:errors="*{telefonoContactoExp}"></small>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -111,7 +111,7 @@ and open the template in the editor.
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="text" th:field="*{correoContactoExp}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('correoContactoExp')}" th:errors="*{apellido}"></small>
+                            th:if="${#fields.hasErrors('correoContactoExp')}" th:errors="*{correoContactoExp}"></small>
                     </div>
                 </div>
 

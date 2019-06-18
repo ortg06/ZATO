@@ -53,9 +53,9 @@ public class ExperienciaLaboralController {
      @RequestMapping(value="experienciaLaboral/formexp/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
-        
+        numcv=id;
         model.put("experiencia", experiencia);
-        model.put("sector",sectorService.findAllSectores());
+        model.put("sectores",sectorService.findAllSectores());
         model.put("titulo", "Experiencia Laboral");
         
         return "experienciaLaboral/formexp";
