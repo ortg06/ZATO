@@ -38,7 +38,7 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Sector:</label>
                     <div class="col-sm-6">
-                        <select id="menu" class="col-sm-6 form-control form-control-sm" name="sector">
+                        <select id="sector" class="col-sm-6 form-control form-control-sm" name="catalogoSectorEmpresa">
 
                             <option th:each="sector : ${sectores}" th:value="${sector.pkSector}" 
                                     th:selected="${sector.pkSector==s}" th:text="${sector.nombreSector}">

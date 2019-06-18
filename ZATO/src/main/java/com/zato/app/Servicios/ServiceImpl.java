@@ -39,6 +39,7 @@ import com.zato.app.dao.IPerfilDao;
 import com.zato.app.dao.IPruebaDao;
 import com.zato.app.dao.ICvDao;
 import com.zato.app.dao.ILogroDao;
+import com.zato.app.dao.ICursoCapacitacionDao;
 
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
@@ -72,7 +73,7 @@ import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.ExperienciaLaboral;
 import com.zato.app.entidades.Logro;
-
+import com.zato.app.entidades.CursoCapacitacion;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,7 +158,8 @@ public class ServiceImpl implements IService {
     private IPruebaOfertaDao pruebaofertaDao;
     @Autowired
     private ILogroDao logroDao;
-    
+       @Autowired
+    private ICursoCapacitacionDao cursoCapDao;
     
     // PAISES
     @Override
@@ -1034,6 +1036,38 @@ public class ServiceImpl implements IService {
     @Transactional(readOnly=true)
     public List<Logro>findCvbyLogro(Cv cv){
         return(List<Logro>) logroDao.findCvbyLogro(cv);
+    }
+    
+    
+    // CURSO CAPACITACION
+    @Override
+    @Transactional(readOnly=true)
+    public List<CursoCapacitacion>findAllCursoCap(){
+        return(List<CursoCapacitacion>) cursoCapDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveCursoCap(CursoCapacitacion cursocapacitacion){
+        cursoCapDao.save(cursocapacitacion);
+    }
+
+    @Override
+    @Transactional
+    public CursoCapacitacion findOneCursoCap(BigDecimal id){
+        return cursoCapDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteCursoCap(BigDecimal id){
+        logroDao.delete(id);
+    }
+    
+      @Override
+    @Transactional(readOnly=true)
+    public List<CursoCapacitacion>findCvbyCursoCap(Cv cv){
+        return(List<CursoCapacitacion>) cursoCapDao.findCvbyCursoCap(cv);
     }
     
 }

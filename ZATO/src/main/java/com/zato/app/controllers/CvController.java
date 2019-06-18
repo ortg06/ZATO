@@ -7,6 +7,7 @@ package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Candidato;
+import com.zato.app.entidades.CursoCapacitacion;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.ExperienciaLaboral;
 import com.zato.app.entidades.Logro;
@@ -31,19 +32,19 @@ import org.springframework.web.bind.support.SessionStatus;
 public class CvController {
     
      @Autowired
-    private IService CvService, logroService, experienciaService;
+    private IService CvService, logroService, experienciaService,cursoCapService;
     @Autowired
     private IService CandidatoService; 
     BigDecimal num=null, numcv=null;
+    
+    Cv cv = new Cv();
     Candidato candidato = new Candidato();
     ExperienciaLaboral experiencia = new ExperienciaLaboral();
     Logro logro = new Logro();
-    
-    ExperienciaLaboralController experienciacontroller = new ExperienciaLaboralController();
-    Cv cv = new Cv();
-    LogroController logrocontroller =new LogroController();
+    CursoCapacitacion cursocapacitacion =new CursoCapacitacion();
     
     
+       
     
     @GetMapping("/candidato/ver/{id}")
     public String listar(@PathVariable(value="id") Candidato id,Model model)
@@ -63,7 +64,7 @@ public class CvController {
        model.addAttribute("cv",id);
        model.addAttribute("logro",logroService.findCvbyLogro(cv));
        model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(cv));
-       
+       model.addAttribute("cursocapacitacion",cursoCapService.findCvbyCursoCap(cv)); 
         return "Cv/verCv";
     }
     
@@ -134,10 +135,11 @@ public class CvController {
         model.put("cv", cv);
         model.put("experiencia", experiencia);
         model.put("logro", logro);
-                 
-        //listar exp
+        model.put("cursocapacitacion", cursocapacitacion);        
+        
+        //listar secciones del cv
         listar(cv, (Model) model);
-        //listar logro
+       
        
         
         return "Cv/verCv";

@@ -37,15 +37,7 @@ public class LogroController {
     Cv cv = new Cv();
     
     
-  /*  @GetMapping("/Cv/verCv/{id}")
-    public String listar(@PathVariable(value="id") Cv id,Model model)
-    {
-        cv=null;
-        model.addAttribute("cv",id);
-        model.addAttribute("logro",logroService.findCvbyLogro(cv));
-       
-        return "Cv/verCv";
-    }*/
+  
   
      @RequestMapping(value="Logro/formlo/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)

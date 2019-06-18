@@ -25,7 +25,7 @@ and open the template in the editor.
 
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Menu:</label>
+                    <label class="col-sm-2 col-form-label">Menu :</label>
                     <div class="col-sm-6">
                         <select id="menu" class="col-sm-6 form-control form-control-sm" name="menu">
 
@@ -37,20 +37,29 @@ and open the template in the editor.
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Submenu</label>
+                    <label class="col-sm-2 col-form-label">Submenu :</label>
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="text" th:field="*{submenu}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('submenu')}" th:errors="*{apellido}"></small>
+                            th:if="${#fields.hasErrors('submenu')}" th:errors="*{submenu}"></small>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Orden</label>
+                    <label class="col-sm-2 col-form-label">Orden :</label>
                     <div class="col-sm-6">
                         <input class="form-control form-control-sm" type="text" th:field="*{orden}"/> <small
                             class="form-text text-danger"
-                            th:if="${#fields.hasErrors('orden')}" th:errors="*{apellido}"></small>
+                            th:if="${#fields.hasErrors('orden')}" th:errors="*{orden}"></small>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">URL :</label>
+                    <div class="col-sm-6">
+                        <input class="form-control form-control-sm" type="text" th:field="*{url}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></small>
                     </div>
                 </div>
 

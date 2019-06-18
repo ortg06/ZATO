@@ -66,7 +66,7 @@ public class ExperienciaLaboralController {
      @RequestMapping(value="experienciaLaboral/editar/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
-        experiencia = null;
+       
        
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)

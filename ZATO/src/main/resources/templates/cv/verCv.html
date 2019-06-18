@@ -53,7 +53,9 @@ and open the template in the editor.
             <br/>
             
             <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Cursos y Capacitaciones</div>
+                <div class="card-body">Cursos y Capacitaciones
+                <div th:replace="CursoCapacitacion/listar :: CURSOCAP"/>
+                </div>
             </div>
             <br/>
 
