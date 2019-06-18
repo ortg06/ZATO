@@ -1,0 +1,24 @@
+<div class="container" th:fragment="listaEmpresa">
+
+    <div class="container">
+
+        <a th:href="@{/oferta/form}  " class="btn btn-success btn-xs">Nueva Oferta</a>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Acciones</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="candidato: ${candidatos}">
+                    <td><a class="btn btn-primary btn-xs" th:href="@{/candidato/ver/} + ${candidato.pkCandidato}"
+                            th:text="'Ver Perfil'"></a></td>
+
+                    <td th:text="${candidato.nombreCandidato}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

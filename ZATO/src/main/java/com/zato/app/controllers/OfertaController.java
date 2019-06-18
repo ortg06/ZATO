@@ -22,6 +22,7 @@ import org.springframework.web.bind.support.SessionStatus;
 public class OfertaController{
     
 
+
     @Autowired
     private IService ofertaService;
 
@@ -32,12 +33,12 @@ public class OfertaController{
         return "Oferta/listar";
     }
 
-    @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public String crear(Map<String,Object> model){
+    @RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
+    public String crear(@PathVariable(value = "id") BigDecimal id, Map<String,Object> model){
         Oferta oferta = new Oferta();
         model.put("oferta", oferta);
         model.put("titulo", "Nueva Oferta");
-
+        model.put("empresa",ofertaService.findOneEmpresa(id));
         return "Oferta/form";
     }
 
