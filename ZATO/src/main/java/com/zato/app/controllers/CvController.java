@@ -134,7 +134,7 @@ public class CvController {
         model.put("cv", cv);
         model.put("experiencia", experiencia);
         model.put("logro", logro);
-        model.put("titulo", "Curriculum Vitae");         
+                 
         //listar exp
         listar(cv, (Model) model);
         //listar logro
