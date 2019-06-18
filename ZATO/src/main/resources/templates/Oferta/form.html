@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th ="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+
+        <div th:replace="fragments/header :: header"/>
+
+
+        <div class="container">
+            <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+
+            <form th:action="@{/oferta/form}" th:object="${oferta}"  method="post" enctype="multipart/form-data">
+
+
+                <div class="form-group row">
+                    <div class="col-sm-7">
+                        <label class="col-form-label">Nombre de la Empresa:</label>
+                        <h5 class="panel-title" th:text="${empresa.nomEmpresa}"></h5>
+                       
+                    </div>
+
+                    <div class="col-sm-5">
+
+                        <label class=" col-form-label">Puesto:</label>
+                        <div >
+                            <input class="form-control form-control-sm" type="text" th:field="*{nitEmpresa}"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('nitEmpresa')}" th:errors="*{nitEmpresa}"></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                  
+                    <div class="col-sm-4">
+                        <label class="col-form-label">Tipo de Empresa:</label>
+
+                        <select id="tipo" class="col-sm-10 form-control form-control-sm" name="catalogoTipoEmpresa">
+
+                            <option th:each="tipo : ${tipos}" th:value="${tipo.pkTipoEmpresa}" 
+                                    th:selected="${tipo.pkTipoEmpresa==tp}" th:text="${tipo.nombreTipoEmpresa}">
+                            </option>
+                        </select>
+                    </div>
+                      <div class="col-sm-4">
+                        <label class="col-form-label">Sector:</label>
+
+                        <select id="sector" class="col-sm-10 form-control form-control-sm" name="catalogoSectorEmpresa">
+
+                            <option th:each="sector : ${sectores}" th:value="${sector.pkSector}" 
+                                    th:selected="${sector.pkSector==s}" th:text="${sector.nombreSector}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-form-label">Logo:</label>
+
+
+                        <input class="col-sm-12 form-control form-control-sm" type="file" name="file"/> 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+
+                    <div class="col-sm-4">
+                        <label class="col-form-label">Municipio:</label>
+
+                        <select id="municipio" class="col-sm-10 form-control form-control-sm" name="municipio">
+
+                            <option th:each="municipio : ${municipios}" th:value="${municipio.pkMunicipio}" 
+                                    th:selected="${municipio.pkMunicipio==p}" th:text="${municipio.nombreMunicipio}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8">
+                        <label class="col-form-label">Dirección:</label>
+
+                        <input class="col-sm-12 form-control form-control-sm" type="text" th:field="*{direccionEmpresa}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('direccionEmpresa')}" th:errors="*{direccionEmpresa}"></small>
+                    </div>
+
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-7">
+                        <label class="col-form-label">Descripción:</label>
+
+                        <textarea class="col-sm-12 form-control form-control-sm" row="4" cols="50" type="text" th:field="*{descripcionEmpresa}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('descripcionEmpresa')}" th:errors="*{descripcionEmpresa}"></small>
+                    </div>
+
+                    <div class="col-sm-5">
+
+                        <label class=" col-form-label">Razón Social:</label>
+                        <div >
+                            <input class="form-control form-control-sm" type="text" th:field="*{razonSocial}"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"></small>
+                        </div>
+                        <label class="col-form-label">Cantidad de Empleados:</label>
+                        <div >
+                            <input class="form-control form-control-sm" type="number" th:field="*{numeroTrabajadores}"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('numeroTrabajadores')}" th:errors="*{numeroTrabajadores}"></small>
+                        </div>
+
+                    </div>
+                </div>
+
+                <h4 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">Datos de Contacto</h4>
+                <div class="form-group row">
+                    <div class="col-sm-7">
+                        <label class="col-form-label">Nombre:</label>
+
+                        <input class="col-sm-12 form-control form-control-sm" type="text" th:field="*{nombreContactoEmpresa}"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nombreContactoEmpresa')}" th:errors="*{nombreContactoEmpresa}"></small>
+                    </div>
+
+                    <div class="col-sm-5">
+
+                        <label class="col-form-label">Teléfono:</label>
+                        <div >
+                            <input class="form-control form-control-sm" type="number" th:field="*{telefonoContacto}"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('telefonoContacto')}" th:errors="*{telefonoContacto}"></small>
+                        </div>
+                    </div>
+                </div>    
+                <div class="form-group row">
+                    <div class="col-sm-6">
+
+                        <label class="col-form-label">Cargo:</label>
+                        <div >
+                            <input class="form-control form-control-sm" type="text" th:field="*{cargoContacto}"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('cargoContacto')}" th:errors="*{cargoContacto}"></small>
+                        </div>
+                    </div>                   
+                    <div class="col-sm-6">
+
+                        <label class="col-form-label">Pagina Web:</label>
+                        <div >
+                            <input class="form-control form-control-sm" type="text" th:field="*{paginaWeb}"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('paginaWeb')}" th:errors="*{paginaWeb}"></small>
+                        </div>
+                    </div>
+                </div>    
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </div>
+
+
+
+
+
+            </form>
+        </div>
+    </body>
+</html>

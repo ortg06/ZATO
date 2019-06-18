@@ -38,7 +38,7 @@ public class OfertaController{
         Oferta oferta = new Oferta();
         model.put("oferta", oferta);
         model.put("titulo", "Nueva Oferta");
-        model.put("empresa",ofertaService.findOneEmpresa(id));
+        model.put("empresa", ofertaService.findOneOferta(id));
         return "Oferta/form";
     }
 
