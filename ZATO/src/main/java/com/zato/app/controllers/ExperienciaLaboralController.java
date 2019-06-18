@@ -92,7 +92,7 @@ public class ExperienciaLaboralController {
         status.setComplete();
         
         
-        return "redirect:/Cv/verCv";
+        return "redirect:/Cv/verCv/"+numcv;
     }
     
     

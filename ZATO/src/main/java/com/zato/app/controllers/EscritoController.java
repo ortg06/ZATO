@@ -7,7 +7,7 @@ package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Cv;
-import com.zato.app.entidades.CursoCapacitacion;
+import com.zato.app.entidades.Escrito;
 import java.math.BigDecimal;
 
 import java.util.Map;
@@ -21,37 +21,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+
 @Controller
-@SessionAttributes("CursoCapacitacion")
-public class CursoCapacitacionController {
+@SessionAttributes("Escrito")
+public class EscritoController {
+   
     
-     @Autowired
-    private IService cursoCapService;
+      @Autowired
+    private IService escritoService;
     @Autowired
     private IService CvService; 
     
     
     BigDecimal numcv=null;
     
-    CursoCapacitacion cursocapacitacion = new CursoCapacitacion();
+    Escrito escrito = new Escrito();
     Cv cv = new Cv();
     
     
   
   
-     @RequestMapping(value="CursoCapacitacion/formcc/{id}",method=RequestMethod.GET)
+     @RequestMapping(value="Escrito/formesc/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
         numcv=id;
-        model.put("cursocapacitacion", cursocapacitacion);
-        model.put("titulo", "Cursos y Capacitaciones");
+        model.put("escrito", escrito);
+        model.put("titulo", "Escritos");
         
-        return "CursoCapacitacion/formcc";
+        return "Escrito/formesc";
     }
     
      
     
-     @RequestMapping(value="CursoCapacitacion/editar/{id}")
+     @RequestMapping(value="Escrito/editar/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
         
@@ -59,38 +61,38 @@ public class CursoCapacitacionController {
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            cursocapacitacion = cursoCapService.findOneCursoCap(id);
+            escrito = escritoService.findOneEsc(id);
           
         } else {
             return "redirect:/Cv/verCv";
         }
-        model.put("cursocapacitacion", cursocapacitacion);
-        model.put("titulo", "Actualizar Curso y Capacitaciones");
-        return "CursoCapacitacion/formcc";
+        model.put("escrito", escrito);
+        model.put("titulo", "Actualizar escrito");
+        return "Escrito/formesc";
     } 
     
-    @RequestMapping(value="CursoCapacitacion/formcc",method=RequestMethod.POST)
-    public String guardar(CursoCapacitacion cursocap, SessionStatus status)
+    @RequestMapping(value="Escrito/formesc",method=RequestMethod.POST)
+    public String guardar(Escrito escrito, SessionStatus status)
     {
         cv=CvService.findOneCv(numcv);
-        cursocap.setCv(cv);//id cv
+        escrito.setCv(cv);//id cv
         
-        cursoCapService.saveCursoCap(cursocap);
+        escritoService.saveEsc(escrito);
         status.setComplete();
         
         
-        return "redirect:/Cv/verCv/"+numcv;
+        return "redirect:/Cv/verCv";
     }
     
     
-     @RequestMapping(value = "CursoCapacitacion/eliminar/{id}")
+     @RequestMapping(value = "Escrito/eliminar/{id}")
     public String eliminar(@PathVariable(value="id") BigDecimal id)
     {
          
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            cursoCapService.deleteCursoCap(id);
+            escritoService.deleteEsc(id);
         }
         return "redirect:/Cv/verCv"+numcv;
     }

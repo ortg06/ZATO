@@ -40,6 +40,7 @@ import com.zato.app.dao.IPruebaDao;
 import com.zato.app.dao.ICvDao;
 import com.zato.app.dao.ILogroDao;
 import com.zato.app.dao.ICursoCapacitacionDao;
+import com.zato.app.dao.IEscritoDao;
 
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
@@ -74,6 +75,7 @@ import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.ExperienciaLaboral;
 import com.zato.app.entidades.Logro;
 import com.zato.app.entidades.CursoCapacitacion;
+import com.zato.app.entidades.Escrito;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -158,8 +160,10 @@ public class ServiceImpl implements IService {
     private IPruebaOfertaDao pruebaofertaDao;
     @Autowired
     private ILogroDao logroDao;
-       @Autowired
+    @Autowired
     private ICursoCapacitacionDao cursoCapDao;
+    @Autowired
+    private IEscritoDao escritoDao;
     
     // PAISES
     @Override
@@ -1061,7 +1065,7 @@ public class ServiceImpl implements IService {
       @Override
     @Transactional
     public void deleteCursoCap(BigDecimal id){
-        logroDao.delete(id);
+        cursoCapDao.delete(id);
     }
     
       @Override
@@ -1069,5 +1073,38 @@ public class ServiceImpl implements IService {
     public List<CursoCapacitacion>findCvbyCursoCap(Cv cv){
         return(List<CursoCapacitacion>) cursoCapDao.findCvbyCursoCap(cv);
     }
+    
+    
+    // ESCRITO
+    @Override
+    @Transactional(readOnly=true)
+    public List<Escrito>findAllEsc(){
+        return(List<Escrito>) escritoDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveEsc(Escrito escrito){
+        escritoDao.save(escrito);
+    }
+
+    @Override
+    @Transactional
+    public Escrito findOneEsc(BigDecimal id){
+        return escritoDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteEsc(BigDecimal id){
+        escritoDao.delete(id);
+    }
+    
+      @Override
+    @Transactional(readOnly=true)
+    public List<Escrito>findCvbyEscrito(Cv cv){
+        return(List<Escrito>) escritoDao.findCvbyEscrito(cv);
+    }
+    
     
 }

@@ -44,6 +44,7 @@ import com.zato.app.entidades.ExperienciaLaboral;
 import com.zato.app.entidades.Logro;
 import com.zato.app.entidades.PruebaOferta;
 import com.zato.app.entidades.CursoCapacitacion;
+import com.zato.app.entidades.Escrito;
 /**
  *
  * @author Alex
@@ -272,11 +273,20 @@ public interface IService {
     public void deleteLogro(BigDecimal id);
     public List<Logro> findCvbyLogro(Cv cv);
     
-     //LOGRO
+     //CURSO CAPACITACION
     public List<CursoCapacitacion> findAllCursoCap();
     public void saveCursoCap(CursoCapacitacion cursocapacitacion);
     public CursoCapacitacion findOneCursoCap (BigDecimal id);
     public void deleteCursoCap(BigDecimal id);
     public List<CursoCapacitacion> findCvbyCursoCap(Cv cv);
 
+    
+    //ESCRITO
+    public List<Escrito> findAllEsc();
+    public void saveEsc(Escrito escrito);
+    public Escrito findOneEsc (BigDecimal id);
+    public void deleteEsc(BigDecimal id);
+    public List<Escrito> findCvbyEscrito(Cv cv);
+    
+    
 }
