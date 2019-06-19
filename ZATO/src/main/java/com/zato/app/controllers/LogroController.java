@@ -79,7 +79,7 @@ public class LogroController {
         status.setComplete();
         
         
-        return "redirect:/Cv/verCv";
+        return "redirect:/Cv/verCv/"+numcv;
     }
     
     
@@ -92,7 +92,7 @@ public class LogroController {
         {
             logroService.deleteLogro(id);
         }
-        return "redirect:/Cv/verCv";
+        return "redirect:/Cv/verCv/"+numcv;
     }
     
     

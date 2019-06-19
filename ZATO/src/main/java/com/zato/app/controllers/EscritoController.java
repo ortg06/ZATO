@@ -27,11 +27,12 @@ import org.springframework.web.bind.support.SessionStatus;
 public class EscritoController {
    
     
-      @Autowired
+    @Autowired
     private IService escritoService;
     @Autowired
     private IService CvService; 
-    
+    @Autowired
+    private IService tipoEscritoService; 
     
     BigDecimal numcv=null;
     
@@ -47,6 +48,7 @@ public class EscritoController {
         numcv=id;
         model.put("escrito", escrito);
         model.put("titulo", "Escritos");
+        model.put("tipoescrito",tipoEscritoService.findAllCatalogoEscrito());
         
         return "Escrito/formesc";
     }
@@ -81,7 +83,7 @@ public class EscritoController {
         status.setComplete();
         
         
-        return "redirect:/Cv/verCv";
+        return "redirect:/Cv/verCv/"+numcv;
     }
     
     
@@ -94,7 +96,7 @@ public class EscritoController {
         {
             escritoService.deleteEsc(id);
         }
-        return "redirect:/Cv/verCv"+numcv;
+        return "redirect:/Cv/verCv/"+numcv;
     }
     
     
