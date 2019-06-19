@@ -57,5 +57,17 @@ public class ItemPruebaController {
         status.setComplete();
         return "redirect:/prueba/items/"+num;
     }
-    
+        
+     //Metodos para opciones de items
+    @GetMapping("/items/opciones/{id}")
+    public String opciones(@PathVariable(value = "id") ItemPrueba id, Model model) {
+        
+        Prueba prueba = null;
+        model.addAttribute("titulo", "Listado de opciones");
+        model.addAttribute("item", id);
+        model.addAttribute("opciones", IService.findOpcionesbyItemPrueba(id));
+
+        return "prueba/opciones";
+    }
+
 }
