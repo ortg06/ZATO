@@ -1105,6 +1105,11 @@ public class ServiceImpl implements IService {
     public List<Escrito>findCvbyEscrito(Cv cv){
         return(List<Escrito>) escritoDao.findCvbyEscrito(cv);
     }
+
+    @Override
+    public List<Oferta> findOfertaByEmpresa(Empresa empresa) {
+        return (List<Oferta>)  OfertaDao.findOfertaByEmpresa(empresa);
+    }
     
     
 }

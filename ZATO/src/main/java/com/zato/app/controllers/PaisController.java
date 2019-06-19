@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.entidades.Pais;
+import com.zato.app.entidades.Prueba;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,13 @@ public class PaisController {
     @RequestMapping(value="/Pais/listar",method=RequestMethod.GET)
     public String listar(Model model)
     {
+
+        Prueba prueba=null;
+        BigDecimal num=BigDecimal.valueOf(1);
+       
+        prueba=paisService.findOnePrueba(num);
+
+
         model.addAttribute("titulo", "Listado de Paises");
         model.addAttribute("paises",paisService.findAll());
         return "pais/listar";

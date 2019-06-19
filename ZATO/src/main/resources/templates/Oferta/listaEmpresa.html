@@ -8,15 +8,16 @@
             <thead>
                 <tr>
                     <th>Acciones</th>
-                    <th>Nombre</th>
+                    <th>Nombre de la Oferta</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="candidato: ${candidatos}">
-                    <td><a class="btn btn-primary btn-xs" th:href="@{/candidato/ver/} + ${candidato.pkCandidato}"
-                            th:text="'Ver Perfil'"></a></td>
+                <tr th:each="oferta: ${ofertas}">
+                    <!-- <td><a class="btn btn-primary btn-xs" th:href="@{/candidato/ver/} + ${candidato.pkCandidato}"
+                            th:text="'Ver Perfil'"></a></td> -->
+                            <td></td>
 
-                    <td th:text="${candidato.nombreCandidato}"></td>
+                    <td th:text="${oferta.catalogoPuesto.nombreCatalogoPuesto}"></td>
                 </tr>
             </tbody>
         </table>

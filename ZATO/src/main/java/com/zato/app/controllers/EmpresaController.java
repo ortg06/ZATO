@@ -67,6 +67,7 @@ public class EmpresaController {
         model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
         model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
         model.put("p", empresa.getMunicipio().getPkMunicipio());
+        model.put("ofertas",IService.findOfertaByEmpresa(empresa));
         return "empresa/ver";
     }
 
