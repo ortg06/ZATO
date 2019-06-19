@@ -25,7 +25,7 @@ import org.springframework.web.bind.support.SessionStatus;
  * @author Oscar
  */
 @Controller
-//@RequestMapping("/prueba")
+@RequestMapping("/prueba")
 @SessionAttributes("itemprueba")
 public class ItemPruebaController {
     

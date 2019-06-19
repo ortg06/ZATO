@@ -73,7 +73,7 @@ public class OpcionesController {
         opcion.setItemPrueba(p);
         IService.saveOpcion(opcion);
         status.setComplete();
-        return "redirect:/items/opciones/" + num;
+        return "redirect:/prueba/items/opciones/" + num;
     }
     
 }
