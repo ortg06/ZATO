@@ -251,6 +251,7 @@ public interface IService {
     public void saveOpcion(Opciones opciones);
     public Opciones findOneOpcion(BigDecimal id);
     public void deleteOpcion(BigDecimal id);
+    public List<Opciones> findOpcionesbyItemPrueba(ItemPrueba itemprueba);
     
     
      //CV

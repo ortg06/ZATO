@@ -909,6 +909,13 @@ public class ServiceImpl implements IService {
         opcionesDao.delete(id);
     }
     
+     @Override
+    @Transactional(readOnly=true)
+    public List<Opciones> findOpcionesbyItemPrueba(ItemPrueba itemprueba){
+        return(List<Opciones>) opcionesDao.findOpcionesbyItemPrueba(itemprueba);
+    }
+    
+    
     //CV
 
     @Override
