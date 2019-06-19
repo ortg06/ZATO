@@ -21,7 +21,7 @@ and open the template in the editor.
             <div class="row">  
 
                 <div class="col-lg-10 col-md-10">    
-                    <a th:href="@{/items/nuevo/} + ${prueba.pkPrueba}" class="btn btn-success btn-xs">Nuevo Item</a>
+                    <a th:href="@{/items/opciones/nuevo/} + ${item.pkItem}" class="btn btn-success btn-xs">Nuevo Item</a>
 
                     <table class="table table-striped">
                         <thead>
@@ -32,14 +32,13 @@ and open the template in the editor.
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="item: ${items}">
+                            <tr th:each="opcion: ${opciones}">
 
-                                <td><a class="btn btn-success btn-xs" th:href="@{/items/opciones/} + ${item.pkItem}" th:text="'+'"></a>
-                                    <a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
+                                <td><a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
                                     <a class="btn btn-danger btn-xs"  th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
                                 </td>
 
-                                <td th:text="${item.pregunta}"></td>
+                                <td th:text="${opcion.opcion}"></td>
                             </tr>
                         </tbody>
                     </table>

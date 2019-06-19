@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 import com.zato.app.Servicios.IService;
+import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.Oferta;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.support.SessionStatus;
 public class OfertaController{
     
 
+    BigDecimal num = null;
 
     @Autowired
     private IService ofertaService;
@@ -36,9 +38,16 @@ public class OfertaController{
     @RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
     public String crear(@PathVariable(value = "id") BigDecimal id, Map<String,Object> model){
         Oferta oferta = new Oferta();
+        num=id;
+        Empresa empresa = ofertaService.findOneEmpresa(id);
+        model.put("empresa", empresa);
         model.put("oferta", oferta);
         model.put("titulo", "Nueva Oferta");
-        model.put("empresa", ofertaService.findOneOferta(id));
+        model.put("puestos", ofertaService.findAllCatPuesto());
+        model.put("paises", ofertaService.findAll());
+        model.put("departamentos", ofertaService.findAlldep());
+        model.put("municipios",ofertaService.findAllmun());
+        
         return "Oferta/form";
     }
 
@@ -62,9 +71,11 @@ public class OfertaController{
     @RequestMapping(value = "/form",method = RequestMethod.POST)
     public String guardar (Oferta oferta, SessionStatus status){
 
+        oferta.setEmpresa(ofertaService.findOneEmpresa(num));
+        oferta.setEstado("ACTIVO");
         ofertaService.saveOferta(oferta);
         status.setComplete();
-        return "redirect:/Oferta/listar";
+        return "redirect:/empresa/ver/"+num;
     }
 
 

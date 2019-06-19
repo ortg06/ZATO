@@ -222,6 +222,7 @@ public interface IService {
     public void saveOferta(Oferta oferta);
     public Oferta findOneOferta(BigDecimal id);
     public void deleteOferta(BigDecimal id);
+    public List<Oferta>findOfertaByEmpresa(Empresa empresa);
     
     
     //PruebaOferta
@@ -253,6 +254,7 @@ public interface IService {
     public void saveOpcion(Opciones opciones);
     public Opciones findOneOpcion(BigDecimal id);
     public void deleteOpcion(BigDecimal id);
+    public List<Opciones> findOpcionesbyItemPrueba(ItemPrueba itemprueba);
     
     
      //CV

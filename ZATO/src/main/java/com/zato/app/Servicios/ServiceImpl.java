@@ -922,6 +922,13 @@ public class ServiceImpl implements IService {
         opcionesDao.delete(id);
     }
     
+     @Override
+    @Transactional(readOnly=true)
+    public List<Opciones> findOpcionesbyItemPrueba(ItemPrueba itemprueba){
+        return(List<Opciones>) opcionesDao.findOpcionesbyItemPrueba(itemprueba);
+    }
+    
+    
     //CV
 
     @Override
@@ -1117,6 +1124,11 @@ public class ServiceImpl implements IService {
     @Transactional(readOnly=true)
     public List<Escrito>findCvbyEscrito(Cv cv){
         return(List<Escrito>) escritoDao.findCvbyEscrito(cv);
+    }
+
+    @Override
+    public List<Oferta> findOfertaByEmpresa(Empresa empresa) {
+        return (List<Oferta>)  OfertaDao.findOfertaByEmpresa(empresa);
     }
     
     // APTITUD CV

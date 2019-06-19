@@ -30,7 +30,7 @@ public class Opciones  implements java.io.Serializable {
      private ItemPrueba itemPrueba;
      private String opcion;
      private double puntajeOpcion;
-     private Blob imagenOpcion;
+     private byte[] imagenOpcion;
 
     public Opciones() {
     }
@@ -42,7 +42,7 @@ public class Opciones  implements java.io.Serializable {
         this.opcion = opcion;
         this.puntajeOpcion = puntajeOpcion;
     }
-    public Opciones(BigDecimal pkOpciones, ItemPrueba itemPrueba, String opcion, double puntajeOpcion, Blob imagenOpcion) {
+    public Opciones(BigDecimal pkOpciones, ItemPrueba itemPrueba, String opcion, double puntajeOpcion, byte[] imagenOpcion) {
        this.pkOpciones = pkOpciones;
        this.itemPrueba = itemPrueba;
        this.opcion = opcion;
@@ -95,11 +95,11 @@ public class Opciones  implements java.io.Serializable {
 
     
     @Column(name="IMAGEN_OPCION")
-    public Blob getImagenOpcion() {
+    public byte[] getImagenOpcion() {
         return this.imagenOpcion;
     }
     
-    public void setImagenOpcion(Blob imagenOpcion) {
+    public void setImagenOpcion(byte[] imagenOpcion) {
         this.imagenOpcion = imagenOpcion;
     }
 

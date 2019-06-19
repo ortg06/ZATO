@@ -5,14 +5,20 @@
  */
 package com.zato.app.dao;
 
+import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Opciones;
 import java.math.BigDecimal;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
  * @author ecampos
  */
-public interface IOpcionesDao extends CrudRepository<Opciones,BigDecimal>{
-    
+public interface IOpcionesDao extends CrudRepository<Opciones, BigDecimal> {
+
+    @Query("select i from Opciones i where i.itemPrueba=:itemPrueba")
+    public List<Opciones> findOpcionesbyItemPrueba(@Param("itemPrueba") ItemPrueba itemprueba);
 }
