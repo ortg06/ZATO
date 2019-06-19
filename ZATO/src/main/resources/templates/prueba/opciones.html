@@ -19,7 +19,8 @@ and open the template in the editor.
         <div class="container">
             <h1 th:text="${titulo}"></h1>
             <div class="row">  
-
+                <br></br>
+                 <h2 th:text="${item.pregunta}"></h2>
                 <div class="col-lg-10 col-md-10">    
                     <a th:href="@{/items/opciones/nuevo/} + ${item.pkItem}" class="btn btn-success btn-xs">Nuevo Item</a>
 
@@ -29,6 +30,8 @@ and open the template in the editor.
                                 <th>Acciones</th>
 
                                 <th>Nombre</th>
+                                <th>Ponderación %</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -39,6 +42,7 @@ and open the template in the editor.
                                 </td>
 
                                 <td th:text="${opcion.opcion}"></td>
+                                <td th:text="${opcion.puntajeOpcion}"></td>
                             </tr>
                         </tbody>
                     </table>
