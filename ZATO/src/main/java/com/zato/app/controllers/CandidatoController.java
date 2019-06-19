@@ -89,7 +89,7 @@ public class CandidatoController {
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(Candidato candidato, @RequestParam("file") MultipartFile foto, SessionStatus status) {
 
-        if (!foto.isEmpty()) {
+        if (!foto.isEmpty() && candidato.getPkCandidato().equals(null)) {
 
             try {
 
