@@ -65,20 +65,20 @@ and open the template in the editor.
             <br/>
 
             <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Conocimientos y Habilidades</div>
+                <div class="card-body">Conocimientos y Habilidades
+                <div th:replace="HabilidadesCv/listar :: HABCV"/>
+                </div>
             </div>
             <br/>
             
             <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Aptitudes</div>
+                <div class="card-body">Aptitudes
+                <div th:replace="AptitudCv/listar :: APTCV"/>
+                </div>
             </div>
             <br/>
             
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Conocimientos y Habilidades</div>
-            </div>
-            <br/>
-            
+                     
             <div id="seccion" class="card shadow p-2 mb-2">
                 <div class="card-body">Logros
                 <div th:replace="Logro/listar :: LOGRO"/>
@@ -87,12 +87,16 @@ and open the template in the editor.
             <br/>
             
             <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Eventos</div>
+                <div class="card-body">Eventos
+                <div th:replace="Evento/listar :: EVENTO"/>
+                </div>
             </div>
             <br/>
             
             <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">Escritos</div>
+                <div class="card-body">Escritos
+                <div th:replace="Escrito/listar :: ESCRITO"/>
+                </div>
             </div>
             <br/>
             
@@ -107,7 +111,9 @@ and open the template in the editor.
             <br/>
 
         </div>
-
+        <br/>
+        <br/>
+        <br/>
         <div th:replace="fragments/footer :: footer"></div>  
 
     </body>

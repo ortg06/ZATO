@@ -6,10 +6,14 @@
 package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
+import com.zato.app.entidades.AptitudCv;
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CursoCapacitacion;
 import com.zato.app.entidades.Cv;
+import com.zato.app.entidades.Escrito;
+import com.zato.app.entidades.Evento;
 import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Logro;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -32,9 +36,9 @@ import org.springframework.web.bind.support.SessionStatus;
 public class CvController {
     
      @Autowired
-    private IService CvService, logroService, experienciaService,cursoCapService;
+    private IService CvService, logroService, experienciaService,cursoCapService, escritoService, aptitudCvService;
     @Autowired
-    private IService CandidatoService; 
+    private IService CandidatoService, habilidadesCvService, eventoService; 
     BigDecimal num=null, numcv=null;
     
     Cv cv = new Cv();
@@ -42,6 +46,10 @@ public class CvController {
     ExperienciaLaboral experiencia = new ExperienciaLaboral();
     Logro logro = new Logro();
     CursoCapacitacion cursocapacitacion =new CursoCapacitacion();
+    Escrito escrito= new Escrito();
+    AptitudCv aptitudcv = new AptitudCv();
+    HabilidadesCv habilidadescv =new HabilidadesCv();
+    Evento evento = new Evento();
     
     
        
@@ -49,7 +57,7 @@ public class CvController {
     @GetMapping("/candidato/ver/{id}")
     public String listar(@PathVariable(value="id") Candidato id,Model model)
     {
-        Candidato candidato=null;
+        //Candidato candidato=null;
         model.addAttribute("candidato",id);
         model.addAttribute("cv",CvService.findCandidatobyCv(id));
        
@@ -65,6 +73,10 @@ public class CvController {
        model.addAttribute("logro",logroService.findCvbyLogro(cv));
        model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(cv));
        model.addAttribute("cursocapacitacion",cursoCapService.findCvbyCursoCap(cv)); 
+       model.addAttribute("escrito",escritoService.findCvbyEscrito(cv));
+       model.addAttribute("aptitudcv",aptitudCvService.findCvbyAptCv(cv));
+       model.addAttribute("habilidadescv",habilidadesCvService.findCvbyHabCv(cv));
+       model.addAttribute("evento",eventoService.findCvbyEvento(cv));
         return "Cv/verCv";
     }
     
@@ -136,6 +148,10 @@ public class CvController {
         model.put("experiencia", experiencia);
         model.put("logro", logro);
         model.put("cursocapacitacion", cursocapacitacion);        
+        model.put("escrito", escrito); 
+        model.put("aptitudcv", aptitudcv);
+        model.put("habilidadescv", habilidadescv);
+        model.put("evento", evento);
         
         //listar secciones del cv
         listar(cv, (Model) model);

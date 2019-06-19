@@ -41,6 +41,9 @@ import com.zato.app.dao.ICvDao;
 import com.zato.app.dao.ILogroDao;
 import com.zato.app.dao.ICursoCapacitacionDao;
 import com.zato.app.dao.IEscritoDao;
+import com.zato.app.dao.IAptitudCvDao;
+import com.zato.app.dao.IHabilidadesCvDao;
+import com.zato.app.dao.IEventoDao;
 
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
@@ -76,6 +79,9 @@ import com.zato.app.entidades.ExperienciaLaboral;
 import com.zato.app.entidades.Logro;
 import com.zato.app.entidades.CursoCapacitacion;
 import com.zato.app.entidades.Escrito;
+import com.zato.app.entidades.AptitudCv;
+import com.zato.app.entidades.HabilidadesCv;
+import com.zato.app.entidades.Evento;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,6 +170,13 @@ public class ServiceImpl implements IService {
     private ICursoCapacitacionDao cursoCapDao;
     @Autowired
     private IEscritoDao escritoDao;
+    @Autowired
+    private IAptitudCvDao aptitudCvDao;
+    @Autowired
+    private IHabilidadesCvDao habilidadesCvDao;
+    @Autowired
+    private IEventoDao eventoDao;
+    
     
     // PAISES
     @Override
@@ -1106,5 +1119,97 @@ public class ServiceImpl implements IService {
         return(List<Escrito>) escritoDao.findCvbyEscrito(cv);
     }
     
+    // APTITUD CV
+    @Override
+    @Transactional(readOnly=true)
+    public List<AptitudCv>findAllAptCv(){
+        return(List<AptitudCv>) aptitudCvDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveAptCv(AptitudCv aptitudcv){
+        aptitudCvDao.save(aptitudcv);
+    }
+
+    @Override
+    @Transactional
+    public AptitudCv findOneAptCv(BigDecimal id){
+        return aptitudCvDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteAptCv(BigDecimal id){
+        aptitudCvDao.delete(id);
+    }
+    
+      @Override
+    @Transactional(readOnly=true)
+    public List<AptitudCv>findCvbyAptCv(Cv cv){
+        return(List<AptitudCv>) aptitudCvDao.findCvbyAptCv(cv);
+    }
+    
+     // HABILIDADES CV
+    @Override
+    @Transactional(readOnly=true)
+    public List<HabilidadesCv>findAllHabCv(){
+        return(List<HabilidadesCv>) habilidadesCvDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveHabCv(HabilidadesCv habilidadescv){
+        habilidadesCvDao.save(habilidadescv);
+    }
+
+    @Override
+    @Transactional
+    public HabilidadesCv findOneHabCv(BigDecimal id){
+        return habilidadesCvDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteHabCv(BigDecimal id){
+        habilidadesCvDao.delete(id);
+    }
+    
+      @Override
+    @Transactional(readOnly=true)
+    public List<HabilidadesCv>findCvbyHabCv(Cv cv){
+        return(List<HabilidadesCv>) habilidadesCvDao.findCvbyHabCv(cv);
+    }
+    
+     // EVENTO
+    @Override
+    @Transactional(readOnly=true)
+    public List<Evento>findAllEvento(){
+        return(List<Evento>) eventoDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveEvento(Evento evento){
+        eventoDao.save(evento);
+    }
+
+    @Override
+    @Transactional
+    public Evento findOneEvento(BigDecimal id){
+        return eventoDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteEvento(BigDecimal id){
+        eventoDao.delete(id);
+    }
+    
+      @Override
+    @Transactional(readOnly=true)
+    public List<Evento>findCvbyEvento(Cv cv){
+        return(List<Evento>) eventoDao.findCvbyEvento(cv);
+    }
     
 }

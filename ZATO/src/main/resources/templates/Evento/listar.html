@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+         <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+    </head>
+    <body>
+         <div th:replace="fragments/header :: header"/>
+        <h1 th:text="${titulo}"></h1>
+        
+        <div class="container" th:fragment="EVENTO">
+
+        <a class="btn btn-success btn-xs" th:href="@{/Evento/formeven/ }+ ${cv.pkCv}" >Agregar Evento</a>
+        
+        <table class="table table-striped ">
+            <thead>
+                 <tr>
+                    <th>Acciones</th>
+                    <th>Nombre del Evento</th>
+                    <th>Descripcion</th>
+                    <th>Pais</th>
+                    <th>Lugar</th>
+                    <th>Anfitrion</th>
+                    <th>Fecha del Evento</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr th:each="evento: ${evento}">
+                 <td>
+                    <a class="btn btn-primary btn-xs" th:href="@{/Evento/editar/ }+ ${evento.pkEvento}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-xs" th:href="@{/Evento/eliminar/} + ${evento.pkEvento}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <td th:text="${evento.nombreEvento}"></td>
+                    <td th:text="${evento.descripcionEvento}"></td>
+                    <td th:text="${evento.pais.nombrePais}"></td>
+                    <td th:text="${evento.lugarEvento}"></td>
+                    <td th:text="${evento.anfitrionEvento}"></td>
+                    <td th:text="${evento.fechaEvento}"></td>
+                    </tr>
+            </tbody>
+        </table>
+        </div>
+         <div th:replace="fragments/footer :: footer"></div>
+    </body>
+</html>
+

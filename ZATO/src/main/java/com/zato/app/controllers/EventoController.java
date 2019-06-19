@@ -6,9 +6,8 @@
 package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
-import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.Cv;
-import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.Evento;
 import java.math.BigDecimal;
 
 import java.util.Map;
@@ -23,63 +22,62 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
-//@RequestMapping("/Experiencia")
-@SessionAttributes("experienciaLaboral")
-public class ExperienciaLaboralController {
+@SessionAttributes("Evento")
+public class EventoController {
     
-    @Autowired
-    private IService experienciaService;
+     @Autowired
+    private IService eventoService;
     @Autowired
     private IService CvService; 
     @Autowired
-    private IService sectorService;
+    private IService paisService; 
     
     BigDecimal numcv=null;
     
-    ExperienciaLaboral experiencia = new ExperienciaLaboral();
+    Evento evento = new Evento();
     Cv cv = new Cv();
-    CatalogoSectorEmpresa sector = new CatalogoSectorEmpresa();
     
     
-     @RequestMapping(value="experienciaLaboral/formexp/{id}",method=RequestMethod.GET)
+  
+  
+     @RequestMapping(value="Evento/formeven/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
         numcv=id;
-        model.put("experiencia", experiencia);
-        model.put("sectores",sectorService.findAllSectores());
-        model.put("titulo", "Experiencia Laboral");
+        model.put("evento", evento);
+        model.put("titulo", "Eventos");
+        model.put("pais",paisService.findAll());
         
-        return "experienciaLaboral/formexp";
+        return "Evento/formeven";
     }
     
      
     
-     @RequestMapping(value="experienciaLaboral/editar/{id}")
+     @RequestMapping(value="Evento/editar/{id}")
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
-       
+        
        
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            experiencia = experienciaService.findOneExp(id);
+            evento = eventoService.findOneEvento(id);
           
         } else {
             return "redirect:/Cv/verCv";
         }
-        model.put("experiencia", experiencia);
-        model.put("sector",sectorService.findAllSectores());
-        model.put("titulo", "Actualizar Experiencia");
-        return "experienciaLaboral/formexp";
+        model.put("evento", evento);
+        model.put("titulo", "Actualizar Evento");
+        return "Evento/formeven";
     } 
     
-    @RequestMapping(value="experienciaLaboral/formexp",method=RequestMethod.POST)
-    public String guardar(ExperienciaLaboral experiencia, SessionStatus status)
+    @RequestMapping(value="Evento/formeven",method=RequestMethod.POST)
+    public String guardar(Evento evento, SessionStatus status)
     {
         cv=CvService.findOneCv(numcv);
-        experiencia.setCv(cv);//id cv
+        evento.setCv(cv);//id cv
         
-        experienciaService.saveExp(experiencia);
+        eventoService.saveEvento(evento);
         status.setComplete();
         
         
@@ -87,18 +85,16 @@ public class ExperienciaLaboralController {
     }
     
     
-     @RequestMapping(value = "experienciaLaboral/eliminar/{id}")
+     @RequestMapping(value = "Evento/eliminar/{id}")
     public String eliminar(@PathVariable(value="id") BigDecimal id)
     {
          
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            experienciaService.deleteExp(id);
+            eventoService.deleteAptCv(id);
         }
-        return "redirect:/Cv/verCv/"+numcv;
+        return "redirect:/Cv/verCv"+numcv;
     }
-    
-
     
 }
