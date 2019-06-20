@@ -42,6 +42,7 @@ import com.zato.app.dao.ILogroDao;
 import com.zato.app.dao.ICursoCapacitacionDao;
 import com.zato.app.dao.IEscritoDao;
 import com.zato.app.dao.IAptitudCvDao;
+import com.zato.app.dao.IBitacora;
 import com.zato.app.dao.IHabilidadesCvDao;
 import com.zato.app.dao.IEventoDao;
 
@@ -89,6 +90,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.zato.app.dao.IExperienciaLaboralDao;
 import com.zato.app.dao.IPruebaOfertaDao;
+import com.zato.app.entidades.Bitacora;
 import com.zato.app.entidades.PruebaOferta;
 
 /**
@@ -176,6 +178,9 @@ public class ServiceImpl implements IService {
     private IHabilidadesCvDao habilidadesCvDao;
     @Autowired
     private IEventoDao eventoDao;
+    
+    @Autowired
+    private IBitacora bitacoraDao;
     
     
     // PAISES
@@ -1222,6 +1227,18 @@ public class ServiceImpl implements IService {
     @Transactional(readOnly=true)
     public List<Evento>findCvbyEvento(Cv cv){
         return(List<Evento>) eventoDao.findCvbyEvento(cv);
+    }
+    
+     @Override
+    @Transactional
+    public List<Bitacora> findAllBitacora(){
+        return(List<Bitacora>) bitacoraDao.findAll();
+    }
+    
+    @Override
+    @Transactional
+    public Bitacora findOneBitacora (BigDecimal id){
+         return bitacoraDao.findOne(id);
     }
     
 }

@@ -46,6 +46,7 @@ import com.zato.app.entidades.PruebaOferta;
 import com.zato.app.entidades.CursoCapacitacion;
 import com.zato.app.entidades.Escrito;
 import com.zato.app.entidades.AptitudCv;
+import com.zato.app.entidades.Bitacora;
 import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Evento;
 /**
@@ -313,6 +314,12 @@ public interface IService {
     public Evento findOneEvento (BigDecimal id);
     public void deleteEvento(BigDecimal id);
     public List<Evento> findCvbyEvento(Cv cv);
+    
+    //BITACORA
+
+    public List<Bitacora> findAllBitacora();
+    public Bitacora findOneBitacora (BigDecimal id);
+      
    
     
 }
