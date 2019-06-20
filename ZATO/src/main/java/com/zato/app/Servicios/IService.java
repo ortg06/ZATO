@@ -48,6 +48,7 @@ import com.zato.app.entidades.Escrito;
 import com.zato.app.entidades.AptitudCv;
 import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Evento;
+import com.zato.app.entidades.FormacionAcademica;
 /**
  *
  * @author Alex
@@ -313,6 +314,13 @@ public interface IService {
     public Evento findOneEvento (BigDecimal id);
     public void deleteEvento(BigDecimal id);
     public List<Evento> findCvbyEvento(Cv cv);
+    
+     //FORMACION ACADEMICA
+    public List<FormacionAcademica> findAllForAcad();
+    public void saveForAcad(FormacionAcademica formacionacademica);
+    public FormacionAcademica findOneForAcad (BigDecimal id);
+    public void deleteForAcad(BigDecimal id);
+    public List<FormacionAcademica> findCvbyForAcad(Cv cv);
    
     
 }
