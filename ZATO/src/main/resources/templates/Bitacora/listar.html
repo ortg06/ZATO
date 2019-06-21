@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th ="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"/>
+        <h1 th:text="${titulo}"></h1>
+        
+        <div class="container">
+
+
+        
+        <table class="table table-striped">
+            <thead>
+                 <tr>
+                    <th>Usuario</th>
+                    <th>Fecha Modificacion</th>
+                    <th>Tabla</th>
+                    <th>Operacion</th>
+                    <th>Valor Anterio</th>
+                    <th>valor Nuevo</th>
+                    <th>Pk Modificado</th>
+                    
+                 </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bitacora: ${bitacoras}">
+                     <td th:text="${bitacora.usuario}"></td>
+                     <td th:text="${bitacora.fechaModificacion}"></td>
+                     <td th:text="${bitacora.tabla}"></td>
+                     <td th:text="${bitacora.operacion}"></td>
+                     <td th:text="${bitacora.valorAnterior}"></td>
+                     <td th:text="${bitacora.valorNuevo}"></td>
+                     <td th:text="${bitacora.pkAlterado}"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+         <div th:replace="fragments/footer :: footer"></div>
+         
+      </body>
+</html>
