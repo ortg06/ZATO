@@ -44,6 +44,7 @@ import com.zato.app.dao.IEscritoDao;
 import com.zato.app.dao.IAptitudCvDao;
 import com.zato.app.dao.IHabilidadesCvDao;
 import com.zato.app.dao.IEventoDao;
+import com.zato.app.dao.IFormacionAcademicaDao;
 
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
@@ -82,6 +83,7 @@ import com.zato.app.entidades.Escrito;
 import com.zato.app.entidades.AptitudCv;
 import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Evento;
+import com.zato.app.entidades.FormacionAcademica;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -176,6 +178,8 @@ public class ServiceImpl implements IService {
     private IHabilidadesCvDao habilidadesCvDao;
     @Autowired
     private IEventoDao eventoDao;
+    @Autowired
+    private IFormacionAcademicaDao formacionDao;
     
     
     // PAISES
@@ -1222,6 +1226,37 @@ public class ServiceImpl implements IService {
     @Transactional(readOnly=true)
     public List<Evento>findCvbyEvento(Cv cv){
         return(List<Evento>) eventoDao.findCvbyEvento(cv);
+    }
+    
+        // FORMACION ACADEMICA
+    @Override
+    @Transactional(readOnly=true)
+    public List<FormacionAcademica>findAllForAcad(){
+        return(List<FormacionAcademica>) formacionDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveForAcad(FormacionAcademica formacionacademica){
+        formacionDao.save(formacionacademica);
+    }
+
+    @Override
+    @Transactional
+    public FormacionAcademica findOneForAcad(BigDecimal id){
+        return formacionDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteForAcad(BigDecimal id){
+        formacionDao.delete(id);
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<FormacionAcademica>findCvbyForAcad(Cv cv){
+        return(List<FormacionAcademica>) formacionDao.findCvbyForAcad(cv);
     }
     
 }

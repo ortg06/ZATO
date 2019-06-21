@@ -13,6 +13,7 @@ import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.Escrito;
 import com.zato.app.entidades.Evento;
 import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.FormacionAcademica;
 import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Logro;
 import java.math.BigDecimal;
@@ -38,7 +39,7 @@ public class CvController {
      @Autowired
     private IService CvService, logroService, experienciaService,cursoCapService, escritoService, aptitudCvService;
     @Autowired
-    private IService CandidatoService, habilidadesCvService, eventoService; 
+    private IService CandidatoService, habilidadesCvService, eventoService, formacionService; 
     BigDecimal num=null, numcv=null;
     
     Cv cv = new Cv();
@@ -50,6 +51,7 @@ public class CvController {
     AptitudCv aptitudcv = new AptitudCv();
     HabilidadesCv habilidadescv =new HabilidadesCv();
     Evento evento = new Evento();
+    FormacionAcademica formacion = new FormacionAcademica();
     
     
        
@@ -77,6 +79,7 @@ public class CvController {
        model.addAttribute("aptitudcv",aptitudCvService.findCvbyAptCv(cv));
        model.addAttribute("habilidadescv",habilidadesCvService.findCvbyHabCv(cv));
        model.addAttribute("evento",eventoService.findCvbyEvento(cv));
+       model.addAttribute("formacion",formacionService.findCvbyForAcad(cv));
         return "Cv/verCv";
     }
     
@@ -152,6 +155,7 @@ public class CvController {
         model.put("aptitudcv", aptitudcv);
         model.put("habilidadescv", habilidadescv);
         model.put("evento", evento);
+        model.put("formacion", formacion);
         
         //listar secciones del cv
         listar(cv, (Model) model);
