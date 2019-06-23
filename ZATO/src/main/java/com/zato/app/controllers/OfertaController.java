@@ -98,13 +98,9 @@ public class OfertaController{
        
        model.addAttribute("oferta",id);
        model.addAttribute("CatGradoAcademico",ofertaService.findCatalogoGradoAcademicobyOferta(oferta));
-       model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(cv));
-       model.addAttribute("cursocapacitacion",cursoCapService.findCvbyCursoCap(cv)); 
-       model.addAttribute("escrito",escritoService.findCvbyEscrito(cv));
-       model.addAttribute("aptitudcv",aptitudCvService.findCvbyAptCv(cv));
-       model.addAttribute("habilidadescv",habilidadesCvService.findCvbyHabCv(cv));
-       model.addAttribute("evento",eventoService.findCvbyEvento(cv));
-       model.addAttribute("formacion",formacionService.findCvbyForAcad(cv));
+       model.addAttribute("aptitudOferta",ofertaService.findAptitudOfertabyOferta(oferta));
+       //model.addAttribute("habilidadescv",habilidadesCvService.findCvbyHabCv(cv));
+       
         return "Cv/verCv";
     }
 
