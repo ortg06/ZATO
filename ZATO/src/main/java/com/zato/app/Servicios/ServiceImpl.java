@@ -743,6 +743,13 @@ public class ServiceImpl implements IService {
     public void deleteCatalogoGradoAcademico(BigDecimal id){
         catalogoGradoAcademicoDao.delete(id);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CatalogoGradoAcademico>findCatalogoGradoAcademicobyOferta(Oferta oferta)
+    {
+        return (List<CatalogoGradoAcademico>) catalogoGradoAcademicoDao.findCatalagoGradoAcademicobyOferta(oferta);
+    }
     
     //Catalogo Escrito
      @Override

@@ -5,9 +5,15 @@
  */
 package com.zato.app.dao;
 
-import com.zato.app.entidades.CatalogoGradoAcademico;
-import org.springframework.data.repository.CrudRepository;
 import java.math.BigDecimal;
+import java.util.List;
+
+import com.zato.app.entidades.CatalogoGradoAcademico;
+import com.zato.app.entidades.Oferta;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 
 /**
@@ -16,5 +22,8 @@ import java.math.BigDecimal;
  */
 public interface ICatalogoGradoAcademicoDao
 extends CrudRepository<CatalogoGradoAcademico, BigDecimal> {
+
+    @Query("select i from CatalogoGradoAcademico i where i.oferta=:oferta")
+    public List<CatalogoGradoAcademico> findCatalagoGradoAcademicobyOferta(@Param("oferta") Oferta oferta);
     
 }
