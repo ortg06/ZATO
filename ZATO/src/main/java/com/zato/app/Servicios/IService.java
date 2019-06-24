@@ -50,6 +50,9 @@ import com.zato.app.entidades.Bitacora;
 import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Evento;
 import com.zato.app.entidades.FormacionAcademica;
+import com.zato.app.entidades.LicenciaCandidato;
+import com.zato.app.entidades.HabilidadLinguisticaCv;
+import com.zato.app.entidades.Referencia;
 /**
  *
  * @author Alex
@@ -316,15 +319,37 @@ public interface IService {
     public void deleteEvento(BigDecimal id);
     public List<Evento> findCvbyEvento(Cv cv);
     
-     //FORMACION ACADEMICA
+    //FORMACION ACADEMICA
     public List<FormacionAcademica> findAllForAcad();
     public void saveForAcad(FormacionAcademica formacionacademica);
     public FormacionAcademica findOneForAcad (BigDecimal id);
     public void deleteForAcad(BigDecimal id);
     public List<FormacionAcademica> findCvbyForAcad(Cv cv);
-    //BITACORA
     
-     public List<Bitacora> findAllBitacora();
+
+    //BITACORA
+    public List<Bitacora> findAllBitacora();
     public Bitacora findOneBitacora (BigDecimal id);
+    
+    //LICENCIA CANDIDATO
+    public List<LicenciaCandidato> findAllLicCand();
+    public void saveLicCand(LicenciaCandidato licenciacandidato);
+    public LicenciaCandidato findOneLicCand (BigDecimal id);
+    public void deleteLicCand(BigDecimal id);
+    public List<LicenciaCandidato> findCvbyLicCand(Cv cv);
+    
+    //HABILIDAD LINGUISTICA CV
+    public List<HabilidadLinguisticaCv> findAllHabLingCv();
+    public void saveHabLingCv(HabilidadLinguisticaCv habilidadlinguisticacv);
+    public HabilidadLinguisticaCv findOneHabLingCv (BigDecimal id);
+    public void deleteHabLingCv(BigDecimal id);
+    public List<HabilidadLinguisticaCv> findCvbyHabLingCv(Cv cv);
+    
+    //REFERENCIA
+    public List<Referencia> findAllRef();
+    public void saveRef(Referencia referencia);
+    public Referencia findOneRef (BigDecimal id);
+    public void deleteRef(BigDecimal id);
+    public List<Referencia> findCvbyRef(Cv cv);
       
 }
