@@ -201,7 +201,7 @@ public interface IService {
     public void saveCatalogoGradoAcademico(CatalogoGradoAcademico catalogoGradoAcademico);
     public CatalogoGradoAcademico findOneCatalogoGradoAcademico (BigDecimal id);
     public void deleteCatalogoGradoAcademico(BigDecimal id);
-    public List<CatalogoGradoAcademico>findCatalogoGradoAcademicobyOferta(Oferta oferta);
+    
     
      //Catalogo escrito
     public List<CatalogoEscrito> findAllCatalogoEscrito();

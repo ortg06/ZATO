@@ -8,46 +8,50 @@ package com.zato.app.Servicios;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.zato.app.dao.IAptitudCvDao;
+import com.zato.app.dao.IAptitudOfertaDao;
+import com.zato.app.dao.IBitacora;
 import com.zato.app.dao.ICandidatoDao;
 import com.zato.app.dao.ICatalogoAptitudDao;
 import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
 import com.zato.app.dao.ICatalogoEscritoDao;
 import com.zato.app.dao.ICatalogoGenero;
 import com.zato.app.dao.ICatalogoGradoAcademicoDao;
+import com.zato.app.dao.ICatalogoHabilidadDao;
+import com.zato.app.dao.ICatalogoIdiomaDao;
 import com.zato.app.dao.ICatalogoLicencia;
 import com.zato.app.dao.ICatalogoPonderacionDao;
 import com.zato.app.dao.ICatalogoSectorEmpresa;
 import com.zato.app.dao.ICatalogoTipoEmpresaDao;
 import com.zato.app.dao.ICatalogoTipoPruebaDao;
+import com.zato.app.dao.ICatalogoTipoReferenciaDao;
 import com.zato.app.dao.ICategoriaDao;
+import com.zato.app.dao.ICursoCapacitacionDao;
+import com.zato.app.dao.ICvDao;
 import com.zato.app.dao.IDepartamentoDao;
+import com.zato.app.dao.IEmpresaDao;
+import com.zato.app.dao.IEscritoDao;
+import com.zato.app.dao.IEventoDao;
+import com.zato.app.dao.IExperienciaLaboralDao;
+import com.zato.app.dao.IFormacionAcademicaDao;
+import com.zato.app.dao.IHabilidadesCvDao;
+import com.zato.app.dao.IItemPruebaDao;
+import com.zato.app.dao.ILogroDao;
 import com.zato.app.dao.IMenuDao;
 import com.zato.app.dao.IMunicipioDao;
 import com.zato.app.dao.IOfertaDao;
-import com.zato.app.dao.IPaisDao;
-import com.zato.app.dao.IRolDao;
-import com.zato.app.dao.ISubmenuDao;
-import com.zato.app.dao.ICatalogoIdiomaDao;
-import com.zato.app.dao.IEmpresaDao;
-import com.zato.app.dao.IPuestosDao;
-import com.zato.app.dao.ICatalogoHabilidadDao;
-import com.zato.app.dao.ICatalogoTipoReferenciaDao;
-import com.zato.app.dao.IItemPruebaDao;
 import com.zato.app.dao.IOpcionesDao;
-import com.zato.app.dao.IRolSubmenuDao;
+import com.zato.app.dao.IPaisDao;
 import com.zato.app.dao.IPerfilDao;
 import com.zato.app.dao.IPruebaDao;
-import com.zato.app.dao.ICvDao;
-import com.zato.app.dao.ILogroDao;
-import com.zato.app.dao.ICursoCapacitacionDao;
-import com.zato.app.dao.IEscritoDao;
-import com.zato.app.dao.IAptitudCvDao;
-import com.zato.app.dao.IAptitudOfertaDao;
-import com.zato.app.dao.IBitacora;
-import com.zato.app.dao.IHabilidadesCvDao;
-import com.zato.app.dao.IEventoDao;
-import com.zato.app.dao.IFormacionAcademicaDao;
-
+import com.zato.app.dao.IPruebaOfertaDao;
+import com.zato.app.dao.IPuestosDao;
+import com.zato.app.dao.IRolDao;
+import com.zato.app.dao.IRolSubmenuDao;
+import com.zato.app.dao.ISubmenuDao;
+import com.zato.app.entidades.AptitudCv;
+import com.zato.app.entidades.AptitudOferta;
+import com.zato.app.entidades.Bitacora;
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
 import com.zato.app.entidades.CatalogoCategoria;
@@ -55,46 +59,41 @@ import com.zato.app.entidades.CatalogoCategoriaHabilidad;
 import com.zato.app.entidades.CatalogoEscrito;
 import com.zato.app.entidades.CatalogoGenero;
 import com.zato.app.entidades.CatalogoGradoAcademico;
+import com.zato.app.entidades.CatalogoHabilidad;
+import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
+import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.CatalogoTipoEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
+import com.zato.app.entidades.CatalogoTipoReferencia;
+import com.zato.app.entidades.CursoCapacitacion;
+import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.Departamento;
+import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.Escrito;
+import com.zato.app.entidades.Evento;
+import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.FormacionAcademica;
+import com.zato.app.entidades.HabilidadesCv;
+import com.zato.app.entidades.ItemPrueba;
+import com.zato.app.entidades.Logro;
+import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Municipio;
 import com.zato.app.entidades.Oferta;
-import com.zato.app.entidades.Pais;
-import com.zato.app.entidades.Rol;
-import com.zato.app.entidades.Menu;
-import com.zato.app.entidades.Submenu;
-import com.zato.app.entidades.CatalogoIdioma;
-import com.zato.app.entidades.Empresa;
-import com.zato.app.entidades.CatalogoPuesto;
-import com.zato.app.entidades.CatalogoHabilidad;
-import com.zato.app.entidades.CatalogoTipoReferencia;
-import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Opciones;
-import com.zato.app.entidades.RolSubmenu;
+import com.zato.app.entidades.Pais;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
-import com.zato.app.entidades.Cv;
-import com.zato.app.entidades.ExperienciaLaboral;
-import com.zato.app.entidades.Logro;
-import com.zato.app.entidades.CursoCapacitacion;
-import com.zato.app.entidades.Escrito;
-import com.zato.app.entidades.AptitudCv;
-import com.zato.app.entidades.AptitudOferta;
-import com.zato.app.entidades.HabilidadesCv;
-import com.zato.app.entidades.Evento;
-import com.zato.app.entidades.FormacionAcademica;
+import com.zato.app.entidades.PruebaOferta;
+import com.zato.app.entidades.Rol;
+import com.zato.app.entidades.RolSubmenu;
+import com.zato.app.entidades.Submenu;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.zato.app.dao.IExperienciaLaboralDao;
-import com.zato.app.dao.IPruebaOfertaDao;
-import com.zato.app.entidades.Bitacora;
-import com.zato.app.entidades.PruebaOferta;
 
 /**
  *
@@ -744,11 +743,7 @@ public class ServiceImpl implements IService {
         catalogoGradoAcademicoDao.delete(id);
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<CatalogoGradoAcademico> findCatalogoGradoAcademicobyOferta(Oferta oferta) {
-        return (List<CatalogoGradoAcademico>) catalogoGradoAcademicoDao.findCatalagoGradoAcademicobyOferta(oferta);
-    }
+    
 
     // Catalogo Escrito
     @Override
@@ -1284,21 +1279,27 @@ public class ServiceImpl implements IService {
     }
 
     @Override
+    @Transactional
     public void saveAptitudOferta(AptitudOferta aptitudOferta) {
         aptitudOfertaDao.save(aptitudOferta);
     }
 
     @Override
+    @Transactional
     public AptitudOferta findOneAptitudOferta(BigDecimal id) {
         return aptitudOfertaDao.findOne(id);
     }
 
     @Override
+    @Transactional
     public void deleteAptitudOferta(BigDecimal id) {
         aptitudOfertaDao.delete(id);
     }
 
+
+
     @Override
+    @Transactional
     public List<AptitudOferta> findAptitudOfertabyOferta(Oferta oferta) {
         return (List<AptitudOferta>)aptitudOfertaDao.findAptitudOfetabyOferta(oferta);
     }

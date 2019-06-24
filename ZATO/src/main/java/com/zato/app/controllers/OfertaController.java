@@ -97,9 +97,9 @@ public class OfertaController{
        oferta=id;
        
        model.addAttribute("oferta",id);
-       model.addAttribute("CatGradoAcademico",ofertaService.findCatalogoGradoAcademicobyOferta(oferta));
+       model.addAttribute("CatGradoAcademico",ofertaService.findAptitudOfertabyOferta(oferta));
        model.addAttribute("aptitudOferta",ofertaService.findAptitudOfertabyOferta(oferta));
-       //model.addAttribute("habilidadescv",habilidadesCvService.findCvbyHabCv(cv));
+   
        
         return "Cv/verCv";
     }
