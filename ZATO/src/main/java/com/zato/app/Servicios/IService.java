@@ -332,7 +332,6 @@ public interface IService {
     //BITACORA
     public List<Bitacora> findAllBitacora();
     public Bitacora findOneBitacora (BigDecimal id);
-<<<<<<< HEAD
 
     //APTITUD OFERTA
     public List<AptitudOferta> findAllAptitudOfertas();
@@ -340,7 +339,6 @@ public interface IService {
     public AptitudOferta findOneAptitudOferta (BigDecimal id);
     public void deleteAptitudOferta (BigDecimal id);
     public List<AptitudOferta> findAptitudOfertabyOferta(Oferta oferta);
-=======
     
     //LICENCIA CANDIDATO
     public List<LicenciaCandidato> findAllLicCand();
@@ -362,6 +360,5 @@ public interface IService {
     public Referencia findOneRef (BigDecimal id);
     public void deleteRef(BigDecimal id);
     public List<Referencia> findCvbyRef(Cv cv);
->>>>>>> f60870d3b5f79fe8eed9ce05cb6441c28ad4122b
       
 }
