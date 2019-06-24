@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IPruebaDao;
+import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Oferta;
 import com.zato.app.entidades.Prueba;
@@ -54,6 +55,7 @@ public class PruebaController {
         return "prueba/listar";
     }
 
+    //se listan las pruebas por oferta
     @GetMapping("/listar/{id}")
     public String listar(@PathVariable(value = "id") BigDecimal id, Model model) {
         Oferta oferta = IService.findOneOferta(id);
@@ -65,6 +67,20 @@ public class PruebaController {
 
         return "prueba/listar";
     }
+    
+    //LISTADO DE PRUEBAS POR EMPRESA
+    /*
+    @GetMapping("/listarE/{id}")
+    public String listarE(@PathVariable(value = "id") BigDecimal id, Model model) {
+        Empresa empresa=IService.findOneEmpresa(id);
+        List<Oferta> lista = IService.findOfertaByEmpresa(empresa);
+        model.addAttribute("titulo", "Listado de Pruebas para la Empresa:");
+        model.addAttribute("pruebas", IService.findAllPruebas());
+        model.addAttribute("empresa", empresa);
+        model.addAttribute("pos", lista);
+
+        return "prueba/listar";
+    }*/
 
     @RequestMapping(value = "/nuevo/{pkOferta}", method = RequestMethod.GET)
     public String crear(@PathVariable(value = "pkOferta") BigDecimal pkOferta,
@@ -80,6 +96,24 @@ public class PruebaController {
         return "prueba/form";
     }
 
+    //Metodo para crear prueba por empresa
+    /*
+    @RequestMapping(value = "/nuevo/{pkEmpresa}", method = RequestMethod.GET)
+    public String crearE(@PathVariable(value = "pkEmpresa") BigDecimal pkEmpresa,
+            Map<String, Object> model,
+            RedirectAttributes flash) {
+        Empresa empresa = IService.findOneEmpresa(pkEmpresa);
+        num = pkEmpresa;
+        Prueba prueba = new Prueba();
+        model.put("prueba", prueba);
+        model.put("titulo", "Datos de la prueba");
+
+        model.put("tipos", IService.findAlltipoprueba());
+        return "prueba/form";
+    }
+    
+    */
+    
     @RequestMapping(value = "/editar/{id}")
     public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Prueba prueba = null;
@@ -114,7 +148,24 @@ public class PruebaController {
 
         return "redirect:/prueba/listar/" + num;
     }
+    
+    /*
+    //METODO ASIGNAR PK OFERTA PK PRUEBA EN PRUEBA_OFERTA
+    @RequestMapping(value = "/asignar", method = RequestMethod.POST)
+     public String asignar(Prueba prueba, @RequestParam(name = "oferta", required = false) BigDecimal oferta, SessionStatus status) {
 
+               
+            //Procedimiento: insertarpruebaoferta
+            //parametros: (pk prueba,pk oferta)
+            repo.insertPruebaOferta(prueba.getPkPrueba(), num);
+       
+
+        return "redirect:/prueba/listar/" + num;
+    }
+    */
+    
+    
+    
     @RequestMapping(value = "/eliminar/{id}")
     public String eliminar(@PathVariable(value = "id") BigDecimal id) {
         //se compara si el ID es mayor que cero
@@ -134,6 +185,9 @@ public class PruebaController {
 
         return "prueba/items";
     }
+    
+    
+   
 
     /* 
     @RequestMapping(value="/items/nuevo/{id}",method=RequestMethod.GET)

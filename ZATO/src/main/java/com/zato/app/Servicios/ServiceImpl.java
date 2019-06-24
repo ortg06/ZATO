@@ -44,6 +44,7 @@ import com.zato.app.dao.IOpcionesDao;
 import com.zato.app.dao.IPaisDao;
 import com.zato.app.dao.IPerfilDao;
 import com.zato.app.dao.IPruebaDao;
+<<<<<<< HEAD
 import com.zato.app.dao.IPruebaOfertaDao;
 import com.zato.app.dao.IPuestosDao;
 import com.zato.app.dao.IRolDao;
@@ -52,6 +53,20 @@ import com.zato.app.dao.ISubmenuDao;
 import com.zato.app.entidades.AptitudCv;
 import com.zato.app.entidades.AptitudOferta;
 import com.zato.app.entidades.Bitacora;
+=======
+import com.zato.app.dao.ICvDao;
+import com.zato.app.dao.ILogroDao;
+import com.zato.app.dao.ICursoCapacitacionDao;
+import com.zato.app.dao.IEscritoDao;
+import com.zato.app.dao.IAptitudCvDao;
+import com.zato.app.dao.IBitacora;
+import com.zato.app.dao.IHabilidadesCvDao;
+import com.zato.app.dao.IEventoDao;
+import com.zato.app.dao.IFormacionAcademicaDao;
+import com.zato.app.dao.ILicenciaCandidatoDao;
+import com.zato.app.dao.IHabilidadLingCvDao;
+
+>>>>>>> f60870d3b5f79fe8eed9ce05cb6441c28ad4122b
 import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.CatalogoAptitud;
 import com.zato.app.entidades.CatalogoCategoria;
@@ -86,14 +101,39 @@ import com.zato.app.entidades.Opciones;
 import com.zato.app.entidades.Pais;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
+<<<<<<< HEAD
 import com.zato.app.entidades.PruebaOferta;
 import com.zato.app.entidades.Rol;
 import com.zato.app.entidades.RolSubmenu;
 import com.zato.app.entidades.Submenu;
+=======
+import com.zato.app.entidades.Cv;
+import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.Logro;
+import com.zato.app.entidades.CursoCapacitacion;
+import com.zato.app.entidades.Escrito;
+import com.zato.app.entidades.AptitudCv;
+import com.zato.app.entidades.HabilidadesCv;
+import com.zato.app.entidades.Evento;
+import com.zato.app.entidades.FormacionAcademica;
+import com.zato.app.entidades.LicenciaCandidato;
+import com.zato.app.entidades.HabilidadLinguisticaCv;
+
+
+>>>>>>> f60870d3b5f79fe8eed9ce05cb6441c28ad4122b
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+<<<<<<< HEAD
+=======
+import com.zato.app.dao.IExperienciaLaboralDao;
+import com.zato.app.dao.IPruebaOfertaDao;
+import com.zato.app.dao.IReferenciaDao;
+import com.zato.app.entidades.Bitacora;
+import com.zato.app.entidades.PruebaOferta;
+import com.zato.app.entidades.Referencia;
+>>>>>>> f60870d3b5f79fe8eed9ce05cb6441c28ad4122b
 
 /**
  *
@@ -185,8 +225,18 @@ public class ServiceImpl implements IService {
     @Autowired
     private IBitacora bitacoraDao;
     @Autowired
+<<<<<<< HEAD
     private IAptitudOfertaDao aptitudOfertaDao;
 
+=======
+    private ILicenciaCandidatoDao licCandDao;
+    @Autowired
+    private IHabilidadLingCvDao habLingCvDao;
+     @Autowired
+    private IReferenciaDao refDao;
+    
+    
+>>>>>>> f60870d3b5f79fe8eed9ce05cb6441c28ad4122b
     // PAISES
     @Override
     @Transactional(readOnly = true) // esto sirve para acceder en modo de solo lectura ya que estamos construyendo
@@ -1255,7 +1305,13 @@ public class ServiceImpl implements IService {
     public List<FormacionAcademica> findCvbyForAcad(Cv cv) {
         return (List<FormacionAcademica>) formacionDao.findCvbyForAcad(cv);
     }
+<<<<<<< HEAD
 
+=======
+    
+    
+    //BITACORA
+>>>>>>> f60870d3b5f79fe8eed9ce05cb6441c28ad4122b
     @Override
     @Transactional
     public List<Bitacora> findAllBitacora() {
@@ -1283,15 +1339,62 @@ public class ServiceImpl implements IService {
     public void saveAptitudOferta(AptitudOferta aptitudOferta) {
         aptitudOfertaDao.save(aptitudOferta);
     }
+<<<<<<< HEAD
 
     @Override
     @Transactional
     public AptitudOferta findOneAptitudOferta(BigDecimal id) {
         return aptitudOfertaDao.findOne(id);
+=======
+    
+       // LICENCIA CANDIDATO
+    @Override
+    @Transactional(readOnly=true)
+    public List<LicenciaCandidato>findAllLicCand(){
+        return(List<LicenciaCandidato>) licCandDao.findAll();
     }
 
     @Override
     @Transactional
+    public void saveLicCand(LicenciaCandidato licenciacandidato){
+        licCandDao.save(licenciacandidato);
+    }
+
+    @Override
+    @Transactional
+    public LicenciaCandidato findOneLicCand(BigDecimal id){
+        return licCandDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteLicCand(BigDecimal id){
+        licCandDao.delete(id);
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<LicenciaCandidato>findCvbyLicCand(Cv cv){
+        return(List<LicenciaCandidato>) licCandDao.findCvbyLicCand(cv);
+    }
+    
+       // HABILIDAD LINGUISTICA CV
+    @Override
+    @Transactional(readOnly=true)
+    public List<HabilidadLinguisticaCv>findAllHabLingCv(){
+        return(List<HabilidadLinguisticaCv>) habLingCvDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveHabLingCv(HabilidadLinguisticaCv habilidadlinguisticacv){
+        habLingCvDao.save(habilidadlinguisticacv);
+>>>>>>> f60870d3b5f79fe8eed9ce05cb6441c28ad4122b
+    }
+
+    @Override
+    @Transactional
+<<<<<<< HEAD
     public void deleteAptitudOferta(BigDecimal id) {
         aptitudOfertaDao.delete(id);
     }
@@ -1305,4 +1408,55 @@ public class ServiceImpl implements IService {
     }
 
 
+=======
+    public HabilidadLinguisticaCv findOneHabLingCv(BigDecimal id){
+        return habLingCvDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteHabLingCv(BigDecimal id){
+        habLingCvDao.delete(id);
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<HabilidadLinguisticaCv>findCvbyHabLingCv(Cv cv){
+        return(List<HabilidadLinguisticaCv>) habLingCvDao.findCvbyHabLingCv(cv);
+    }
+    
+     // REFERENCIA
+    @Override
+    @Transactional(readOnly=true)
+    public List<Referencia>findAllRef(){
+        return(List<Referencia>) refDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveRef(Referencia referencia){
+        refDao.save(referencia);
+    }
+
+    @Override
+    @Transactional
+    public Referencia findOneRef(BigDecimal id){
+        return refDao.findOne(id);
+    }
+
+      @Override
+    @Transactional
+    public void deleteRef(BigDecimal id){
+        refDao.delete(id);
+    }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public List<Referencia>findCvbyRef(Cv cv){
+        return(List<Referencia>) refDao.findCvbyRef(cv);
+    }
+
+    
+    
+>>>>>>> f60870d3b5f79fe8eed9ce05cb6441c28ad4122b
 }
