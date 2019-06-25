@@ -5,11 +5,15 @@ package com.zato.app.entidades;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -41,7 +45,8 @@ public class Menu  implements java.io.Serializable {
    
      @Id 
 
-    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator= "TIB_MENU") 	
+     @SequenceGenerator(sequenceName = "SEQUENCE_MENU", allocationSize = 1, name = "TIB_MENU")
     @Column(name="PK_MENU", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkMenu() {
         return this.pkMenu;

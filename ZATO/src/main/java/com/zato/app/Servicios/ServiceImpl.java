@@ -1329,6 +1329,7 @@ public class ServiceImpl implements IService {
     @Transactional
     public AptitudOferta findOneAptitudOferta(BigDecimal id) {
         return aptitudOfertaDao.findOne(id);
+    }
     
        // LICENCIA CANDIDATO
     @Override

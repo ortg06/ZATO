@@ -6,13 +6,17 @@ import java.math.BigDecimal;
 import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -82,7 +86,8 @@ public class Empresa  implements java.io.Serializable {
    
      @Id 
 
-    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    	
+     @SequenceGenerator(sequenceName = "SEQUENCE_EMPRESA", allocationSize = 1, name = "SEQUENCE_INCREMENT")
     @Column(name="PK_EMPRESA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkEmpresa() {
         return this.pkEmpresa;

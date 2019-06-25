@@ -90,4 +90,5 @@ Contributor(s):
   <table-filter match-name="CATALOGO_CATEGORIA"/>
   <table-filter match-name="DEPARTAMENTO"/>
   <table-filter match-name="RESULTADO"/>
+  <table-filter match-name="BITACORA"/>
 </hibernate-reverse-engineering>
