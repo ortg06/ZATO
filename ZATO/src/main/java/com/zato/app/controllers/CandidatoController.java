@@ -2,14 +2,16 @@ package com.zato.app.controllers;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Map;
+
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.ICandidatoDao;
 import com.zato.app.entidades.Candidato;
-import com.zato.app.entidades.Departamento;
-import com.zato.app.entidades.Municipio;
-import com.zato.app.entidades.Pais;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +39,8 @@ public class CandidatoController {
 
     @Autowired
     private IService candidatoService;
-    
-    CvController cvcontroller =new CvController();
+
+    CvController cvcontroller = new CvController();
 
     @GetMapping("/listar")
     public String listar(Model model) {
@@ -55,8 +57,8 @@ public class CandidatoController {
         model.put("titulo", "Datos de Candidato");
         model.put("generos", candidatoService.findAllcatalogoGenero());
         model.put("municipios", candidatoService.findAllmun());
-        model.put("paises",candidatoService.findAll());
-        model.put("departamentos",candidatoService.findAlldep());
+        model.put("paises", candidatoService.findAll());
+        model.put("departamentos", candidatoService.findAlldep());
         return "candidato/form";
 
     }
@@ -64,7 +66,7 @@ public class CandidatoController {
     @RequestMapping(value = "/editar/{id}")
     public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Candidato candidato = null;
-        
+
         // se compara si el ID es mayor que cero
         if (id.compareTo(BigDecimal.ZERO) > 0) {
             candidato = candidatoService.findCandidato(id);
@@ -73,15 +75,15 @@ public class CandidatoController {
             return "redirect:/candidato/listar";
         }
 
-        model.put("d",candidato.getMunicipio().getDepartamento().getPkDepartamento());
-        
-        model.put("p",candidato.getMunicipio().getDepartamento().getPais().getPkPais());
-        model.put("paises",candidatoService.findAll());
-        model.put("departamentos",candidatoService.findAlldep());
+        model.put("d", candidato.getMunicipio().getDepartamento().getPkDepartamento());
+
+        model.put("p", candidato.getMunicipio().getDepartamento().getPais().getPkPais());
+        model.put("paises", candidatoService.findAll());
+        model.put("departamentos", candidatoService.findAlldep());
         model.put("municipios", candidatoService.findAllmun());
         model.put("generos", candidatoService.findAllcatalogoGenero());
         model.put("candidato", candidato);
-        model.put("g",candidato.getCatalogoGenero().getPkGenero());
+        model.put("g", candidato.getCatalogoGenero().getPkGenero());
         model.put("titulo", "Editar Candidato");
         return "candidato/form";
     }
@@ -89,12 +91,13 @@ public class CandidatoController {
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(Candidato candidato, @RequestParam("file") MultipartFile foto, SessionStatus status) {
 
-        if (!foto.isEmpty() && candidato.getPkCandidato().equals(null)) {
+        if (!foto.isEmpty() ) {
 
             try {
 
                 byte[] content = foto.getBytes();
-                candidato.setFotoCandidato(content);
+                Blob blob = new SerialBlob(content);
+                candidato.setFotoCandidato(blob);
                 candidatoService.saveCandidato(candidato);
 
                 // LLAMADA AL PROCEDIMIENTO: actualizarperfilcandidato
@@ -104,6 +107,12 @@ public class CandidatoController {
                 status.setComplete();
             } catch (IOException e) {
 
+                e.printStackTrace();
+            } catch (SerialException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -135,11 +144,23 @@ public class CandidatoController {
        // Departamento departamento = candidatoService.findOneDepartamento(municipio.getDepartamento().getPkDepartamento());
        // Pais pais = candidatoService.findOne(departamento.getPais().getPkPais());
 
-        String imagen64 = Base64.encodeBase64String(candidato.getFotoCandidato());
-        model.put("candidato", candidato);
-        model.put("imagen", imagen64);
-        model.put("titulo",
-                "Perfil Usuario : " + candidato.getNombreCandidato() + " " + candidato.getApellidoCandidato());
+        int blobLenght;
+        try {
+            blobLenght = (int) candidato.getFotoCandidato().length();
+            byte[] blobAsBytes = candidato.getFotoCandidato().getBytes(1, blobLenght);
+            String imagen64 = Base64.encodeBase64String(blobAsBytes);
+            model.put("candidato", candidato);
+            model.put("imagen", imagen64);
+            model.put("titulo",
+            "Perfil Usuario : " + candidato.getNombreCandidato() + " " + candidato.getApellidoCandidato());
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        
+   
+     
         
        // model.put("nombrePais",candidato.getMunicipio().getDepartamento().getPais().getNombrePais());
         //model.put("departamento",municipio.getDepartamento().getPkDepartamento());
