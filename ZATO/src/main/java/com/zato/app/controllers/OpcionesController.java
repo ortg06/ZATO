@@ -11,7 +11,10 @@ import com.zato.app.entidades.Opciones;
 import com.zato.app.entidades.Prueba;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Map;
+import javax.sql.rowset.serial.SerialBlob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,15 +52,17 @@ public class OpcionesController {
     }
     
     @RequestMapping(value = "/opciones/formOp", method = RequestMethod.POST)
-    public String guardar(Opciones opcion, @RequestParam("file") MultipartFile foto, SessionStatus status) {
+    public String guardar(Opciones opcion, @RequestParam("file") MultipartFile foto, SessionStatus status) throws SQLException {
         
+        Blob blob =null;
         if (!foto.isEmpty()) {
             
             try {
                 
                 byte[] content = foto.getBytes();
+                blob =new SerialBlob(content);
                 ItemPrueba p = IService.findOneItem(num);
-                opcion.setImagenOpcion(content);
+                opcion.setImagenOpcion(blob);
                 opcion.setItemPrueba(p);
                 IService.saveOpcion(opcion);
                 status.setComplete();
