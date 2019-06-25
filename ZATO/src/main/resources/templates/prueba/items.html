@@ -35,7 +35,7 @@ and open the template in the editor.
                             <tr th:each="item: ${items}">
 
                                 <td><a class="btn btn-success btn-xs" th:href="@{/prueba/items/opciones/} + ${item.pkItem}" th:text="'+'"></a>
-                                    <a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
+                                    <a class="btn btn-primary btn-xs" th:href="@{/prueba/items/editar/+${item.pkItem}}" th:text="'Editar'"></a>
                                     <a class="btn btn-danger btn-xs"  th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
                                 </td>
 
