@@ -8,35 +8,50 @@ package com.zato.app.Servicios;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.zato.app.dao.IAptitudCvDao;
+import com.zato.app.dao.IAptitudOfertaDao;
+import com.zato.app.dao.IBitacora;
 import com.zato.app.dao.ICandidatoDao;
 import com.zato.app.dao.ICatalogoAptitudDao;
 import com.zato.app.dao.ICatalogoCategoriaHabilidadDao;
 import com.zato.app.dao.ICatalogoEscritoDao;
 import com.zato.app.dao.ICatalogoGenero;
 import com.zato.app.dao.ICatalogoGradoAcademicoDao;
+import com.zato.app.dao.ICatalogoHabilidadDao;
+import com.zato.app.dao.ICatalogoIdiomaDao;
 import com.zato.app.dao.ICatalogoLicencia;
 import com.zato.app.dao.ICatalogoPonderacionDao;
 import com.zato.app.dao.ICatalogoSectorEmpresa;
 import com.zato.app.dao.ICatalogoTipoEmpresaDao;
 import com.zato.app.dao.ICatalogoTipoPruebaDao;
+import com.zato.app.dao.ICatalogoTipoReferenciaDao;
 import com.zato.app.dao.ICategoriaDao;
+import com.zato.app.dao.ICursoCapacitacionDao;
+import com.zato.app.dao.ICvDao;
 import com.zato.app.dao.IDepartamentoDao;
+import com.zato.app.dao.IEmpresaDao;
+import com.zato.app.dao.IEscritoDao;
+import com.zato.app.dao.IEventoDao;
+import com.zato.app.dao.IExperienciaLaboralDao;
+import com.zato.app.dao.IFormacionAcademicaDao;
+import com.zato.app.dao.IHabilidadesCvDao;
+import com.zato.app.dao.IItemPruebaDao;
+import com.zato.app.dao.ILogroDao;
 import com.zato.app.dao.IMenuDao;
 import com.zato.app.dao.IMunicipioDao;
 import com.zato.app.dao.IOfertaDao;
-import com.zato.app.dao.IPaisDao;
-import com.zato.app.dao.IRolDao;
-import com.zato.app.dao.ISubmenuDao;
-import com.zato.app.dao.ICatalogoIdiomaDao;
-import com.zato.app.dao.IEmpresaDao;
-import com.zato.app.dao.IPuestosDao;
-import com.zato.app.dao.ICatalogoHabilidadDao;
-import com.zato.app.dao.ICatalogoTipoReferenciaDao;
-import com.zato.app.dao.IItemPruebaDao;
 import com.zato.app.dao.IOpcionesDao;
-import com.zato.app.dao.IRolSubmenuDao;
+import com.zato.app.dao.IPaisDao;
 import com.zato.app.dao.IPerfilDao;
 import com.zato.app.dao.IPruebaDao;
+import com.zato.app.dao.IPruebaOfertaDao;
+import com.zato.app.dao.IPuestosDao;
+import com.zato.app.dao.IRolDao;
+import com.zato.app.dao.IRolSubmenuDao;
+import com.zato.app.dao.ISubmenuDao;
+import com.zato.app.entidades.AptitudCv;
+import com.zato.app.entidades.AptitudOferta;
+import com.zato.app.entidades.Bitacora;
 import com.zato.app.dao.ICvDao;
 import com.zato.app.dao.ILogroDao;
 import com.zato.app.dao.ICursoCapacitacionDao;
@@ -56,28 +71,37 @@ import com.zato.app.entidades.CatalogoCategoriaHabilidad;
 import com.zato.app.entidades.CatalogoEscrito;
 import com.zato.app.entidades.CatalogoGenero;
 import com.zato.app.entidades.CatalogoGradoAcademico;
+import com.zato.app.entidades.CatalogoHabilidad;
+import com.zato.app.entidades.CatalogoIdioma;
 import com.zato.app.entidades.CatalogoLicencia;
 import com.zato.app.entidades.CatalogoPonderacion;
+import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.CatalogoTipoEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
+import com.zato.app.entidades.CatalogoTipoReferencia;
+import com.zato.app.entidades.CursoCapacitacion;
+import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.Departamento;
+import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.Escrito;
+import com.zato.app.entidades.Evento;
+import com.zato.app.entidades.ExperienciaLaboral;
+import com.zato.app.entidades.FormacionAcademica;
+import com.zato.app.entidades.HabilidadesCv;
+import com.zato.app.entidades.ItemPrueba;
+import com.zato.app.entidades.Logro;
+import com.zato.app.entidades.Menu;
 import com.zato.app.entidades.Municipio;
 import com.zato.app.entidades.Oferta;
-import com.zato.app.entidades.Pais;
-import com.zato.app.entidades.Rol;
-import com.zato.app.entidades.Menu;
-import com.zato.app.entidades.Submenu;
-import com.zato.app.entidades.CatalogoIdioma;
-import com.zato.app.entidades.Empresa;
-import com.zato.app.entidades.CatalogoPuesto;
-import com.zato.app.entidades.CatalogoHabilidad;
-import com.zato.app.entidades.CatalogoTipoReferencia;
-import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Opciones;
-import com.zato.app.entidades.RolSubmenu;
+import com.zato.app.entidades.Pais;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
+import com.zato.app.entidades.PruebaOferta;
+import com.zato.app.entidades.Rol;
+import com.zato.app.entidades.RolSubmenu;
+import com.zato.app.entidades.Submenu;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.ExperienciaLaboral;
 import com.zato.app.entidades.Logro;
@@ -159,10 +183,10 @@ public class ServiceImpl implements IService {
     @Autowired
     private ICatalogoTipoReferenciaDao catalogoTipoReferenciaDao;
     @Autowired
-    private IPerfilDao PerfilDao; 
+    private IPerfilDao PerfilDao;
     @Autowired
     private IOfertaDao OfertaDao;
-    
+
     @Autowired
     private IPruebaDao pruebaDao;
     @Autowired
@@ -192,6 +216,8 @@ public class ServiceImpl implements IService {
     @Autowired
     private IBitacora bitacoraDao;
     @Autowired
+    private IAptitudOfertaDao aptitudOfertaDao;
+
     private ILicenciaCandidatoDao licCandDao;
     @Autowired
     private IHabilidadLingCvDao habLingCvDao;
@@ -689,8 +715,7 @@ public class ServiceImpl implements IService {
         return(List<RolSubmenu>) RolSubmenuDao.findRolSubmenubyRol(rol);
     }
 
-
-    //CANDIDATO
+    // CANDIDATO
     @Override
     @Transactional(readOnly = true)
     public List<Candidato> findAllCandidato() {
@@ -711,130 +736,132 @@ public class ServiceImpl implements IService {
     public void deleteCandidato(BigDecimal id) {
         candidatoDao.delete(id);
     }
-    
-    //Catalogo Aptitudes
-     @Override
-    @Transactional(readOnly=true)
+
+    // Catalogo Aptitudes
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoAptitud> findAllCatalogoAptitud() {
-      return (List<CatalogoAptitud>) catalogoAptitudDao.findAll();
+        return (List<CatalogoAptitud>) catalogoAptitudDao.findAll();
     }
 
     @Override
     @Transactional
     public void saveCatalogoAptitud(CatalogoAptitud catalogoAptitud) {
-      catalogoAptitudDao.save(catalogoAptitud);
+        catalogoAptitudDao.save(catalogoAptitud);
     }
-   
+
     @Override
     @Transactional
-    public CatalogoAptitud findOneCatalogoAptitud(BigDecimal id){
+    public CatalogoAptitud findOneCatalogoAptitud(BigDecimal id) {
         return catalogoAptitudDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteCatalogoAptitud(BigDecimal id){
+    public void deleteCatalogoAptitud(BigDecimal id) {
         catalogoAptitudDao.delete(id);
     }
-    
-    //Catalogo grado academico
-     @Override
-    @Transactional(readOnly=true)
+
+    // Catalogo grado academico
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoGradoAcademico> findAllCatalogoGradoAcademico() {
-      return (List<CatalogoGradoAcademico>) catalogoGradoAcademicoDao.findAll();
+        return (List<CatalogoGradoAcademico>) catalogoGradoAcademicoDao.findAll();
     }
 
     @Override
     @Transactional
     public void saveCatalogoGradoAcademico(CatalogoGradoAcademico catalogoGradoAcademico) {
-       catalogoGradoAcademicoDao.save(catalogoGradoAcademico);
+        catalogoGradoAcademicoDao.save(catalogoGradoAcademico);
     }
-   
+
     @Override
     @Transactional
-    public CatalogoGradoAcademico findOneCatalogoGradoAcademico(BigDecimal id){
+    public CatalogoGradoAcademico findOneCatalogoGradoAcademico(BigDecimal id) {
         return catalogoGradoAcademicoDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteCatalogoGradoAcademico(BigDecimal id){
+    public void deleteCatalogoGradoAcademico(BigDecimal id) {
         catalogoGradoAcademicoDao.delete(id);
     }
+
     
-    //Catalogo Escrito
-     @Override
-    @Transactional(readOnly=true)
+
+    // Catalogo Escrito
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoEscrito> findAllCatalogoEscrito() {
-      return (List<CatalogoEscrito>) catalogoEscritoDao.findAll();
+        return (List<CatalogoEscrito>) catalogoEscritoDao.findAll();
     }
 
     @Override
     @Transactional
     public void saveCatalogoEscrito(CatalogoEscrito catalogoEscrito) {
-      catalogoEscritoDao.save(catalogoEscrito);
+        catalogoEscritoDao.save(catalogoEscrito);
     }
-   
+
     @Override
     @Transactional
-    public CatalogoEscrito findOneCatalogoEscrito(BigDecimal id){
+    public CatalogoEscrito findOneCatalogoEscrito(BigDecimal id) {
         return catalogoEscritoDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteCatalogoEscrito(BigDecimal id){
+    public void deleteCatalogoEscrito(BigDecimal id) {
         catalogoEscritoDao.delete(id);
     }
-    
-    //Catalogo Tipo Referencia
-     @Override
-    @Transactional(readOnly=true)
+
+    // Catalogo Tipo Referencia
+    @Override
+    @Transactional(readOnly = true)
     public List<CatalogoTipoReferencia> findAllCatalogoTipoReferencia() {
-      return (List<CatalogoTipoReferencia>) catalogoTipoReferenciaDao.findAll();
+        return (List<CatalogoTipoReferencia>) catalogoTipoReferenciaDao.findAll();
     }
 
     @Override
     @Transactional
     public void saveCatalogoTipoReferencia(CatalogoTipoReferencia catalogoTipoReferencia) {
-      catalogoTipoReferenciaDao.save(catalogoTipoReferencia);
+        catalogoTipoReferenciaDao.save(catalogoTipoReferencia);
     }
-   
+
     @Override
     @Transactional
-    public CatalogoTipoReferencia findOneCatalogoTipoReferencia(BigDecimal id){
+    public CatalogoTipoReferencia findOneCatalogoTipoReferencia(BigDecimal id) {
         return catalogoTipoReferenciaDao.findOne(id);
     }
-    
-     @Override
+
+    @Override
     @Transactional
-    public void deleteCatalogoTipoReferencia(BigDecimal id){
+    public void deleteCatalogoTipoReferencia(BigDecimal id) {
         catalogoTipoReferenciaDao.delete(id);
     }
-    
-    //PERFIL
+
+    // PERFIL
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Perfil> findAllPerfil() {
-      return (List<Perfil>) PerfilDao.findAll();
-      
+        return (List<Perfil>) PerfilDao.findAll();
+
     }
 
     @Override
     @Transactional
     public void savePerfil(Perfil perfil) {
-      PerfilDao.save(perfil);
+        PerfilDao.save(perfil);
     }
-    
-    @Override 
-    @Transactional
-    public Perfil findOnePerfil(BigDecimal id){
-        return PerfilDao.findOne(id);
-    }
-    
+
     @Override
     @Transactional
-    public void deletePerfil(BigDecimal id){
+    public Perfil findOnePerfil(BigDecimal id) {
+        return PerfilDao.findOne(id);
+    }
+
+    @Override
+    @Transactional
+    public void deletePerfil(BigDecimal id) {
         PerfilDao.delete(id);
     }
     
@@ -845,462 +872,476 @@ public class ServiceImpl implements IService {
         return PerfilDao.findPerfilUserPass(user, pass);
     }
 
-    //OFERTA
+    // OFERTA
 
     @Override
-    @Transactional(readOnly=true)
-    public List<Oferta>findAllOfertas(){
-        return(List<Oferta>) OfertaDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Oferta> findAllOfertas() {
+        return (List<Oferta>) OfertaDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveOferta(Oferta oferta){
+    public void saveOferta(Oferta oferta) {
         OfertaDao.save(oferta);
     }
 
     @Override
     @Transactional
-    public Oferta findOneOferta(BigDecimal id){
+    public Oferta findOneOferta(BigDecimal id) {
         return OfertaDao.findOne(id);
     }
 
-    public void deleteOferta(BigDecimal id){
+    public void deleteOferta(BigDecimal id) {
         OfertaDao.delete(id);
     }
-    
-    
-     //Prueba
+
+    // Prueba
 
     @Override
-    @Transactional(readOnly=true)
-    public List<Prueba>findAllPruebas(){
-        return(List<Prueba>) pruebaDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Prueba> findAllPruebas() {
+        return (List<Prueba>) pruebaDao.findAll();
     }
 
     @Override
     @Transactional
-    public void savePrueba(Prueba prueba){
+    public void savePrueba(Prueba prueba) {
         pruebaDao.save(prueba);
     }
 
     @Override
     @Transactional
-    public Prueba findOnePrueba(BigDecimal id){
+    public Prueba findOnePrueba(BigDecimal id) {
         return pruebaDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deletePrueba(BigDecimal id){
+    public void deletePrueba(BigDecimal id) {
         pruebaDao.delete(id);
     }
-    
-   
-    //Item Prueba
+
+    // Item Prueba
 
     @Override
-    @Transactional(readOnly=true)
-    public List<ItemPrueba>findAllItems(){
-        return(List<ItemPrueba>) itemDao.findAll();
+    @Transactional(readOnly = true)
+    public List<ItemPrueba> findAllItems() {
+        return (List<ItemPrueba>) itemDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveItem(ItemPrueba itemPrueba){
+    public void saveItem(ItemPrueba itemPrueba) {
         itemDao.save(itemPrueba);
     }
 
     @Override
     @Transactional
-    public ItemPrueba findOneItem(BigDecimal id){
+    public ItemPrueba findOneItem(BigDecimal id) {
         return itemDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteItem(BigDecimal id){
+    public void deleteItem(BigDecimal id) {
         itemDao.delete(id);
     }
 
     @Override
-    @Transactional(readOnly=true)
-    public List<ItemPrueba>findItemPruebabyPrueba(Prueba prueba){
-        return(List<ItemPrueba>) itemDao.findItemPruebabyPrueba(prueba);
+    @Transactional(readOnly = true)
+    public List<ItemPrueba> findItemPruebabyPrueba(Prueba prueba) {
+        return (List<ItemPrueba>) itemDao.findItemPruebabyPrueba(prueba);
     }
 
-    
-    //Opciones
+    // Opciones
 
     @Override
-    @Transactional(readOnly=true)
-    public List<Opciones>findAllOpciones(){
-        return(List<Opciones>) opcionesDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Opciones> findAllOpciones() {
+        return (List<Opciones>) opcionesDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveOpcion(Opciones opciones){
+    public void saveOpcion(Opciones opciones) {
         opcionesDao.save(opciones);
     }
 
     @Override
     @Transactional
-    public Opciones findOneOpcion(BigDecimal id){
+    public Opciones findOneOpcion(BigDecimal id) {
         return opcionesDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteOpcion(BigDecimal id){
+    public void deleteOpcion(BigDecimal id) {
         opcionesDao.delete(id);
     }
-    
-     @Override
-    @Transactional(readOnly=true)
-    public List<Opciones> findOpcionesbyItemPrueba(ItemPrueba itemprueba){
-        return(List<Opciones>) opcionesDao.findOpcionesbyItemPrueba(itemprueba);
-    }
-    
-    
-    //CV
 
     @Override
-    @Transactional(readOnly=true)
-    public List<Cv>findAllCv(){
-        return(List<Cv>) cvDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Opciones> findOpcionesbyItemPrueba(ItemPrueba itemprueba) {
+        return (List<Opciones>) opcionesDao.findOpcionesbyItemPrueba(itemprueba);
+    }
+
+    // CV
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Cv> findAllCv() {
+        return (List<Cv>) cvDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveCv(Cv cv){
+    public void saveCv(Cv cv) {
         cvDao.save(cv);
     }
 
     @Override
     @Transactional
-    public Cv findOneCv(BigDecimal id){
+    public Cv findOneCv(BigDecimal id) {
         return cvDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteCv(BigDecimal id){
+    public void deleteCv(BigDecimal id) {
         cvDao.delete(id);
     }
-    
-     @Override
-    @Transactional(readOnly=true)
-    public List<Cv>findCandidatobyCv(Candidato candidato){
-        return(List<Cv>) cvDao.findCandidatobyCv(candidato);
-    }
-    
-    //EXPERIENCIA LABORAL
+
     @Override
-    @Transactional(readOnly=true)
-    public List<ExperienciaLaboral>findAllExp(){
-        return(List<ExperienciaLaboral>) experienciaDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Cv> findCandidatobyCv(Candidato candidato) {
+        return (List<Cv>) cvDao.findCandidatobyCv(candidato);
+    }
+
+    // EXPERIENCIA LABORAL
+    @Override
+    @Transactional(readOnly = true)
+    public List<ExperienciaLaboral> findAllExp() {
+        return (List<ExperienciaLaboral>) experienciaDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveExp(ExperienciaLaboral experiencialaboral){
+    public void saveExp(ExperienciaLaboral experiencialaboral) {
         experienciaDao.save(experiencialaboral);
     }
 
     @Override
     @Transactional
-    public ExperienciaLaboral findOneExp(BigDecimal id){
+    public ExperienciaLaboral findOneExp(BigDecimal id) {
         return experienciaDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteExp(BigDecimal id){
+    public void deleteExp(BigDecimal id) {
         experienciaDao.delete(id);
     }
-    
-      @Override
-    @Transactional(readOnly=true)
-    public List<ExperienciaLaboral>findCvbyExperiencia(Cv cv){
-        return(List<ExperienciaLaboral>) experienciaDao.findCvbyExperiencia(cv);
-    }
-    
 
-    
-    //Prueba Oferta
     @Override
-     @Transactional(readOnly=true)
-    public List<PruebaOferta> findPruebaOfertabyOferta(Oferta oferta) {
-       return(List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyOferta(oferta);
+    @Transactional(readOnly = true)
+    public List<ExperienciaLaboral> findCvbyExperiencia(Cv cv) {
+        return (List<ExperienciaLaboral>) experienciaDao.findCvbyExperiencia(cv);
     }
-    
+
+    // Prueba Oferta
     @Override
-    @Transactional(readOnly=true)
-    public List<PruebaOferta>findAllPruebaOfertas(){
-        return(List<PruebaOferta>) pruebaofertaDao.findAll();
+    @Transactional(readOnly = true)
+    public List<PruebaOferta> findPruebaOfertabyOferta(Oferta oferta) {
+        return (List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyOferta(oferta);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PruebaOferta> findAllPruebaOfertas() {
+        return (List<PruebaOferta>) pruebaofertaDao.findAll();
     }
 
     @Override
     @Transactional
-    public void savePruebaOferta(PruebaOferta pruebaoferta){
+    public void savePruebaOferta(PruebaOferta pruebaoferta) {
         pruebaofertaDao.save(pruebaoferta);
     }
 
     @Override
     @Transactional
-    public PruebaOferta findOnePruebaOferta(BigDecimal id){
+    public PruebaOferta findOnePruebaOferta(BigDecimal id) {
         return pruebaofertaDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deletePruebaOferta(BigDecimal id){
+    public void deletePruebaOferta(BigDecimal id) {
         pruebaofertaDao.delete(id);
     }
 
     @Override
     public List<PruebaOferta> findPruebaOfertabyPruebaOferta(Oferta oferta, Prueba prueba) {
-         return(List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyPruebaOferta(oferta, prueba);
+        return (List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyPruebaOferta(oferta, prueba);
     }
-    
-    
-    //LOGRO
+
+    // LOGRO
     @Override
-    @Transactional(readOnly=true)
-    public List<Logro>findAllLogro(){
-        return(List<Logro>) logroDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Logro> findAllLogro() {
+        return (List<Logro>) logroDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveLogro(Logro logro){
+    public void saveLogro(Logro logro) {
         logroDao.save(logro);
     }
 
     @Override
     @Transactional
-    public Logro findOneLogro(BigDecimal id){
+    public Logro findOneLogro(BigDecimal id) {
         return logroDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteLogro(BigDecimal id){
+    public void deleteLogro(BigDecimal id) {
         logroDao.delete(id);
     }
-    
-      @Override
-    @Transactional(readOnly=true)
-    public List<Logro>findCvbyLogro(Cv cv){
-        return(List<Logro>) logroDao.findCvbyLogro(cv);
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Logro> findCvbyLogro(Cv cv) {
+        return (List<Logro>) logroDao.findCvbyLogro(cv);
     }
-    
-    
+
     // CURSO CAPACITACION
     @Override
-    @Transactional(readOnly=true)
-    public List<CursoCapacitacion>findAllCursoCap(){
-        return(List<CursoCapacitacion>) cursoCapDao.findAll();
+    @Transactional(readOnly = true)
+    public List<CursoCapacitacion> findAllCursoCap() {
+        return (List<CursoCapacitacion>) cursoCapDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveCursoCap(CursoCapacitacion cursocapacitacion){
+    public void saveCursoCap(CursoCapacitacion cursocapacitacion) {
         cursoCapDao.save(cursocapacitacion);
     }
 
     @Override
     @Transactional
-    public CursoCapacitacion findOneCursoCap(BigDecimal id){
+    public CursoCapacitacion findOneCursoCap(BigDecimal id) {
         return cursoCapDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteCursoCap(BigDecimal id){
+    public void deleteCursoCap(BigDecimal id) {
         cursoCapDao.delete(id);
     }
-    
-      @Override
-    @Transactional(readOnly=true)
-    public List<CursoCapacitacion>findCvbyCursoCap(Cv cv){
-        return(List<CursoCapacitacion>) cursoCapDao.findCvbyCursoCap(cv);
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CursoCapacitacion> findCvbyCursoCap(Cv cv) {
+        return (List<CursoCapacitacion>) cursoCapDao.findCvbyCursoCap(cv);
     }
-    
-    
+
     // ESCRITO
     @Override
-    @Transactional(readOnly=true)
-    public List<Escrito>findAllEsc(){
-        return(List<Escrito>) escritoDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Escrito> findAllEsc() {
+        return (List<Escrito>) escritoDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveEsc(Escrito escrito){
+    public void saveEsc(Escrito escrito) {
         escritoDao.save(escrito);
     }
 
     @Override
     @Transactional
-    public Escrito findOneEsc(BigDecimal id){
+    public Escrito findOneEsc(BigDecimal id) {
         return escritoDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteEsc(BigDecimal id){
+    public void deleteEsc(BigDecimal id) {
         escritoDao.delete(id);
     }
-    
-      @Override
-    @Transactional(readOnly=true)
-    public List<Escrito>findCvbyEscrito(Cv cv){
-        return(List<Escrito>) escritoDao.findCvbyEscrito(cv);
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Escrito> findCvbyEscrito(Cv cv) {
+        return (List<Escrito>) escritoDao.findCvbyEscrito(cv);
     }
 
     @Override
     public List<Oferta> findOfertaByEmpresa(Empresa empresa) {
-        return (List<Oferta>)  OfertaDao.findOfertaByEmpresa(empresa);
+        return (List<Oferta>) OfertaDao.findOfertaByEmpresa(empresa);
     }
-    
+
     // APTITUD CV
     @Override
-    @Transactional(readOnly=true)
-    public List<AptitudCv>findAllAptCv(){
-        return(List<AptitudCv>) aptitudCvDao.findAll();
+    @Transactional(readOnly = true)
+    public List<AptitudCv> findAllAptCv() {
+        return (List<AptitudCv>) aptitudCvDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveAptCv(AptitudCv aptitudcv){
+    public void saveAptCv(AptitudCv aptitudcv) {
         aptitudCvDao.save(aptitudcv);
     }
 
     @Override
     @Transactional
-    public AptitudCv findOneAptCv(BigDecimal id){
+    public AptitudCv findOneAptCv(BigDecimal id) {
         return aptitudCvDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteAptCv(BigDecimal id){
+    public void deleteAptCv(BigDecimal id) {
         aptitudCvDao.delete(id);
     }
-    
-      @Override
-    @Transactional(readOnly=true)
-    public List<AptitudCv>findCvbyAptCv(Cv cv){
-        return(List<AptitudCv>) aptitudCvDao.findCvbyAptCv(cv);
-    }
-    
-     // HABILIDADES CV
+
     @Override
-    @Transactional(readOnly=true)
-    public List<HabilidadesCv>findAllHabCv(){
-        return(List<HabilidadesCv>) habilidadesCvDao.findAll();
+    @Transactional(readOnly = true)
+    public List<AptitudCv> findCvbyAptCv(Cv cv) {
+        return (List<AptitudCv>) aptitudCvDao.findCvbyAptCv(cv);
+    }
+
+    // HABILIDADES CV
+    @Override
+    @Transactional(readOnly = true)
+    public List<HabilidadesCv> findAllHabCv() {
+        return (List<HabilidadesCv>) habilidadesCvDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveHabCv(HabilidadesCv habilidadescv){
+    public void saveHabCv(HabilidadesCv habilidadescv) {
         habilidadesCvDao.save(habilidadescv);
     }
 
     @Override
     @Transactional
-    public HabilidadesCv findOneHabCv(BigDecimal id){
+    public HabilidadesCv findOneHabCv(BigDecimal id) {
         return habilidadesCvDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteHabCv(BigDecimal id){
+    public void deleteHabCv(BigDecimal id) {
         habilidadesCvDao.delete(id);
     }
-    
-      @Override
-    @Transactional(readOnly=true)
-    public List<HabilidadesCv>findCvbyHabCv(Cv cv){
-        return(List<HabilidadesCv>) habilidadesCvDao.findCvbyHabCv(cv);
-    }
-    
-     // EVENTO
+
     @Override
-    @Transactional(readOnly=true)
-    public List<Evento>findAllEvento(){
-        return(List<Evento>) eventoDao.findAll();
+    @Transactional(readOnly = true)
+    public List<HabilidadesCv> findCvbyHabCv(Cv cv) {
+        return (List<HabilidadesCv>) habilidadesCvDao.findCvbyHabCv(cv);
+    }
+
+    // EVENTO
+    @Override
+    @Transactional(readOnly = true)
+    public List<Evento> findAllEvento() {
+        return (List<Evento>) eventoDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveEvento(Evento evento){
+    public void saveEvento(Evento evento) {
         eventoDao.save(evento);
     }
 
     @Override
     @Transactional
-    public Evento findOneEvento(BigDecimal id){
+    public Evento findOneEvento(BigDecimal id) {
         return eventoDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteEvento(BigDecimal id){
+    public void deleteEvento(BigDecimal id) {
         eventoDao.delete(id);
     }
-    
-      @Override
-    @Transactional(readOnly=true)
-    public List<Evento>findCvbyEvento(Cv cv){
-        return(List<Evento>) eventoDao.findCvbyEvento(cv);
-    }
-    
-        // FORMACION ACADEMICA
+
     @Override
-    @Transactional(readOnly=true)
-    public List<FormacionAcademica>findAllForAcad(){
-        return(List<FormacionAcademica>) formacionDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Evento> findCvbyEvento(Cv cv) {
+        return (List<Evento>) eventoDao.findCvbyEvento(cv);
+    }
+
+    // FORMACION ACADEMICA
+    @Override
+    @Transactional(readOnly = true)
+    public List<FormacionAcademica> findAllForAcad() {
+        return (List<FormacionAcademica>) formacionDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveForAcad(FormacionAcademica formacionacademica){
+    public void saveForAcad(FormacionAcademica formacionacademica) {
         formacionDao.save(formacionacademica);
     }
 
     @Override
     @Transactional
-    public FormacionAcademica findOneForAcad(BigDecimal id){
+    public FormacionAcademica findOneForAcad(BigDecimal id) {
         return formacionDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteForAcad(BigDecimal id){
+    public void deleteForAcad(BigDecimal id) {
         formacionDao.delete(id);
     }
-    
+
     @Override
-    @Transactional(readOnly=true)
-    public List<FormacionAcademica>findCvbyForAcad(Cv cv){
-        return(List<FormacionAcademica>) formacionDao.findCvbyForAcad(cv);
+    @Transactional(readOnly = true)
+    public List<FormacionAcademica> findCvbyForAcad(Cv cv) {
+        return (List<FormacionAcademica>) formacionDao.findCvbyForAcad(cv);
     }
+
     
     
     //BITACORA
     @Override
     @Transactional
-    public List<Bitacora> findAllBitacora(){
-        return(List<Bitacora>) bitacoraDao.findAll();
+    public List<Bitacora> findAllBitacora() {
+        return (List<Bitacora>) bitacoraDao.findAll();
     }
-    
+
     @Override
     @Transactional
-    public Bitacora findOneBitacora (BigDecimal id){
-         return bitacoraDao.findOne(id);
+    public Bitacora findOneBitacora(BigDecimal id) {
+        return bitacoraDao.findOne(id);
+    }
+
+
+
+
+    //APTITUD OFERTA
+    @Override
+    @Transactional(readOnly = true)
+    public List<AptitudOferta> findAllAptitudOfertas() {
+        return (List<AptitudOferta>) aptitudOfertaDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void saveAptitudOferta(AptitudOferta aptitudOferta) {
+        aptitudOfertaDao.save(aptitudOferta);
+    }
+
+    @Override
+    @Transactional
+    public AptitudOferta findOneAptitudOferta(BigDecimal id) {
+        return aptitudOfertaDao.findOne(id);
     }
     
        // LICENCIA CANDIDATO
@@ -1349,6 +1390,19 @@ public class ServiceImpl implements IService {
 
     @Override
     @Transactional
+    public void deleteAptitudOferta(BigDecimal id) {
+        aptitudOfertaDao.delete(id);
+    }
+
+
+
+    @Override
+    @Transactional
+    public List<AptitudOferta> findAptitudOfertabyOferta(Oferta oferta) {
+        return (List<AptitudOferta>)aptitudOfertaDao.findAptitudOfetabyOferta(oferta);
+    }
+
+
     public HabilidadLinguisticaCv findOneHabLingCv(BigDecimal id){
         return habLingCvDao.findOne(id);
     }

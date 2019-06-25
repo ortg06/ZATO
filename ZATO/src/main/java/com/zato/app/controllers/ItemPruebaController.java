@@ -47,6 +47,27 @@ public class ItemPruebaController {
        
         return "prueba/formI";
     }
+      
+      
+      /*
+    @RequestMapping(value = "/items/editar/{id}")
+    public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
+        ItemPrueba item = null;
+
+        //se compara si el ID es mayor que cero
+        if (id.compareTo(BigDecimal.ZERO) > 0) {
+           item = IService.findOneItem(id);
+
+        } else {
+            return "redirect:/prueba/items/"+num";
+        }
+
+        model.put("titulo", "Editar Prueba");
+        model.put("prueba", prueba);
+        model.put("tipos", IService.findAlltipoprueba());
+        model.put("p", prueba.getCatalogoTipoPrueba().getPkCatTipoPrueba());
+        return "prueba/form";
+    }  */
     
     @RequestMapping(value="/items/formItems",method=RequestMethod.POST)
     public String guardar(ItemPrueba itemprueba, SessionStatus status)
@@ -63,7 +84,7 @@ public class ItemPruebaController {
     public String opciones(@PathVariable(value = "id") ItemPrueba id, Model model) {
         
         Prueba prueba = null;
-        model.addAttribute("titulo", "Listado de opciones");
+        model.addAttribute("titulo", "Estas son las opciones para la pregunta: ");
         model.addAttribute("item", id);
         model.addAttribute("opciones", IService.findOpcionesbyItemPrueba(id));
 

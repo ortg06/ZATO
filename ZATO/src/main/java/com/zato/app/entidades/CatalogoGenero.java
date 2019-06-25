@@ -1,5 +1,5 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,8 +25,7 @@ import javax.persistence.Table;
 public class CatalogoGenero  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkGenero;
+     private BigDecimal pkGenero;
      private String nombreGenero;
      private Set<Candidato> candidatos = new HashSet<Candidato>(0);
 
@@ -46,8 +45,8 @@ public class CatalogoGenero  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TIB_GENERO")    
-     @SequenceGenerator(sequenceName = "SEQUENCE_GENERO", allocationSize = 1, name = "TIB_GENERO")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TIB_GENERO")    	
+     @SequenceGenerator(sequenceName = "SEQUENCE_GENERO", allocationSize = 1, name = "TIB_GENERO")  
     @Column(name="PK_GENERO", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkGenero() {
         return this.pkGenero;

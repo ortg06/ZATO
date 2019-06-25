@@ -1,5 +1,5 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -27,8 +27,7 @@ import javax.persistence.Table;
 public class Submenu  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkSubmenu;
+     private BigDecimal pkSubmenu;
      private Menu menu;
      private String submenu;
      private String orden;
@@ -57,8 +56,7 @@ public class Submenu  implements java.io.Serializable {
    
      @Id 
 
-    
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TIB_SUBMENU")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TIB_SUBMENU")    	
      @SequenceGenerator(sequenceName = "SEQUENCE_SUBMENU", allocationSize = 1, name = "TIB_SUBMENU")  
     @Column(name="PK_SUBMENU", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkSubmenu() {

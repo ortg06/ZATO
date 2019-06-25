@@ -1,5 +1,5 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -27,11 +27,10 @@ import javax.persistence.Table;
 public class Prueba  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkPrueba;
+     private BigDecimal pkPrueba;
      private CatalogoTipoPrueba catalogoTipoPrueba;
+     private Empresa empresa;
      private String nombrePrueba;
-     private Set<Resultado> resultados = new HashSet<Resultado>(0);
      private Set<PruebaOferta> pruebaOfertas = new HashSet<PruebaOferta>(0);
      private Set<ItemPrueba> itemPruebas = new HashSet<ItemPrueba>(0);
 
@@ -44,19 +43,19 @@ public class Prueba  implements java.io.Serializable {
         this.catalogoTipoPrueba = catalogoTipoPrueba;
         this.nombrePrueba = nombrePrueba;
     }
-    public Prueba(BigDecimal pkPrueba, CatalogoTipoPrueba catalogoTipoPrueba, String nombrePrueba, Set<Resultado> resultados, Set<PruebaOferta> pruebaOfertas, Set<ItemPrueba> itemPruebas) {
+    public Prueba(BigDecimal pkPrueba, CatalogoTipoPrueba catalogoTipoPrueba, Empresa empresa, String nombrePrueba, Set<PruebaOferta> pruebaOfertas, Set<ItemPrueba> itemPruebas) {
        this.pkPrueba = pkPrueba;
        this.catalogoTipoPrueba = catalogoTipoPrueba;
+       this.empresa = empresa;
        this.nombrePrueba = nombrePrueba;
-       this.resultados = resultados;
        this.pruebaOfertas = pruebaOfertas;
        this.itemPruebas = itemPruebas;
     }
    
      @Id 
-
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    	
      @SequenceGenerator(sequenceName = "SEQUENCE_PRUEBA", allocationSize = 1, name = "SEQUENCE_INCREMENT") 
+    
     @Column(name="PK_PRUEBA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkPrueba() {
         return this.pkPrueba;
@@ -76,6 +75,16 @@ public class Prueba  implements java.io.Serializable {
         this.catalogoTipoPrueba = catalogoTipoPrueba;
     }
 
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="PK_EMPRESA")
+    public Empresa getEmpresa() {
+        return this.empresa;
+    }
+    
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
     
     @Column(name="NOMBRE_PRUEBA", nullable=false, length=100)
     public String getNombrePrueba() {
@@ -84,15 +93,6 @@ public class Prueba  implements java.io.Serializable {
     
     public void setNombrePrueba(String nombrePrueba) {
         this.nombrePrueba = nombrePrueba;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="prueba")
-    public Set<Resultado> getResultados() {
-        return this.resultados;
-    }
-    
-    public void setResultados(Set<Resultado> resultados) {
-        this.resultados = resultados;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="prueba")

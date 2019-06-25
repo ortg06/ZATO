@@ -1,5 +1,5 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -21,36 +21,35 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name="RESULTADO"
-    , uniqueConstraints = @UniqueConstraint(columnNames="PK_PRUEBA") 
+    , uniqueConstraints = @UniqueConstraint(columnNames="PK_PRUEBA_OFERTA") 
 )
 public class Resultado  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkResultado;
+     private BigDecimal pkResultado;
      private Postulacion postulacion;
-     private Prueba prueba;
+     private PruebaOferta pruebaOferta;
      private String resultado;
 
     public Resultado() {
     }
 
 	
-    public Resultado(BigDecimal pkResultado, Prueba prueba, String resultado) {
+    public Resultado(BigDecimal pkResultado, Postulacion postulacion, PruebaOferta pruebaOferta) {
         this.pkResultado = pkResultado;
-        this.prueba = prueba;
-        this.resultado = resultado;
+        this.postulacion = postulacion;
+        this.pruebaOferta = pruebaOferta;
     }
-    public Resultado(BigDecimal pkResultado, Postulacion postulacion, Prueba prueba, String resultado) {
+    public Resultado(BigDecimal pkResultado, Postulacion postulacion, PruebaOferta pruebaOferta, String resultado) {
        this.pkResultado = pkResultado;
        this.postulacion = postulacion;
-       this.prueba = prueba;
+       this.pruebaOferta = pruebaOferta;
        this.resultado = resultado;
     }
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    	
      @SequenceGenerator(sequenceName = "SEQUENCE_RESULTADO", allocationSize = 1, name = "SEQUENCE_INCREMENT")
     @Column(name="PK_RESULTADO", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkResultado() {
@@ -62,7 +61,7 @@ public class Resultado  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="PK_POSTULACION")
+    @JoinColumn(name="PK_POSTULACION", nullable=false)
     public Postulacion getPostulacion() {
         return this.postulacion;
     }
@@ -72,17 +71,17 @@ public class Resultado  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="PK_PRUEBA", unique=true, nullable=false)
-    public Prueba getPrueba() {
-        return this.prueba;
+    @JoinColumn(name="PK_PRUEBA_OFERTA", unique=true, nullable=false)
+    public PruebaOferta getPruebaOferta() {
+        return this.pruebaOferta;
     }
     
-    public void setPrueba(Prueba prueba) {
-        this.prueba = prueba;
+    public void setPruebaOferta(PruebaOferta pruebaOferta) {
+        this.pruebaOferta = pruebaOferta;
     }
 
     
-    @Column(name="RESULTADO", nullable=false, length=25)
+    @Column(name="RESULTADO", length=25)
     public String getResultado() {
         return this.resultado;
     }

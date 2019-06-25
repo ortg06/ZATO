@@ -46,6 +46,7 @@ import com.zato.app.entidades.PruebaOferta;
 import com.zato.app.entidades.CursoCapacitacion;
 import com.zato.app.entidades.Escrito;
 import com.zato.app.entidades.AptitudCv;
+import com.zato.app.entidades.AptitudOferta;
 import com.zato.app.entidades.Bitacora;
 import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Evento;
@@ -205,6 +206,7 @@ public interface IService {
     public CatalogoGradoAcademico findOneCatalogoGradoAcademico (BigDecimal id);
     public void deleteCatalogoGradoAcademico(BigDecimal id);
     
+    
      //Catalogo escrito
     public List<CatalogoEscrito> findAllCatalogoEscrito();
     public void saveCatalogoEscrito(CatalogoEscrito catalogoEscrito);
@@ -332,6 +334,13 @@ public interface IService {
     //BITACORA
     public List<Bitacora> findAllBitacora();
     public Bitacora findOneBitacora (BigDecimal id);
+
+    //APTITUD OFERTA
+    public List<AptitudOferta> findAllAptitudOfertas();
+    public void saveAptitudOferta(AptitudOferta aptitudOferta);
+    public AptitudOferta findOneAptitudOferta (BigDecimal id);
+    public void deleteAptitudOferta (BigDecimal id);
+    public List<AptitudOferta> findAptitudOfertabyOferta(Oferta oferta);
     
     //LICENCIA CANDIDATO
     public List<LicenciaCandidato> findAllLicCand();

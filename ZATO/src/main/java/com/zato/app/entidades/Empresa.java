@@ -1,8 +1,9 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,8 +28,7 @@ import javax.persistence.Table;
 public class Empresa  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkEmpresa;
+     private BigDecimal pkEmpresa;
      private CatalogoSectorEmpresa catalogoSectorEmpresa;
      private CatalogoTipoEmpresa catalogoTipoEmpresa;
      private Municipio municipio;
@@ -43,6 +43,7 @@ public class Empresa  implements java.io.Serializable {
      private String nombreContactoEmpresa;
      private String cargoContacto;
      private BigDecimal telefonoContacto;
+     private Set<Prueba> pruebas = new HashSet<Prueba>(0);
      private Set<Oferta> ofertas = new HashSet<Oferta>(0);
      private Set<Perfil> perfils = new HashSet<Perfil>(0);
 
@@ -62,8 +63,7 @@ public class Empresa  implements java.io.Serializable {
         this.nombreContactoEmpresa = nombreContactoEmpresa;
         this.telefonoContacto = telefonoContacto;
     }
-    public Empresa(BigDecimal pkEmpresa, CatalogoSectorEmpresa catalogoSectorEmpresa, CatalogoTipoEmpresa catalogoTipoEmpresa, Municipio municipio, String nomEmpresa, long nitEmpresa, String direccionEmpresa, String razonSocial, BigDecimal numeroTrabajadores, String descripcionEmpresa, String paginaWeb, byte[] logoEmpresa, String nombreContactoEmpresa, String cargoContacto,
-            BigDecimal telefonoContacto, Set<Oferta> ofertas, Set<Perfil> perfils) {
+    public Empresa(BigDecimal pkEmpresa, CatalogoSectorEmpresa catalogoSectorEmpresa, CatalogoTipoEmpresa catalogoTipoEmpresa, Municipio municipio, String nomEmpresa, long nitEmpresa, String direccionEmpresa, String razonSocial, BigDecimal numeroTrabajadores, String descripcionEmpresa, String paginaWeb, byte[] logoEmpresa, String nombreContactoEmpresa, String cargoContacto, BigDecimal telefonoContacto, Set<Prueba> pruebas, Set<Oferta> ofertas, Set<Perfil> perfils) {
        this.pkEmpresa = pkEmpresa;
        this.catalogoSectorEmpresa = catalogoSectorEmpresa;
        this.catalogoTipoEmpresa = catalogoTipoEmpresa;
@@ -79,13 +79,14 @@ public class Empresa  implements java.io.Serializable {
        this.nombreContactoEmpresa = nombreContactoEmpresa;
        this.cargoContacto = cargoContacto;
        this.telefonoContacto = telefonoContacto;
+       this.pruebas = pruebas;
        this.ofertas = ofertas;
        this.perfils = perfils;
     }
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    	
      @SequenceGenerator(sequenceName = "SEQUENCE_EMPRESA", allocationSize = 1, name = "SEQUENCE_INCREMENT")
     @Column(name="PK_EMPRESA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkEmpresa() {
@@ -198,11 +199,11 @@ public class Empresa  implements java.io.Serializable {
 
     
     @Column(name="LOGO_EMPRESA")
-    public byte[] getLogoEmpresa() {
+    public  byte[] getLogoEmpresa() {
         return this.logoEmpresa;
     }
     
-    public void setLogoEmpresa(byte[] logoEmpresa) {
+    public void setLogoEmpresa( byte[] logoEmpresa) {
         this.logoEmpresa = logoEmpresa;
     }
 
@@ -234,6 +235,15 @@ public class Empresa  implements java.io.Serializable {
     
     public void setTelefonoContacto(BigDecimal telefonoContacto) {
         this.telefonoContacto = telefonoContacto;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="empresa")
+    public Set<Prueba> getPruebas() {
+        return this.pruebas;
+    }
+    
+    public void setPruebas(Set<Prueba> pruebas) {
+        this.pruebas = pruebas;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="empresa")
