@@ -7,7 +7,12 @@ package com.zato.app.controllers;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Map;
+
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IEmpresaDao;
@@ -27,6 +32,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 /**
  *
  * @author ecampos
@@ -36,12 +42,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @SessionAttributes("empresa")
 public class EmpresaController {
 
-    BigDecimal num= null;
+    BigDecimal num = null;
     @Autowired
     private IService IService;
     @Autowired
     private IService Sector;
-     @Autowired
+    @Autowired
     IEmpresaDao repo;
 
     @GetMapping("/listar")
@@ -53,11 +59,17 @@ public class EmpresaController {
     }
 
     @GetMapping(value = "/ver/{id}")
-    public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model, RedirectAttributes flash) {
+    public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model, RedirectAttributes flash)
+            throws SQLException {
 
         Empresa empresa = IService.findOneEmpresa(id);
+        int blobLenght;
 
-        String img = Base64.encodeBase64String(empresa.getLogoEmpresa());
+
+        blobLenght = (int) empresa.getLogoEmpresa().length();
+        byte[] blobAsBytes = empresa.getLogoEmpresa().getBytes(1, blobLenght);
+
+        String img = Base64.encodeBase64String(blobAsBytes);
         model.put("empresa", empresa);
         model.put("imagen", img);
         model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
@@ -67,7 +79,7 @@ public class EmpresaController {
         model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
         model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
         model.put("p", empresa.getMunicipio().getPkMunicipio());
-        model.put("ofertas",IService.findOfertaByEmpresa(empresa));
+        model.put("ofertas", IService.findOfertaByEmpresa(empresa));
         return "empresa/ver";
     }
 
@@ -87,7 +99,7 @@ public class EmpresaController {
     public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Empresa empresa = null;
 
-        //se compara si el ID es mayor que cero
+        // se compara si el ID es mayor que cero
         if (id.compareTo(BigDecimal.ZERO) > 0) {
             empresa = IService.findOneEmpresa(id);
 
@@ -112,14 +124,21 @@ public class EmpresaController {
             try {
 
                 byte[] content = foto.getBytes();
-                empresa.setLogoEmpresa(content);
+                Blob blob = new SerialBlob(content);
+                empresa.setLogoEmpresa(blob);
                 IService.saveEmpresa(empresa);
                 status.setComplete();
-                //Procedimiento: ACTUALIZARPERFILEMPRESA
-                //parametros: (pk empresa,pk perfil)
+                // Procedimiento: ACTUALIZARPERFILEMPRESA
+                // parametros: (pk empresa,pk perfil)
                 repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
             } catch (IOException e) {
 
+                e.printStackTrace();
+            } catch (SerialException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -127,7 +146,7 @@ public class EmpresaController {
          //Procedimiento: ACTUALIZARPERFILEMPRESA
         //parametros: (pk empresa,pk perfil)
         repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
-        IService.saveEmpresa(empresa);
+        //IService.saveEmpresa(empresa);
         status.setComplete();
 
         return "redirect:/empresa/listar";
