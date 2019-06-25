@@ -13,4 +13,5 @@ public interface IOfertaDao extends CrudRepository<Oferta,BigDecimal>{
 
     @Query("select i from Oferta i where i.empresa=:empresa")
     public List<Oferta> findOfertaByEmpresa(@Param("empresa") Empresa empresa);
-}
+    
+  }

@@ -1,5 +1,5 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -27,8 +27,7 @@ import javax.persistence.Table;
 public class Departamento  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkDepartamento;
+     private BigDecimal pkDepartamento;
      private Pais pais;
      private String nombreDepartamento;
      private Set<Municipio> municipios = new HashSet<Municipio>(0);
@@ -50,7 +49,7 @@ public class Departamento  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    	
      @SequenceGenerator(sequenceName = "SEQUENCE_DEPARTAMENTO", allocationSize = 1, name = "SEQUENCE_INCREMENT") 
     @Column(name="PK_DEPARTAMENTO", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkDepartamento() {

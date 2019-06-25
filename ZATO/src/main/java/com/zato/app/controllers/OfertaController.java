@@ -24,6 +24,7 @@ public class OfertaController{
     
 
     BigDecimal num = null;
+    Oferta oferta = new Oferta();
 
     @Autowired
     private IService ofertaService;
@@ -90,6 +91,18 @@ public class OfertaController{
     }
 
 
+    @RequestMapping(value="/VerOferta/{id}")
+    public String listar(@PathVariable(value="id") Oferta id,Model model)
+    {
+       oferta=id;
+       
+       model.addAttribute("oferta",id);
+       model.addAttribute("CatGradoAcademico",ofertaService.findAptitudOfertabyOferta(oferta));
+       model.addAttribute("aptitudOferta",ofertaService.findAptitudOfertabyOferta(oferta));
+   
+       
+        return "Cv/verCv";
+    }
 
 
 

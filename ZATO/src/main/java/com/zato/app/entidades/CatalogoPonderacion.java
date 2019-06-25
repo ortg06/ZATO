@@ -1,5 +1,5 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,8 +25,7 @@ import javax.persistence.Table;
 public class CatalogoPonderacion  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkCatalogoPonderacion;
+     private BigDecimal pkCatalogoPonderacion;
      private String etiquetaPonderacion;
      private String descripcionEtiqueta;
      private Set<HabilidadLinguisicaOferta> habilidadLinguisicaOfertas = new HashSet<HabilidadLinguisicaOferta>(0);
@@ -51,8 +50,8 @@ public class CatalogoPonderacion  implements java.io.Serializable {
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
- @SequenceGenerator(sequenceName = "SEQUENCE_CATALOGOPONDERACION", allocationSize = 1, name = "SEQUENCE_INCREMENT")   
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    	
+     @SequenceGenerator(sequenceName = "SEQUENCE_CATALOGOPONDERACION", allocationSize = 1, name = "SEQUENCE_INCREMENT")  
     @Column(name="PK_CATALOGO_PONDERACION", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkCatalogoPonderacion() {
         return this.pkCatalogoPonderacion;

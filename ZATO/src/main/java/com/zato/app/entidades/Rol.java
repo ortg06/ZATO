@@ -1,5 +1,5 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,8 +25,7 @@ import javax.persistence.Table;
 public class Rol  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkRol;
+     private BigDecimal pkRol;
      private String nombreRol;
      private Set<Perfil> perfils = new HashSet<Perfil>(0);
      private Set<RolSubmenu> rolSubmenus = new HashSet<RolSubmenu>(0);
@@ -47,9 +46,9 @@ public class Rol  implements java.io.Serializable {
     }
    
      @Id 
-
-     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator= "TIB_ROL") 
+     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator= "TIB_ROL") 	
      @SequenceGenerator(sequenceName = "SEQUENCE_ROL", allocationSize = 1, name = "TIB_ROL")
+    
     @Column(name="PK_ROL", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkRol() {
         return this.pkRol;

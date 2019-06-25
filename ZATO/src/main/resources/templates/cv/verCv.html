@@ -62,7 +62,9 @@ and open the template in the editor.
             <br/>
 
             <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">idiomas</div>
+                <div class="card-body">idiomas
+                 <div th:replace="HabilidadLinguisticaCv/listar :: HABLINGCV"/>
+                </div>
             </div>
             <br/>
 
@@ -103,7 +105,9 @@ and open the template in the editor.
             <br/>
             
             <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Licencias de conducir</div>
+                <div class="card-body">Licencias de conducir
+                 <div th:replace="LicenciaCandidato/listar :: LICCAND"/>
+                </div>
             </div>
             <br/>
             

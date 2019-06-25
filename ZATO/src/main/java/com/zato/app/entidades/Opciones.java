@@ -1,5 +1,5 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,12 +25,11 @@ import javax.persistence.Table;
 public class Opciones  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkOpciones;
+     private BigDecimal pkOpciones;
      private ItemPrueba itemPrueba;
      private String opcion;
      private double puntajeOpcion;
-     private byte[] imagenOpcion;
+     private Blob imagenOpcion;
 
     public Opciones() {
     }
@@ -42,7 +41,7 @@ public class Opciones  implements java.io.Serializable {
         this.opcion = opcion;
         this.puntajeOpcion = puntajeOpcion;
     }
-    public Opciones(BigDecimal pkOpciones, ItemPrueba itemPrueba, String opcion, double puntajeOpcion, byte[] imagenOpcion) {
+    public Opciones(BigDecimal pkOpciones, ItemPrueba itemPrueba, String opcion, double puntajeOpcion, Blob imagenOpcion) {
        this.pkOpciones = pkOpciones;
        this.itemPrueba = itemPrueba;
        this.opcion = opcion;
@@ -51,9 +50,9 @@ public class Opciones  implements java.io.Serializable {
     }
    
      @Id 
-
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    	
      @SequenceGenerator(sequenceName = "SEQUENCE_OPCIONES", allocationSize = 1, name = "SEQUENCE_INCREMENT") 
+    
     @Column(name="PK_OPCIONES", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkOpciones() {
         return this.pkOpciones;
@@ -95,11 +94,11 @@ public class Opciones  implements java.io.Serializable {
 
     
     @Column(name="IMAGEN_OPCION")
-    public byte[] getImagenOpcion() {
+    public Blob getImagenOpcion() {
         return this.imagenOpcion;
     }
     
-    public void setImagenOpcion(byte[] imagenOpcion) {
+    public void setImagenOpcion(Blob imagenOpcion) {
         this.imagenOpcion = imagenOpcion;
     }
 

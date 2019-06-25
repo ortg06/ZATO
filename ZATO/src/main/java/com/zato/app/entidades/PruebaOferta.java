@@ -1,9 +1,10 @@
 package com.zato.app.entidades;
-// Generated 12/06/2019 08:39:08 PM by Hibernate Tools 4.3.1
+// Generated 24/06/2019 01:24:18 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
-import javax.persistence.CascadeType;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,23 +27,30 @@ import javax.persistence.Table;
 public class PruebaOferta  implements java.io.Serializable {
 
 
-     private static final long serialVersionUID = 1L;
-    private BigDecimal pkPruebaOferta;
+     private BigDecimal pkPruebaOferta;
      private Oferta oferta;
      private Prueba prueba;
+     private Set<Resultado> resultados = new HashSet<Resultado>(0);
 
     public PruebaOferta() {
     }
 
+	
     public PruebaOferta(BigDecimal pkPruebaOferta, Oferta oferta, Prueba prueba) {
+        this.pkPruebaOferta = pkPruebaOferta;
+        this.oferta = oferta;
+        this.prueba = prueba;
+    }
+    public PruebaOferta(BigDecimal pkPruebaOferta, Oferta oferta, Prueba prueba, Set<Resultado> resultados) {
        this.pkPruebaOferta = pkPruebaOferta;
        this.oferta = oferta;
        this.prueba = prueba;
+       this.resultados = resultados;
     }
    
      @Id 
 
-     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_INCREMENT")    	
      @SequenceGenerator(sequenceName = "SEQUENCE_OFERTA_PRUEBA", allocationSize = 1, name = "SEQUENCE_INCREMENT") 
     @Column(name="PK_PRUEBA_OFERTA", unique=true, nullable=false, precision=22, scale=0)
     public BigDecimal getPkPruebaOferta() {
@@ -70,6 +79,15 @@ public class PruebaOferta  implements java.io.Serializable {
     
     public void setPrueba(Prueba prueba) {
         this.prueba = prueba;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="pruebaOferta")
+    public Set<Resultado> getResultados() {
+        return this.resultados;
+    }
+    
+    public void setResultados(Set<Resultado> resultados) {
+        this.resultados = resultados;
     }
 
 

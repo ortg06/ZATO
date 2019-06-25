@@ -5,16 +5,19 @@
  */
 package com.zato.app.dao;
 
-import com.zato.app.entidades.CatalogoGradoAcademico;
-import org.springframework.data.repository.CrudRepository;
 import java.math.BigDecimal;
+
+import com.zato.app.entidades.CatalogoGradoAcademico;
+
+import org.springframework.data.repository.CrudRepository;
 
 
 /**
  *
  * @author Dell
  */
-public interface ICatalogoGradoAcademicoDao
-extends CrudRepository<CatalogoGradoAcademico, BigDecimal> {
+public interface ICatalogoGradoAcademicoDao extends CrudRepository<CatalogoGradoAcademico, BigDecimal> {
+
+
     
 }
