@@ -39,7 +39,7 @@ public class Empresa  implements java.io.Serializable {
      private BigDecimal numeroTrabajadores;
      private String descripcionEmpresa;
      private String paginaWeb;
-     private Blob logoEmpresa;
+     private byte[] logoEmpresa;
      private String nombreContactoEmpresa;
      private String cargoContacto;
      private BigDecimal telefonoContacto;
@@ -63,7 +63,7 @@ public class Empresa  implements java.io.Serializable {
         this.nombreContactoEmpresa = nombreContactoEmpresa;
         this.telefonoContacto = telefonoContacto;
     }
-    public Empresa(BigDecimal pkEmpresa, CatalogoSectorEmpresa catalogoSectorEmpresa, CatalogoTipoEmpresa catalogoTipoEmpresa, Municipio municipio, String nomEmpresa, long nitEmpresa, String direccionEmpresa, String razonSocial, BigDecimal numeroTrabajadores, String descripcionEmpresa, String paginaWeb, Blob logoEmpresa, String nombreContactoEmpresa, String cargoContacto, BigDecimal telefonoContacto, Set<Prueba> pruebas, Set<Oferta> ofertas, Set<Perfil> perfils) {
+    public Empresa(BigDecimal pkEmpresa, CatalogoSectorEmpresa catalogoSectorEmpresa, CatalogoTipoEmpresa catalogoTipoEmpresa, Municipio municipio, String nomEmpresa, long nitEmpresa, String direccionEmpresa, String razonSocial, BigDecimal numeroTrabajadores, String descripcionEmpresa, String paginaWeb, byte[] logoEmpresa, String nombreContactoEmpresa, String cargoContacto, BigDecimal telefonoContacto, Set<Prueba> pruebas, Set<Oferta> ofertas, Set<Perfil> perfils) {
        this.pkEmpresa = pkEmpresa;
        this.catalogoSectorEmpresa = catalogoSectorEmpresa;
        this.catalogoTipoEmpresa = catalogoTipoEmpresa;
@@ -199,11 +199,11 @@ public class Empresa  implements java.io.Serializable {
 
     
     @Column(name="LOGO_EMPRESA")
-    public Blob getLogoEmpresa() {
+    public  byte[] getLogoEmpresa() {
         return this.logoEmpresa;
     }
     
-    public void setLogoEmpresa(Blob logoEmpresa) {
+    public void setLogoEmpresa( byte[] logoEmpresa) {
         this.logoEmpresa = logoEmpresa;
     }
 
