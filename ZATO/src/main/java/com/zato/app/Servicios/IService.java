@@ -244,6 +244,9 @@ public interface IService {
     //OBTENER PRUEBASOFERTA SEGUN OFERTA Y PRUEBA
     public List<PruebaOferta> findPruebaOfertabyPruebaOferta(Oferta oferta,Prueba prueba);
     
+    //OBTENER PRUEBAS POR EMPRESA
+    public List<Prueba> findPruebabyEmpresa(Empresa empresa);
+    
      //Prueba
     public List<Prueba> findAllPruebas();
     public void savePrueba(Prueba prueba);

@@ -75,7 +75,7 @@ public class PruebaController {
     @GetMapping("/listarE/{id}")
     public String listarE(@PathVariable(value = "id") BigDecimal id, Model model) {
         Empresa empresa=IService.findOneEmpresa(id);
-        List<Oferta> lista = IService.findOfertaByEmpresa(empresa);
+        List<Prueba> lista = IService.findPruebabyEmpresa(empresa);
         model.addAttribute("titulo", "Pruebas para la Empresa: ");
         model.addAttribute("pruebas", IService.findAllPruebas());
         model.addAttribute("empresa", empresa);
@@ -175,8 +175,9 @@ public class PruebaController {
     
 
     @RequestMapping(value = "/formE", method = RequestMethod.POST)
-    public String guardarE(Prueba prueba, @RequestParam(name = "empresa", required = false) Empresa empresa, SessionStatus status) {
+    public String guardarE(Prueba prueba,SessionStatus status) {
 
+        Empresa empresa=IService.findOneEmpresa(num);
         prueba.setEmpresa(empresa);
         IService.savePrueba(prueba);
         status.setComplete();

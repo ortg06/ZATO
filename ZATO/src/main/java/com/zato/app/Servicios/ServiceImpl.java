@@ -1056,6 +1056,12 @@ public class ServiceImpl implements IService {
         return (List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyOferta(oferta);
     }
 
+     @Override
+     @Transactional(readOnly = true)
+    public List<Prueba> findPruebabyEmpresa(Empresa empresa) {
+        return (List<Prueba>) pruebaDao.findPruebaByEmpresa(empresa);
+        }
+    
     @Override
     @Transactional(readOnly = true)
     public List<PruebaOferta> findAllPruebaOfertas() {
@@ -1449,6 +1455,8 @@ public class ServiceImpl implements IService {
     public List<Referencia>findCvbyRef(Cv cv){
         return(List<Referencia>) refDao.findCvbyRef(cv);
     }
+
+   
 
     
     

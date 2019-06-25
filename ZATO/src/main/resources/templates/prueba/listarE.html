@@ -34,13 +34,13 @@ and open the template in the editor.
                         <tbody>
                             <tr th:each="po: ${pos}">
 
-                                <td><a class="btn btn-success btn-xs" th:href="@{/prueba/items/} + ${po.prueba.pkPrueba}" th:text="'+'"></a>
-                                    <a class="btn btn-primary btn-xs" th:href="@{/prueba/editar/} + ${po.prueba.pkPrueba}" th:text="'Editar'"></a>
-                                    <a class="btn btn-danger btn-xs" th:href="@{/prueba/eliminar/} + ${po.prueba.pkPrueba}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
+                                <td><a class="btn btn-success btn-xs" th:href="@{/prueba/items/} + ${po.pkPrueba}" th:text="'+'"></a>
+                                    <a class="btn btn-primary btn-xs" th:href="@{/prueba/editar/} + ${po.pkPrueba}" th:text="'Editar'"></a>
+                                    <a class="btn btn-danger btn-xs" th:href="@{/prueba/eliminar/} + ${po.pkPrueba}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
                                 </td>
 
-                                <td th:text="${po.prueba.nombrePrueba}"></td>
-                                <td th:text="${po.prueba.catalogoTipoPrueba.nombreTipoPrueba}"></td>
+                                <td th:text="${po.nombrePrueba}"></td>
+                                <td th:text="${po.catalogoTipoPrueba.nombreTipoPrueba}"></td>
                             </tr>
                         </tbody>
                     </table>
