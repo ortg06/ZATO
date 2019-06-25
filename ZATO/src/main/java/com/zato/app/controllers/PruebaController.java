@@ -55,6 +55,7 @@ public class PruebaController {
         return "prueba/listar";
     }
 
+    //se listan las pruebas por oferta
     @GetMapping("/listar/{id}")
     public String listar(@PathVariable(value = "id") BigDecimal id, Model model) {
         Oferta oferta = IService.findOneOferta(id);
@@ -67,8 +68,10 @@ public class PruebaController {
         return "prueba/listar";
     }
     
-     //LISTADO DE PRUEBAS POR EMPRESA
+
+    //LISTADO DE PRUEBAS POR EMPRESA
     
+
     @GetMapping("/listarE/{id}")
     public String listarE(@PathVariable(value = "id") BigDecimal id, Model model) {
         Empresa empresa=IService.findOneEmpresa(id);
@@ -81,6 +84,8 @@ public class PruebaController {
     }
     
 
+       
+    
     @RequestMapping(value = "/nuevo/{pkOferta}", method = RequestMethod.GET)
     public String crear(@PathVariable(value = "pkOferta") BigDecimal pkOferta,
             Map<String, Object> model,
@@ -95,6 +100,7 @@ public class PruebaController {
         return "prueba/form";
     }
 
+
     
        //Metodo para crear prueba por empresa
     
@@ -107,12 +113,17 @@ public class PruebaController {
         Prueba prueba = new Prueba();
         model.put("prueba", prueba);
         model.put("titulo", "Datos de la prueba");
+
         model.put("tipos", IService.findAlltipoprueba());
         return "prueba/formE";
     }
     
     
     
+
+
+  
+
     
     @RequestMapping(value = "/editar/{id}")
     public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
@@ -166,6 +177,7 @@ public class PruebaController {
     }
     
     /*
+
     @RequestMapping(value = "/formE", method = RequestMethod.POST)
     public String guardarE(Prueba prueba, @RequestParam(name = "empresa", required = false) BigDecimal empresa, SessionStatus status) {
 
@@ -175,6 +187,23 @@ public class PruebaController {
        
         return "redirect:/prueba/listarE/" + num;
     }*/
+
+
+    //METODO ASIGNAR PK OFERTA PK PRUEBA EN PRUEBA_OFERTA
+    @RequestMapping(value = "/asignar", method = RequestMethod.POST)
+     public String asignar(Prueba prueba, @RequestParam(name = "oferta", required = false) BigDecimal oferta, SessionStatus status) {
+
+               
+            //Procedimiento: insertarpruebaoferta
+            //parametros: (pk prueba,pk oferta)
+            repo.insertPruebaOferta(prueba.getPkPrueba(), num);
+       
+
+        return "redirect:/prueba/listar/" + num;
+    }
+    
+    
+    
 
     
     @RequestMapping(value = "/eliminar/{id}")
@@ -198,6 +227,7 @@ public class PruebaController {
     }
     
     
+
     @GetMapping("candidato/{id}")
     public String pruebas(@PathVariable(value="id") BigDecimal id, Model model){
         
@@ -207,6 +237,9 @@ public class PruebaController {
        
         return "prueba/examenes";
     }
+
+   
+
 
     /* 
     @RequestMapping(value="/items/nuevo/{id}",method=RequestMethod.GET)
