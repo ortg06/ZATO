@@ -682,6 +682,12 @@ public class ServiceImpl implements IService {
     public void deleteRolS(BigDecimal id) {
         RolSubmenuDao.delete(id);
     }
+    
+     @Override
+    @Transactional(readOnly=true)
+    public List<RolSubmenu>findRolSubmenubyRol(Rol rol){
+        return(List<RolSubmenu>) RolSubmenuDao.findRolSubmenubyRol(rol);
+    }
 
 
     //CANDIDATO
@@ -830,6 +836,13 @@ public class ServiceImpl implements IService {
     @Transactional
     public void deletePerfil(BigDecimal id){
         PerfilDao.delete(id);
+    }
+    
+    @Override
+    @Transactional
+    public Perfil findPerfilUserPass(String user, String pass)
+    {
+        return PerfilDao.findPerfilUserPass(user, pass);
     }
 
     //OFERTA

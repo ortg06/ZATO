@@ -5,48 +5,41 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/style.css}"/>
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
         <div th:replace="fragments/header :: header"/>
-       
+
 
         <div class="container">
             <h1 th:text="${titulo}"></h1>
-          <div class="row">  
-               <div th:replace="fragments/sidebar :: sidebar"></div>
-           <div class="col-lg-10 col-md-10">    
-            <a th:href="@{/departamento/nuevo}" class="btn btn-success btn-xs">Crear Departamento</a>
+            <div class="row">  
+                <div th:replace="fragments/sidebar :: sidebar"></div>
+                <div class="col-lg-10 col-md-10">    
+                    <a th:href="@{/departamento/nuevo}" class="btn btn-success btn-xs">Crear Departamento</a>
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Acciones</th>
-                        <th>Pais</th>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="depto: ${departamentos}">
-                        <td><a class="btn btn-primary btn-xs" th:href="@{/departamento/editar/} + ${depto.pkDepartamento}" th:text="'Editar'"></a>
-                            <a class="btn btn-danger btn-xs" th:href="@{/departamento/eliminar/} + ${depto.pkDepartamento}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
-                        <td th:text="${depto.pais.nombrePais}"></td>
-                        <td th:text="${depto.nombreDepartamento}"></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-           </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Acciones</th>
+                                <th>Pais</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="depto: ${departamentos}">
+                                <td><a class="btn btn-primary btn-xs" th:href="@{/departamento/editar/} + ${depto.pkDepartamento}" th:text="'Editar'"></a>
+                                    <a class="btn btn-danger btn-xs" th:href="@{/departamento/eliminar/} + ${depto.pkDepartamento}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
+                                <td th:text="${depto.pais.nombrePais}"></td>
+                                <td th:text="${depto.nombreDepartamento}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
                 <div th:replace="fragments/footer :: footer"></div>
-          </div>
+            </div>
         </div>
-      
+
 
     </body>
 </html>

@@ -27,8 +27,25 @@ public class RolController {
     @Autowired
      private IService rolService;
     
+   /*  String[] roles = {"3"};
     
-    //tabla
+    //TABLA CON SESSION 
+    @RequestMapping(value="/Rol/listar",method=RequestMethod.GET)
+    public String listar(HttpSession session, Model model)
+    {
+        
+        String validacion = JavaUtil.validar(session, roles);
+        if(!validacion.equals(""))
+            return validacion;
+        
+        model.addAttribute("titulo", "Listado de Roles");
+        model.addAttribute("roles",rolService.findAllRol());
+        return "rol/listar";
+    } */
+    
+    
+    
+    //TABLA SIN SESSION
     @RequestMapping(value="/Rol/listar",method=RequestMethod.GET)
     public String listar(Model model)
     {

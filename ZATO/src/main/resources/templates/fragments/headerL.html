@@ -2,7 +2,7 @@
 <html xmlns:th ="http://www.thymeleaf.org">
 
 <head>
-<meta charset="ISO-8859-1" />
+<meta charset="UTF-8" />
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
@@ -11,22 +11,27 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark" th:fragment="header">
-     <img th:src="@{../img/logo.png}" alt=""/> 
-    
-    
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/Perfil/form/}">Acceso Candidatos</a></li>
-                                
-			<li class="nav-item"><a class="nav-link" th:href="@{/Perfil/formE/} ">Acceso Empresas</a></li>
-			</ul>
-		</div>
-	</nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" th:fragment="header">
+        
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link"  th:href="@{/}"><img style="max-width: 20%;" th:src="@{/imagenes/logo.png}"/></a></li>
+                
+            </ul>
+            <ul class="nav justify-content-end">
+               <li class="nav-item"><a class="nav-link text-warning" th:href="@{/Perfil/form/}">Registro Candidatos</a></li>
+
+                <li class="nav-item"><a class="nav-link text-warning" th:href="@{/Perfil/formE/} ">Registro Empresas</a></li> 
+                
+            </ul>
+        </div>
+    </nav>
 </body>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <link rel="icon" type="image/x-icon"  href = "img/favicon.ico"/>
+    </head>
+    <body>
+        <div th:replace="fragments/headerL :: header"/>
+        
+        <div id="loginDiv" class="container ">
+            <div class="d-flex justify-content-center h-100" >
+                <div class="card border-primary text-center">
+                    
+                    <div class="card-header">Iniciar Sesión</div>
+                    <div class="card-body">
+
+                        <form th:action="@{/loguear}" th:object="${perfil}" method="post">
+                            <div class="form-group col-md-12">
+                                <label>Usuario</label>
+                                <input type="text" class="form-control" th:field="*{usuario}" placeholder="Usuario" autofocus="true" required="required"/>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" th:field="*{contrasena}" placeholder="Contraseña" autofocus="true" required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Login" class="btn btn-success btn-lg form-control"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div th:replace="fragments/footer :: footer"></div>
+    </body>
+    <style>
+            #loginDiv {
+                position: absolute;
+                left: 50%;
+                top: 60%;
+                text-align: center;
+                width:546px;
+                
+                margin-left: -273px; /*half width*/
+                margin-top: -300px; /*half height*/
+            }
+            body{
+                background-color: #C9C5C4 !important;
+            }
+        </style>
+</html>
