@@ -120,10 +120,6 @@ public class PruebaController {
     
     
     
-
-
-  
-
     
     @RequestMapping(value = "/editar/{id}")
     public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
@@ -176,17 +172,17 @@ public class PruebaController {
         return "redirect:/prueba/listar/" + num;
     }
     
-    /*
+    
 
     @RequestMapping(value = "/formE", method = RequestMethod.POST)
-    public String guardarE(Prueba prueba, @RequestParam(name = "empresa", required = false) BigDecimal empresa, SessionStatus status) {
+    public String guardarE(Prueba prueba, @RequestParam(name = "empresa", required = false) Empresa empresa, SessionStatus status) {
 
-        prueba.setPkEmpresa(empresa);
+        prueba.setEmpresa(empresa);
         IService.savePrueba(prueba);
         status.setComplete();
        
         return "redirect:/prueba/listarE/" + num;
-    }*/
+    }
 
 
     //METODO ASIGNAR PK OFERTA PK PRUEBA EN PRUEBA_OFERTA
