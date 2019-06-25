@@ -25,7 +25,7 @@ and open the template in the editor.
             <div class="row">  
                
                 <div class="col-lg-10 col-md-10">    
-                    <a th:href="@{/items/opciones/nuevo/} + ${item.pkItem}" class="btn btn-success btn-xs">Nuevo Item</a>
+                    <a th:href="@{/items/opciones/nuevo/} + ${item.pkItem}" class="btn btn-success btn-xs">Nueva Opción</a>
 
                     <table class="table table-striped">
                         <thead>
@@ -49,8 +49,9 @@ and open the template in the editor.
                             </tr>
                         </tbody>
                     </table>
-
+                   
                 </div>
+                
                 <div th:replace="fragments/footer :: footer"></div>
             </div>
         </div>

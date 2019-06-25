@@ -64,7 +64,7 @@ public class EmpresaController {
 
         Empresa empresa = IService.findOneEmpresa(id);
         int blobLenght;
-
+        try {
 
         blobLenght = (int) empresa.getLogoEmpresa().length();
         byte[] blobAsBytes = empresa.getLogoEmpresa().getBytes(1, blobLenght);
@@ -80,6 +80,11 @@ public class EmpresaController {
         model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
         model.put("p", empresa.getMunicipio().getPkMunicipio());
         model.put("ofertas", IService.findOfertaByEmpresa(empresa));
+        
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return "empresa/ver";
     }
 
@@ -149,7 +154,7 @@ public class EmpresaController {
         //IService.saveEmpresa(empresa);
         status.setComplete();
 
-        return "redirect:/empresa/listar";
+        return "redirect:/empresa/ver/"+num;
     }
 
     @RequestMapping(value = "/eliminar/{id}")
