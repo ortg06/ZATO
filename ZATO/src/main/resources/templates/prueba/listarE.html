@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    </head>
-    <body>
-        <div th:replace="fragments/header :: header"/>
 
 
-        <div class="container">
-            <h1 th:text="${titulo}+${empresa.nomEmpresa}"></h1>
+        <div class="container" th:fragment="pruebasGeneral">
+         
             <div class="row">  
 
                 <div class="col-lg-10 col-md-10">    
@@ -46,10 +30,10 @@ and open the template in the editor.
                     </table>
 
                 </div>
-                <div th:replace="fragments/footer :: footer"></div>
+               
             </div>
         </div>
 
 
-    </body>
-</html>
+   
+

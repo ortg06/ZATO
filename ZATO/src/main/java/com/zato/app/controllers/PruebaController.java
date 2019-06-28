@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IPruebaDao;
+import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Oferta;
@@ -78,7 +79,7 @@ public class PruebaController {
         model.addAttribute("pruebas", IService.findAllPruebas());
         model.addAttribute("empresa", empresa);
         model.addAttribute("pos", lista);
-        return "prueba/listarE";
+        return "redirect:/empresa/ver/"+empresa.getPkEmpresa()+"#menu3";
     }
     
 
@@ -222,14 +223,18 @@ public class PruebaController {
     }
     
     
-
+//OBTENER LAS PRUEBAS DE UNA OFERTA.
     @GetMapping("candidato/{id}")
-    public String pruebas(@PathVariable(value="id") BigDecimal id, Model model){
+    public String pruebas(@PathVariable(value="Pkoferta") BigDecimal Pkoferta, @PathVariable(value="Pkpostulacion") BigDecimal Pkpostulacion,
+            Model model){
         
-        Oferta oferta=IService.findOneOferta(id);//Obtengo la oferta
+        Oferta oferta=IService.findOneOferta(Pkoferta);//Obtengo la oferta
+       // Postulacion postulacion=IService.findOnePostulacion(Pkpostulacion));//obtengo el candidato
+        model.addAttribute("pruebas", IService.findPruebaOfertabyOferta(oferta));
         model.addAttribute("titulo","Tus Pruebas");//envio una varible con el titulo 
         model.addAttribute("oferta",oferta);//agrego el objeto oferta a la vista
-       
+       //odel.addAttribute("postulacion", postulacion);
+        
         return "prueba/examenes";
     }
 

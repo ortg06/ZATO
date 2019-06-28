@@ -17,6 +17,8 @@ import javax.sql.rowset.serial.SerialException;
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.Prueba;
+import java.util.List;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,10 +73,11 @@ public class EmpresaController {
             }
 
             model.put("empresa", empresa);
-
+            List<Prueba> lista = IService.findPruebabyEmpresa(empresa);
             model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
             model.put("sectores", Sector.findAllSectores());
             model.put("tipos", IService.findAllTipoEmpresas());
+            model.put("pos",lista);
             model.put("municipios", IService.findAllmun());
             model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
             model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
