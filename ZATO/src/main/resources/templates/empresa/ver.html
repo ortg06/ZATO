@@ -54,8 +54,17 @@
 
 
                             <ul class="list-group">
+                                <h6>Nombre:</h6>
                                 <li class="list-group-item active" th:text="${empresa.nomEmpresa}"></li>
+                                <h6>NIT:</h6>
                                 <li class="list-group-item" th:text="${empresa.nitEmpresa}"></li>
+                                <h6>Razon Social:</h6>
+                                <li class="list-group-item" th:text="${empresa.razonSocial}"></li>
+                                <h6>Sector:</h6>
+                                <li class="list-group-item" th:text="${empresa.catalogoSectorEmpresa.nombreSector}"></li> 
+                                <h6>Tipo de Empresa:</h6>
+                                <li class="list-group-item" th:text="${empresa.catalogoTipoEmpresa.nombreTipoEmpresa}"></li>
+
 
                             </ul>
 
@@ -66,7 +75,7 @@
 
 
                 <div id="menu1" class="container tab-pane fade"><br />
-                    <h3>Datos Empresa</h3>
+                    <h3>Datos Generales de la Empresa</h3>
                     <div th:replace="empresa/datos :: DatosE" />
                 </div>
                 <div id="menu2" class="container tab-pane fade"><br />

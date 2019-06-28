@@ -10,15 +10,11 @@ import java.util.Map;
 
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IPruebaDao;
-import com.zato.app.entidades.Candidato;
 import com.zato.app.entidades.Empresa;
-import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Oferta;
 import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.PruebaOferta;
-import java.io.IOException;
 import java.util.List;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,7 +75,7 @@ public class PruebaController {
         model.addAttribute("pruebas", IService.findAllPruebas());
         model.addAttribute("empresa", empresa);
         model.addAttribute("pos", lista);
-        return "redirect:/empresa/ver/"+empresa.getPkEmpresa()+"#menu3";
+        return "redirect:/empresa/ver/"+empresa.getPkEmpresa();
     }
     
 

@@ -77,6 +77,7 @@ public class EmpresaController {
             model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
             model.put("sectores", Sector.findAllSectores());
             model.put("tipos", IService.findAllTipoEmpresas());
+          
             model.put("pos",lista);
             model.put("municipios", IService.findAllmun());
             model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
