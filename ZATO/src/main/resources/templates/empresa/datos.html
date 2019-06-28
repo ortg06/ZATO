@@ -1,0 +1,107 @@
+<div class="container" th:fragment="DatosE">
+
+
+    <div
+        class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title" th:text="${titulo}"></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 " align="center">
+
+                        <img th:if="${empresa.logoEmpresa == null}" class="img-thumbnail rounded float-left"
+                             style="max-width: 130%;" th:src="@{/imagenes/nofoto.png}" />
+
+                        <img th:unless="${empresa.logoEmpresa == null}" class="img-thumbnail rounded float-left"
+                             style="max-width: 130%;" th:src="*{'data:image/png;base64,'+imagen}" />
+
+                    </div>
+
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                                <tr>
+                                    <td>Nombre:</td>
+                                    <td th:text="${empresa.nomEmpresa}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Razon Social:</td>
+                                    <td th:text="${empresa.razonSocial}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>NIT:</td>
+                                    <td th:text="${empresa.nitEmpresa}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Sector:</td>
+                                    <td th:text="${empresa.catalogoSectorEmpresa.nombreSector}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Tipo:</td>
+                                    <td th:text="${empresa.catalogoTipoEmpresa.nombreTipoEmpresa}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Descripción:</td>
+                                    <td th:text="${empresa.descripcionEmpresa}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pais Origen</td>
+                                    <td th:text="${empresa.municipio.departamento.pais.nombrePais}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Departamento Origen</td>
+                                    <td th:text="${empresa.municipio.departamento.nombreDepartamento}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Municipio Origen</td>
+                                    <td th:text="${empresa.municipio.nombreMunicipio}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Direccion</td>
+                                    <td th:text="${empresa.direccionEmpresa}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Numero de Trabajadores</td>
+                                    <td th:text="${empresa.numeroTrabajadores}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pagina Web</td>
+                                    <td th:text="${empresa.paginaWeb}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Contacto</td>
+                                    <td th:text="${empresa.nombreContactoEmpresa}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Telefono </td>
+                                    <td th:text="${empresa.telefonoContacto}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+
+                <span class="pull-right">
+
+                    <a  class="btn btn-warning btn-xs">Editar Candidato</a>
+                </span>
+            </div>
+
+        </div>
+    </div>
+</div>

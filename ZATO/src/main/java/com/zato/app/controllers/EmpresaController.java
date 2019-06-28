@@ -59,8 +59,8 @@ public class EmpresaController {
     }
 
     @GetMapping(value = "/ver/{id}")
-    public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model, RedirectAttributes flash)
-            throws SQLException {
+    public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model)
+     {
 
         Empresa empresa = IService.findOneEmpresa(id);
         int blobLenght;
