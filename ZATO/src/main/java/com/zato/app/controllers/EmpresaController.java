@@ -77,8 +77,8 @@ public class EmpresaController {
             model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
             model.put("sectores", Sector.findAllSectores());
             model.put("tipos", IService.findAllTipoEmpresas());
-          
-            model.put("pos",lista);
+
+            model.put("pos", lista);
             model.put("municipios", IService.findAllmun());
             model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
             model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
@@ -136,10 +136,11 @@ public class EmpresaController {
                 Blob blob = new SerialBlob(content);
                 empresa.setLogoEmpresa(blob);
                 IService.saveEmpresa(empresa);
-                status.setComplete();
+              
                 // Procedimiento: ACTUALIZARPERFILEMPRESA
                 // parametros: (pk empresa,pk perfil)
                 repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
+                status.setComplete();
             } catch (IOException e) {
 
                 e.printStackTrace();
@@ -152,13 +153,15 @@ public class EmpresaController {
             }
 
         }
+        IService.saveEmpresa(empresa);
         //Procedimiento: ACTUALIZARPERFILEMPRESA
         //parametros: (pk empresa,pk perfil)
-        repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
-        //IService.saveEmpresa(empresa);
+        //repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
+
+        
         status.setComplete();
 
-        return "redirect:/empresa/ver/" + num;
+        return "redirect:/empresa/ver/" + empresa.getPkEmpresa();
     }
 
     @RequestMapping(value = "/eliminar/{id}")

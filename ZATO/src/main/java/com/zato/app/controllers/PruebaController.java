@@ -12,6 +12,7 @@ import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IPruebaDao;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.Oferta;
+import com.zato.app.entidades.Postulacion;
 import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.PruebaOferta;
 import java.util.List;
@@ -64,23 +65,20 @@ public class PruebaController {
 
         return "prueba/listar";
     }
-    
 
     //LISTADO DE PRUEBAS POR EMPRESA
     @GetMapping("/listarE/{id}")
     public String listarE(@PathVariable(value = "id") BigDecimal id, Model model) {
-        Empresa empresa=IService.findOneEmpresa(id);
+        Empresa empresa = IService.findOneEmpresa(id);
         List<Prueba> lista = IService.findPruebabyEmpresa(empresa);
         model.addAttribute("titulo", "Pruebas para la Empresa: ");
         model.addAttribute("pruebas", IService.findAllPruebas());
         model.addAttribute("empresa", empresa);
         model.addAttribute("pos", lista);
-        return "redirect:/empresa/ver/"+empresa.getPkEmpresa();
+        return "redirect:/empresa/ver/" + empresa.getPkEmpresa();
     }
-    
 
-       
-    
+    //metodo asignar prueba por oferta 
     @RequestMapping(value = "/nuevo/{pkOferta}", method = RequestMethod.GET)
     public String crear(@PathVariable(value = "pkOferta") BigDecimal pkOferta,
             Map<String, Object> model,
@@ -95,10 +93,7 @@ public class PruebaController {
         return "prueba/form";
     }
 
-
-    
-       //Metodo para crear prueba por empresa
-    
+    //Metodo para crear prueba por empresa
     @RequestMapping(value = "/nuevoE/{pkEmpresa}", method = RequestMethod.GET)
     public String crearE(@PathVariable(value = "pkEmpresa") BigDecimal pkEmpresa,
             Map<String, Object> model,
@@ -112,10 +107,7 @@ public class PruebaController {
         model.put("tipos", IService.findAlltipoprueba());
         return "prueba/formE";
     }
-    
-    
-    
-    
+
     @RequestMapping(value = "/editar/{id}")
     public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Prueba prueba = null;
@@ -132,12 +124,11 @@ public class PruebaController {
         model.put("prueba", prueba);
         model.put("tipos", IService.findAlltipoprueba());
         model.put("p", prueba.getCatalogoTipoPrueba().getPkCatTipoPrueba());
-        
+
         //DEBERA CAMBIARSE A EL FORM DE EMPRESA YA QUE SOLO DESDE AHI PODRA EDITARSE
         return "prueba/form";
     }
 
-    
     /*
     //METODO ASIGNAR PK OFERTA PK PRUEBA EN PRUEBA_OFERTA
     @RequestMapping(value = "/asignar", method = RequestMethod.POST)
@@ -149,8 +140,7 @@ public class PruebaController {
        
         return "redirect:/prueba/listar/" + num;
     }
-    */
-    
+     */
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(Prueba prueba, @RequestParam(name = "oferta", required = false) BigDecimal oferta, SessionStatus status) {
 
@@ -158,53 +148,44 @@ public class PruebaController {
         status.setComplete();
         List<PruebaOferta> lista = IService.findPruebaOfertabyPruebaOferta(IService.findOneOferta(num), prueba);
         if (lista.isEmpty()) {
-           
-             //Procedimiento: insertarpruebaoferta
-            //parametros: (pk prueba,pk oferta)
-            repo.insertPruebaOferta(prueba.getPkPrueba(), num);
-        } 
 
-        return "redirect:/prueba/listar/" + num;
-    }
-    
-    
-
-    @RequestMapping(value = "/formE", method = RequestMethod.POST)
-    public String guardarE(Prueba prueba,SessionStatus status) {
-
-        Empresa empresa=IService.findOneEmpresa(num);
-        prueba.setEmpresa(empresa);
-        IService.savePrueba(prueba);
-        status.setComplete();
-       
-        return "redirect:/prueba/listarE/" + num;
-    }
-
-
-    //METODO ASIGNAR PK OFERTA PK PRUEBA EN PRUEBA_OFERTA
-    @RequestMapping(value = "/asignar", method = RequestMethod.POST)
-     public String asignar(Prueba prueba, @RequestParam(name = "oferta", required = false) BigDecimal oferta, SessionStatus status) {
-
-               
             //Procedimiento: insertarpruebaoferta
             //parametros: (pk prueba,pk oferta)
             repo.insertPruebaOferta(prueba.getPkPrueba(), num);
-       
+        }
 
         return "redirect:/prueba/listar/" + num;
     }
-    
-    
-    
 
-    
+    @RequestMapping(value = "/formE", method = RequestMethod.POST)
+    public String guardarE(Prueba prueba, SessionStatus status) {
+
+        Empresa empresa = IService.findOneEmpresa(num);
+        prueba.setEmpresa(empresa);
+        IService.savePrueba(prueba);
+        status.setComplete();
+
+        return "redirect:/prueba/listarE/" + num;
+    }
+
+    //METODO ASIGNAR PK OFERTA PK PRUEBA EN PRUEBA_OFERTA
+    @RequestMapping(value = "/asignar", method = RequestMethod.POST)
+    public String asignar(Prueba prueba, @RequestParam(name = "oferta", required = false) BigDecimal oferta, SessionStatus status) {
+
+        //Procedimiento: insertarpruebaoferta
+        //parametros: (pk prueba,pk oferta)
+        repo.insertPruebaOferta(prueba.getPkPrueba(), num);
+
+        return "redirect:/prueba/listar/" + num;
+    }
+
     @RequestMapping(value = "/eliminar/{id}")
     public String eliminar(@PathVariable(value = "id") BigDecimal id) {
         //se compara si el ID es mayor que cero
         if (id.compareTo(BigDecimal.ZERO) > 0) {
             IService.deletePrueba(id);
         }
-        return "redirect:/prueba/listar";
+        return "redirect:/prueba/listarE/" + num;
     }
 
     //Metodos para items
@@ -217,29 +198,57 @@ public class PruebaController {
 
         return "prueba/items";
     }
-    
-    
+
 //OBTENER LAS PRUEBAS DE UNA OFERTA.
     @GetMapping("candidato/{id}")
-    public String pruebas(@PathVariable(value="Pkoferta") BigDecimal Pkoferta, @PathVariable(value="Pkpostulacion") BigDecimal Pkpostulacion,
-            Model model){
-        
-        Oferta oferta=IService.findOneOferta(Pkoferta);//Obtengo la oferta
-       // Postulacion postulacion=IService.findOnePostulacion(Pkpostulacion));//obtengo el candidato
+    public String pruebas(@PathVariable(value = "Pkoferta") BigDecimal Pkoferta, @PathVariable(value = "Pkpostulacion") BigDecimal Pkpostulacion,
+            Model model) {
+
+        Oferta oferta = IService.findOneOferta(Pkoferta);//Obtengo la oferta
+        // Postulacion postulacion=IService.findOnePostulacion(Pkpostulacion));//obtengo el candidato
         model.addAttribute("pruebas", IService.findPruebaOfertabyOferta(oferta));
-        model.addAttribute("titulo","Tus Pruebas");//envio una varible con el titulo 
-        model.addAttribute("oferta",oferta);//agrego el objeto oferta a la vista
-       //odel.addAttribute("postulacion", postulacion);
-        
+        model.addAttribute("titulo", "Tus Pruebas");//envio una varible con el titulo 
+        model.addAttribute("oferta", oferta);//agrego el objeto oferta a la vista
+        //odel.addAttribute("postulacion", postulacion);
+
         return "prueba/examenes";
     }
 
- 
-    
-
-   
-
     /* 
+    
+    //METODO PARA ASIGANAR A RESULTADO LA PK_POSTULACION Y PK_PRUEBAOFERTA
+    @GetMapping(value="asignar/{pkPostulacion}")
+    public String enviar( @PathVariable(value="pkPostulacion")BigDecimal Pkpostulacion,
+            Model model){
+         
+        Postulacion postulacion =IService.findOnePostulacion(pkPostulacion);//Obtengo la postulacion con el pkPostulacion
+        Oferta oferta=IService.findOneOferta(postulacion.getOferta().getPkOferta());//Obtengo la oferta relacionada con PkPostulacion
+              
+        List<PruebaOferta> lista = IService.findPruebaOfertabyOferta(oferta);
+        
+        for(int i=0;i<=lista.size();i=i+1){
+        repo.insertResultado(postulacion.getPkPostulacion(),lista.get(i).getPkPruebaOferta());
+        }
+        
+        return "url";
+    }
+     */
+ /*
+   //Metodo para asignar pruebas a un candidato
+    @GetMapping(value="asignar/{pkOferta}/{pkPostulacion}")
+    public String enviar(@PathVariable(value="pkOferta") BigDecimal Pkoferta, @PathVariable(value="pkPostulacion")BigDecimal Pkpostulacion,
+            Model model){
+         
+        Postulacion postulacion =IService.findOnePostulacion(pk)
+        Oferta oferta=IService.findOneOferta(Pkoferta);//Obtengo la oferta
+        List<PruebaOferta> lista = IService.findPruebaOfertabyOferta(oferta);
+        
+        
+        
+        return "url";
+    }
+     */
+ /* 
     @RequestMapping(value="/items/nuevo/{id}",method=RequestMethod.GET)
     
     public String crear(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
