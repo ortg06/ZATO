@@ -38,10 +38,10 @@ and open the template in the editor.
                     <a class="btn btn-primary btn-sm" th:href="@{/HabilidadLinguisticaCv/editar/ }+ ${habilidadlingCv.pkHabLingCv}" th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-sm" th:href="@{/HabilidadLinguisticaCv/eliminar/} + ${habilidadlingCv.pkHabLingCv}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${habilidadlingCv.catalogoIdioma.nombreIdioma}"></td>
-                    <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
-                    <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
-                    <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
-                    <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
+                    <td th:text="${habilidadlingCv.pondEscritoCv}"></td>
+                    <td th:text="${habilidadlingCv.pondEscuchaCv}"></td>
+                    <td th:text="${habilidadlingCv.pondLecturaCv}"></td>
+                    <td th:text="${habilidadlingCv.pondConversacionCv}"></td>
                     </tr>
             </tbody>
         </table>

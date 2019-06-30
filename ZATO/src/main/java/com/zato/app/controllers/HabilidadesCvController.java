@@ -31,7 +31,9 @@ public class HabilidadesCvController {
     @Autowired
     private IService CvService; 
     @Autowired
-    private IService catalogoHabilidadService; 
+    private IService catalogoHabilidadService;
+    @Autowired
+    private IService catalogoCategoriaService;
     
     BigDecimal numcv=null;
     
@@ -47,6 +49,7 @@ public class HabilidadesCvController {
         numcv=id;
         model.put("habilidadesCv", habilidadesCv);
         model.put("titulo", "Conocimientos y Habilidades");
+        model.put("catCategoria",catalogoCategoriaService.findAllcategoriaHabilidad());
         model.put("catHabilidad",catalogoHabilidadService.findAllCatHabilidad());
         
         return "HabilidadesCv/formhabcv";
@@ -69,6 +72,8 @@ public class HabilidadesCvController {
         }
         model.put("habilidadesCv", habilidadesCv);
         model.put("titulo", "Actualizar Conocimiento / Habilidad");
+        model.put("catCategoria",catalogoCategoriaService.findAllcategoriaHabilidad());
+        model.put("catHabilidad",catalogoHabilidadService.findAllCatHabilidad());
         return "HabilidadesCv/formhabcv";
     } 
     

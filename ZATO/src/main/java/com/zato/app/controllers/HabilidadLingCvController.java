@@ -6,6 +6,7 @@
 package com.zato.app.controllers;
 
 import com.zato.app.Servicios.IService;
+import com.zato.app.entidades.CatalogoPonderacion;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.HabilidadLinguisticaCv;
 import java.math.BigDecimal;
@@ -49,7 +50,10 @@ public class HabilidadLingCvController {
         numcv=id;
         model.put("habilidadlingCv", habilidadlingCv);
         model.put("titulo", "Idiomas");
-        model.put("catPonderacion",catalogopondService.findAllPonderacion());
+        model.put("catPonderacionescritura",catalogopondService.findAllPonderacion());
+        model.put("catPonderacionescucha",catalogopondService.findAllPonderacion());
+        model.put("catPonderacionlectura",catalogopondService.findAllPonderacion());
+        model.put("catPonderacionconversacion",catalogopondService.findAllPonderacion());
         model.put("catIdioma",catalogoidiomaService.findAllCatIdioma());
         
         return "HabilidadLinguisticaCv/formhlc";
@@ -80,6 +84,8 @@ public class HabilidadLingCvController {
     {
         cv=CvService.findOneCv(numcv);
         habilidadlingCv.setCv(cv);//id cv
+        CatalogoPonderacion cp = new CatalogoPonderacion();
+        cp.setPkCatalogoPonderacion(new BigDecimal (1));
         
         hablingCvService.saveHabLingCv(habilidadlingCv);
         status.setComplete();

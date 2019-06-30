@@ -40,9 +40,9 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nivel Escritura :</label>
                     <div class="col-sm-6">
-                        <select id="catPonderacion" class="col-sm-6 form-control form-control-sm" name="catalogoPonderacion">
+                        <select id="catPonderacionescritura" class="col-sm-6 form-control form-control-sm" name="pondEscritoCv">
 
-                            <option th:each="ponderacion : ${catPonderacion}" th:value="${ponderacion.pkCatalogoPonderacion}" 
+                            <option th:each="ponderacion : ${catPonderacionescritura}" th:value="${ponderacion.pkCatalogoPonderacion}" 
                                     th:selected="${ponderacion.pkCatalogoPonderacion==s}" th:text="${ponderacion.etiquetaPonderacion}">
                             </option>
                         </select>
@@ -52,9 +52,9 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nivel Escucha :</label>
                     <div class="col-sm-6">
-                        <select id="catPonderacion" class="col-sm-6 form-control form-control-sm" name="catalogoPonderacion">
+                        <select id="catPonderacionescucha" class="col-sm-6 form-control form-control-sm" name="pondEscuchaCv">
 
-                            <option th:each="catPonderacion : ${catPonderacion}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
+                            <option th:each="catPonderacion : ${catPonderacionescucha}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
                                     th:selected="${catPonderacion.pkCatalogoPonderacion==s}" th:text="${catPonderacion.etiquetaPonderacion}">
                             </option>
                         </select>
@@ -64,9 +64,9 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nivel Lectura :</label>
                     <div class="col-sm-6">
-                        <select id="catPonderacion" class="col-sm-6 form-control form-control-sm" name="catalogoPonderacion">
+                        <select id="catPonderacionlectura" class="col-sm-6 form-control form-control-sm" name="pondLecturaCv">
 
-                            <option th:each="catPonderacion : ${catPonderacion}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
+                            <option th:each="catPonderacion : ${catPonderacionlectura}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
                                     th:selected="${catPonderacion.pkCatalogoPonderacion==s}" th:text="${catPonderacion.etiquetaPonderacion}">
                             </option>
                         </select>
@@ -76,10 +76,10 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nivel Conversacion :</label>
                     <div class="col-sm-6">
-                        <select id="catPonderacion" class="col-sm-6 form-control form-control-sm" name="catalogoPonderacion">
+                        <select id="catPonderacionconversacion" class="col-sm-6 form-control form-control-sm" name="pondConversacionCv">
 
-                            <option th:each="catPonderacion : ${catPonderacion}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
-                                    th:selected="${catPonderacion.pkCatalogoPonderacion==s}" th:text="${catPonderacion.etiquetaPonderacion}">
+                            <option th:each="catPonderacionc : ${catPonderacionconversacion}" th:value="${catPonderacionc.pkCatalogoPonderacion}" 
+                                    th:selected="${catPonderacionc.pkCatalogoPonderacion==s}" th:text="${catPonderacionc.etiquetaPonderacion}">
                             </option>
                         </select>
                     </div>

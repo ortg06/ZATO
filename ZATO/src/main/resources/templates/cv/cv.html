@@ -168,10 +168,10 @@ and open the template in the editor.
                         <tbody>
                             <tr th:each="habilidadlingCv: ${habilidadlingCv}">
                                 <td th:text="${habilidadlingCv.catalogoIdioma.nombreIdioma}"></td>
-                                <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
-                                <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
-                                <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
-                                <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
+                                <td th:text="${habilidadlingCv.pondEscritoCv}"></td>
+                                <td th:text="${habilidadlingCv.pondEscuchaCv}"></td>
+                                <td th:text="${habilidadlingCv.pondLecturaCv}"></td>
+                                <td th:text="${habilidadlingCv.pondConversacionCv}"></td>
                             </tr>
                         </tbody>
                     </table>
