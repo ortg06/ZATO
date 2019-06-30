@@ -197,6 +197,10 @@ public class PerfilController {
     public String login(HttpSession session, Perfil perfil) {
         String contra = JavaUtil.getMD5(perfil.getContrasena());
         perfil = PerfilService.findPerfilUserPass(perfil.getUsuario(),contra);
+        
+        if(perfil == null)
+            return "redirect:/login";
+        
         Rol rol = RolService.findOneRol(perfil.getRol().getPkRol());
         List<RolSubmenu> rolsubmenu = RolSubmenuService.findRolSubmenubyRol(rol);
         

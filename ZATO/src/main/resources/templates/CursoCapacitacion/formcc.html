@@ -25,7 +25,7 @@ and open the template in the editor.
 
             <form th:action="@{/CursoCapacitacion/formcc}" th:object="${cursocapacitacion}" method="post">
 
-
+                <input type="hidden" id="pkCursoCapacitacion" name="pkCursoCapacitacion" th:value="${cursocapacitacion.pkCursoCapacitacion}" />
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Curso o Capacitacion :</label>
                     <div class="col-sm-6">

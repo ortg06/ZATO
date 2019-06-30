@@ -39,7 +39,7 @@ and open the template in the editor.
                 <tr th:each="experiencia: ${experiencia}">
                  <td>
                     <a class="btn btn-primary btn-sm " th:href="@{/experienciaLaboral/editar/} + ${experiencia.pkExperienciaLaboral}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-sm " th:href="@{/experienciaLaborl/eliminar/} + ${experiencia.pkExperienciaLaboral}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <a class="btn btn-danger btn-sm " th:href="@{/experienciaLaboral/eliminar/} + ${experiencia.pkExperienciaLaboral}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${experiencia.nombreExpEmpresa}"></td>
                     <td th:text="${experiencia.cargo}"></td>
                     <td th:text="${experiencia.periodoInicio}"></td>

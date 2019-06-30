@@ -44,6 +44,7 @@ public class FormacionAcademicaController {
      @RequestMapping(value="FormacionAcademica/formfa/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
+        formacion = new FormacionAcademica();
         numcv=id;
         model.put("formacion", formacion);
         model.put("gradoAcad",gradoAcademicoService.findAllCatalogoGradoAcademico());
@@ -67,6 +68,8 @@ public class FormacionAcademicaController {
         } else {
             return "redirect:/Cv/verCv/"+numcv;
         }
+        numcv = formacion.getCv().getPkCv();
+        
         model.put("formacion", formacion);
         model.put("gradoAcad",gradoAcademicoService.findAllCatalogoGradoAcademico());
         model.put("titulo", "Actualizar Formacion Academica");

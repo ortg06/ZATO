@@ -25,7 +25,7 @@ and open the template in the editor.
 
             <form th:action="@{/experienciaLaboral/formexp}" th:object="${experiencia}" method="post">
 
-
+                <input type="hidden" id="pkExperienciaLaboral" name="pkExperienciaLaboral" th:value="${experiencia.pkExperienciaLaboral}" />
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Empresa</label>
                     <div class="col-sm-6">
@@ -41,7 +41,7 @@ and open the template in the editor.
                         <select id="sector" class="col-sm-6 form-control form-control-sm" name="catalogoSectorEmpresa">
 
                             <option th:each="sector : ${sectores}" th:value="${sector.pkSector}" 
-                                    th:selected="${sector.pkSector==s}" th:text="${sector.nombreSector}">
+                                    th:text="${sector.nombreSector}"  th:selected="${sector == experiencia.catalogoSectorEmpresa}" >
                             </option>
                         </select>
                     </div>
@@ -101,7 +101,7 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Telefono Contacto :</label>
                     <div class="col-sm-6">
-                        <input class="form-control form-control-sm" type="text" th:field="*{telefonoContactoExp}"/> <small
+                        <input class="form-control form-control-sm" type="number" th:field="*{telefonoContactoExp}"/> <small
                             class="form-text text-danger"
                             th:if="${#fields.hasErrors('telefonoContactoExp')}" th:errors="*{telefonoContactoExp}"></small>
                     </div>
@@ -109,7 +109,7 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Correo Contacto :</label>
                     <div class="col-sm-6">
-                        <input class="form-control form-control-sm" type="text" th:field="*{correoContactoExp}"/> <small
+                        <input class="form-control form-control-sm" type="email" th:field="*{correoContactoExp}"/> <small
                             class="form-text text-danger"
                             th:if="${#fields.hasErrors('correoContactoExp')}" th:errors="*{correoContactoExp}"></small>
                     </div>
