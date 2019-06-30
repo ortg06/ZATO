@@ -26,12 +26,12 @@ and open the template in the editor.
             <form th:action="@{/HabilidadesCv/formhabcv}" th:object="${habilidadesCv}" method="post">
 
                  <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Conocimientos y Habilidades:</label>
+                    <label class="col-sm-4 col-form-label">Conocimientos y Habilidades:</label>
                     <div class="col-sm-6">
                         <select id="catHabilidad" class="col-sm-6 form-control form-control-sm" name="catalogoHabilidad">
 
                             <option th:each="catHabilidad : ${catHabilidad}" th:value="${catHabilidad.pkHabilidad}" 
-                                    th:selected="${catHabilidad.pkHabilidad==s}" th:text="${cataptitud.nombreHabilidad}">
+                                    th:selected="${catHabilidad.pkHabilidad==s}" th:text="${catHabilidad.nombreHabilidad}">
                             </option>
                         </select>
                     </div>

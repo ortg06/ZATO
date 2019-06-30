@@ -21,14 +21,14 @@ and open the template in the editor.
 
         <a class="btn btn-success btn-xs" th:href="@{/experienciaLaboral/formexp/}+ ${cv.pkCv}" >Agregar Experiencia Laboral</a>
         
-        <table class="table table-striped display compact">
+        <table class="table table-striped table-bordered small">
             <thead>
                  <tr>
                     <th>Acciones</th>
                     <th>Empresa</th>
                     <th>Cargo</th>
                     <th>Periodo de Inicio</th>
-                    <th>Periodo Fin</th>
+                    <th>Periodo de Finalizacion</th>
                     <th>Funciones</th>
                     <th>Nombre de Contacto</th>
                     <th>Telefono de contacto</th>
@@ -38,8 +38,8 @@ and open the template in the editor.
             <tbody>
                 <tr th:each="experiencia: ${experiencia}">
                  <td>
-                    <a class="btn btn-primary btn-xs " th:href="@{/experienciaLaboral/editar/} + ${experiencia.pkExperienciaLaboral}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs " th:href="@{/experienciaLaborl/eliminar/} + ${experiencia.pkExperienciaLaboral}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <a class="btn btn-primary btn-sm " th:href="@{/experienciaLaboral/editar/} + ${experiencia.pkExperienciaLaboral}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-sm " th:href="@{/experienciaLaborl/eliminar/} + ${experiencia.pkExperienciaLaboral}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${experiencia.nombreExpEmpresa}"></td>
                     <td th:text="${experiencia.cargo}"></td>
                     <td th:text="${experiencia.periodoInicio}"></td>

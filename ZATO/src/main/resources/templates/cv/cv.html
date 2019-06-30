@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="fragments/header :: head">
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"/>
+
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+                <h1>Curriculum Vitae</h1>
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " >
+                            AQUI IMAGEN
+                            <!-- <img th:if="${candidato.fotoCandidato == null}" class="img-thumbnail rounded float-left"
+                                  style="max-width: 25%;" th:src="@{/imagenes/nofoto.png}" />
+ 
+                             <img th:unless="${candidato.fotoCandidato == null}" class="img-thumbnail rounded float-left"
+                                  style="max-width: 25%;" th:src="*{'data:image/png;base64,'+imagen}" />
+                            -->
+                        </div>
+                        <div class="col-md-9 col-lg-9 " align="center">
+                            <h4> <span th:text ="*{cv.candidato.nombreCandidato}"/> </h4>
+                            <h4> <span th:text ="*{cv.candidato.apellidoCandidato}"/> </h4>
+
+                        </div>
+
+                    </div>
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Datos Personales </h4> 
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " > <span class="font-weight-bold">DUI : </span> <span th:text="*{cv.candidato.dui}"></span> </div>
+                        <div class="col-md-3 col-lg-3 " > <span class="font-weight-bold">NIT : </span> <span th:text="*{cv.candidato.nit}"></span> </div>
+                        <div class="col-md-3 col-lg-3 " >  <span class="font-weight-bold">NUP : </span> <span th:text="*{cv.candidato.nup}"></span> </div>
+                        <div class="col-md-3 col-lg-3 " >  <span class="font-weight-bold">Pasaporte : </span> <span th:text="*{cv.candidato.pasaporte}"></span> </div>
+                        <br/>
+                        <br/>
+                        <div class="col-md-4 col-lg-4 " > <span class="font-weight-bold">Genero : </span> <span th:text="*{cv.candidato.catalogoGenero.nombreGenero}"></span> </div>
+                        <div class="col-md-4 col-lg-4 " >  <span class="font-weight-bold">Fecha de nacimiento : </span> <span th:text="*{cv.candidato.fechaNacimiento}"></span> </div>
+                        <div class="col-md-4 col-lg-4 " >  <span class="font-weight-bold">Nacionalidad : </span> <span th:text="*{cv.candidato.nacionalidad}"></span> </div>
+                        <br/>
+                        <br/>
+                        <div class="col-md-8 col-lg-8 " >    <span class="font-weight-bold">Direccion : </span> <span th:text="*{cv.candidato.direccion}"></span> </div>
+                        <div class="col-md-4 col-lg-4 " > <span class="font-weight-bold">Telefono : </span> <span th:text="*{cv.candidato.telefono}"></span> </div>
+                        <br/>
+                        <br/>
+                        <div class="col-md-8 col-lg-8 " > email pendiente<!--<span class="font-weight-bold">EMAIL : </span> <span th:text="*{cv.candidato.perfil.correoElectronico}"></span> --> </div>
+                        <div class="col-md-4 col-lg-4 " > <span class="font-weight-bold">Celular : </span> <span th:text="*{cv.candidato.celular}"></span> </div>
+                        <br/>
+                        <br/> 
+                        <div class="col-md-6 col-lg-6 " > <span class="font-weight-bold">Facebook : </span> <span th:text="*{cv.candidato.facebook}"></span> </div>
+                        <div class="col-md-6 col-lg-6 " > <span class="font-weight-bold">Twitter : </span> <span th:text="*{cv.candidato.twitter}"></span> </div>
+                    </div>
+
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Experiencia Laboral </h4> 
+                    <br/>
+                    <br/>
+                    <table class="table table-striped table-bordered small">
+                        <thead>
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Cargo</th>
+                                <th>Periodo de Inicio</th>
+                                <th>Periodo Fin</th>
+                                <th>Funciones</th>
+                                <th>Nombre de Contacto</th>
+                                <th>Telefono de contacto</th>
+                                <th>Correo de contacto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="experiencia: ${experiencia}">
+                                <td th:text="${experiencia.nombreExpEmpresa}"></td>
+                                <td th:text="${experiencia.cargo}"></td>
+                                <td th:text="${experiencia.periodoInicio}"></td>
+                                <td th:text="${experiencia.periodoFin}"></td>
+                                <td th:text="${experiencia.descripcionFunciones}"></td>
+                                <td th:text="${experiencia.nombreContactoExp}"></td>
+                                <td th:text="${experiencia.telefonoContactoExp}"></td>
+                                <td th:text="${experiencia.correoContactoExp}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div> <!--fin card --> 
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Formacion Academica </h4> 
+                    <br/>
+                    <br/>
+                    <table class="table table-striped table-bordered small">
+                        <thead>
+                            <tr>
+                                <th>Institucion</th>
+                                <th>Grado Academico</th>
+                                <th>Fecha de Inicio</th>
+                                <th>Fecha de Finalizacion</th>
+                                <th>Nombre del Titulo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="formacion: ${formacion}">
+                                <td th:text="${formacion.nombreInstitucion}"></td>
+                                <td th:text="${formacion.catalogoGradoAcademico.nombreGradoAcademico}"></td>
+                                <td th:text="${formacion.anoInicio}"></td>
+                                <td th:text="${formacion.anoFin}"></td>
+                                <td th:text="${formacion.nombreTitulo}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Cursos y Capacitaciones </h4> 
+                    <br/>
+                    <br/>
+                    <table class="table table-striped table-bordered small">
+                        <thead>
+                            <tr>
+                                <th>Curso o Capacitacion</th>
+                                <th>Fecha</th>
+                                <th>Duracion</th>
+                                <th>Instituto Ponente</th>
+                                <th>Lugar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="cursocapacitacion: ${cursocapacitacion}">
+                                <td th:text="${cursocapacitacion.nombreCursoCapacitacion}"></td>
+                                <td th:text="${cursocapacitacion.fechaCurso}"></td>
+                                <td th:text="${cursocapacitacion.duracion}"></td>
+                                <td th:text="${cursocapacitacion.nombreInstitutoPonente}"></td>
+                                <td th:text="${cursocapacitacion.lugarCapacitacion}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Idiomas </h4> 
+                    <br/>
+                    <br/>
+                    <table class="table table-striped table-bordered small">
+                        <thead>
+                            <tr>
+                                <th>Idioma</th>
+                                <th>Nivel Escrito</th>
+                                <th>Nivel Escucha</th>
+                                <th>Nivel Lectura</th>
+                                <th>Nivel Conversacion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="habilidadlingCv: ${habilidadlingCv}">
+                                <td th:text="${habilidadlingCv.catalogoIdioma.nombreIdioma}"></td>
+                                <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
+                                <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
+                                <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
+                                <td th:text="${habilidadlingCv.catalogoPonderacion.etiquetaPonderacion}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Conocimientos y Habilidades </h4> 
+                    <br/>
+                    <br/>
+                    <table class="table table-striped table-bordered small ">
+                        <thead>
+                            <tr>
+                                <th>Conocimientos y Habilidades</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="habilidadesCv: ${habilidadesCv}">
+                                <td th:text="${habilidadesCv.catalogoHabilidad.nombreHabilidad}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Aptitudes </h4> 
+                    <br/>
+                    <br/>
+                    <table class="table table-striped table-bordered small ">
+                        <thead>
+                            <tr>
+                                <th>Aptitudes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="aptitudCv: ${aptitudCv}">
+                                <td th:text="${aptitudCv.catalogoAptitud.nombreAptitud}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Logros </h4> 
+                    <br/>
+                    <br/>
+
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Eventos asistidos </h4> 
+                    <br/>
+                    <br/>
+
+                </div> <!--fin card -->
+
+                <div class="card-body shadow-sm p-4 mb-4 bg-white">
+                    <h4> Escritos </h4> 
+                    <br/>
+                    <br/>
+
+                </div> <!--fin card -->
+
+            </div> <!--fin container -->
+        </div> <!--fin row -->
+        <div th:replace="fragments/footer :: footer"></div>
+    </body>
+</html>

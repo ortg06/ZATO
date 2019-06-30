@@ -4,13 +4,99 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html xmlns:th ="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title th:text="${titulo}">TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
     </head>
     <body>
-        <div>TODO write content</div>
+
+        <div th:replace="fragments/header :: header"/>
+
+
+        <div class="container">
+            <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+
+            <form th:action="@{/HabilidadLinguisticaCv/formhlc}" th:object="${habilidadlingCv}" method="post">
+
+                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Idioma :</label>
+                    <div class="col-sm-6">
+                        <select id="catIdioma" class="col-sm-6 form-control form-control-sm" name="catalogoIdioma">
+
+                            <option th:each="catIdioma : ${catIdioma}" th:value="${catIdioma.pkIdioma}" 
+                                    th:selected="${catIdioma.pkIdioma==s}" th:text="${catIdioma.nombreIdioma}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nivel Escritura :</label>
+                    <div class="col-sm-6">
+                        <select id="catPonderacion" class="col-sm-6 form-control form-control-sm" name="catalogoPonderacion">
+
+                            <option th:each="ponderacion : ${catPonderacion}" th:value="${ponderacion.pkCatalogoPonderacion}" 
+                                    th:selected="${ponderacion.pkCatalogoPonderacion==s}" th:text="${ponderacion.etiquetaPonderacion}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+               
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nivel Escucha :</label>
+                    <div class="col-sm-6">
+                        <select id="catPonderacion" class="col-sm-6 form-control form-control-sm" name="catalogoPonderacion">
+
+                            <option th:each="catPonderacion : ${catPonderacion}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
+                                    th:selected="${catPonderacion.pkCatalogoPonderacion==s}" th:text="${catPonderacion.etiquetaPonderacion}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nivel Lectura :</label>
+                    <div class="col-sm-6">
+                        <select id="catPonderacion" class="col-sm-6 form-control form-control-sm" name="catalogoPonderacion">
+
+                            <option th:each="catPonderacion : ${catPonderacion}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
+                                    th:selected="${catPonderacion.pkCatalogoPonderacion==s}" th:text="${catPonderacion.etiquetaPonderacion}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nivel Conversacion :</label>
+                    <div class="col-sm-6">
+                        <select id="catPonderacion" class="col-sm-6 form-control form-control-sm" name="catalogoPonderacion">
+
+                            <option th:each="catPonderacion : ${catPonderacion}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
+                                    th:selected="${catPonderacion.pkCatalogoPonderacion==s}" th:text="${catPonderacion.etiquetaPonderacion}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                </div>
+
+
+
+
+
+            </form>
+        </div>
     </body>
 </html>
+

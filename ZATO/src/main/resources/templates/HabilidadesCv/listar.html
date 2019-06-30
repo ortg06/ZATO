@@ -21,7 +21,7 @@ and open the template in the editor.
 
         <a class="btn btn-success btn-xs" th:href="@{/HabilidadesCv/formhabcv/ }+ ${cv.pkCv}" >Agregar Habilidades</a>
         
-        <table class="table table-striped ">
+        <table class="table table-striped table-bordered small ">
             <thead>
                  <tr>
                     <th>Acciones</th>
@@ -31,8 +31,8 @@ and open the template in the editor.
             <tbody>
                 <tr th:each="habilidadesCv: ${habilidadesCv}">
                  <td>
-                    <a class="btn btn-primary btn-xs" th:href="@{/HabilidadesCv/editar/ }+ ${habilidadesCv.pkHabilidadesCv}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:href="@{/HabilidadesCv/eliminar/} + ${habilidadesCv.pkHabilidadesCv}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <a class="btn btn-primary btn-sm" th:href="@{/HabilidadesCv/editar/ }+ ${habilidadesCv.pkHabilidadesCv}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-sm" th:href="@{/HabilidadesCv/eliminar/} + ${habilidadesCv.pkHabilidadesCv}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${habilidadesCv.catalogoHabilidad.nombreHabilidad}"></td>
                     </tr>
             </tbody>

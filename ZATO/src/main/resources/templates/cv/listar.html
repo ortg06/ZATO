@@ -33,8 +33,9 @@ and open the template in the editor.
             <tbody>
                 <tr th:each="cv: ${cv}">
                  <td>
+                    <a class="btn btn-primary btn-xs" th:href="@{/Cv/cv/} + ${cv.pkCv}" th:text="'Cv'"></a>
                     <a class="btn btn-primary btn-xs" th:href="@{/Cv/verCv/} + ${cv.pkCv}" th:text="'Ver'"></a>
-                    <a class="btn btn-primary btn-xs" th:href="@{/Cv/formcv/ }+ ${cv.pkCv}" th:text="'Editar'"></a>
+                    <a class="btn btn-primary btn-xs" th:href="@{/Cv/formcv/editar/ }+ ${cv.pkCv}" th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-xs" th:href="@{/Cv/eliminar/} + ${cv.pkCv}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${cv.nombreCv}"></td>
                     <td th:text="${cv.fechaRegistro}"></td>

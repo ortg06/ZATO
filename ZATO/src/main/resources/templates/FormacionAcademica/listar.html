@@ -21,7 +21,7 @@ and open the template in the editor.
 
         <a class="btn btn-success btn-xs" th:href="@{/FormacionAcademica/formfa/}+ ${cv.pkCv}" >Agregar Formacion Academica</a>
         
-        <table class="table table-striped display compact">
+        <table class="table table-striped table-bordered small">
             <thead>
                  <tr>
                     <th>Acciones</th>
@@ -35,8 +35,8 @@ and open the template in the editor.
             <tbody>
                 <tr th:each="formacion: ${formacion}">
                  <td>
-                    <a class="btn btn-primary btn-xs " th:href="@{/FormacionAcademica/editar/} + ${formacion.pkFormacionAcademica}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs " th:href="@{/FormacionAcademica/eliminar/} + ${formacion.pkFormacionAcademica}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                    <a class="btn btn-primary btn-sm " th:href="@{/FormacionAcademica/editar/} + ${formacion.pkFormacionAcademica}" th:text="'Editar'"></a>
+                    <a class="btn btn-danger btn-sm " th:href="@{/FormacionAcademica/eliminar/} + ${formacion.pkFormacionAcademica}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${formacion.nombreInstitucion}"></td>
                     <td th:text="${formacion.catalogoGradoAcademico.nombreGradoAcademico}"></td>
                     <td th:text="${formacion.anoInicio}"></td>
