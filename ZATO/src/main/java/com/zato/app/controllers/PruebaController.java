@@ -13,6 +13,7 @@ import com.zato.app.dao.IPruebaDao;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Oferta;
+import com.zato.app.entidades.Opciones;
 import com.zato.app.entidades.Postulacion;
 import com.zato.app.entidades.Prueba;
 import com.zato.app.entidades.PruebaOferta;
@@ -200,26 +201,47 @@ public class PruebaController {
         return "prueba/items";
     }
 
-  
-//OBTENER LAS PRUEBAS DE UNA OFERTA.
-    @RequestMapping(value="candidato/{id}", method = RequestMethod.POST)
-    public String pruebas(@PathVariable(value = "pkPrueba") BigDecimal pkPrueba, 
-            Model model) {
+//OBTENER LAS preguntas de una prueba.
+    @RequestMapping(value = "candidato/{pkPrueba}", method = RequestMethod.GET)
+    public String crearE(@PathVariable(value = "pkPrueba") BigDecimal pkPrueba,
+            Map<String, Object> model) {
 
         Prueba prueba = IService.findOnePrueba(pkPrueba);//Obtengo la oferta
         // Postulacion postulacion=IService.findOnePostulacion(Pkpostulacion));//obtengo el candidato
         List<ItemPrueba> lista = IService.findItemPruebabyPrueba(prueba);
-        model.addAttribute("items", lista);
-        model.addAttribute("titulo", prueba.getNombrePrueba());//envio una varible con el titulo 
-       
+        
+       /* for (int i = 0; i <= lista.size(); i = i + 1) {
+            ItemPrueba itemprueba = IService.findOneItem(lista.get(i).getPkItem());
+            List<Opciones> opciones = IService.findOpcionesbyItemPrueba(itemprueba);
+
+            model.put("opciones", opciones);
+        }*/
+        model.put("opciones",IService.findAllOpciones());
+        model.put("items", lista);
+        model.put("titulo", prueba.getNombrePrueba());//envio una varible con el titulo 
+
         //odel.addAttribute("postulacion", postulacion);
-
-        return "prueba/nes";
+        return "prueba/examen";
     }
+    /*
+    @RequestMapping(value = "/examen", method = RequestMethod.POST)
+    public String guardarI(Prueba prueba, @RequestParam(name = "oferta", required = false) BigDecimal oferta, SessionStatus status) {
 
-  
+        IService.savePrueba(prueba);
+        status.setComplete();
+        List<PruebaOferta> lista = IService.findPruebaOfertabyPruebaOferta(IService.findOneOferta(num), prueba);
+        if (lista.isEmpty()) {
 
-    /* 
+            //Procedimiento: insertarpruebaoferta
+            //parametros: (pk prueba,pk oferta)
+            repo.insertPruebaOferta(prueba.getPkPrueba(), num);
+        }
+
+        return "redirect:/prueba/listar/" + num;
+    }*/
+
+
+ /* 
     
     //METODO PARA ASIGANAR A RESULTADO LA PK_POSTULACION Y PK_PRUEBAOFERTA es metodo para asignar prueba a un candidato
     @GetMapping(value="asignar/{pkPostulacion}")
