@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-    
+
     <head th:replace="fragments/header :: head"></head>
     <body>
         <div th:replace="fragments/header :: header"/>
@@ -29,6 +29,9 @@
                             </li>
                             <li class="nav-item" name="#menu4">
                                 <a class="nav-link" name="#menu4" data-toggle="pill" href="#menu4">Gestion de Postulantes</a>
+                            </li>
+                            <li class="nav-item" name="#menu5">
+                                <a class="nav-link" name="#menu5" data-toggle="pill" href="#menu5">Asignacion de Pruebas</a>
                             </li>
                         </ul>
 
@@ -84,7 +87,11 @@
                             </div>
                             <div id="menu4" class="container tab-pane fade"><br />
                                 <h3>Gestion de Postulaciones</h3>
-                                 <div th:replace="postulacion/listarEm :: postulantes" />
+                                <div th:replace="postulacion/listarEm :: postulantes" />
+                            </div>
+                            <div id="menu5" class="container tab-pane fade"><br />
+                                <h3>Asignar Pruebas</h3>
+                                <div th:replace="prueba/pruebaxoferta :: pruebaoferta" />
                             </div>
                         </div>
 

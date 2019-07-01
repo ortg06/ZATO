@@ -43,6 +43,7 @@ public class PruebaController {
 
     BigDecimal num = null;
     BigDecimal update = null;
+     BigDecimal po = null;
     @Autowired
     private IService IService;
     @Autowired
@@ -71,6 +72,7 @@ public class PruebaController {
         return "prueba/examenes";
     }
     
+    /*
      @GetMapping("/listarO/{id}")
     public String listarO(@PathVariable(value = "id") BigDecimal id, Model model) {
         Oferta oferta = IService.findOneOferta(id);
@@ -80,8 +82,8 @@ public class PruebaController {
         model.addAttribute("oferta", oferta);
         model.addAttribute("pos", lista);
 
-        return "prueba/listar";
-    }
+        return "prueba/pruebaxoferta";
+    }*/
 
     //LISTADO DE PRUEBAS POR EMPRESA
     @GetMapping("/listarE/{id}")
@@ -103,8 +105,8 @@ public class PruebaController {
         Oferta oferta = IService.findOneOferta(pkOferta);
         num = pkOferta;
         Prueba prueba = new Prueba();
-        model.put("prueba", prueba);
-        model.put("titulo", "Datos de la prueba");
+        model.put("pruebas", prueba);
+        model.put("titulo", "Asignar una prueba");
 
         model.put("tipos", IService.findAlltipoprueba());
         return "prueba/form";
@@ -124,6 +126,31 @@ public class PruebaController {
         model.put("tipos", IService.findAlltipoprueba());
         return "prueba/formE";
     }
+    
+     /*//Metodo para crear prueba por empresa
+    @RequestMapping(value = "/nuevo/{pkOferta}", method = RequestMethod.GET)
+    public String crearPO(@PathVariable(value = "pkOferta") BigDecimal pkOferta,
+            Map<String, Object> model,
+            RedirectAttributes flash) {
+        Oferta oferta = IService.findOneOferta(pkOferta);
+        po=pkOferta;
+        PruebaOferta pruebaoferta = new PruebaOferta();
+        model.put("pruebaoferta", pruebaoferta);
+        model.put("titulo", "Asignación de Pruebas"+oferta.getCatalogoPuesto().getNombreCatalogoPuesto());
+        model.put("pruebas",IService.findAllPruebas());
+        
+        return "prueba/formPO";
+    }*/
+    /*
+     @RequestMapping(value = "/formPO", method = RequestMethod.POST)
+    public String guardarPO(PruebaOferta pruebaoferta, SessionStatus status) {
+
+        Empresa empresa = IService.findOneEmpresa(num);
+        IService.savePruebaOferta(pruebaoferta);
+        status.setComplete();
+
+        return "redirect:/prueba/listarO/" + po;
+    }*/
 
     @RequestMapping(value = "/editar/{id}")
     public String editar(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
@@ -218,7 +245,7 @@ public class PruebaController {
 
 //OBTENER LAS preguntas de una prueba.
     @RequestMapping(value = "candidato/{pkPrueba}", method = RequestMethod.GET)
-    public String crearE(@PathVariable(value = "pkPrueba") BigDecimal pkPrueba,
+    public String crearEx(@PathVariable(value = "pkPrueba") BigDecimal pkPrueba,
             Map<String, Object> model) {
 
         Prueba prueba = IService.findOnePrueba(pkPrueba);//Obtengo la oferta

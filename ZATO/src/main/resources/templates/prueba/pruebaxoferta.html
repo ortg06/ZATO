@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="container" th:fragment="pruebaoferta">
+
+    <div class="row">  
+
+        <div class="col-lg-10 col-md-10">    
+            <a th:href="@{/pruebaoferta/form/}+${empresa.pkEmpresa}" class="btn btn-success btn-xs">Nueva Asignación</a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        
+                        <th>Oferta</th>
+                        <th>Prueba</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="po: ${pruebaoferta}">
+
+                        <td th:text="${po.pkPruebaOferta}"></td>
+                        <td th:text="${po.prueba.nombrePrueba}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
