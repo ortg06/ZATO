@@ -33,7 +33,7 @@ public class OfertaController{
     public String listar(Model model){
         model.addAttribute("titulo", "Ofertas de Empleo");
         model.addAttribute("ofertas", ofertaService.findAllOfertas());
-        return "Oferta/listar";
+        return "Oferta/listarOfertas";
     }
 
     @RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
@@ -97,12 +97,13 @@ public class OfertaController{
        Oferta oferta = ofertaService.findOneOferta(id);
        
        model.addAttribute("oferta",oferta);
-       model.addAttribute("CatGradoAcademico",ofertaService.findAptitudOfertabyOferta(oferta));
+       /* model.addAttribute("CatGradoAcademico",ofertaService.findAptitudOfertabyOferta(oferta));
        model.addAttribute("aptitudOferta",ofertaService.findAptitudOfertabyOferta(oferta));
-       model.addAttribute("conocimientos", ofertaService.findConoAcadbyOferta(oferta));
+       model.addAttribute("conocimientos", ofertaService.findConoAcadbyOferta(oferta)); */
+       model.addAttribute("empresa", oferta.getEmpresa());
    
        
-        return "Cv/verCv";
+        return "Oferta/verOferta";
     }
 
  

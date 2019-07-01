@@ -1,0 +1,41 @@
+
+
+
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th ="http://www.thymeleaf.org">
+    <head th:replace="fragments/header :: head"></head>
+    <body>
+        <div th:replace="fragments/header :: header"/>
+
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+                <h1>Ofertas Publicadas</h1>
+                
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Acciones</th>
+                                <th>Nombre de la Oferta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="oferta: ${ofertas}">
+                                <td><a class="btn btn-primary btn-xs" th:href="@{/oferta/verOferta/} + ${oferta.pkOferta}"
+                                        th:text="'Ver Oferta'"></a></td>
+                              
+                                <td th:text="${oferta.catalogoPuesto.nombreCatalogoPuesto}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </body>
+</html>

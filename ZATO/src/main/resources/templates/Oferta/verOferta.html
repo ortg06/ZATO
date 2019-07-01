@@ -21,105 +21,96 @@ and open the template in the editor.
         <div class="container" >
             
             <h1>Oferta Publicada</h1>
-            
-            <div class="card shadow p-2 mb-2">
-                <div class="card-body">
 
-                    <form class="form-horizontal" action="/action_page.php">
-                         <div class="form-group row">
-                            <label for="disabledInput" class="ccol-sm-4 col-form-label">Nombre Ofeta</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="disabledInput" type="text" th:field="*{oferta.catalogoPuesto.nombreCatalogoPuesto}" disabled="true"/>
-                            </div>
+            <div
+            class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+    
+    
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">
+
+                            
+                                <div class="col-sm-12">
+                                        <h2 class="col-form-label">Nombre de la Empresa:</h2>
+                                        <h3 class="panel-title" th:text="${empresa.nomEmpresa}"></h3>
+            
+                                    </div>
+    
+                            <img th:if="${empresa.logoEmpresa == null}" class="img-thumbnail rounded float-left"
+                                 style="max-width: 130%;" th:src="@{/imagenes/nofoto.png}" />
+    
+                            <img th:unless="${empresa.logoEmpresa == null}" class="img-thumbnail rounded float-left"
+                                 style="max-width: 130%;" th:src="*{'data:image/png;base64,'+imagen}" />
+    
                         </div>
-
-                    </form>
-
+    
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>
+                                        <td>Nombre Oferta:</td>
+                                        <td th:text="${oferta.catalogoPuesto.nombreCatalogoPuesto}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Descripción:</td>
+                                        <td th:text="${oferta.descripcionOferta}"></td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td>Salario Maximo:</td>
+                                        <td th:text="${oferta.salarioMaxOferta}"></td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td>Salario Minimo:</td>
+                                        <td th:text="${oferta.salarioMinOferta}"></td>
+                                    </tr>
+    
+                                    <tr>
+                                        <td>Fecha Inicio de Oferta:</td>
+                                        <td th:text="${oferta.fechaInicioOferta}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha Fin de Oferta:</td>
+                                        <td th:text="${oferta.fechaFinOferta}"></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+    
+    
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">
-                    <h6> Experiencia Laboral </h6>
-                     <div th:replace="experienciaLaboral/listar :: EXP"/>
+                <div class="panel-footer">
+    
+                    <span class="pull-right">
+    
+                        <a th:href="@{/oferta/aplicar/}+${oferta.pkOferta}" class="btn btn-warning btn-xs">Aplicar</a>
+                    </span>
                 </div>
+    
             </div>
-            <br/>
-
-            <div  id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Conocimientos Academicos
-                <div th:replace="ConocimientoAcademico/listar :: FORMACION"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Cursos y Capacitaciones
-                <div th:replace="CursoCapacitacion/listar :: CURSOCAP"/>
-                </div>
-            </div>
-            <br/>
-
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">idiomas
-                 <div th:replace="HabilidadLinguisticaCv/listar :: HABLINGCV"/>
-                </div>
-            </div>
-            <br/>
-
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Conocimientos y Habilidades
-                <div th:replace="HabilidadesCv/listar :: HABCV"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Aptitudes
-                <div th:replace="AptitudCv/listar :: APTCV"/>
-                </div>
-            </div>
-            <br/>
-            
-                     
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Logros
-                <div th:replace="Logro/listar :: LOGRO"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Eventos
-                <div th:replace="Evento/listar :: EVENTO"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">Escritos
-                <div th:replace="Escrito/listar :: ESCRITO"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Licencias de conducir
-                 <div th:replace="LicenciaCandidato/listar :: LICCAND"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">Referencias</div>
-            </div>
-            <br/>
-
         </div>
-        <br/>
-        <br/>
-        <br/>
+            
+            
+        </div>
+
+            
+            
+
+           
+
+           
+            
+            
+        
+       
         <div th:replace="fragments/footer :: footer"></div>  
 
     </body>
