@@ -5,39 +5,40 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/style.css}"/>
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
         <div th:replace="fragments/header :: header"/>
-        <h1 th:text="${titulo}"></h1>
-        
-        <div class="container">
 
-        <a th:href="@{/candidato/form}" class="btn btn-success btn-xs">Nueva Candidato</a>
-        
-        <table class="table table-striped">
-            <thead>
-                 <tr>
-                    <th>Acciones</th>
-                    <th>Nombre</th>
-                 </tr>
-            </thead>
-            <tbody>
-                <tr th:each="candidato: ${candidatos}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/candidato/ver/} + ${candidato.pkCandidato}" th:text="'Ver Perfil'"></a></td>
-                    
-                    <td th:text="${candidato.nombreCandidato}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+
+                <div class="col-lg-10 col-md-10">
+                    <h1 th:text="${titulo}"></h1>
+
+                    <div class="container">
+
+                        <a th:href="@{/candidato/form}" class="btn btn-success btn-xs">Nueva Candidato</a>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Acciones</th>
+                                    <th>Nombre</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="candidato: ${candidatos}">
+                                    <td><a class="btn btn-primary btn-xs" th:href="@{/candidato/ver/} + ${candidato.pkCandidato}" th:text="'Ver Perfil'"></a></td>
+
+                                    <td th:text="${candidato.nombreCandidato}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-         <div th:replace="fragments/footer :: footer"></div>
-         
-      </body>
+        <div th:replace="fragments/footer :: footer"></div>
+    </body>
 </html>
