@@ -5,43 +5,41 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-         <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/style.css}"/>
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-        
-    <link rel="icon" type="image/png"  href="src/main/resources/templates/img/favicon.ico"/>
-
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
-         <div th:replace="fragments/header :: header"/>
-        <h1 th:text="${titulo}"></h1>
-        
-        <div class="container">
+        <div th:replace="fragments/header :: header"/>
 
-        <a th:href="@{/CatalogoHabilidad/formH}" class="btn btn-success btn-xs">Crear Habilidad</a>
-        
-        <table class="table table-striped">
-            <thead>
-                 <tr>
-                    <th>Acciones</th>
-                    <th>Categoria Habilidad</th>
-                    <th>Habilidad</th>
-                 </tr>
-            </thead>
-            <tbody>
-                <tr th:each="catalogohabilidad: ${habilidades}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/CatalogoHabilidad/formH/} + ${catalogohabilidad.pkCatalogoHabilidad}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:href="@{/CatalogoHabilidad/eliminar/} + ${catalogohabilidad.pkCatalogoHabilidad}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
-                     <td th:text="${catalogohabilidad.categoriahabilidad.nombreCategoriaHabilidad}"> </td>
-                     <td th:text="${catalogohabilidad.nombreHabilidad}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+
+                <div class="col-lg-10 col-md-10">
+                    <h1 th:text="${titulo}"></h1>
+
+
+
+                    <a th:href="@{/CatalogoHabilidad/formH}" class="btn btn-success btn-xs">Crear Habilidad</a>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Acciones</th>
+                                <th>Categoria Habilidad</th>
+                                <th>Habilidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="catalogohabilidad: ${habilidades}">
+                                <td><a class="btn btn-primary btn-xs" th:href="@{/CatalogoHabilidad/formH/} + ${catalogohabilidad.pkHabilidad}" th:text="'Editar'"></a>
+                                    <a class="btn btn-danger btn-xs" th:href="@{/CatalogoHabilidad/eliminar/} + ${catalogohabilidad.pkHabilidad}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                                <td th:text="${catalogohabilidad.catalogoCategoriaHabilidad.nombreCategoriaHabilidad}"> </td>
+                                <td th:text="${catalogohabilidad.nombreHabilidad}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-         <div th:replace="fragments/footer :: footer"></div>
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
