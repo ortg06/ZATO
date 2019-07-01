@@ -26,6 +26,7 @@ import com.zato.app.dao.ICatalogoTipoEmpresaDao;
 import com.zato.app.dao.ICatalogoTipoPruebaDao;
 import com.zato.app.dao.ICatalogoTipoReferenciaDao;
 import com.zato.app.dao.ICategoriaDao;
+import com.zato.app.dao.IConocimientoAcademicoDao;
 import com.zato.app.dao.ICursoCapacitacionDao;
 import com.zato.app.dao.ICvDao;
 import com.zato.app.dao.IDepartamentoDao;
@@ -80,6 +81,7 @@ import com.zato.app.entidades.CatalogoSectorEmpresa;
 import com.zato.app.entidades.CatalogoTipoEmpresa;
 import com.zato.app.entidades.CatalogoTipoPrueba;
 import com.zato.app.entidades.CatalogoTipoReferencia;
+import com.zato.app.entidades.ConocimientoAcademicos;
 import com.zato.app.entidades.CursoCapacitacion;
 import com.zato.app.entidades.Cv;
 import com.zato.app.entidades.Departamento;
@@ -112,9 +114,9 @@ import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Evento;
 import com.zato.app.entidades.FormacionAcademica;
 import com.zato.app.entidades.LicenciaCandidato;
+import com.zato.app.entidades.LicenciaOferta;
 import com.zato.app.entidades.HabilidadLinguisticaCv;
-
-
+import com.zato.app.entidades.HabilidadOferta;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -221,10 +223,11 @@ public class ServiceImpl implements IService {
     private ILicenciaCandidatoDao licCandDao;
     @Autowired
     private IHabilidadLingCvDao habLingCvDao;
-     @Autowired
+    @Autowired
     private IReferenciaDao refDao;
-    
-    
+    @Autowired
+    private IConocimientoAcademicoDao conocimientoAcademicoDao;
+
     // PAISES
     @Override
     @Transactional(readOnly = true) // esto sirve para acceder en modo de solo lectura ya que estamos construyendo
@@ -787,8 +790,6 @@ public class ServiceImpl implements IService {
         catalogoGradoAcademicoDao.delete(id);
     }
 
-    
-
     // Catalogo Escrito
     @Override
     @Transactional(readOnly = true)
@@ -1313,9 +1314,7 @@ public class ServiceImpl implements IService {
         return (List<FormacionAcademica>) formacionDao.findCvbyForAcad(cv);
     }
 
-    
-    
-    //BITACORA
+    // BITACORA
     @Override
     @Transactional
     public List<Bitacora> findAllBitacora() {
@@ -1328,10 +1327,7 @@ public class ServiceImpl implements IService {
         return bitacoraDao.findOne(id);
     }
 
-
-
-
-    //APTITUD OFERTA
+    // APTITUD OFERTA
     @Override
     @Transactional(readOnly = true)
     public List<AptitudOferta> findAllAptitudOfertas() {
@@ -1349,48 +1345,48 @@ public class ServiceImpl implements IService {
     public AptitudOferta findOneAptitudOferta(BigDecimal id) {
         return aptitudOfertaDao.findOne(id);
     }
-    
-       // LICENCIA CANDIDATO
+
+    // LICENCIA CANDIDATO
     @Override
-    @Transactional(readOnly=true)
-    public List<LicenciaCandidato>findAllLicCand(){
-        return(List<LicenciaCandidato>) licCandDao.findAll();
+    @Transactional(readOnly = true)
+    public List<LicenciaCandidato> findAllLicCand() {
+        return (List<LicenciaCandidato>) licCandDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveLicCand(LicenciaCandidato licenciacandidato){
+    public void saveLicCand(LicenciaCandidato licenciacandidato) {
         licCandDao.save(licenciacandidato);
     }
 
     @Override
     @Transactional
-    public LicenciaCandidato findOneLicCand(BigDecimal id){
+    public LicenciaCandidato findOneLicCand(BigDecimal id) {
         return licCandDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteLicCand(BigDecimal id){
+    public void deleteLicCand(BigDecimal id) {
         licCandDao.delete(id);
     }
-    
+
     @Override
-    @Transactional(readOnly=true)
-    public List<LicenciaCandidato>findCvbyLicCand(Cv cv){
-        return(List<LicenciaCandidato>) licCandDao.findCvbyLicCand(cv);
+    @Transactional(readOnly = true)
+    public List<LicenciaCandidato> findCvbyLicCand(Cv cv) {
+        return (List<LicenciaCandidato>) licCandDao.findCvbyLicCand(cv);
     }
-    
-       // HABILIDAD LINGUISTICA CV
+
+    // HABILIDAD LINGUISTICA CV
     @Override
-    @Transactional(readOnly=true)
-    public List<HabilidadLinguisticaCv>findAllHabLingCv(){
-        return(List<HabilidadLinguisticaCv>) habLingCvDao.findAll();
+    @Transactional(readOnly = true)
+    public List<HabilidadLinguisticaCv> findAllHabLingCv() {
+        return (List<HabilidadLinguisticaCv>) habLingCvDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveHabLingCv(HabilidadLinguisticaCv habilidadlinguisticacv){
+    public void saveHabLingCv(HabilidadLinguisticaCv habilidadlinguisticacv) {
         habLingCvDao.save(habilidadlinguisticacv);
     }
 
@@ -1400,62 +1396,138 @@ public class ServiceImpl implements IService {
         aptitudOfertaDao.delete(id);
     }
 
-
-
     @Override
     @Transactional
     public List<AptitudOferta> findAptitudOfertabyOferta(Oferta oferta) {
-        return (List<AptitudOferta>)aptitudOfertaDao.findAptitudOfetabyOferta(oferta);
+        return (List<AptitudOferta>) aptitudOfertaDao.findAptitudOfetabyOferta(oferta);
     }
 
-
-    public HabilidadLinguisticaCv findOneHabLingCv(BigDecimal id){
+    public HabilidadLinguisticaCv findOneHabLingCv(BigDecimal id) {
         return habLingCvDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteHabLingCv(BigDecimal id){
+    public void deleteHabLingCv(BigDecimal id) {
         habLingCvDao.delete(id);
     }
-    
+
     @Override
-    @Transactional(readOnly=true)
-    public List<HabilidadLinguisticaCv>findCvbyHabLingCv(Cv cv){
-        return(List<HabilidadLinguisticaCv>) habLingCvDao.findCvbyHabLingCv(cv);
+    @Transactional(readOnly = true)
+    public List<HabilidadLinguisticaCv> findCvbyHabLingCv(Cv cv) {
+        return (List<HabilidadLinguisticaCv>) habLingCvDao.findCvbyHabLingCv(cv);
     }
-    
-     // REFERENCIA
+
+    // REFERENCIA
     @Override
-    @Transactional(readOnly=true)
-    public List<Referencia>findAllRef(){
-        return(List<Referencia>) refDao.findAll();
+    @Transactional(readOnly = true)
+    public List<Referencia> findAllRef() {
+        return (List<Referencia>) refDao.findAll();
     }
 
     @Override
     @Transactional
-    public void saveRef(Referencia referencia){
+    public void saveRef(Referencia referencia) {
         refDao.save(referencia);
     }
 
     @Override
     @Transactional
-    public Referencia findOneRef(BigDecimal id){
+    public Referencia findOneRef(BigDecimal id) {
         return refDao.findOne(id);
     }
 
-      @Override
+    @Override
     @Transactional
-    public void deleteRef(BigDecimal id){
+    public void deleteRef(BigDecimal id) {
         refDao.delete(id);
     }
-    
+
     @Override
-    @Transactional(readOnly=true)
-    public List<Referencia>findCvbyRef(Cv cv){
-        return(List<Referencia>) refDao.findCvbyRef(cv);
+    @Transactional(readOnly = true)
+    public List<Referencia> findCvbyRef(Cv cv) {
+        return (List<Referencia>) refDao.findCvbyRef(cv);
     }
 
+    // Catalogo Licencia oferta
+
+    @Override
+    public List<LicenciaOferta> findAllLicOfertas() {
+        return null;
+    }
+
+    @Override
+    public void saveLicOferta(LicenciaOferta licenciaOferta) {
+
+    }
+
+    @Override
+    public LicenciaOferta findOneLicOferta(BigDecimal id) {
+        return null;
+    }
+
+    @Override
+    public List<LicenciaOferta> findLicbyOferta(Oferta oferta) {
+        return null;
+    }
+
+    // Habilidad Oferta
+    @Override
+    public List<HabilidadOferta> findAllHabilidadOfertas() {
+        return null;
+    }
+
+    @Override
+    public void saveHabOferta(HabilidadOferta habilidadOferta) {
+
+    }
+
+    @Override
+    public HabilidadOferta findOneHabilidadOferta(BigDecimal id) {
+        return null;
+    }
+
+    @Override
+    public List<HabilidadOferta> findHabOfbyOferta(Oferta oferta) {
+        return null;
+    }
+
+    @Override
+    public void deleteHabOferta(BigDecimal id) {
+
+    }
+
+
+
+
+        //Conocimiento Academico
+    @Override
+    public void saveConocimientoAcademico(ConocimientoAcademicos conocimientoAcademicos) {
+        conocimientoAcademicoDao.save(conocimientoAcademicos);
+    }
+
+    @Override
+    public ConocimientoAcademicos findOneConocimientoAcademico(BigDecimal id) {
+        return conocimientoAcademicoDao.findOne(id);
+    }
+
+    @Override
+    public List<ConocimientoAcademicos> findConoAcadbyOferta(Oferta oferta) {
+        return (List<ConocimientoAcademicos>)conocimientoAcademicoDao.findConoAcadbyOferta(oferta);
+    }
+
+    @Override
+    public void deleteConoAcad(BigDecimal id) {
+        conocimientoAcademicoDao.delete(id);
+    }
+
+
+    
+
+
+
+
+    
    
 
     

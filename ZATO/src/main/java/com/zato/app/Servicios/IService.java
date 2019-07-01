@@ -34,6 +34,7 @@ import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.CatalogoPuesto;
 import com.zato.app.entidades.CatalogoHabilidad;
 import com.zato.app.entidades.CatalogoTipoReferencia;
+import com.zato.app.entidades.ConocimientoAcademicos;
 import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Opciones;
 import com.zato.app.entidades.RolSubmenu;
@@ -52,7 +53,9 @@ import com.zato.app.entidades.HabilidadesCv;
 import com.zato.app.entidades.Evento;
 import com.zato.app.entidades.FormacionAcademica;
 import com.zato.app.entidades.LicenciaCandidato;
+import com.zato.app.entidades.LicenciaOferta;
 import com.zato.app.entidades.HabilidadLinguisticaCv;
+import com.zato.app.entidades.HabilidadOferta;
 import com.zato.app.entidades.Referencia;
 /**
  *
@@ -365,5 +368,26 @@ public interface IService {
     public Referencia findOneRef (BigDecimal id);
     public void deleteRef(BigDecimal id);
     public List<Referencia> findCvbyRef(Cv cv);
-      
+
+    //Licencia oferta
+
+    public List<LicenciaOferta> findAllLicOfertas();
+    public void saveLicOferta(LicenciaOferta licenciaOferta);
+    public LicenciaOferta findOneLicOferta(BigDecimal id);
+    public List<LicenciaOferta> findLicbyOferta(Oferta oferta);
+
+
+    //Habilidades oferta
+    public List<HabilidadOferta> findAllHabilidadOfertas();
+    public void saveHabOferta(HabilidadOferta habilidadOferta);
+    public HabilidadOferta findOneHabilidadOferta(BigDecimal id);
+    public List<HabilidadOferta> findHabOfbyOferta(Oferta oferta);
+    public void deleteHabOferta(BigDecimal id);
+
+
+    //Conocimiento Grado Academico
+    public void saveConocimientoAcademico(ConocimientoAcademicos conocimientoAcademicos);
+    public ConocimientoAcademicos findOneConocimientoAcademico (BigDecimal id);
+    public List<ConocimientoAcademicos> findConoAcadbyOferta(Oferta oferta);
+    public void deleteConoAcad(BigDecimal id);
 }
