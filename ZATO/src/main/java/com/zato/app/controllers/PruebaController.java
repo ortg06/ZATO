@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 import com.zato.app.Servicios.IService;
+import com.zato.app.dao.IOfertaDao;
 import com.zato.app.dao.IPruebaDao;
 import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.ItemPrueba;
@@ -46,6 +47,8 @@ public class PruebaController {
     private IService IService;
     @Autowired
     IPruebaDao repo;
+     @Autowired
+    IOfertaDao repo2;
 
     @GetMapping("/listar")
     public String listar(Model model) {
@@ -134,7 +137,7 @@ public class PruebaController {
     /*
     //METODO ASIGNAR PK OFERTA PK PRUEBA EN PRUEBA_OFERTA
     @RequestMapping(value = "/asignar", method = RequestMethod.POST)
-     public String asignar(Prueba prueba, @RequestParam(name = "oferta", required = false) BigDecimal oferta, SessionStatus status) {
+     public String asignarP(Prueba prueba, @RequestParam(name = "oferta", required = false) BigDecimal oferta, SessionStatus status) {
                
             //Procedimiento: insertarpruebaoferta
             //parametros: (pk prueba,pk oferta)
@@ -234,33 +237,33 @@ public class PruebaController {
     }*/
 
 
- /* 
+ 
     
     //METODO PARA ASIGANAR A RESULTADO LA PK_POSTULACION Y PK_PRUEBAOFERTA es metodo para asignar prueba a un candidato
-    @GetMapping(value="asignar/{pkPostulacion}")
-    public String enviar( @PathVariable(value="pkPostulacion")BigDecimal Pkpostulacion,
-            Model model){
-         
+  
+    @RequestMapping(value = "asignar/{pkPostulacion}")
+    public String enviar( @PathVariable(value="pkPostulacion")BigDecimal pkPostulacion){
+        
         Postulacion postulacion =IService.findOnePostulacion(pkPostulacion);//Obtengo la postulacion con el pkPostulacion
         Oferta oferta=IService.findOneOferta(postulacion.getOferta().getPkOferta());//Obtengo la oferta relacionada con PkPostulacion
               
         List<PruebaOferta> lista = IService.findPruebaOfertabyOferta(oferta);
         
-        for(int i=0;i<=lista.size();i=i+1){
-        repo.insertResultado(postulacion.getPkPostulacion(),lista.get(i).getPkPruebaOferta());
+        for(int i=0;i<lista.size();i=i+1){
+        repo2.insertResultado(postulacion.getPkPostulacion(),lista.get(i).getPkPruebaOferta());
         }
         
-        return "url";
+       return "redirect:/empresa/ver/" + oferta.getEmpresa().getPkEmpresa();
     }
-     */
+     
  /*
    //Metodo para asignar pruebas a un candidato
     @GetMapping(value="asignar/{pkOferta}/{pkPostulacion}")
-    public String enviar(@PathVariable(value="pkOferta") BigDecimal Pkoferta, @PathVariable(value="pkPostulacion")BigDecimal Pkpostulacion,
+    public String enviar(@PathVariable(value="pkOferta") BigDecimal pkOferta, @PathVariable(value="pkPostulacion")BigDecimal pkPostulacion,
             Model model){
          
-        Postulacion postulacion =IService.findOnePostulacion(pk)
-        Oferta oferta=IService.findOneOferta(Pkoferta);//Obtengo la oferta
+        Postulacion postulacion =IService.findOnePostulacion(pkPostulacion);
+        Oferta oferta=IService.findOneOferta(pkOferta);//Obtengo la oferta
         List<PruebaOferta> lista = IService.findPruebaOfertabyOferta(oferta);
         
         
