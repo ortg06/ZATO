@@ -29,7 +29,7 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Institucion :</label>
                     <div class="col-sm-6">
-                        <input class="form-control form-control-sm" type="text" th:field="*{nombreInstitucion}"/> <small
+                        <input class="form-control form-control-sm" type="text" th:field="*{nombreInstitucion}" required="required"/> <small
                             class="form-text text-danger"
                             th:if="${#fields.hasErrors('nombreInstitucion')}" th:errors="*{nombreInstitucion}"></small>
                     </div>
@@ -52,7 +52,7 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">fecha de Inicio</label>
                     <div class="col-sm-6">
-                        <input class="form-control form-control-sm" type="date" th:field="*{anoInicio}"/> <small
+                        <input class="form-control form-control-sm" type="date" th:field="*{anoInicio}" required="required"/> <small
                             class="form-text text-danger"
                             th:if="${#fields.hasErrors('anoInicio')}" th:errors="*{anoInicio}"></small>
                     </div>
@@ -74,7 +74,7 @@ and open the template in the editor.
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nombre del Titulo :</label>
                     <div class="col-sm-6">
-                        <textarea  class="form-control form-control-sm" type="text" th:field="*{nombreTitulo}"/> <small
+                        <textarea  class="form-control form-control-sm" type="text" th:field="*{nombreTitulo}" required="required"/> <small
                             class="form-text text-danger"
                             th:if="${#fields.hasErrors('nombreTitulo')}" th:errors="*{nombreTitulo}"></small>
                     </div>

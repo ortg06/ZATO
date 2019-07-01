@@ -21,7 +21,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Logro</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{nombreLogro}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreLogro}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('nombreLogro')}" th:errors="*{nombreLogro}"></small>
                             </div>
@@ -31,7 +31,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Descripcion :</label>
                             <div class="col-sm-6">
-                                <textarea  class="form-control form-control-sm" type="text" th:field="*{descripcionLogro}"/> <small
+                                <textarea  class="form-control form-control-sm" type="text" th:field="*{descripcionLogro}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('descripcionLogro')}" th:errors="*{descripcionLogro}"></small>
                             </div>
@@ -40,7 +40,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Fecha</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="date" th:field="*{fechaLogro}"/> <small
+                                <input class="form-control form-control-sm" type="date" th:field="*{fechaLogro}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('fechaLogro')}" th:errors="*{fechaLogro}"></small>
                             </div>

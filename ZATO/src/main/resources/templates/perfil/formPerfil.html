@@ -21,18 +21,18 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Usuario</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{usuario}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{usuario}" required="required"/> <small
                                     class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('usuario')}" th:errors="*{apellido}"></small>
+                                    th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></small>
                             </div>
                         </div>   
 
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Contraseña:</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="password" th:field="*{contrasena}"/> <small
+                                <input class="form-control form-control-sm" type="password" th:field="*{contrasena}" required="required"/> <small
                                     class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('contrasena')}" th:errors="*{apellido}"></small>
+                                    th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}"></small>
                             </div>
                         </div>
 
@@ -40,9 +40,9 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Correo Electronico:</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{correoElectronico}"/> <small
+                                <input class="form-control form-control-sm" type="email" th:field="*{correoElectronico}" required="required"/> <small
                                     class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('correoElectronico')}" th:errors="*{apellido}"></small>
+                                    th:if="${#fields.hasErrors('correoElectronico')}" th:errors="*{correoElectronico}"></small>
                             </div>
                         </div>
 

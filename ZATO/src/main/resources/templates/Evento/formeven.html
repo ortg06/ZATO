@@ -21,7 +21,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nombre del Evento :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{nombreEvento}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreEvento}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('nombreEvento')}" th:errors="*{nombreEvento}"></small>
                             </div>
@@ -31,7 +31,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Descripcion :</label>
                             <div class="col-sm-6">
-                                <textarea  class="form-control form-control-sm" type="text" th:field="*{descripcionEvento}"/> <small
+                                <textarea  class="form-control form-control-sm" type="text" th:field="*{descripcionEvento}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('descripcionEvento')}" th:errors="*{descripcionEvento}"></small>
                             </div>
@@ -52,7 +52,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Lugar :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{lugarEvento}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{lugarEvento}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('lugarEvento')}" th:errors="*{lugarEvento}"></small>
                             </div>
@@ -61,16 +61,16 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Anfitrion :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{anfitrionEvento}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{anfitrionEvento}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('anfitrionEvento')}" th:errors="*{anfitrionEvento}"></small>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Fecha del Evento :</label>
+                            <label class="col-sm-2 col-form-label">Fecha del Evento:</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="date" th:field="*{fechaEvento}"/> <small
+                                <input class="form-control form-control-sm" type="date" th:field="*{fechaEvento}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('fechaEvento')}" th:errors="*{fechaEvento}"></small>
                             </div>

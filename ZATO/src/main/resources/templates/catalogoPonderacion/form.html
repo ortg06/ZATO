@@ -20,7 +20,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Etiqueta Ponderacion</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{etiquetaPonderacion}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{etiquetaPonderacion}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('etiquetaPonderacion')}" th:errors="*{etiquetaPonderacion}"></small>
                             </div>
@@ -29,7 +29,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Descripcion etiqueta</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{descripcionEtiqueta}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{descripcionEtiqueta}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('descripcionEtiqueta')}" th:errors="*{descripcionEtiqueta}"></small>
                             </div>

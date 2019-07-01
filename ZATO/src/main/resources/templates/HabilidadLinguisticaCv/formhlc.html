@@ -21,7 +21,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Idioma :</label>
                             <div class="col-sm-6">
-                                <select id="catIdioma" class="col-sm-6 form-control form-control-sm" name="catalogoIdioma">
+                                <select id="catIdioma" class="col-sm-6 form-control form-control-sm" name="catalogoIdioma" required="required">
 
                                     <option th:each="catIdioma : ${catIdioma}" th:value="${catIdioma.pkIdioma}" 
                                             th:selected="${catIdioma == habilidadlingCv.catalogoIdioma}"
@@ -34,7 +34,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nivel Escritura :</label>
                             <div class="col-sm-6">
-                                <select id="catPonderacionescritura" class="col-sm-6 form-control form-control-sm" name="pondEscritoCv">
+                                <select id="catPonderacionescritura" class="col-sm-6 form-control form-control-sm" name="pondEscritoCv" required="required">
 
                                     <option th:each="ponderacion : ${catPonderacionescritura}" th:value="${ponderacion.pkCatalogoPonderacion}" 
                                             th:selected="${ponderacion.pkCatalogoPonderacion == habilidadlingCv.pondEscritoCv}"
@@ -47,7 +47,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nivel Escucha :</label>
                             <div class="col-sm-6">
-                                <select id="catPonderacionescucha" class="col-sm-6 form-control form-control-sm" name="pondEscuchaCv">
+                                <select id="catPonderacionescucha" class="col-sm-6 form-control form-control-sm" name="pondEscuchaCv" required="required">
 
                                     <option th:each="catPonderacion : ${catPonderacionescucha}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
                                             th:selected="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondEscuchaCv}"
@@ -60,7 +60,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nivel Lectura :</label>
                             <div class="col-sm-6">
-                                <select id="catPonderacionlectura" class="col-sm-6 form-control form-control-sm" name="pondLecturaCv">
+                                <select id="catPonderacionlectura" class="col-sm-6 form-control form-control-sm" name="pondLecturaCv" required="required">
 
                                     <option th:each="catPonderacion : ${catPonderacionlectura}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
                                             th:selected="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondLecturaCv}"
@@ -73,7 +73,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nivel Conversacion :</label>
                             <div class="col-sm-6">
-                                <select id="catPonderacionconversacion" class="col-sm-6 form-control form-control-sm" name="pondConversacionCv">
+                                <select id="catPonderacionconversacion" class="col-sm-6 form-control form-control-sm" name="pondConversacionCv" required="required">
 
                                     <option th:each="catPonderacionc : ${catPonderacionconversacion}" th:value="${catPonderacionc.pkCatalogoPonderacion}" 
                                             th:selected="${catPonderacionc.pkCatalogoPonderacion == habilidadlingCv.pondConversacionCv}"
