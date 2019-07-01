@@ -70,6 +70,7 @@ public class PruebaController {
 
         return "prueba/examenes";
     }
+    
      @GetMapping("/listarO/{id}")
     public String listarO(@PathVariable(value = "id") BigDecimal id, Model model) {
         Oferta oferta = IService.findOneOferta(id);
@@ -79,7 +80,7 @@ public class PruebaController {
         model.addAttribute("oferta", oferta);
         model.addAttribute("pos", lista);
 
-        return "prueba/examenes";
+        return "prueba/listar";
     }
 
     //LISTADO DE PRUEBAS POR EMPRESA
