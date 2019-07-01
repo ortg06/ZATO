@@ -5,88 +5,82 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
-
         <div th:replace="fragments/header :: header"/>
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+
+                <div class="col-lg-10 col-md-10">
+                    <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+
+                    <form th:action="@{/Escrito/formesc}" th:object="${escrito}" method="post">
+                        <input type="hidden" id="pkEscrito" name="pkEscrito" th:value="${escrito.pkEscrito}" />
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Tipo de Escrito:</label>
+                            <div class="col-sm-6">
+                                <select id="tipoescrito" class="col-sm-6 form-control form-control-sm" name="catalogoEscrito">
+
+                                    <option th:each="tipoescrito : ${tipoescrito}" th:value="${tipoescrito.pkCatalogoEscrito}" 
+                                            th:selected="${tipoescrito==escrito.catalogoEscrito}" 
+                                            th:text="${tipoescrito.nombreTipoEscrito}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Nombre del Escrito :</label>
+                            <div class="col-sm-6">
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreEscrito}" required="required"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('nombreEscrito')}" th:errors="*{nombreEscrito}"></small>
+                            </div>
+                        </div>
 
 
-        <div class="container">
-            <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Nombre del Editor :</label>
+                            <div class="col-sm-6">
+                                <textarea  class="form-control form-control-sm" type="text" th:field="*{nombreEditor}" required="required"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('nombreEditor')}" th:errors="*{nombreEditor}"></small>
+                            </div>
+                        </div>
 
-            <form th:action="@{/Escrito/formesc}" th:object="${escrito}" method="post">
-                <input type="hidden" id="pkEscrito" name="pkEscrito" th:value="${escrito.pkEscrito}" />
-                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Tipo de Escrito:</label>
-                    <div class="col-sm-6">
-                        <select id="tipoescrito" class="col-sm-6 form-control form-control-sm" name="catalogoEscrito">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Fecha de Publicacion :</label>
+                            <div class="col-sm-6">
+                                <input class="form-control form-control-sm" type="date" th:field="*{fechaPublicacion}" required="required"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('fechaPublicacion')}" th:errors="*{fechaPublicacion}"></small>
+                            </div>
+                        </div>
 
-                            <option th:each="tipoescrito : ${tipoescrito}" th:value="${tipoescrito.pkCatalogoEscrito}" 
-                                    th:selected="${tipoescrito==escrito.catalogoEscrito}" 
-                                    th:text="${tipoescrito.nombreTipoEscrito}">
-                            </option>
-                        </select>
-                    </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Lugar de Publicacion :</label>
+                            <div class="col-sm-6">
+                                <input class="form-control form-control-sm" type="text" th:field="*{lugarPublicacion}" required="required"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('lugarPublicacion')}" th:errors="*{lugarPublicacion}"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+
+
+
+
+                    </form>
                 </div>
-                
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nombre del Escrito :</label>
-                    <div class="col-sm-6">
-                        <input class="form-control form-control-sm" type="text" th:field="*{nombreEscrito}" required="required"/> <small
-                            class="form-text text-danger"
-                            th:if="${#fields.hasErrors('nombreEscrito')}" th:errors="*{nombreEscrito}"></small>
-                    </div>
-                </div>
-
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nombre del Editor :</label>
-                    <div class="col-sm-6">
-                        <textarea  class="form-control form-control-sm" type="text" th:field="*{nombreEditor}" required="required"/> <small
-                            class="form-text text-danger"
-                            th:if="${#fields.hasErrors('nombreEditor')}" th:errors="*{nombreEditor}"></small>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Fecha de Publicacion :</label>
-                    <div class="col-sm-6">
-                        <input class="form-control form-control-sm" type="date" th:field="*{fechaPublicacion}" required="required"/> <small
-                            class="form-text text-danger"
-                            th:if="${#fields.hasErrors('fechaPublicacion')}" th:errors="*{fechaPublicacion}"></small>
-                    </div>
-                </div>
-                
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Lugar de Publicacion :</label>
-                    <div class="col-sm-6">
-                        <input class="form-control form-control-sm" type="text" th:field="*{lugarPublicacion}" required="required"/> <small
-                            class="form-text text-danger"
-                            th:if="${#fields.hasErrors('lugarPublicacion')}" th:errors="*{lugarPublicacion}"></small>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                    </div>
-                </div>
-
-
-
-
-
-            </form>
+            </div>
         </div>
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
-
