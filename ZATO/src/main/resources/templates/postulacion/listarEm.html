@@ -1,0 +1,33 @@
+<div class="container" th:fragment="postulantes">
+
+    <div class="row">  
+
+        <div class="col-lg-10 col-md-10">    
+
+
+            <table th:each="of: ${ofertas}" class="table table-striped">
+                <thead>
+                    <tr th:text="${of.catalogoPuesto.nombreCatalogoPuesto}"></tr>
+
+                    <tr>
+
+                        <th>Acciones</th>
+                        <th>Candidato</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr th:each="po: ${of.postulacions}">
+                        <td><a class="btn btn-primary btn-xs"  th:text="'VER CV'"></a>
+                            <a class="btn btn-success btn-xs"  th:text="'Enviar Pruebas'"></a>
+                        </td>
+                        <td th:text="${po.cv.candidato.nombreCandidato}"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

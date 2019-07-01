@@ -17,8 +17,10 @@ import javax.sql.rowset.serial.SerialException;
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.Oferta;
 import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
+import com.zato.app.entidades.PruebaOferta;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 
@@ -194,5 +196,19 @@ public class EmpresaController {
 
         return "empresa/formEmp";
     }
+    
+    
 
+     @GetMapping("/postulaciones/{id}")
+    public String listarpos(@PathVariable(value = "id") BigDecimal id, Model model) {
+        Empresa empresa = IService.findOneEmpresa(id);
+        List<Oferta> lista = IService.findOfertaByEmpresa(empresa);
+        model.addAttribute("postulantes",IService.findAllPostulacion());
+        model.addAttribute("titulo", "Tus Ofertas con postulantes:");
+        model.addAttribute("ofertas", lista);
+
+        return "postulacion/listarEm";
+    }
+    
+    
 }

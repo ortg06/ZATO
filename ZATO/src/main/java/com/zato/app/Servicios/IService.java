@@ -56,6 +56,7 @@ import com.zato.app.entidades.LicenciaCandidato;
 import com.zato.app.entidades.LicenciaOferta;
 import com.zato.app.entidades.HabilidadLinguisticaCv;
 import com.zato.app.entidades.HabilidadOferta;
+import com.zato.app.entidades.Postulacion;
 import com.zato.app.entidades.Referencia;
 /**
  *
@@ -390,4 +391,11 @@ public interface IService {
     public ConocimientoAcademicos findOneConocimientoAcademico (BigDecimal id);
     public List<ConocimientoAcademicos> findConoAcadbyOferta(Oferta oferta);
     public void deleteConoAcad(BigDecimal id);
+
+    //Postulacion
+    public List<Postulacion> findAllPostulacion();
+    public void savePostulacion(Postulacion postulacion);
+    public Postulacion findOnePostulacion (BigDecimal id);
+    public void deletePostulacion(BigDecimal id);
+
 }

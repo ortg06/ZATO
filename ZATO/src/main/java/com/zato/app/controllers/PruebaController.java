@@ -209,14 +209,7 @@ public class PruebaController {
         Prueba prueba = IService.findOnePrueba(pkPrueba);//Obtengo la oferta
         // Postulacion postulacion=IService.findOnePostulacion(Pkpostulacion));//obtengo el candidato
         List<ItemPrueba> lista = IService.findItemPruebabyPrueba(prueba);
-        
-       /* for (int i = 0; i <= lista.size(); i = i + 1) {
-            ItemPrueba itemprueba = IService.findOneItem(lista.get(i).getPkItem());
-            List<Opciones> opciones = IService.findOpcionesbyItemPrueba(itemprueba);
-
-            model.put("opciones", opciones);
-        }*/
-        model.put("opciones",IService.findAllOpciones());
+        model.put("opciones", IService.findAllOpciones());
         model.put("items", lista);
         model.put("titulo", prueba.getNombrePrueba());//envio una varible con el titulo 
 

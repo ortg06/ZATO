@@ -27,8 +27,8 @@
                             <li class="nav-item" name="#menu3" >
                                 <a class="nav-link" name="#menu3" data-toggle="pill" href="#menu3">Gestion de Pruebas</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu4">Gestion de Postulantes</a>
+                            <li class="nav-item" name="#menu4">
+                                <a class="nav-link" name="#menu4" data-toggle="pill" href="#menu4">Gestion de Postulantes</a>
                             </li>
                         </ul>
 
@@ -84,9 +84,7 @@
                             </div>
                             <div id="menu4" class="container tab-pane fade"><br />
                                 <h3>Gestion de Postulaciones</h3>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                                    totam rem
-                                    aperiam.</p>
+                                 <div th:replace="postulacion/listarEm :: postulantes" />
                             </div>
                         </div>
 

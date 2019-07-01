@@ -122,9 +122,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.zato.app.dao.IExperienciaLaboralDao;
+import com.zato.app.dao.IPostulacionDao;
 import com.zato.app.dao.IPruebaOfertaDao;
 import com.zato.app.dao.IReferenciaDao;
 import com.zato.app.entidades.Bitacora;
+import com.zato.app.entidades.Postulacion;
 import com.zato.app.entidades.PruebaOferta;
 import com.zato.app.entidades.Referencia;
 
@@ -227,11 +229,13 @@ public class ServiceImpl implements IService {
     private IReferenciaDao refDao;
     @Autowired
     private IConocimientoAcademicoDao conocimientoAcademicoDao;
+    @Autowired
+    private IPostulacionDao postulacionDao;
 
     // PAISES
     @Override
     @Transactional(readOnly = true) // esto sirve para acceder en modo de solo lectura ya que estamos construyendo
-                                    // una consulta
+    // una consulta
     public List<Pais> findAll() {
         return (List<Pais>) paisDao.findAll();
     }
@@ -280,7 +284,6 @@ public class ServiceImpl implements IService {
     }
 
     // Municipios
-
     @Override
     @Transactional(readOnly = true)
     public List<Municipio> findAllmun() {
@@ -306,7 +309,6 @@ public class ServiceImpl implements IService {
     }
 
     // CATALOGO PONDERACION
-
     @Override
     @Transactional(readOnly = true)
     public List<CatalogoPonderacion> findAllPonderacion() {
@@ -408,7 +410,6 @@ public class ServiceImpl implements IService {
     }
 
     // Catalogo Categoria Habilidad
-
     @Override
     @Transactional(readOnly = true)
     public List<CatalogoCategoriaHabilidad> findAllcategoriaHabilidad() {
@@ -434,7 +435,6 @@ public class ServiceImpl implements IService {
     }
 
     // Catalogo Licencia
-
     @Override
     @Transactional(readOnly = true)
     public List<CatalogoLicencia> findAllcatalogoLicencia() {
@@ -460,7 +460,6 @@ public class ServiceImpl implements IService {
     }
 
     // Catalogo Genero
-
     @Override
     @Transactional(readOnly = true)
     public List<CatalogoGenero> findAllcatalogoGenero() {
@@ -615,7 +614,6 @@ public class ServiceImpl implements IService {
     }
 
     // Catalogo Tipo Empresa
-
     @Override
     @Transactional(readOnly = true)
     public List<CatalogoTipoEmpresa> findAllTipoEmpresas() {
@@ -711,11 +709,11 @@ public class ServiceImpl implements IService {
     public void deleteRolS(BigDecimal id) {
         RolSubmenuDao.delete(id);
     }
-    
-     @Override
-    @Transactional(readOnly=true)
-    public List<RolSubmenu>findRolSubmenubyRol(Rol rol){
-        return(List<RolSubmenu>) RolSubmenuDao.findRolSubmenubyRol(rol);
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<RolSubmenu> findRolSubmenubyRol(Rol rol) {
+        return (List<RolSubmenu>) RolSubmenuDao.findRolSubmenubyRol(rol);
     }
 
     // CANDIDATO
@@ -865,16 +863,14 @@ public class ServiceImpl implements IService {
     public void deletePerfil(BigDecimal id) {
         PerfilDao.delete(id);
     }
-    
+
     @Override
     @Transactional
-    public Perfil findPerfilUserPass(String user, String pass)
-    {
+    public Perfil findPerfilUserPass(String user, String pass) {
         return PerfilDao.findPerfilUserPass(user, pass);
     }
 
     // OFERTA
-
     @Override
     @Transactional(readOnly = true)
     public List<Oferta> findAllOfertas() {
@@ -898,7 +894,6 @@ public class ServiceImpl implements IService {
     }
 
     // Prueba
-
     @Override
     @Transactional(readOnly = true)
     public List<Prueba> findAllPruebas() {
@@ -924,7 +919,6 @@ public class ServiceImpl implements IService {
     }
 
     // Item Prueba
-
     @Override
     @Transactional(readOnly = true)
     public List<ItemPrueba> findAllItems() {
@@ -956,7 +950,6 @@ public class ServiceImpl implements IService {
     }
 
     // Opciones
-
     @Override
     @Transactional(readOnly = true)
     public List<Opciones> findAllOpciones() {
@@ -988,7 +981,6 @@ public class ServiceImpl implements IService {
     }
 
     // CV
-
     @Override
     @Transactional(readOnly = true)
     public List<Cv> findAllCv() {
@@ -1057,12 +1049,12 @@ public class ServiceImpl implements IService {
         return (List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyOferta(oferta);
     }
 
-     @Override
-     @Transactional(readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public List<Prueba> findPruebabyEmpresa(Empresa empresa) {
         return (List<Prueba>) pruebaDao.findPruebaByEmpresa(empresa);
-        }
-    
+    }
+
     @Override
     @Transactional(readOnly = true)
     public List<PruebaOferta> findAllPruebaOfertas() {
@@ -1450,7 +1442,6 @@ public class ServiceImpl implements IService {
     }
 
     // Catalogo Licencia oferta
-
     @Override
     public List<LicenciaOferta> findAllLicOfertas() {
         return null;
@@ -1497,10 +1488,7 @@ public class ServiceImpl implements IService {
 
     }
 
-
-
-
-        //Conocimiento Academico
+    //Conocimiento Academico
     @Override
     public void saveConocimientoAcademico(ConocimientoAcademicos conocimientoAcademicos) {
         conocimientoAcademicoDao.save(conocimientoAcademicos);
@@ -1513,7 +1501,7 @@ public class ServiceImpl implements IService {
 
     @Override
     public List<ConocimientoAcademicos> findConoAcadbyOferta(Oferta oferta) {
-        return (List<ConocimientoAcademicos>)conocimientoAcademicoDao.findConoAcadbyOferta(oferta);
+        return (List<ConocimientoAcademicos>) conocimientoAcademicoDao.findConoAcadbyOferta(oferta);
     }
 
     @Override
@@ -1521,15 +1509,29 @@ public class ServiceImpl implements IService {
         conocimientoAcademicoDao.delete(id);
     }
 
+//postulacion
+    @Override
+    @Transactional(readOnly = true)
+    public List<Postulacion>findAllPostulacion() {
+        return (List<Postulacion>) postulacionDao.findAll();
+    }
 
-    
+    @Override
+    @Transactional
+    public void savePostulacion(Postulacion postulacion) {
+        postulacionDao.save(postulacion);
+    }
 
+    @Override
+    @Transactional
+    public Postulacion findOnePostulacion(BigDecimal id) {
+        return postulacionDao.findOne(id);
+    }
 
+    @Override
+    @Transactional
+    public void deletePostulacion(BigDecimal id) {
+        postulacionDao.delete(id);
+    }
 
-
-    
-   
-
-    
-    
 }
