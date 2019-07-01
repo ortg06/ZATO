@@ -5,33 +5,38 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
-        <h1 th:text="${titulo}"></h1>
+        <div th:replace="fragments/header :: header"/>
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
 
-        <form th:action="@{/Rol/form}" th:object="${rol}" method="post">
-            <table>
-                
-                
-               
-                <tr>
-                    <td>Nombre</td>
-                    <td><input type="text" th:field="*{nombreRol}"/></td>
-                </tr>
+                <div class="col-lg-10 col-md-10">
+                    <h1 th:text="${titulo}"></h1>
 
-                <tr>
-                    
-                    <td><input type="submit" value="Crear Rol"/></td>
-                </tr>
-            </table>
-              
-               
-                
-        </form>
+                    <form th:action="@{/Rol/form}" th:object="${rol}" method="post">
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Rol</label>
+                            <div class="col-sm-6">
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreRol}"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('nombreRol')}" th:errors="*{nombreRol}"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>

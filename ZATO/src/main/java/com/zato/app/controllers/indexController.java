@@ -8,13 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class indexController {
 	
-	@Value("${application.controllers.mensaje}")
-	private String mensaje;
-	
 	@GetMapping("/")
-	public String hola(Model model) {
-		model.addAttribute("mensaje",mensaje);
-		return "main";
-	}
+    public String index(Model model) {
+        return "redirect:/principal";
+    }
 
 }

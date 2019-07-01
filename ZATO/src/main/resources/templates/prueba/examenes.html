@@ -21,23 +21,25 @@ and open the template in the editor.
             <div class="row">  
 
                 <div class="col-lg-10 col-md-10">    
-                    <a th:href="@{/empresa/nuevo}" class="btn btn-success btn-xs">Crear Empresa</a>
+                   
 
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Acciones</th>
-                          
                                 <th>Nombre</th>
+                                <th>Tipo de Prueba</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="empresa: ${empresas}">
+                            <tr th:each="po: ${pos}">
 
-                                <td><a class="btn btn-success btn-xs"  th:href="@{/empresa/ver/} + ${empresa.pkEmpresa}" th:text="'Ver Perfil'"></a>
+                                <td><a class="btn btn-success btn-xs" th:href="@{/prueba/candidato/}+${po.prueba.pkPrueba}" th:text="'Resolver'"></a>
+
                                 </td>
-                              
-                                <td th:text="${empresa.nomEmpresa}"></td>
+                             
+                                <td th:text="${po.prueba.nombrePrueba}"></td>
+                                <td th:text="${po.prueba.catalogoTipoPrueba.nombreTipoPrueba}"></td>
                             </tr>
                         </tbody>
                     </table>

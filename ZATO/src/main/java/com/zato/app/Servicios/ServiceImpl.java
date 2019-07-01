@@ -711,6 +711,12 @@ public class ServiceImpl implements IService {
     public void deleteRolS(BigDecimal id) {
         RolSubmenuDao.delete(id);
     }
+    
+     @Override
+    @Transactional(readOnly=true)
+    public List<RolSubmenu>findRolSubmenubyRol(Rol rol){
+        return(List<RolSubmenu>) RolSubmenuDao.findRolSubmenubyRol(rol);
+    }
 
     // CANDIDATO
     @Override
@@ -858,6 +864,13 @@ public class ServiceImpl implements IService {
     @Transactional
     public void deletePerfil(BigDecimal id) {
         PerfilDao.delete(id);
+    }
+    
+    @Override
+    @Transactional
+    public Perfil findPerfilUserPass(String user, String pass)
+    {
+        return PerfilDao.findPerfilUserPass(user, pass);
     }
 
     // OFERTA
@@ -1044,6 +1057,12 @@ public class ServiceImpl implements IService {
         return (List<PruebaOferta>) pruebaofertaDao.findPruebaOfertabyOferta(oferta);
     }
 
+     @Override
+     @Transactional(readOnly = true)
+    public List<Prueba> findPruebabyEmpresa(Empresa empresa) {
+        return (List<Prueba>) pruebaDao.findPruebaByEmpresa(empresa);
+        }
+    
     @Override
     @Transactional(readOnly = true)
     public List<PruebaOferta> findAllPruebaOfertas() {
@@ -1509,6 +1528,8 @@ public class ServiceImpl implements IService {
 
 
     
+   
+
     
     
 }

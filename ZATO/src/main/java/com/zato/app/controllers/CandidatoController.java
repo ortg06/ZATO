@@ -12,6 +12,8 @@ import javax.sql.rowset.serial.SerialException;
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.ICandidatoDao;
 import com.zato.app.entidades.Candidato;
+import com.zato.app.entidades.Perfil;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,6 +139,14 @@ public class CandidatoController {
         return "redirect:/candidato/listar";
     }
 
+    @RequestMapping(value = "/ver")
+    public String buscar(HttpSession session){
+        Perfil perfil = (Perfil) session.getAttribute("Perfil");
+        BigDecimal idcand = perfil.getCandidato().getPkCandidato();
+        
+        return "redirect:/candidato/ver/"+idcand;
+    }
+    
     @RequestMapping(value = "/ver/{id}")
     public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Candidato candidato = candidatoService.findCandidato(id);

@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<meta charset="utf-8" />
+    <head th:fragment="head">
+        <meta charset="UTF-8" />
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" th:href="@{/css/style.css}"></link>
-</head>
+        <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
+    </head>
 
-<body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark" th:fragment="header">
-		<a class="navbar-brand" href="#"><img style="max-width: 20%;" th:src="@{/imagenes/logo.png}"/></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse justify-content-end">
-                        <ul class="nav justify-content-end">
-                            
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-warning" data-toggle="dropdown" href="#">Nombre User</a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item small" href="#">Cambiar Contraseña</a>
-                                  <a class="dropdown-item small" href="#">Mi Perfil</a>
-                                  <a class="dropdown-item small" href="#">Cerrar Sesion</a>
-                                </div>
-                            </li>
-                            
-			</ul>
-		</div>
-	</nav>
-</body>
+    <body>
+
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark" th:fragment="header">
+            <!-- Brand -->
+            <a class="navbar-brand" th:href="@{/}"><img style="max-height:30px;" th:src="@{/imagenes/logo.png}" /></a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+           
+            </button>
+           
+            <div class="collapse navbar-collapse justify-content-end">
+                <ul class="nav justify-content-end">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-warning" href="#" id="navbardrop" data-toggle="dropdown">
+                            <label th:text="${session.Perfil.usuario}" th:unless="${session == null}" />
+                        </a>
+                        <div class="dropdown-menu ">
+                            <a class="dropdown-item small" href="#">Cambiar Contraseña</a>
+                            <a class="dropdown-item small" href="/logout">Salir</a>
+                        </div> 
+                    </li>
+
+                </ul>
+            </div>
+
+        </nav>
+    </body>
 </html>

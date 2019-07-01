@@ -5,19 +5,18 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/style.css}"/>
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-    </head>
+     <head th:replace="fragments/header :: head"></head>
     <body>
         <div th:replace="fragments/header :: header"/>
+
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+
+                <div class="col-lg-10 col-md-10">
         <h1 th:text="${titulo}"></h1>
         
-        <div class="container">
+       
 
         <a th:href="@{/Sector/form}" class="btn btn-success btn-xs">Crear Sector</a>
         
@@ -37,7 +36,8 @@ and open the template in the editor.
             </tbody>
         </table>
         </div>
-         <div th:replace="fragments/footer :: footer"></div>
-         
-      </body>
+            </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </body>
 </html>

@@ -71,7 +71,7 @@ public class HabilidadLinguisticaCv  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="PK_CATALOGO_PONDERACION", nullable=false)
+    @JoinColumn(name="PK_CATALOGO_PONDERACION", nullable=true)
     public CatalogoPonderacion getCatalogoPonderacion() {
         return this.catalogoPonderacion;
     }

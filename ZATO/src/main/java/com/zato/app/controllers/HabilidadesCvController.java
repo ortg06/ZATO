@@ -31,7 +31,9 @@ public class HabilidadesCvController {
     @Autowired
     private IService CvService; 
     @Autowired
-    private IService catalogoHabilidadService; 
+    private IService catalogoHabilidadService;
+    @Autowired
+    private IService catalogoCategoriaService;
     
     BigDecimal numcv=null;
     
@@ -45,8 +47,10 @@ public class HabilidadesCvController {
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
         numcv=id;
+        habilidadesCv = new HabilidadesCv();
         model.put("habilidadesCv", habilidadesCv);
         model.put("titulo", "Conocimientos y Habilidades");
+        model.put("catCategoria",catalogoCategoriaService.findAllcategoriaHabilidad());
         model.put("catHabilidad",catalogoHabilidadService.findAllCatHabilidad());
         
         return "HabilidadesCv/formhabcv";
@@ -67,8 +71,11 @@ public class HabilidadesCvController {
         } else {
             return "redirect:/Cv/verCv";
         }
+        numcv = habilidadesCv.getCv().getPkCv();
         model.put("habilidadesCv", habilidadesCv);
         model.put("titulo", "Actualizar Conocimiento / Habilidad");
+        model.put("catCategoria",catalogoCategoriaService.findAllcategoriaHabilidad());
+        model.put("catHabilidad",catalogoHabilidadService.findAllCatHabilidad());
         return "HabilidadesCv/formhabcv";
     } 
     
@@ -95,7 +102,7 @@ public class HabilidadesCvController {
         {
             habilidadesCvService.deleteHabCv(id);
         }
-        return "redirect:/Cv/verCv"+numcv;
+        return "redirect:/Cv/verCv/"+numcv;
     }
     
 }

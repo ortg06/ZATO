@@ -17,6 +17,10 @@ import javax.sql.rowset.serial.SerialException;
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.Perfil;
+import com.zato.app.entidades.Prueba;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +35,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 /**
  *
@@ -58,42 +61,43 @@ public class EmpresaController {
         return "empresa/listar";
     }
 
+     @RequestMapping(value = "/ver")
+    public String buscar(HttpSession session){
+        Perfil perfil = (Perfil) session.getAttribute("Perfil");
+        BigDecimal idemp = perfil.getEmpresa().getPkEmpresa();
+        
+        return "redirect:/empresa/ver/"+idemp;
+    }
+    
     @GetMapping(value = "/ver/{id}")
-    public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model, RedirectAttributes flash)
-           {
+    public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
 
         Empresa empresa = IService.findOneEmpresa(id);
         int blobLenght;
-
-
-
         try {
-
             if (empresa.getLogoEmpresa() != null) {
                 blobLenght = (int) empresa.getLogoEmpresa().length();
-            byte[] blobAsBytes = empresa.getLogoEmpresa().getBytes(1, blobLenght);
-            String img = Base64.encodeBase64String(blobAsBytes);
-            model.put("imagen", img);
+                byte[] blobAsBytes = empresa.getLogoEmpresa().getBytes(1, blobLenght);
+                String img = Base64.encodeBase64String(blobAsBytes);
+                model.put("imagen", img);
             }
-            
+
             model.put("empresa", empresa);
-            model.put("imagen", null);
+            List<Prueba> lista = IService.findPruebabyEmpresa(empresa);
             model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
             model.put("sectores", Sector.findAllSectores());
             model.put("tipos", IService.findAllTipoEmpresas());
+
+            model.put("pos", lista);
             model.put("municipios", IService.findAllmun());
             model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
             model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
             model.put("p", empresa.getMunicipio().getPkMunicipio());
             model.put("ofertas", IService.findOfertaByEmpresa(empresa));
-           
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-
-        
         return "empresa/ver";
     }
 
@@ -141,10 +145,11 @@ public class EmpresaController {
                 Blob blob = new SerialBlob(content);
                 empresa.setLogoEmpresa(blob);
                 IService.saveEmpresa(empresa);
-                status.setComplete();
+              
                 // Procedimiento: ACTUALIZARPERFILEMPRESA
                 // parametros: (pk empresa,pk perfil)
                 repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
+                status.setComplete();
             } catch (IOException e) {
 
                 e.printStackTrace();
@@ -157,13 +162,15 @@ public class EmpresaController {
             }
 
         }
-         //Procedimiento: ACTUALIZARPERFILEMPRESA
+        IService.saveEmpresa(empresa);
+        //Procedimiento: ACTUALIZARPERFILEMPRESA
         //parametros: (pk empresa,pk perfil)
-        repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
-        //IService.saveEmpresa(empresa);
+        //repo.updatePerfilEmpresa(empresa.getPkEmpresa(), num);
+
+        
         status.setComplete();
 
-        return "redirect:/empresa/listar";
+        return "redirect:/empresa/ver/" + empresa.getPkEmpresa();
     }
 
     @RequestMapping(value = "/eliminar/{id}")
@@ -174,11 +181,11 @@ public class EmpresaController {
         }
         return "redirect:/empresa/listar";
     }
-    
-     @RequestMapping(value = "/nuevo/{id}", method = RequestMethod.GET)
-    public String crear(@PathVariable(value = "id") BigDecimal id , Map<String, Object> model) {
+
+    @RequestMapping(value = "/nuevo/{id}", method = RequestMethod.GET)
+    public String crear(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
         Empresa empresa = new Empresa();
-        num=id;
+        num = id;
         model.put("empresa", empresa);
         model.put("titulo", "Datos de la Empresa");
         model.put("sectores", Sector.findAllSectores());
@@ -187,6 +194,5 @@ public class EmpresaController {
 
         return "empresa/formEmp";
     }
-    
-    
+
 }

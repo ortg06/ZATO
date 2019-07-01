@@ -66,7 +66,9 @@ public class EventoController {
         } else {
             return "redirect:/Cv/verCv";
         }
+        numcv = evento.getCv().getPkCv();
         model.put("evento", evento);
+        model.put("pais",paisService.findAll());
         model.put("titulo", "Actualizar Evento");
         return "Evento/formeven";
     } 
@@ -92,9 +94,9 @@ public class EventoController {
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            eventoService.deleteAptCv(id);
+            eventoService.deleteEvento(id);
         }
-        return "redirect:/Cv/verCv"+numcv;
+        return "redirect:/Cv/verCv/"+numcv;
     }
     
 }

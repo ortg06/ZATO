@@ -24,14 +24,15 @@ and open the template in the editor.
             <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
 
             <form th:action="@{/AptitudCv/formaptc}" th:object="${aptitudCv}" method="post">
-
+                <input type="hidden" id="pkAptitudCv" name="pkAptitudCv" th:value="${aptitudCv.pkAptitudCv}" />
                  <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Aptitud:</label>
                     <div class="col-sm-6">
                         <select id="cataptitud" class="col-sm-6 form-control form-control-sm" name="catalogoAptitud">
 
                             <option th:each="cataptitud : ${cataptitud}" th:value="${cataptitud.pkCatalogoAptitud}" 
-                                    th:selected="${cataptitud.pkCatalogoAptitud==s}" th:text="${cataptitud.nombreAptitud}">
+                                    th:selected="${cataptitud==aptitudCv.catalogoAptitud}" 
+                                    th:text="${cataptitud.nombreAptitud}">
                             </option>
                         </select>
                     </div>

@@ -42,6 +42,7 @@ public class CursoCapacitacionController {
      @RequestMapping(value="CursoCapacitacion/formcc/{id}",method=RequestMethod.GET)
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
+        cursocapacitacion = new CursoCapacitacion();
         numcv=id;
         model.put("cursocapacitacion", cursocapacitacion);
         model.put("titulo", "Cursos y Capacitaciones");
@@ -64,6 +65,8 @@ public class CursoCapacitacionController {
         } else {
             return "redirect:/Cv/verCv";
         }
+        numcv = cursocapacitacion.getCv().getPkCv();
+        
         model.put("cursocapacitacion", cursocapacitacion);
         model.put("titulo", "Actualizar Curso y Capacitaciones");
         return "CursoCapacitacion/formcc";
@@ -92,7 +95,7 @@ public class CursoCapacitacionController {
         {
             cursoCapService.deleteCursoCap(id);
         }
-        return "redirect:/Cv/verCv"+numcv;
+        return "redirect:/Cv/verCv/"+numcv;
     }
     
     

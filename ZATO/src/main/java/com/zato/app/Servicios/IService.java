@@ -189,6 +189,7 @@ public interface IService {
     public void saveRolS(RolSubmenu rolsubmenu);
     public RolSubmenu findOneRolS (BigDecimal id);
     public void deleteRolS(BigDecimal id);
+    public List<RolSubmenu> findRolSubmenubyRol(Rol rol);
 
     //Candidato
     public List<Candidato> findAllCandidato();
@@ -226,6 +227,7 @@ public interface IService {
     public void savePerfil(Perfil perfil);
     public Perfil findOnePerfil (BigDecimal id);
     public void deletePerfil(BigDecimal id);
+    public Perfil findPerfilUserPass(String user, String pass);
 
     //OFERTA
     public List<Oferta> findAllOfertas();
@@ -244,6 +246,9 @@ public interface IService {
     
     //OBTENER PRUEBASOFERTA SEGUN OFERTA Y PRUEBA
     public List<PruebaOferta> findPruebaOfertabyPruebaOferta(Oferta oferta,Prueba prueba);
+    
+    //OBTENER PRUEBAS POR EMPRESA
+    public List<Prueba> findPruebabyEmpresa(Empresa empresa);
     
      //Prueba
     public List<Prueba> findAllPruebas();

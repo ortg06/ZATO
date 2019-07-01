@@ -44,6 +44,7 @@ public class ExperienciaLaboralController {
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
         numcv=id;
+        experiencia = new ExperienciaLaboral();
         model.put("experiencia", experiencia);
         model.put("sectores",sectorService.findAllSectores());
         model.put("titulo", "Experiencia Laboral");
@@ -57,7 +58,7 @@ public class ExperienciaLaboralController {
     public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
     {
        
-       
+        
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
@@ -66,8 +67,10 @@ public class ExperienciaLaboralController {
         } else {
             return "redirect:/Cv/verCv";
         }
+        numcv=experiencia.getCv().getPkCv();
+        
         model.put("experiencia", experiencia);
-        model.put("sector",sectorService.findAllSectores());
+        model.put("sectores",sectorService.findAllSectores());
         model.put("titulo", "Actualizar Experiencia");
         return "experienciaLaboral/formexp";
     } 
