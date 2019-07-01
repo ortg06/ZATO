@@ -11,6 +11,7 @@ import java.util.Map;
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IPruebaDao;
 import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.ItemPrueba;
 import com.zato.app.entidades.Oferta;
 import com.zato.app.entidades.Postulacion;
 import com.zato.app.entidades.Prueba;
@@ -63,7 +64,7 @@ public class PruebaController {
         model.addAttribute("oferta", oferta);
         model.addAttribute("pos", lista);
 
-        return "prueba/listar";
+        return "prueba/examenes";
     }
 
     //LISTADO DE PRUEBAS POR EMPRESA
@@ -199,24 +200,28 @@ public class PruebaController {
         return "prueba/items";
     }
 
+  
 //OBTENER LAS PRUEBAS DE UNA OFERTA.
-    @GetMapping("candidato/{id}")
-    public String pruebas(@PathVariable(value = "Pkoferta") BigDecimal Pkoferta, @PathVariable(value = "Pkpostulacion") BigDecimal Pkpostulacion,
+    @RequestMapping(value="candidato/{id}", method = RequestMethod.POST)
+    public String pruebas(@PathVariable(value = "pkPrueba") BigDecimal pkPrueba, 
             Model model) {
 
-        Oferta oferta = IService.findOneOferta(Pkoferta);//Obtengo la oferta
+        Prueba prueba = IService.findOnePrueba(pkPrueba);//Obtengo la oferta
         // Postulacion postulacion=IService.findOnePostulacion(Pkpostulacion));//obtengo el candidato
-        model.addAttribute("pruebas", IService.findPruebaOfertabyOferta(oferta));
-        model.addAttribute("titulo", "Tus Pruebas");//envio una varible con el titulo 
-        model.addAttribute("oferta", oferta);//agrego el objeto oferta a la vista
+        List<ItemPrueba> lista = IService.findItemPruebabyPrueba(prueba);
+        model.addAttribute("items", lista);
+        model.addAttribute("titulo", prueba.getNombrePrueba());//envio una varible con el titulo 
+       
         //odel.addAttribute("postulacion", postulacion);
 
-        return "prueba/examenes";
+        return "prueba/nes";
     }
+
+  
 
     /* 
     
-    //METODO PARA ASIGANAR A RESULTADO LA PK_POSTULACION Y PK_PRUEBAOFERTA
+    //METODO PARA ASIGANAR A RESULTADO LA PK_POSTULACION Y PK_PRUEBAOFERTA es metodo para asignar prueba a un candidato
     @GetMapping(value="asignar/{pkPostulacion}")
     public String enviar( @PathVariable(value="pkPostulacion")BigDecimal Pkpostulacion,
             Model model){

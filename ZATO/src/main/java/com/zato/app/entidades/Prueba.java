@@ -5,6 +5,7 @@ package com.zato.app.entidades;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -95,7 +96,7 @@ public class Prueba  implements java.io.Serializable {
         this.nombrePrueba = nombrePrueba;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="prueba")
+@OneToMany(cascade=CascadeType.REMOVE,fetch=FetchType.LAZY, mappedBy="prueba")
     public Set<PruebaOferta> getPruebaOfertas() {
         return this.pruebaOfertas;
     }
@@ -104,7 +105,7 @@ public class Prueba  implements java.io.Serializable {
         this.pruebaOfertas = pruebaOfertas;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="prueba")
+@OneToMany(cascade=CascadeType.REMOVE,fetch=FetchType.LAZY, mappedBy="prueba")
     public Set<ItemPrueba> getItemPruebas() {
         return this.itemPruebas;
     }
