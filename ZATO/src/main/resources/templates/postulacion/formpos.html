@@ -23,9 +23,9 @@ and open the template in the editor.
                             <div class="col-sm-6">
                                 <select id="cvs" class="col-sm-6 form-control form-control-sm" name="cv">
 
-                                    <option th:each="cv : ${cvs}" th:value="${cv.pkCv}" 
-                                            th:selected="${cv == cv.cv}"
-                                            th:text="${cv.nombreCv}">
+                                    <option th:each="cvs : ${cvs}" th:value="${cvs.pkCv}" 
+                                            th:selected="${cvs == postulacion.cv}"
+                                            th:text="${cvs.nombreCv}">
                                     </option>
                                 </select>
                             </div>
