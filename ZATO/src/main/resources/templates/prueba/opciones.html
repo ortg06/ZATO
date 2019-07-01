@@ -5,57 +5,52 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
         <div th:replace="fragments/header :: header"/>
 
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
 
-        <div class="container">
-            <h2 th:text="${titulo}"></h2>
-            <br></br>
-                 <h2 th:text="${item.pregunta}"></h2>
-                  <br></br>
-             
-            <div class="row">  
-               
-                <div class="col-lg-10 col-md-10">    
-                    <a th:href="@{/items/opciones/nuevo/} + ${item.pkItem}" class="btn btn-success btn-xs">Nueva Opción</a>
+                <div class="col-lg-10 col-md-10">
+                    <h2 th:text="${titulo}"></h2>
+                    <br></br>
+                    <h2 th:text="${item.pregunta}"></h2>
+                    <br></br>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Acciones</th>
+                    <div class="row">  
 
-                                <th>Nombre</th>
-                                <th>Ponderación %</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="opcion: ${opciones}">
+                        <div class="col-lg-12 col-md-12">    
+                            <a th:href="@{/items/opciones/nuevo/} + ${item.pkItem}" class="btn btn-success btn-xs">Nueva Opción</a>
 
-                                <td><a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
-                                    <a class="btn btn-danger btn-xs"  th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
-                                </td>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Acciones</th>
 
-                                <td th:text="${opcion.opcion}"></td>
-                                <td th:text="${opcion.puntajeOpcion}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                   
+                                        <th>Nombre</th>
+                                        <th>Ponderación %</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="opcion: ${opciones}">
+
+                                        <td><a class="btn btn-primary btn-xs" th:text="'Editar'"></a>
+                                            <a class="btn btn-danger btn-xs"  th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
+                                        </td>
+
+                                        <td th:text="${opcion.opcion}"></td>
+                                        <td th:text="${opcion.puntajeOpcion}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                
-                <div th:replace="fragments/footer :: footer"></div>
             </div>
         </div>
-
-
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>

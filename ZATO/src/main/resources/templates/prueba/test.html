@@ -5,51 +5,48 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
         <div th:replace="fragments/header :: header"/>
 
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
 
-        <div class="container">
-            <h1 th:text="${titulo}"></h1>
-            <div class="row">  
+                <div class="col-lg-10 col-md-10">
+                    <h1 th:text="${titulo}"></h1>
+                    <div class="row">  
 
-                <div class="col-lg-10 col-md-10">    
-                    <a th:href="@{/prueba/nuevo/}+${oferta.pkOferta}" class="btn btn-success btn-xs">Nueva Prueba</a>
+                        <div class="col-lg-10 col-md-10">    
+                            <a th:href="@{/prueba/nuevo/}+${oferta.pkOferta}" class="btn btn-success btn-xs">Nueva Prueba</a>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Acciones</th>
-                                <th>Nombre</th>
-                                <th>Tipo de Prueba</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="po: ${pos}">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Acciones</th>
+                                        <th>Nombre</th>
+                                        <th>Tipo de Prueba</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="po: ${pos}">
 
-                                <td><a class="btn btn-success btn-xs" th:href="@{/prueba/items/} + ${po.prueba.pkPrueba}" th:text="'+'"></a>
-                                    <a class="btn btn-primary btn-xs" th:href="@{/prueba/editar/} + ${po.prueba.pkPrueba}" th:text="'Editar'"></a>
-                                    <a class="btn btn-danger btn-xs" th:href="@{/prueba/eliminar/} + ${po.prueba.pkPrueba}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
-                                </td>
+                                        <td><a class="btn btn-success btn-xs" th:href="@{/prueba/items/} + ${po.prueba.pkPrueba}" th:text="'+'"></a>
+                                            <a class="btn btn-primary btn-xs" th:href="@{/prueba/editar/} + ${po.prueba.pkPrueba}" th:text="'Editar'"></a>
+                                            <a class="btn btn-danger btn-xs" th:href="@{/prueba/eliminar/} + ${po.prueba.pkPrueba}" th:text="'Eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a>
+                                        </td>
 
-                                <td th:text="${po.prueba.nombrePrueba}"></td>
-                                <td th:text="${po.prueba.catalogoTipoPrueba.nombreTipoPrueba}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                        <td th:text="${po.prueba.nombrePrueba}"></td>
+                                        <td th:text="${po.prueba.catalogoTipoPrueba.nombreTipoPrueba}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
+                        </div>
+                    </div>
                 </div>
-                <div th:replace="fragments/footer :: footer"></div>
             </div>
         </div>
-
-
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
