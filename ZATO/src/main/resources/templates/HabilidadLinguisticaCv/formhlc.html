@@ -24,6 +24,7 @@ and open the template in the editor.
             <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
 
             <form th:action="@{/HabilidadLinguisticaCv/formhlc}" th:object="${habilidadlingCv}" method="post">
+                <input type="hidden" id="pkHabLingCv" name="pkHabLingCv" th:value="${habilidadlingCv.pkHabLingCv}" />
 
                  <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Idioma :</label>
@@ -43,7 +44,8 @@ and open the template in the editor.
                         <select id="catPonderacionescritura" class="col-sm-6 form-control form-control-sm" name="pondEscritoCv">
 
                             <option th:each="ponderacion : ${catPonderacionescritura}" th:value="${ponderacion.pkCatalogoPonderacion}" 
-                                    th:selected="${ponderacion.pkCatalogoPonderacion==s}" th:text="${ponderacion.etiquetaPonderacion}">
+                                    th:selected="${ponderacion.pkCatalogoPonderacion == habilidadlingCv.pondEscritoCv}"
+                                    th:text="${ponderacion.etiquetaPonderacion}">
                             </option>
                         </select>
                     </div>
@@ -55,7 +57,8 @@ and open the template in the editor.
                         <select id="catPonderacionescucha" class="col-sm-6 form-control form-control-sm" name="pondEscuchaCv">
 
                             <option th:each="catPonderacion : ${catPonderacionescucha}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
-                                    th:selected="${catPonderacion.pkCatalogoPonderacion==s}" th:text="${catPonderacion.etiquetaPonderacion}">
+                                    th:selected="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondEscuchaCv}"
+                                    th:text="${catPonderacion.etiquetaPonderacion}">
                             </option>
                         </select>
                     </div>
@@ -67,7 +70,8 @@ and open the template in the editor.
                         <select id="catPonderacionlectura" class="col-sm-6 form-control form-control-sm" name="pondLecturaCv">
 
                             <option th:each="catPonderacion : ${catPonderacionlectura}" th:value="${catPonderacion.pkCatalogoPonderacion}" 
-                                    th:selected="${catPonderacion.pkCatalogoPonderacion==s}" th:text="${catPonderacion.etiquetaPonderacion}">
+                                    th:selected="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondLecturaCv}"
+                                    th:text="${catPonderacion.etiquetaPonderacion}">
                             </option>
                         </select>
                     </div>
@@ -79,7 +83,8 @@ and open the template in the editor.
                         <select id="catPonderacionconversacion" class="col-sm-6 form-control form-control-sm" name="pondConversacionCv">
 
                             <option th:each="catPonderacionc : ${catPonderacionconversacion}" th:value="${catPonderacionc.pkCatalogoPonderacion}" 
-                                    th:selected="${catPonderacionc.pkCatalogoPonderacion==s}" th:text="${catPonderacionc.etiquetaPonderacion}">
+                                    th:selected="${catPonderacionc.pkCatalogoPonderacion == habilidadlingCv.pondConversacionCv}"
+                                    th:text="${catPonderacionc.etiquetaPonderacion}">
                             </option>
                         </select>
                     </div>

@@ -38,10 +38,30 @@ and open the template in the editor.
                     <a class="btn btn-primary btn-sm" th:href="@{/HabilidadLinguisticaCv/editar/ }+ ${habilidadlingCv.pkHabLingCv}" th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-sm" th:href="@{/HabilidadLinguisticaCv/eliminar/} + ${habilidadlingCv.pkHabLingCv}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
                     <td th:text="${habilidadlingCv.catalogoIdioma.nombreIdioma}"></td>
-                    <td th:text="${habilidadlingCv.pondEscritoCv}"></td>
-                    <td th:text="${habilidadlingCv.pondEscuchaCv}"></td>
-                    <td th:text="${habilidadlingCv.pondLecturaCv}"></td>
-                    <td th:text="${habilidadlingCv.pondConversacionCv}"></td>
+                    <td>
+                        <p th:each="catPonderacion: ${catPonderaciones}" th:remove="tag">
+                            <span th:if="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondEscritoCv}" th:text="${catPonderacion.etiquetaPonderacion}" th:remove="tag"></span>
+                            <b th:unless="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondEscritoCv}" th:text="null" th:remove="tag"></b>
+                        </p>
+                    </td>
+                    <td>
+                        <p th:each="catPonderacion: ${catPonderaciones}" th:remove="tag">
+                            <span th:if="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondEscuchaCv}" th:text="${catPonderacion.etiquetaPonderacion}" th:remove="tag"></span>
+                            <b th:unless="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondEscuchaCv}" th:text="null" th:remove="tag"></b>
+                        </p>
+                    </td>
+                    <td>
+                        <p th:each="catPonderacion: ${catPonderaciones}" th:remove="tag">
+                            <span th:if="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondLecturaCv}" th:text="${catPonderacion.etiquetaPonderacion}" th:remove="tag"></span>
+                            <b th:unless="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondLecturaCv}" th:text="null" th:remove="tag"></b>
+                        </p>
+                    </td>
+                    <td>
+                        <p th:each="catPonderacion: ${catPonderaciones}" th:remove="tag">
+                            <span th:if="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondConversacionCv}" th:text="${catPonderacion.etiquetaPonderacion}" th:remove="tag"></span>
+                            <b th:unless="${catPonderacion.pkCatalogoPonderacion == habilidadlingCv.pondConversacionCv}" th:text="null" th:remove="tag"></b>
+                        </p>
+                    </td>
                     </tr>
             </tbody>
         </table>
