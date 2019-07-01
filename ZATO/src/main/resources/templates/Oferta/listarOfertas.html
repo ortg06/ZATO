@@ -28,7 +28,12 @@ and open the template in the editor.
                         <tbody>
                             <tr th:each="oferta: ${ofertas}">
                                 <td><a class="btn btn-primary btn-xs" th:href="@{/oferta/verOferta/} + ${oferta.pkOferta}"
-                                        th:text="'Ver Oferta'"></a></td>
+                                        th:text="'Ver Oferta'"></a>
+                                    
+                                        
+                                
+                                    </td>
+                                        
                               
                                 <td th:text="${oferta.catalogoPuesto.nombreCatalogoPuesto}"></td>
                             </tr>
