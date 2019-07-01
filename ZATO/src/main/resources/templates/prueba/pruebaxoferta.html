@@ -21,7 +21,7 @@ and open the template in the editor.
                 <tbody>
                     <tr th:each="po: ${pruebaoferta}">
 
-                        <td th:text="${po.pkPruebaOferta}"></td>
+                        <td th:text="${po.oferta.catalogoPuesto.nombrePuesto}"></td>
                         <td th:text="${po.prueba.nombrePrueba}"></td>
                     </tr>
                 </tbody>
