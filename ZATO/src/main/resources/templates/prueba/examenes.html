@@ -21,7 +21,7 @@ and open the template in the editor.
             <div class="row">  
 
                 <div class="col-lg-10 col-md-10">    
-                    <a th:href="@{/prueba/nuevo/}+${oferta.pkOferta}" class="btn btn-success btn-xs">Nueva Prueba</a>
+                   
 
                     <table class="table table-striped">
                         <thead>
@@ -34,10 +34,10 @@ and open the template in the editor.
                         <tbody>
                             <tr th:each="po: ${pos}">
 
-                                <td><a class="btn btn-success btn-xs" th:ref="${po.prueba.pkPrueba}" th:text="'Resolver'"></a>
+                                <td><a class="btn btn-success btn-xs" th:href="@{/prueba/candidato/}+${po.prueba.pkPrueba}" th:text="'Resolver'"></a>
 
                                 </td>
-                                <td th:text="${po.prueba.pkPrueba}"></td>
+                             
                                 <td th:text="${po.prueba.nombrePrueba}"></td>
                                 <td th:text="${po.prueba.catalogoTipoPrueba.nombreTipoPrueba}"></td>
                             </tr>
