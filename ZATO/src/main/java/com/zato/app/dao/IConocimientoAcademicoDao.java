@@ -18,6 +18,7 @@ import org.springframework.data.repository.query.Param;
  */
 public interface IConocimientoAcademicoDao extends CrudRepository<ConocimientoAcademicos, BigDecimal> {
 
-  
+    @Query("select i from ConocimientoAcademicos i where i.oferta=:oferta")
+  public List<ConocimientoAcademicos> findConoAcadbyOferta(@Param("oferta") Oferta oferta);
     
 }

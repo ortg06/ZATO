@@ -33,10 +33,10 @@ and open the template in the editor.
                  </tr>
             </thead>
             <tbody>
-                <tr th:each="CatalogoPuesto: ${puestos}">
+                <tr th:each="catalogopuesto: ${puestos}">
                      <td><a class="btn btn-primary btn-xs" th:href="@{/CatalogoPuesto/formP/} + ${catalogopuesto.pkCatalogoPuesto}" th:text="'Editar'"></a>
                     <a class="btn btn-danger btn-xs" th:href="@{/CatalogoPuesto/eliminar/} + ${catalogopuesto.pkCatalogoPuesto}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
-                     <td th:text="${catalogopuesto.categoria.nombreCatalogoCategoria}"> </td>
+                     <td th:text="${catalogopuesto.catalogoCategoria.nombreCatalogoCategoria}"> </td>
                      <td th:text="${catalogopuesto.nombreCatalogoPuesto}"></td>
                 </tr>
             </tbody>

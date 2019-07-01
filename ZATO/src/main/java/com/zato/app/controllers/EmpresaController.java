@@ -60,26 +60,40 @@ public class EmpresaController {
 
     @GetMapping(value = "/ver/{id}")
     public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model, RedirectAttributes flash)
-            throws SQLException {
+           {
 
         Empresa empresa = IService.findOneEmpresa(id);
         int blobLenght;
 
 
-        blobLenght = (int) empresa.getLogoEmpresa().length();
-        byte[] blobAsBytes = empresa.getLogoEmpresa().getBytes(1, blobLenght);
 
-        String img = Base64.encodeBase64String(blobAsBytes);
-        model.put("empresa", empresa);
-        model.put("imagen", img);
-        model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
-        model.put("sectores", Sector.findAllSectores());
-        model.put("tipos", IService.findAllTipoEmpresas());
-        model.put("municipios", IService.findAllmun());
-        model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
-        model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
-        model.put("p", empresa.getMunicipio().getPkMunicipio());
-        model.put("ofertas", IService.findOfertaByEmpresa(empresa));
+        try {
+
+            if (empresa.getLogoEmpresa() != null) {
+                blobLenght = (int) empresa.getLogoEmpresa().length();
+            byte[] blobAsBytes = empresa.getLogoEmpresa().getBytes(1, blobLenght);
+            String img = Base64.encodeBase64String(blobAsBytes);
+            model.put("imagen", img);
+            }
+            
+            model.put("empresa", empresa);
+            model.put("imagen", null);
+            model.put("titulo", "Detalle de Empresa: " + empresa.getNomEmpresa());
+            model.put("sectores", Sector.findAllSectores());
+            model.put("tipos", IService.findAllTipoEmpresas());
+            model.put("municipios", IService.findAllmun());
+            model.put("tp", empresa.getCatalogoTipoEmpresa().getPkTipoEmpresa());
+            model.put("s", empresa.getCatalogoSectorEmpresa().getPkSector());
+            model.put("p", empresa.getMunicipio().getPkMunicipio());
+            model.put("ofertas", IService.findOfertaByEmpresa(empresa));
+           
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+
+        
         return "empresa/ver";
     }
 
