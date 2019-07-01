@@ -136,7 +136,7 @@ public class CvController {
         cv=id;
        
         model.addAttribute("cv",id);
-        //model.addAttribute("logro",logroService.findCvbyLogro(cv));
+        model.addAttribute("logro",logroService.findCvbyLogro(cv));
         model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(cv));
         model.addAttribute("formacion",formacionService.findCvbyForAcad(cv));
         model.addAttribute("cursocapacitacion",cursoCapService.findCvbyCursoCap(cv)); 
@@ -172,7 +172,9 @@ public class CvController {
              model.put("habilidadlingCv", habilidadlingCv);
              model.put("habilidadesCv", habilidadescv);
              model.put("aptitudCv", aptitudcv);
+             model.put("logro", logro);
              model.put("evento", evento);
+             model.put("escrito", escrito); 
              // model.put("imagen", imagen64);
            
         //} catch (SQLException e) {
@@ -180,24 +182,10 @@ public class CvController {
           //  e.printStackTrace();
         //}
         
-        
-       
-        //model.put("experiencia", experiencia);
-        //model.put("logro", logro);
-               
-        //model.put("escrito", escrito); 
-        
-       
-       
+
         
         //model.put("licCand", licCand);
-       
-        
-        //listar secciones del cv
-       // listar(cv, (Model) model);
-       
-       
-        
+ 
         return "Cv/cv";
     }
     
