@@ -7,6 +7,7 @@ import com.zato.app.entidades.Empresa;
 import com.zato.app.entidades.Oferta;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 public interface IOfertaDao extends CrudRepository<Oferta,BigDecimal>{
@@ -14,4 +15,6 @@ public interface IOfertaDao extends CrudRepository<Oferta,BigDecimal>{
     @Query("select i from Oferta i where i.empresa=:empresa")
     public List<Oferta> findOfertaByEmpresa(@Param("empresa") Empresa empresa);
     
+    @Procedure(procedureName = "insertResultado")
+    void insertResultado( @Param("idpostulacion") BigDecimal a, @Param("idpruebaoferta")BigDecimal b);
   }

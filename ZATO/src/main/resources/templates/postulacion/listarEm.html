@@ -18,8 +18,8 @@
                 </thead>
                 <tbody>
                     <tr th:each="po: ${of.postulacions}">
-                        <td><a class="btn btn-primary btn-xs"  th:text="'VER CV'"></a>
-                            <a class="btn btn-success btn-xs"  th:text="'Enviar Pruebas'"></a>
+                        <td><a class="btn btn-primary btn-xs"  th:href="@{/Cv/cv/} + ${po.cv.pkCv}" th:text="'VER CV'"></a>
+                             <a class="btn btn-success btn-xs" th:href="@{/prueba/asignar/} + ${po.pkPostulacion}" th:text="'Enviar Pruebas'" onclick="return confirm('EstÃ¡s seguro que quieres enviar preguntas a este candidato?');"></a>
                         </td>
                         <td th:text="${po.cv.candidato.nombreCandidato}"></td>
 
