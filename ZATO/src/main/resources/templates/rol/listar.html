@@ -8,11 +8,11 @@ and open the template in the editor.
     <head th:replace="fragments/header :: head"></head>
     <body>
         <div th:replace="fragments/header :: header"/>
-        
+
         <div class="row"> 
-                <div th:replace="fragments/sidebar :: sidebar"></div>
-        <div class="container">
-            
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+
                 <div class="col-lg-10 col-md-10">
                     <h1 th:text="${titulo}"></h1>
                     <a th:href="@{/Rol/form}" class="btn btn-success btn-xs">Crear Rol</a>

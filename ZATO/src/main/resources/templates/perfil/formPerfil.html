@@ -5,69 +5,85 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
-               <h1 th:text="${titulo}"></h1>
+        <div th:replace="fragments/header :: header"/>
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
 
-        <form th:action="@{/Perfil/formPerfil}" th:object="${perfil}" method="post">
-            
-                
-                <div class="form-group row">
-				<label class="col-sm-2 col-form-label">Usuario</label>
-				<div class="col-sm-6">
-					<input class="form-control form-control-sm" type="text" th:field="*{usuario}"/> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('usuario')}" th:errors="*{apellido}"></small>
-				</div>
-			</div>   
-               
-                <div class="form-group row">
-				<label class="col-sm-2 col-form-label">Contraseña:</label>
-				<div class="col-sm-6">
-					<input class="form-control form-control-sm" type="password" th:field="*{contrasena}"/> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('contrasena')}" th:errors="*{apellido}"></small>
-				</div>
-			</div>
-                
-               
-                <div class="form-group row">
-				<label class="col-sm-2 col-form-label">Correo Electronico:</label>
-				<div class="col-sm-6">
-					<input class="form-control form-control-sm" type="text" th:field="*{correoElectronico}"/> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('correoElectronico')}" th:errors="*{apellido}"></small>
-				</div>
-			</div>
-                               
-                
-                            
-                <div class="form-group row">
-				<label class="col-sm-2 col-form-label">Rol:</label>
-				<div class="col-sm-6">
-					<select id="Rol" class="col-sm-6 form-control form-control-sm" name="Rol">
-                        
-                                            <option th:each="rol : ${Rol}" th:value="${rol.pkRol}" 
-                                                th:selected="${rol.pkRol==p}" th:text="${rol.nombreRol}">
-                                            </option>
-                                        </select>
-				</div>
-			</div>
-                                
-                <div class="form-group row">
-				<div class="col-sm-6">
-					<input type="submit" value="Guardar" class="btn btn-primary" />
-				</div>
+                <div class="col-lg-10 col-md-10">
+                    <h1 th:text="${titulo}"></h1>
+
+                    <form th:action="@{/Perfil/formPerfil}" th:object="${perfil}" method="post">
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Usuario</label>
+                            <div class="col-sm-6">
+                                <input class="form-control form-control-sm" type="text" th:field="*{usuario}"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('usuario')}" th:errors="*{apellido}"></small>
+                            </div>
+                        </div>   
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Contraseña:</label>
+                            <div class="col-sm-6">
+                                <input class="form-control form-control-sm" type="password" th:field="*{contrasena}"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('contrasena')}" th:errors="*{apellido}"></small>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Correo Electronico:</label>
+                            <div class="col-sm-6">
+                                <input class="form-control form-control-sm" type="text" th:field="*{correoElectronico}"/> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('correoElectronico')}" th:errors="*{apellido}"></small>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Rol:</label>
+                            <div class="col-sm-6">
+                                <select id="Rol" class="col-sm-6 form-control form-control-sm" name="Rol">
+
+                                    <option th:each="rol : ${Rol}" th:value="${rol.pkRol}" 
+                                            th:selected="${rol.pkRol==p}" th:text="${rol.nombreRol}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Estado :</label>
+                            <div class="col-sm-6">
+                                <select id="estado" class="col-sm-6 form-control form-control-sm" name="estado">
+
+                                    <option  th:value="Activo"> Activo </option>
+                                    <option  th:value="Inactivo"> Inactivo </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+
+
+                    </form>
                 </div>
-                
-               
-                
-        </form>
+            </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>

@@ -87,7 +87,7 @@ public class PerfilController {
     }
     //--------------------------editar------------------------------------------
     @RequestMapping(value="/Perfil/formPerfil/{id}")
-    public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model)
+    public String editar(@PathVariable(value="id") BigDecimal id, Map<String,Object> model, HttpSession session)
     {
         
         Perfil perfil = null;
@@ -112,8 +112,8 @@ public class PerfilController {
        int tipop=3;
        BigDecimal tipo= new BigDecimal(tipop);
        perfil.setTipoPerfil(tipo);
-       perfil.setEstado("Activo");
        perfil.setContrasena(JavaUtil.getMD5(perfil.getContrasena()));
+       //perfil.setEstado("Activo");
        PerfilService.savePerfil(perfil);
         
         status.setComplete();
@@ -169,7 +169,7 @@ public class PerfilController {
          //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
-            PerfilService.deleteRol(id);
+            PerfilService.deletePerfil(id);
         }
         return "redirect:/Perfil/listar";
     }

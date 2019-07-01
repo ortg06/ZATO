@@ -5,39 +5,41 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-         <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-        <link rel="stylesheet" th:href="@{/css/style.css}"/>
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
-         <div th:replace="fragments/header :: header"/>
-        <h1 th:text="${titulo}"></h1>
-        
-        <div class="container">
+        <div th:replace="fragments/header :: header"/>
 
-        <a th:href="@{/Menu/form}" class="btn btn-success btn-xs">Crear Menu</a>
-        
-        <table class="table table-striped">
-            <thead>
-                 <tr>
-                    <th>Acciones</th>
-                    <th>Menu</th>
-                 </tr>
-            </thead>
-            <tbody>
-                <tr th:each="menu: ${menus}">
-                     <td><a class="btn btn-primary btn-xs" th:href="@{/Menu/form/} + ${menu.pkMenu}" th:text="'Editar'"></a>
-                    <a class="btn btn-danger btn-xs" th:href="@{/Menu/eliminar/} + ${menu.pkMenu}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
-                    <td th:text="${menu.menu}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+
+                <div class="col-lg-10 col-md-10">
+                    <h1 th:text="${titulo}"></h1>
+
+
+
+                    <a th:href="@{/Menu/form}" class="btn btn-success btn-xs">Crear Menu</a>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Acciones</th>
+                                <th>Menu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="menu: ${menus}">
+                                <td><a class="btn btn-primary btn-xs" th:href="@{/Menu/form/} + ${menu.pkMenu}" th:text="'Editar'"></a>
+                                    <a class="btn btn-danger btn-xs" th:href="@{/Menu/eliminar/} + ${menu.pkMenu}" th:text="'Eliminar'" onclick="return confirm(' ¿Estás seguro que quieres eliminar?');"></a></td>
+                                <td th:text="${menu.menu}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </div>
-         <div th:replace="fragments/footer :: footer"></div>
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
 

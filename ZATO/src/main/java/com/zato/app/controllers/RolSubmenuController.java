@@ -23,7 +23,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 
 @Controller
-@RequestMapping("/RolSubmenu")
+@RequestMapping("/Rolsubmenu")
 @SessionAttributes("rolsubmenu")
 public class RolSubmenuController {
     
@@ -41,7 +41,7 @@ public class RolSubmenuController {
         model.addAttribute("titulo", "Listado de Submenu por Rol");
         model.addAttribute("RolSubmenus",RolSubmenuService.findAllRolS());
        
-        return "RolSubmenu/listar";
+        return "Rolsubmenu/listar";
     }
   
      @RequestMapping(value="/formRS",method=RequestMethod.GET)
@@ -52,7 +52,7 @@ public class RolSubmenuController {
         model.put("titulo", "Datos del Submenu por Rol");
         model.put("Rol",RolService.findAllRol());
         model.put("Submenu",SubmenuService.findAllSubmenu());
-        return "RolSubmenu/formRS";
+        return "Rolsubmenu/formRS";
     }
     
      @RequestMapping(value="/editar/{id}")
@@ -66,14 +66,14 @@ public class RolSubmenuController {
             rolsubmenu = RolSubmenuService.findOneRolS(id);
           
         } else {
-            return "redirect:/RolSubmenu/listar";
+            return "redirect:/Rolsubmenu/listar";
         }
         model.put("rolsubmenu", rolsubmenu);
         model.put("titulo", "Editar Submenu por Roles");
         model.put("Rol",RolService.findAllRol());
         model.put("r",rolsubmenu.getRol().getPkRol());
         model.put("s",rolsubmenu.getSubmenu().getPkSubmenu());
-        return "RolSubmenu/formRS";
+        return "Rolsubmenu/formRS";
     } 
     
     @RequestMapping(value="/formRS",method=RequestMethod.POST)
@@ -81,7 +81,7 @@ public class RolSubmenuController {
     {
         RolSubmenuService.saveRolS(rolsubmenu);
         status.setComplete();
-        return "redirect:/RolSubmenu/listar";
+        return "redirect:/Rolsubmenu/listar";
     }
     
     
@@ -93,7 +93,7 @@ public class RolSubmenuController {
         {
             RolSubmenuService.deleteRolS(id);
         }
-        return "redirect:/RolSubmenu/listar";
+        return "redirect:/Rolsubmenu/listar";
     }
     
     
