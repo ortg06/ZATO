@@ -77,17 +77,18 @@ public class CvController {
        cv=id;
        
        model.addAttribute("cv",id);
-       model.addAttribute("logro",logroService.findCvbyLogro(cv));
        model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(cv));
        model.addAttribute("formacion",formacionService.findCvbyForAcad(cv));
        model.addAttribute("cursocapacitacion",cursoCapService.findCvbyCursoCap(cv)); 
        model.addAttribute("habilidadlingCv",hablingCvService.findCvbyHabLingCv(cv));
        model.addAttribute("habilidadesCv",habilidadesCvService.findCvbyHabCv(cv));
        model.addAttribute("aptitudCv",aptitudCvService.findCvbyAptCv(cv));
-//model.addAttribute("escrito",escritoService.findCvbyEscrito(cv));
+       model.addAttribute("logro",logroService.findCvbyLogro(cv));
+       model.addAttribute("evento",eventoService.findCvbyEvento(cv));
+       model.addAttribute("escrito",escritoService.findCvbyEscrito(cv));
        
       
-       //model.addAttribute("evento",eventoService.findCvbyEvento(cv));
+       
        
        //model.addAttribute("licCand",licCandService.findCvbyLicCand(cv));
       
@@ -101,15 +102,16 @@ public class CvController {
         model.put("cv", cv);
         model.put("experiencia", experiencia);
         model.put("formacion", formacion);
-        //model.put("logro", logro);
         model.put("cursocapacitacion", cursocapacitacion);        
         model.put("habilidadlingCv", habilidadlingCv);
         model.put("habilidadesCv", habilidadescv);
         model.put("aptitudCv", aptitudcv);
-        //model.put("escrito", escrito); 
+        model.put("logro", logro);
+        model.put("evento", evento);
+        model.put("escrito", escrito); 
        
         
-       // model.put("evento", evento);
+       
         
         //model.put("licCand", licCand);
         
@@ -129,17 +131,18 @@ public class CvController {
        cv=id;
        
        model.addAttribute("cv",id);
-       //model.addAttribute("logro",logroService.findCvbyLogro(cv));
        model.addAttribute("experiencia",experienciaService.findCvbyExperiencia(cv));
        model.addAttribute("formacion",formacionService.findCvbyForAcad(cv));
        model.addAttribute("cursocapacitacion",cursoCapService.findCvbyCursoCap(cv)); 
        model.addAttribute("habilidadlingCv",hablingCvService.findCvbyHabLingCv(cv));
        model.addAttribute("habilidadesCv",habilidadesCvService.findCvbyHabCv(cv));
        model.addAttribute("aptitudCv",aptitudCvService.findCvbyAptCv(cv));
-//model.addAttribute("escrito",escritoService.findCvbyEscrito(cv));
+       model.addAttribute("logro",logroService.findCvbyLogro(cv));
+       model.addAttribute("evento",eventoService.findCvbyEvento(cv));
+       model.addAttribute("escrito",escritoService.findCvbyEscrito(cv));
        
        
-       //model.addAttribute("evento",eventoService.findCvbyEvento(cv));
+       
        
        //model.addAttribute("licCand",licCandService.findCvbyLicCand(cv));
        
@@ -164,6 +167,9 @@ public class CvController {
              model.put("habilidadlingCv", habilidadlingCv);
              model.put("habilidadesCv", habilidadescv);
              model.put("aptitudCv", aptitudcv);
+             model.put("logro", logro);
+             model.put("evento", evento);
+             model.put("escrito", escrito);
              // model.put("imagen", imagen64);
            
         //} catch (SQLException e) {
@@ -174,12 +180,12 @@ public class CvController {
         
        
         //model.put("experiencia", experiencia);
-        //model.put("logro", logro);
+        
                
-        //model.put("escrito", escrito); 
+        
         
        
-       // model.put("evento", evento);
+       
         
         //model.put("licCand", licCand);
        

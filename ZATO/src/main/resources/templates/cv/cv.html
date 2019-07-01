@@ -217,21 +217,76 @@ and open the template in the editor.
                     <h4> Logros </h4> 
                     <br/>
                     <br/>
-
+                    <table class="table table-striped table-bordered small">
+                        <thead>
+                            <tr>
+                                <th>Logro</th>
+                                <th>Descripcion</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="logro: ${logro}">
+                                <td th:text="${logro.nombreLogro}"></td>
+                                <td th:text="${logro.descripcionLogro}"></td>
+                                <td th:text="${logro.fechaLogro}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div> <!--fin card -->
 
                 <div class="card-body shadow-sm p-4 mb-4 bg-white">
                     <h4> Eventos asistidos </h4> 
                     <br/>
                     <br/>
-
+                    <table class="table table-striped table-bordered small ">
+                        <thead>
+                            <tr>
+                                <th>Nombre del Evento</th>
+                                <th>Descripcion</th>
+                                <th>Pais</th>
+                                <th>Lugar</th>
+                                <th>Anfitrion</th>
+                                <th>Fecha del Evento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="evento: ${evento}">
+                               <td th:text="${evento.nombreEvento}"></td>
+                                <td th:text="${evento.descripcionEvento}"></td>
+                                <td th:text="${evento.pais.nombrePais}"></td>
+                                <td th:text="${evento.lugarEvento}"></td>
+                                <td th:text="${evento.anfitrionEvento}"></td>
+                                <td th:text="${evento.fechaEvento}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div> <!--fin card -->
 
                 <div class="card-body shadow-sm p-4 mb-4 bg-white">
                     <h4> Escritos </h4> 
                     <br/>
                     <br/>
-
+                    <table class="table table-striped table-bordered small">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Escrito</th>
+                                <th>Nombre del Escrito</th>
+                                <th>Nombre del Editor</th>
+                                <th>Fecha de Publicacion</th>
+                                <th>Lugar de Publicacion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="escrito: ${escrito}">
+                               <td th:text="${escrito.catalogoEscrito.nombreTipoEscrito}"></td>
+                                <td th:text="${escrito.nombreEscrito}"></td>
+                                <td th:text="${escrito.nombreEditor}"></td>
+                                <td th:text="${escrito.fechaPublicacion}"></td>
+                                <td th:text="${escrito.lugarPublicacion}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div> <!--fin card -->
 
             </div> <!--fin container -->
