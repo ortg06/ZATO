@@ -105,6 +105,22 @@ public class OfertaController{
        
         return "Oferta/verOferta";
     }
+    
+    
+    @RequestMapping(value="/verOfertaE/{id}")
+    public String listarE(@PathVariable(value="id") BigDecimal id,Model model)
+    {
+       Oferta oferta = ofertaService.findOneOferta(id);
+       
+       model.addAttribute("oferta",oferta);
+       /* model.addAttribute("CatGradoAcademico",ofertaService.findAptitudOfertabyOferta(oferta));
+       model.addAttribute("aptitudOferta",ofertaService.findAptitudOfertabyOferta(oferta));
+       model.addAttribute("conocimientos", ofertaService.findConoAcadbyOferta(oferta)); */
+       model.addAttribute("empresa", oferta.getEmpresa());
+   
+       
+        return "Oferta/verOfertaE";
+    }
 
  
 

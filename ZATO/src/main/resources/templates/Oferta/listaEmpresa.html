@@ -13,9 +13,9 @@
             </thead>
             <tbody>
                 <tr th:each="oferta: ${ofertas}">
-                    <td><a class="btn btn-primary btn-xs" th:href="@{/oferta/verOferta/} + ${oferta.pkOferta}"
+                    <td><a class="btn btn-primary btn-xs" th:href="@{/oferta/verOfertaE/} + ${oferta.pkOferta}"
                             th:text="'Ver Oferta'"></a>
-                            <a class="btn btn-success btn-xs"  th:href="@{/prueba/listarO/} + ${oferta.pkOferta}" th:text="'Agregar Prueba'"></a></td>
+                            </td>
                     <td th:text="${oferta.catalogoPuesto.nombreCatalogoPuesto}"></td>
                 </tr>
             </tbody>

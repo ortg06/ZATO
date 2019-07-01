@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th ="http://www.thymeleaf.org">
+    <head th:replace="fragments/header :: head"></head>
+    <body>
+        <div th:replace="fragments/header :: header"/>
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
+
+                <div class="col-lg-10 col-md-10">
+                    <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+
+                    <form th:action="@{/postulacion/formpos}" th:object="${postulacion}" method="post">
+                        
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Cv:</label>
+                            <div class="col-sm-6">
+                                <select id="cvs" class="col-sm-6 form-control form-control-sm" name="cv">
+
+                                    <option th:each="cvs : ${cvs}" th:value="${cvs.pkCv}" 
+                                            th:selected="${cvs == postulacion.cv}"
+                                            th:text="${cvs.nombreCv}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input type="submit" value="Enviar" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragments/footer :: footer"></div>
+    </body>
+</html>
