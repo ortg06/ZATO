@@ -6,153 +6,154 @@ and open the template in the editor.
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <title th:text="${titulo}">TODO supply a title</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-</head>
+    <head th:replace="fragments/header :: head"></head>
+    <body>
+        <div th:replace="fragments/header :: header"/>
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
 
-<body>
+                <div class="col-lg-10 col-md-10">
+                    <h4 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h4>
+                    <br/>
+                
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <h2 class="col-form-label">Nombre de la Empresa:</h2>
+                            <h3 class="panel-title" th:text="${empresa.nomEmpresa}"></h3>
 
-    <div th:replace="fragments/header :: header" />
+                        </div>
 
-    <div class="form-group row">
-        <div class="col-sm-7">
-            <h2 class="col-form-label">Nombre de la Empresa:</h2>
-            <h3 class="panel-title" th:text="${empresa.nomEmpresa}"></h3>
 
+                        
+
+                        <form th:action="@{/oferta/form}" th:object="${oferta}" method="post" enctype="multipart/form-data">
+
+
+
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Puesto:</label>
+                                <div class="col-sm-6">
+                                    <select id="catalogoPuesto" class="col-sm-6 form-control form-control-sm" name="catalogoPuesto">
+
+                                        <option th:each="puesto : ${puestos}" th:value="${puesto.pkCatalogoPuesto}" th:selected="${puesto.pkCatalogoPuesto==cp}"
+                                                th:text="${puesto.nombreCatalogoPuesto}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Pais:</label>
+                                <div class="col-sm-6">
+                                    <select id="pais" class="col-sm-6 form-control form-control-sm" name="pais">
+
+                                        <option th:each="pais : ${paises}" th:value="${pais.pkPais}" 
+                                                th:selected="${pais.pkPais==p}" th:text="${pais.nombrePais}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Departamento:</label>
+                                <div class="col-sm-6">
+                                    <select id="departamento" class="col-sm-6 form-control form-control-sm" name="departamento">
+
+                                        <option th:each="departamento : ${departamentos}" 
+                                                th:selected="${departamento.pkDepartamento==d}"    th:value="${departamento.pkDepartamento}" th:text="${departamento.nombreDepartamento}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Municipio de Origen:</label>
+
+                                    <select id="municipio" class="col-sm-10 form-control form-control-sm" name="municipio">
+
+                                        <option th:each="municipio : ${municipios}" th:value="${municipio.pkMunicipio}" 
+                                                th:selected="${municipio.pkMunicipio==m}" th:text="${municipio.nombreMunicipio}">
+                                        </option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <div class="col-sm-7">
+                                    <label class="col-form-label">Descripción:</label>
+
+                                    <textarea class="col-sm-12 form-control form-control-sm" row="4" cols="50" type="text" th:field="*{descripcionOferta}"/> <small
+                                        class="form-text text-danger"
+                                        th:if="${#fields.hasErrors('descripcionOferta')}" th:errors="*{descripcionOferta}"></small>
+                                </div>
+
+                                <div class="col-sm-5">
+
+                                    <label class=" col-form-label">Salario Maximo:</label>
+                                    <div >
+                                        <input class="form-control form-control-sm" type="text" th:field="*{salarioMaxOferta}"/> <small
+                                            class="form-text text-danger"
+                                            th:if="${#fields.hasErrors('salarioMaxOferta')}" th:errors="*{salarioMaxOferta}"></small>
+                                    </div>
+                                    <label class="col-form-label">Salario Minimo:</label>
+                                    <div >
+                                        <input class="form-control form-control-sm" type="number" th:field="*{salarioMinOferta}"/> <small
+                                            class="form-text text-danger"
+                                            th:if="${#fields.hasErrors('salarioMinOferta')}" th:errors="*{salarioMinOferta}"></small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-sm-5">
+
+                                    <label class=" col-form-label">Fecha Inicio de Oferta:</label>
+                                    <div >
+                                        <input class="form-control form-control-sm" type="date"  th:field="*{fechaInicioOferta}"/> <small
+                                            class="form-text text-danger"
+                                            th:if="${#fields.hasErrors('fechaInicioOferta')}" th:errors="*{fechaInicioOferta}"></small>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-5">
+
+                                    <label class=" col-form-label">Fecha Fin de Oferta:</label>
+                                    <div >
+                                        <input class="form-control form-control-sm" type="date"  th:field="*{fechaFinOferta}"/> <small
+                                            class="form-text text-danger"
+                                            th:if="${#fields.hasErrors('fechaFinOferta')}" th:errors="*{fechaFinOferta}"></small>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    <div class="container">
-        <h4 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0">
-        </h4>
-
-        <form th:action="@{/oferta/form}" th:object="${oferta}" method="post" enctype="multipart/form-data">
-
-
-            
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Puesto:</label>
-                    <div class="col-sm-6">
-                        <select id="catalogoPuesto" class="col-sm-6 form-control form-control-sm" name="catalogoPuesto">
-
-                            <option th:each="puesto : ${puestos}" th:value="${puesto.pkCatalogoPuesto}" th:selected="${puesto.pkCatalogoPuesto==cp}"
-                                th:text="${puesto.nombreCatalogoPuesto}">
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-            
-
-
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Pais:</label>
-                <div class="col-sm-6">
-                    <select id="pais" class="col-sm-6 form-control form-control-sm" name="pais">
-
-                        <option th:each="pais : ${paises}" th:value="${pais.pkPais}" 
-                                th:selected="${pais.pkPais==p}" th:text="${pais.nombrePais}">
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Departamento:</label>
-                <div class="col-sm-6">
-                    <select id="departamento" class="col-sm-6 form-control form-control-sm" name="departamento">
-
-                        <option th:each="departamento : ${departamentos}" 
-                                th:selected="${departamento.pkDepartamento==d}"    th:value="${departamento.pkDepartamento}" th:text="${departamento.nombreDepartamento}">
-                        </option>
-                    </select>
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-
-                <div class="col-sm-4">
-                    <label class="col-form-label">Municipio de Origen:</label>
-
-                    <select id="municipio" class="col-sm-10 form-control form-control-sm" name="municipio">
-
-                        <option th:each="municipio : ${municipios}" th:value="${municipio.pkMunicipio}" 
-                                th:selected="${municipio.pkMunicipio==m}" th:text="${municipio.nombreMunicipio}">
-                        </option>
-                    </select>
-                </div>
-
-            </div>
-
-
-
-                <div class="form-group row">
-                    <div class="col-sm-7">
-                        <label class="col-form-label">Descripción:</label>
-
-                        <textarea class="col-sm-12 form-control form-control-sm" row="4" cols="50" type="text" th:field="*{descripcionOferta}"/> <small
-                            class="form-text text-danger"
-                            th:if="${#fields.hasErrors('descripcionOferta')}" th:errors="*{descripcionOferta}"></small>
-                    </div>
-
-                    <div class="col-sm-5">
-
-                        <label class=" col-form-label">Salario Maximo:</label>
-                        <div >
-                            <input class="form-control form-control-sm" type="text" th:field="*{salarioMaxOferta}"/> <small
-                                class="form-text text-danger"
-                                th:if="${#fields.hasErrors('salarioMaxOferta')}" th:errors="*{salarioMaxOferta}"></small>
-                        </div>
-                        <label class="col-form-label">Salario Minimo:</label>
-                        <div >
-                            <input class="form-control form-control-sm" type="number" th:field="*{salarioMinOferta}"/> <small
-                                class="form-text text-danger"
-                                th:if="${#fields.hasErrors('salarioMinOferta')}" th:errors="*{salarioMinOferta}"></small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-sm-5">
-
-                        <label class=" col-form-label">Fecha Inicio de Oferta:</label>
-                        <div >
-                            <input class="form-control form-control-sm" type="date"  th:field="*{fechaInicioOferta}"/> <small
-                                class="form-text text-danger"
-                                th:if="${#fields.hasErrors('fechaInicioOferta')}" th:errors="*{fechaInicioOferta}"></small>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-sm-5">
-
-                        <label class=" col-form-label">Fecha Fin de Oferta:</label>
-                        <div >
-                            <input class="form-control form-control-sm" type="date"  th:field="*{fechaFinOferta}"/> <small
-                                class="form-text text-danger"
-                                th:if="${#fields.hasErrors('fechaFinOferta')}" th:errors="*{fechaFinOferta}"></small>
-                        </div>
-                    </div>
-
-
-                    
-
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                    </div>
-                </div>
-
-            </form>
-        </div>
-    </div>
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
