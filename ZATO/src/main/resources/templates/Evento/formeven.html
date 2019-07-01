@@ -24,7 +24,7 @@ and open the template in the editor.
             <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
 
             <form th:action="@{/Evento/formeven}" th:object="${evento}" method="post">
-
+                <input type="hidden" id="pkEvento" name="pkEvento" th:value="${evento.pkEvento}" />
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nombre del Evento :</label>

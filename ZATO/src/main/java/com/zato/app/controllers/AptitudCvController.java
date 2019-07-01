@@ -44,6 +44,8 @@ public class AptitudCvController {
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
         numcv=id;
+        aptitudCv = new AptitudCv();
+        
         model.put("aptitudCv", aptitudCv);
         model.put("titulo", "Aptitudes");
         model.put("cataptitud",catalogoAptitudService.findAllCatalogoAptitud());
@@ -66,6 +68,8 @@ public class AptitudCvController {
         } else {
             return "redirect:/Cv/verCv";
         }
+        numcv = aptitudCv.getCv().getPkCv();
+        model.put("cataptitud",catalogoAptitudService.findAllCatalogoAptitud());
         model.put("aptitudCv", aptitudCv);
         model.put("titulo", "Actualizar Aptitud");
         return "AptitudCv/formaptc";
@@ -88,12 +92,12 @@ public class AptitudCvController {
      @RequestMapping(value = "AptitudCv/eliminar/{id}")
     public String eliminar(@PathVariable(value="id") BigDecimal id)
     {
-         
+        
         //se compara si el ID es mayor que cero
         if(id.compareTo(BigDecimal.ZERO)>0)
         {
             aptitudCvService.deleteAptCv(id);
         }
-        return "redirect:/Cv/verCv"+numcv;
+        return "redirect:/Cv/verCv/"+numcv;
     }
 }

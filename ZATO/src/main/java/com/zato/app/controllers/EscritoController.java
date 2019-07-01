@@ -46,6 +46,7 @@ public class EscritoController {
     public String crear( @PathVariable(value = "id") BigDecimal id,Map<String,Object> model)
     {
         numcv=id;
+        escrito = new Escrito();
         model.put("escrito", escrito);
         model.put("titulo", "Escritos");
         model.put("tipoescrito",tipoEscritoService.findAllCatalogoEscrito());
@@ -68,7 +69,10 @@ public class EscritoController {
         } else {
             return "redirect:/Cv/verCv";
         }
+        numcv = escrito.getCv().getPkCv();
+        
         model.put("escrito", escrito);
+        model.put("tipoescrito",tipoEscritoService.findAllCatalogoEscrito());
         model.put("titulo", "Actualizar escrito");
         return "Escrito/formesc";
     } 

@@ -32,7 +32,8 @@ and open the template in the editor.
                         <select id="catIdioma" class="col-sm-6 form-control form-control-sm" name="catalogoIdioma">
 
                             <option th:each="catIdioma : ${catIdioma}" th:value="${catIdioma.pkIdioma}" 
-                                    th:selected="${catIdioma.pkIdioma==s}" th:text="${catIdioma.nombreIdioma}">
+                                    th:selected="${catIdioma == habilidadlingCv.catalogoIdioma}"
+                                    th:text="${catIdioma.nombreIdioma}">
                             </option>
                         </select>
                     </div>

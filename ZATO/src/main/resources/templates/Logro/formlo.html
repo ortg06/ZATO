@@ -24,7 +24,7 @@ and open the template in the editor.
             <h1 th:text="${titulo}" class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
 
             <form th:action="@{/Logro/formlo}" th:object="${logro}" method="post">
-
+                <input type="hidden" id="pkLogro" name="pkLogro" th:value="${logro.pkLogro}" />
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Logro</label>
