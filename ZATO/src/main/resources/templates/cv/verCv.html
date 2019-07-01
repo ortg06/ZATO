@@ -5,123 +5,114 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th ="http://www.thymeleaf.org">
-    <head>
-        <title th:text="${titulo}">TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <link rel="icon" type="image/x-icon"  href = "/templates/img/favicon.ico"/>
-
-    </head>
+    <head th:replace="fragments/header :: head"></head>
     <body>
         <div th:replace="fragments/header :: header"/>
-        <div class="container" >
-            
-            <h1>Curriculum Vitae</h1>
-            
-            <div class="card shadow p-2 mb-2">
-                <div class="card-body">
+        <div class="row"> 
+            <div th:replace="fragments/sidebar :: sidebar"></div>
+            <div class="container">
 
-                    <form class="form-horizontal" action="/action_page.php">
-                         <div class="form-group row">
-                            <label for="disabledInput" class="ccol-sm-4 col-form-label">Nombre Curriculum</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="disabledInput" type="text" th:field="*{cv.nombreCv}" disabled="true"/>
-                            </div>
+                <div class="col-lg-12 col-md-12">
+
+                    <h1>Curriculum Vitae</h1>
+
+                    <div class="card shadow p-2 mb-2">
+                        <div class="card-body">
+
+                            <form class="form-horizontal" action="/action_page.php">
+                                <div class="form-group row">
+                                    <label for="disabledInput" class="ccol-sm-4 col-form-label">Nombre Curriculum</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="disabledInput" type="text" th:field="*{cv.nombreCv}" disabled="true"/>
+                                    </div>
+                                </div>
+
+                            </form>
+
                         </div>
+                    </div>
+                    <br/>
 
-                    </form>
+                    <div id="seccion" class="card shadow p-2 mb-2">
+                        <div class="card-body">
+                            <h6> Experiencia Laboral </h6>
+                            <div th:replace="experienciaLaboral/listar :: EXP"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div  id="seccion" class="card shadow p-2 mb-2">
+                        <div class="card-body">Formacion academica
+                            <div th:replace="FormacionAcademica/listar :: FORMACION"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div id="seccion" class="card shadow p-2 mb-2">
+                        <div class="card-body">Cursos y Capacitaciones
+                            <div th:replace="CursoCapacitacion/listar :: CURSOCAP"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div id="seccion"  class="card shadow p-2 mb-2">
+                        <div class="card-body">Idiomas
+                            <div th:replace="HabilidadLinguisticaCv/listar :: HABLINGCV"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div id="seccion" class="card shadow p-2 mb-2">
+                        <div class="card-body">Conocimientos y Habilidades
+                            <div th:replace="HabilidadesCv/listar :: HABCV"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div id="seccion" class="card shadow p-2 mb-2">
+                        <div class="card-body">Aptitudes
+                            <div th:replace="AptitudCv/listar :: APTCV"/>
+                        </div>
+                    </div>
+                    <br/>
+
+
+                    <div id="seccion" class="card shadow p-2 mb-2">
+                        <div class="card-body">Logros
+                            <div th:replace="Logro/listar :: LOGRO"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div id="seccion" class="card shadow p-2 mb-2">
+                        <div class="card-body">Eventos
+                            <div th:replace="Evento/listar :: EVENTO"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div id="seccion"  class="card shadow p-2 mb-2">
+                        <div class="card-body">Escritos
+                            <div th:replace="Escrito/listar :: ESCRITO"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <!--   <div id="seccion" class="card shadow p-2 mb-2">
+                           <div class="card-body">Licencias de conducir
+                            <div th:replace="LicenciaCandidato/listar :: LICCAND"/>
+                           </div>
+                       </div>
+                       <br/>
+                       
+                       <div id="seccion"  class="card shadow p-2 mb-2">
+                           <div class="card-body">Referencias</div>
+                       </div>
+                       <br/> -->
 
                 </div>
             </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">
-                    <h6> Experiencia Laboral </h6>
-                     <div th:replace="experienciaLaboral/listar :: EXP"/>
-                </div>
-            </div>
-            <br/>
-
-            <div  id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Formacion academica
-                <div th:replace="FormacionAcademica/listar :: FORMACION"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Cursos y Capacitaciones
-                <div th:replace="CursoCapacitacion/listar :: CURSOCAP"/>
-                </div>
-            </div>
-            <br/>
-
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">Idiomas
-                 <div th:replace="HabilidadLinguisticaCv/listar :: HABLINGCV"/>
-                </div>
-            </div>
-            <br/>
-
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Conocimientos y Habilidades
-                <div th:replace="HabilidadesCv/listar :: HABCV"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Aptitudes
-                <div th:replace="AptitudCv/listar :: APTCV"/>
-                </div>
-            </div>
-            <br/>
-            
-                     
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Logros
-                <div th:replace="Logro/listar :: LOGRO"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Eventos
-                <div th:replace="Evento/listar :: EVENTO"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">Escritos
-                <div th:replace="Escrito/listar :: ESCRITO"/>
-                </div>
-            </div>
-            <br/>
-            
-         <!--   <div id="seccion" class="card shadow p-2 mb-2">
-                <div class="card-body">Licencias de conducir
-                 <div th:replace="LicenciaCandidato/listar :: LICCAND"/>
-                </div>
-            </div>
-            <br/>
-            
-            <div id="seccion"  class="card shadow p-2 mb-2">
-                <div class="card-body">Referencias</div>
-            </div>
-            <br/> -->
-
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <div th:replace="fragments/footer :: footer"></div>  
-
+        <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
-

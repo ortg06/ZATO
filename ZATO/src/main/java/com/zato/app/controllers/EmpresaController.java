@@ -17,8 +17,10 @@ import javax.sql.rowset.serial.SerialException;
 import com.zato.app.Servicios.IService;
 import com.zato.app.dao.IEmpresaDao;
 import com.zato.app.entidades.Empresa;
+import com.zato.app.entidades.Perfil;
 import com.zato.app.entidades.Prueba;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,14 @@ public class EmpresaController {
         return "empresa/listar";
     }
 
+     @RequestMapping(value = "/ver")
+    public String buscar(HttpSession session){
+        Perfil perfil = (Perfil) session.getAttribute("Perfil");
+        BigDecimal idemp = perfil.getEmpresa().getPkEmpresa();
+        
+        return "redirect:/empresa/ver/"+idemp;
+    }
+    
     @GetMapping(value = "/ver/{id}")
     public String ver(@PathVariable(value = "id") BigDecimal id, Map<String, Object> model) {
 
