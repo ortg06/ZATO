@@ -33,9 +33,9 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nombre:</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{nombreDepartamento}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreDepartamento}" required="required"/> <small
                                     class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('nombreDepartamento')}" th:errors="*{apellido}"></small>
+                                    th:if="${#fields.hasErrors('nombreDepartamento')}" th:errors="*{nombreDepartamento}"></small>
                             </div>
                         </div>
 

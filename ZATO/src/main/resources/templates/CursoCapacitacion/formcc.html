@@ -18,10 +18,11 @@ and open the template in the editor.
                     <form th:action="@{/CursoCapacitacion/formcc}" th:object="${cursocapacitacion}" method="post">
 
                         <input type="hidden" id="pkCursoCapacitacion" name="pkCursoCapacitacion" th:value="${cursocapacitacion.pkCursoCapacitacion}" />
+                        
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Curso o Capacitacion :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{nombreCursoCapacitacion}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreCursoCapacitacion}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('nombreCursoCapacitacion')}" th:errors="*{nombreCursoCapacitacion}"></small>
                             </div>
@@ -31,7 +32,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Fecha</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="date" th:field="*{fechaCurso}"/> <small
+                                <input class="form-control form-control-sm" type="date" th:field="*{fechaCurso}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('fechaCurso')}" th:errors="*{fechaCurso}"></small>
                             </div>
@@ -40,16 +41,16 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Duracion :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{duracion}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{duracion}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('duracion')}" th:errors="*{duracion}"></small>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Instituto Ponente :</label>
+                            <label class="col-sm-2 col-form-label">Instituto Ponente:</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{nombreInstitutoPonente}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreInstitutoPonente}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('nombreInstitutoPonente')}" th:errors="*{nombreInstitutoPonente}"></small>
                             </div>
@@ -58,7 +59,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Lugar :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{lugarCapacitacion}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{lugarCapacitacion}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('lugarCapacitacion')}" th:errors="*{lugarCapacitacion}"></small>
                             </div>

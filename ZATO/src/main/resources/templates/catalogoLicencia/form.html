@@ -20,7 +20,7 @@ and open the template in the editor.
              <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Tipo de licencia :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{nombreTipoLicencia}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreTipoLicencia}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('nombreTipoLicencia')}" th:errors="*{nombreTipoLicencia}"></small>
                             </div>

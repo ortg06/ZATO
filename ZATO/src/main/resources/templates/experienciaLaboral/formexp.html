@@ -21,7 +21,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Empresa</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{nombreExpEmpresa}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreExpEmpresa}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('nombreExpEmpresa')}" th:errors="*{nombreExpEmpresa}"></small>
                             </div>
@@ -44,7 +44,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Cargo</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{cargo}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{cargo}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}"></small>
                             </div>
@@ -53,7 +53,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Periodo de inicio</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="date" th:field="*{periodoInicio}"/> <small
+                                <input class="form-control form-control-sm" type="date" th:field="*{periodoInicio}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('periodoInicio')}" th:errors="*{periodoInicio}"></small>
                             </div>
@@ -75,7 +75,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Funciones :</label>
                             <div class="col-sm-6">
-                                <textarea  class="form-control form-control-sm" type="text" th:field="*{descripcionFunciones}"/> <small
+                                <textarea  class="form-control form-control-sm" type="text" th:field="*{descripcionFunciones}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('descripcionFunciones')}" th:errors="*{descripcionFunciones}"></small>
                             </div>
@@ -84,7 +84,7 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Contacto :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="text" th:field="*{nombreContactoExp}"/> <small
+                                <input class="form-control form-control-sm" type="text" th:field="*{nombreContactoExp}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('nombreContactoExp')}" th:errors="*{nombreContactoExp}"></small>
                             </div>
@@ -93,15 +93,15 @@ and open the template in the editor.
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Telefono Contacto :</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="number" th:field="*{telefonoContactoExp}"/> <small
+                                <input class="form-control form-control-sm" type="number" th:field="*{telefonoContactoExp}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('telefonoContactoExp')}" th:errors="*{telefonoContactoExp}"></small>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Correo Contacto :</label>
+                            <label class="col-sm-2 col-form-label">Correo Contacto:</label>
                             <div class="col-sm-6">
-                                <input class="form-control form-control-sm" type="email" th:field="*{correoContactoExp}"/> <small
+                                <input class="form-control form-control-sm" type="email" th:field="*{correoContactoExp}" required="required"/> <small
                                     class="form-text text-danger"
                                     th:if="${#fields.hasErrors('correoContactoExp')}" th:errors="*{correoContactoExp}"></small>
                             </div>
@@ -118,6 +118,9 @@ and open the template in the editor.
 
 
                     </form>
+                    <br/>
+                    <br/>
+                    <br/>
                 </div>
             </div>
         </div>

@@ -21,9 +21,9 @@ and open the template in the editor.
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Nombre del Curriculum: </label>
                                     <div class="col-sm-6">
-                                        <input class="form-control form-control-sm" type="text" th:field="*{nombreCv}"/> <small
+                                        <input class="form-control form-control-sm" type="text" th:field="*{nombreCv}" required="required"/> <small
                                             class="form-text text-danger"
-                                            th:if="${#fields.hasErrors('nombreCv')}" th:errors="*{apellido}"></small>
+                                            th:if="${#fields.hasErrors('nombreCv')}" th:errors="*{nombreCv}"></small>
                                     </div>
                                 </div>
 
